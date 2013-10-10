@@ -7,8 +7,8 @@ class Cancha {
 	SuperficieEnum superficie
 	Integer cantidadJugadores
 	Boolean cubierta
-	List<Precio> precios
 	
+	static hasMany = [precios : Precio]
 	static belongsTo = [complejo: Complejo]
 	
     static constraints = {
@@ -25,5 +25,13 @@ class Cancha {
 	@Override
 	String toString() {
 		"${nombre} - ${deporte} (${cantidadJugadores})"
+	}
+	
+	void agregarPrecio(Precio precio) {
+		this.addToPrecios(precio)
+	}
+	
+	Boolean hasPrecio(Precio precio) {
+		this.precios.contains(precio)
 	}
 }
