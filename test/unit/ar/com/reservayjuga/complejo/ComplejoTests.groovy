@@ -8,16 +8,6 @@ import org.junit.*
 class ComplejoTests {
 
     void testConstraints() {
-//		Cancha cancha = new Cancha()
-//		assertFalse cancha.validate()
-//		assertTrue cancha.hasErrors()
-//		assertNull cancha.save()
-//		assertEquals "nullable", cancha.errors["nombre"].code
-//		assertEquals "nullable", cancha.errors["deporte"].code
-//		assertEquals "nullable", cancha.errors["superficie"].code
-//		assertEquals "nullable", cancha.errors["cantidadJugadores"].code
-//		assertEquals "nullable", cancha.errors["cubierta"].code
-//		assertEquals "nullable", cancha.errors["complejo"].code
 		Complejo complejo = new Complejo ()
 		assertFalse complejo.validate()
 		assertTrue complejo.hasErrors()
@@ -29,5 +19,9 @@ class ComplejoTests {
 		assertEquals "nullable", complejo.errors["informacionExtra"].code
 		assertEquals "nullable", complejo.errors["ubicacion"].code
 		assertEquals "nullable", complejo.errors["servicios"].code
+		assertNull complejo.errors["telefono2"]
+		assertNull complejo.errors["telefono3"]
+		assertNull complejo.errors["telefono4"]
     }
+
 }
