@@ -27,7 +27,7 @@ class Complejo {
 		telefono3 nullable: true
 		telefono4 nullable: true
 		mail blank: false
-		informacionExtra blank: true
+		informacionExtra blank: true, maxSize:1000
 		horarios nullable: true
 		imagenes nullable: true
 		canchas nullable: true
