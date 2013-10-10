@@ -151,7 +151,7 @@ class BootStrap {
 			apellido: "mig",
 			telefono: "123",
 			mail: "d@m.com",
-			clave: "asd", sexo: "M")
+			clave: "asdasd", sexo: "M")
 		DBUtils.validateAndSave(jug)
 	}
 	
