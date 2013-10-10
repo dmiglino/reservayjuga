@@ -2,6 +2,10 @@ package ar.com.reservayjuga.reserva
 
 import org.springframework.dao.DataIntegrityViolationException
 
+import ar.com.reservayjuga.DBUtils
+import ar.com.reservayjuga.complejo.Cancha
+import ar.com.reservayjuga.usuario.Jugador
+
 class ReservaController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -99,4 +103,16 @@ class ReservaController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def reservarCancha() {
+		Cancha cancha = Cancha.findById(1)
+		Jugador jug = Jugador.findById(1)
+		Reserva res = new Reserva(complejo:cancha.complejo, jugador: jug, cancha: cancha, dia: new Date(),
+			 horaInicio: "11:00",
+			 horaFin: "12:00",
+			 senia: 99,
+			 precioTotal: 450,
+			 tipoReserva: "ONLINE")
+		DBUtils.validateAndSave(res)
+	}
 }

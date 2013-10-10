@@ -19,9 +19,9 @@ class Jugador {
 		mail blank: false
 		clave blank: false
 		sexo blank: true
-		fechaNacimiento nullable: false
+		fechaNacimiento nullable: true
     }
 	
-	static mapping = { table "USUARIO" }
+	static mapping = { table "JUGADOR" }
 	
 }
