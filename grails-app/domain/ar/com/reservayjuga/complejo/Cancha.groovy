@@ -33,4 +33,13 @@ class Cancha {
 	Boolean hasPrecio(Precio precio) {
 		this.precios.contains(precio)
 	}
+	
+	/**
+	 * Elimina el precio del listado y ademas lo borra de la BD
+	 * @param cancha
+	 */
+	void eliminarPrecio(Precio precio) {
+		removeFromPrecios(precio)
+		precio.delete()
+	}
 }

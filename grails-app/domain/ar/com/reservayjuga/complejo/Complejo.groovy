@@ -43,6 +43,10 @@ class Complejo {
 		}
 	}
 	
+	/**
+	 * Elimina la cancha del listado y ademas la borra de la BD
+	 * @param cancha
+	 */
 	void eliminarCancha(Cancha cancha) {
 		removeFromCanchas(cancha)
 		cancha.delete()
