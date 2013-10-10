@@ -43,6 +43,11 @@ class Complejo {
 		}
 	}
 	
+	void eliminarCancha(Cancha cancha) {
+		removeFromCanchas(cancha)
+		cancha.delete()
+	}
+	
 	void agregarHorario(Horario horario) {
 		this.addToHorarios(horario)
 	}

@@ -36,4 +36,8 @@ class DBUtils {
 		}
 	}
 
+	static def markAsDeleted(def entity) {
+		// TODO primero hacer extender todas las entities de una generica
+//		entity.deleted = true
+	}
 }
