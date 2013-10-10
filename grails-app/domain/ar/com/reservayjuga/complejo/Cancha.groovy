@@ -3,7 +3,7 @@ package ar.com.reservayjuga.complejo
 class Cancha {
 	
 	String nombre
-	String superficie
+	SuperficieEnum superficie
 	String deporte
 	Integer cantidadJugadores
 	Boolean cubierta
