@@ -3,11 +3,13 @@ package ar.com.reservayjuga.complejo
 class Cancha {
 	
 	String nombre
-	String deporte
+	DeporteEnum deporte
 	SuperficieEnum superficie
 	Integer cantidadJugadores
 	Boolean cubierta
 	List<Precio> precios
+	
+	static belongsTo = [complejo: Complejo]
 	
     static constraints = {
 		nombre blank: false
@@ -15,6 +17,7 @@ class Cancha {
 		superficie nullable: false
 		cantidadJugadores nullable: false
 		cubierta nullable: false
+		complejo nullable: false
     }
 	
 	static mapping = { table "CANCHA" }

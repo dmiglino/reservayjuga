@@ -13,6 +13,8 @@ class Servicios {
 	Boolean estacionamiento
 	Float precioEstacionamiento
 	
+	static belongsTo = Complejo
+
     static constraints = {
 		vestuario nullable: false
 		television nullable: false
@@ -23,7 +25,7 @@ class Servicios {
 		wifi nullable: false
 		gimnasio nullable: false
 		estacionamiento nullable: false
-		precioEstacionamiento nullable: false
+		precioEstacionamiento nullable: true
     }
 
 	static mapping = {

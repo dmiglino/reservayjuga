@@ -6,6 +6,8 @@ class Horario {
 	String horarioApertura
 	String horarioCierre
 	
+	static belongsTo = Complejo
+	
     static constraints = {
 		horarioApertura blank: false
 		horarioCierre blank: false

@@ -9,7 +9,7 @@ class Precio {
     static constraints = {
 		horarioInicio blank: false
 		precio nullable: false
-		dia nullable: true
+		dia nullable: false
     }
 
 	static mapping = {

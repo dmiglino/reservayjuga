@@ -7,7 +7,9 @@ class Ubicacion {
 	String localidad
 	String provincia
 	String pais
-
+	
+	static belongsTo = Complejo
+	
 	static constraints = {
 		direccion blank: false
 		barrio blank: false
