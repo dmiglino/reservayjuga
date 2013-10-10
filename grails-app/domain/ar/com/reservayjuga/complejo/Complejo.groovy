@@ -45,6 +45,14 @@ class Complejo {
 		}
 	}
 	
+	void agregarHorario(Horario horario) {
+		this.addToHorarios(horario)
+	}
+	
+	Boolean hasHorario(Horario horario) {
+		this.horarios.contains(horario)
+	}
+	
 	@Override
 	String toString() {
 		"${nombre}"
