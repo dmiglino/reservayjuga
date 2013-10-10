@@ -9,6 +9,7 @@ class CanchaTests {
 	
 	void testConstraints() {
 		Cancha cancha = new Cancha()
+		cancha.nombre = " ";
 		assertFalse cancha.validate()
 		assertTrue cancha.hasErrors()
 		assertNull cancha.save()
