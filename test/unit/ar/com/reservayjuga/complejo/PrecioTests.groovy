@@ -11,7 +11,17 @@ import org.junit.*
 @TestFor(Precio)
 class PrecioTests {
 
-    void testSomething() {
-       fail "Implement me"
+     void testConstraints() {
+		
+		 Precio precio = new Precio ()
+		 precio.horarioInicio = ""
+		 assertFalse precio.validate()
+		 assertTrue precio.hasErrors()
+		 assertNull precio.save()
+		 
+		assertEquals "blank", precio.errors["horarioInicio"].code
+		assertEquals "nullable", precio.errors["precio"].code
+		assertEquals "nullable", precio.errors["dia"].code
     }
+	 
 }
