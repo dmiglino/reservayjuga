@@ -8,6 +8,8 @@ class SistemaRyJ {
 	String clave
 	
     static constraints = {
+		nombreUsuario blank: false
+		clave blank: false
     }
 
 }

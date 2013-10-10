@@ -7,5 +7,8 @@ class Precio {
 	Float precio
 	
     static constraints = {
+		horarioInicio blank: false
+		precio nullable: false
+		dia nullable: true
     }
 }

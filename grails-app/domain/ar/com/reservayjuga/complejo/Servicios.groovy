@@ -14,5 +14,15 @@ class Servicios {
 	Float precioEstacionamiento
 	
     static constraints = {
+		vestuario nullable: false
+		television nullable: false
+		bebida nullable: false
+		comida nullable: false
+		ayudaMedica nullable: false
+		torneo nullable: false
+		wifi nullable: false
+		gimnasio nullable: false
+		estacionamiento nullable: false
+		precioEstacionamiento nullable: false
     }
 }

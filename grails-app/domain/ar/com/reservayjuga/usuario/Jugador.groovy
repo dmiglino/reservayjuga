@@ -13,5 +13,13 @@ class Jugador {
 	Date fechaNacimiento 
 	
     static constraints = {
+		nombre blank: false
+		apellido blank: false
+		telefono blank: false
+		mail blank: false
+		clave blank: false
+		sexo blank: true
+		fechaNacimiento nullable: false
+    
     }
 }

@@ -15,8 +15,19 @@ class Reserva {
 	Float senia
 	Float precioTotal
 	String tipoReserva //online o presencial
-//	ReservaState estado // pendiente, señada, concretada
+//	ReservaState estado = ReservaStatePendiente // pendiente, señada, concretada
 	
     static constraints = {
+		complejo nullable: false
+		jugador nullable: false
+		cancha nullable: false
+		dia nullable: false
+		horaInicio blank: false
+		horaFin blank: false
+		senia nullable: false
+		precioTotal nullable: false
+		tipoReserva blank: false
+		tipoReserva blank: false
     }
+
 }

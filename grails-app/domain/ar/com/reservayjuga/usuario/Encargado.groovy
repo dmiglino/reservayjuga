@@ -11,5 +11,10 @@ class Encargado {
 	String clave
 	
     static constraints = {
+		nombre blank: false
+		apellido blank: false
+		nombreUsuario blank: false
+		clave blank: false
+		complejo nullable: false
     }
 }

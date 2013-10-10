@@ -9,5 +9,11 @@ class Ubicacion {
 	String pais
 	
     static constraints = {
+		direccion blank: false
+		barrio blank: false
+		localidad blank: false
+		provincia blank: false
+		pais blank: false
     }
+	
 }

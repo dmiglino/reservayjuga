@@ -7,5 +7,9 @@ class Horario {
 	String horarioCierre
 	
     static constraints = {
+		horarioApertura blank: false
+		horarioCierre blank: false
+		dia nullable: false
     }
+
 }

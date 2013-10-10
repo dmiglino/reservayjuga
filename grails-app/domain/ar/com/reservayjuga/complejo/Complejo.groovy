@@ -17,5 +17,14 @@ class Complejo {
 	List<Cancha> canchas
 	
     static constraints = {
+		nombre blank: false
+		webSite blank: true
+		telefono1 blank: false
+		telefono2 blank: true
+		telefono3 blank: true
+		telefono4 blank: true
+		mail blank: false
+		informacionExtra blank: true
+    
     }
 }
