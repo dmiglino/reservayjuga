@@ -32,8 +32,7 @@ class ComplejoTests {
     }
 	
 	void testAtributes() {
-		
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Morán 2379", barrio:"Agronomía", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+		Ubicacion ubi = new Ubicacion (direccion:"Pedro Morï¿½n 2379", barrio:"Agronomï¿½a", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Horario hora = new Horario (dia: 1, horarioApertura: "10:00", horarioCierre: "18:00")
 		
@@ -45,8 +44,8 @@ class ComplejoTests {
 		assertEquals "4574-0077", complejo.telefono1
 		assertEquals "garden@mail.com", complejo.mail
 		assertEquals "Info garden", complejo.informacionExtra
-		assertEquals "Pedro Morán 2379", complejo.ubicacion.direccion
-		assertEquals "Agronomía", complejo.ubicacion.barrio
+		assertEquals "Pedro Morï¿½n 2379", complejo.ubicacion.direccion
+		assertEquals "Agronomï¿½a", complejo.ubicacion.barrio
 		assertEquals "Capital Federal", complejo.ubicacion.localidad
 		assertEquals "Buenos Aires", complejo.ubicacion.provincia
 		assertEquals "Argentina", complejo.ubicacion.pais
@@ -57,15 +56,14 @@ class ComplejoTests {
 
 	
 	void testToString() {
-		
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Morán 2379", barrio:"Agronomía", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+		Ubicacion ubi = new Ubicacion (direccion:"Pedro Morï¿½n 2379", barrio:"Agronomï¿½a", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Horario hora = new Horario (dia: 1, horarioApertura: "10:00", horarioCierre: "18:00")
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi, horarios: hora)		
 		assertEquals "Garden Club", complejo.toString()
 	}
 	
-	void testHorarios(){
+	void testHorarios() {
 		Horario lunes = new Horario (dia: 1, horarioApertura: "10:00", horarioCierre: "22:00")
 		Horario martes = new Horario (dia: 2, horarioApertura: "10:00", horarioCierre: "22:00")
 		Horario miercoles = new Horario (dia: 3, horarioApertura: "10:00", horarioCierre: "22:00")
@@ -76,7 +74,7 @@ class ComplejoTests {
 		Horario feriados = new Horario (dia: 8, horarioApertura: "11:00", horarioCierre: "19:00")
 		Horario verga = new Horario (dia: 229, hoarioApertura: "11:00", horarioCierre:"14:00")
 		
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Morán 2379", barrio:"Agronomía", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+		Ubicacion ubi = new Ubicacion (direccion:"Pedro Morï¿½n 2379", barrio:"Agronomï¿½a", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Horario hora = new Horario (dia: 1, horarioApertura: "10:00", horarioCierre: "18:00")
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi, horarios: [])
@@ -102,10 +100,8 @@ class ComplejoTests {
 		assertFalse complejo.hasHorario(verga)
 	}
 	
-	void testCanchas()
-	{
-		
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Morán 2379", barrio:"Agronomía", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+	void testCanchas() {
+		Ubicacion ubi = new Ubicacion (direccion:"Pedro Morï¿½n 2379", barrio:"Agronomï¿½a", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi, horarios: [], canchas: [])
 		
@@ -118,6 +114,5 @@ class ComplejoTests {
 		complejo.agregarCancha(cancha3)
 		
 		assertEquals 3, complejo.canchas.size()
-
 	}
 }

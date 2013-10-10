@@ -9,7 +9,7 @@ class Cancha {
 	Boolean cubierta
 	
 	static hasMany = [precios : Precio]
-	static belongsTo = [complejo: Complejo]
+	static belongsTo = Complejo
 	
     static constraints = {
 		nombre blank: false
@@ -17,7 +17,6 @@ class Cancha {
 		superficie nullable: false
 		cantidadJugadores nullable: false
 		cubierta nullable: false
-		complejo nullable: false
     }
 	
 	static mapping = { table "CANCHA" }

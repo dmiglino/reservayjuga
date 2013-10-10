@@ -6,6 +6,8 @@ class Precio {
 	String horarioInicio
 	Float precio
 	
+	static belongTo = Cancha 
+	
     static constraints = {
 		horarioInicio blank: false
 		precio nullable: false

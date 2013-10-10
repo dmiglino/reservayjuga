@@ -1,5 +1,7 @@
 package ar.com.reservayjuga.complejo
 
+import ar.com.reservayjuga.reserva.Reserva
+
 class Complejo {
 
 	String nombre
@@ -12,12 +14,8 @@ class Complejo {
 	String informacionExtra
 	Ubicacion ubicacion
 	Servicios servicios
-//	List<Horario> horarios
-//	List<Imagen> imagenes
-//	List<Cancha> canchas
 
-//	static hasOne = [ubicacion: Ubicacion, servicios: Servicios]
-	static hasMany = [horarios: Horario, imagenes: Imagen, canchas: Cancha]
+	static hasMany = [horarios: Horario, imagenes: Imagen, canchas: Cancha, reservas : Reserva]
 	
 	static constraints = {
 		nombre blank: false
@@ -26,7 +24,7 @@ class Complejo {
 		telefono2 nullable: true
 		telefono3 nullable: true
 		telefono4 nullable: true
-		mail blank: false
+		mail email: true, nullable:false
 		informacionExtra blank: true, maxSize:1000
 		horarios nullable: true
 		imagenes nullable: true

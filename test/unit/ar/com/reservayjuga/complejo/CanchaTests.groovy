@@ -9,7 +9,6 @@ class CanchaTests {
 	
 	void testConstraints() {
 		Cancha cancha = new Cancha()
-		cancha.nombre = " "
 		assertFalse cancha.validate()
 		assertTrue cancha.hasErrors()
 		assertNull cancha.save()
@@ -18,15 +17,11 @@ class CanchaTests {
 		assertEquals "nullable", cancha.errors["superficie"].code
 		assertEquals "nullable", cancha.errors["cantidadJugadores"].code
 		assertEquals "nullable", cancha.errors["cubierta"].code
-		assertEquals "nullable", cancha.errors["complejo"].code
 	}
 
 	void testAtributes() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
-		Servicios serv1 = new Servicios(vestuario: true, television: false, bebida: true, comida: true, ayudaMedica: false, torneo: false, wifi: true, gimnasio: false, estacionamiento: true)
-		Ubicacion u1 = new Ubicacion(direccion: "Casa", barrio: "VP", localidad: "CABA", provincia: "BsAs", pais: "Argentina")
-		Complejo poli = new Complejo(nombre: "Poli",webSite: "www.poli.com",telefono1: "41112222",mail: "poli@poli.com",informacionExtra: "soy el poli",ubicacion: u1,servicios:serv1)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[precio], complejo:poli)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[precio])
 		
 		assertTrue cancha.validate()
 		assertEquals "Poli-1", cancha.nombre
@@ -35,17 +30,11 @@ class CanchaTests {
 		assertEquals 5, cancha.cantidadJugadores
 		assertTrue cancha.cubierta
 		assertEquals 1, cancha.precios.size()
-		assertEquals "Poli", cancha.complejo.nombre
-		assertEquals "Casa", cancha.complejo.ubicacion.direccion
-		assertTrue cancha.complejo.servicios.vestuario
 	}
 	
 	void testToString() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
-		Servicios serv1 = new Servicios(vestuario: true, television: false, bebida: true, comida: true, ayudaMedica: false, torneo: false, wifi: true, gimnasio: false, estacionamiento: true)
-		Ubicacion u1 = new Ubicacion(direccion: "Casa", barrio: "VP", localidad: "CABA", provincia: "BsAs", pais: "Argentina")
-		Complejo poli = new Complejo(nombre: "Poli",webSite: "www.poli.com",telefono1: "41112222",mail: "poli@poli.com",informacionExtra: "soy el poli",ubicacion: u1,servicios:serv1)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[precio], complejo:poli)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[precio])
 		assertEquals "Poli-1 - FUTBOL (5)", cancha.toString()
 	}
 	
@@ -59,10 +48,7 @@ class CanchaTests {
 		Precio j1 = new Precio(dia:4, horarioInicio: "17:00", precio: 300)
 		Precio j2 = new Precio(dia:4, horarioInicio: "18:00", precio: 300)
 		
-		Servicios serv1 = new Servicios(vestuario: true, television: false, bebida: true, comida: true, ayudaMedica: false, torneo: false, wifi: true, gimnasio: false, estacionamiento: true)
-		Ubicacion u1 = new Ubicacion(direccion: "Casa", barrio: "VP", localidad: "CABA", provincia: "BsAs", pais: "Argentina")
-		Complejo poli = new Complejo(nombre: "Poli",webSite: "www.poli.com",telefono1: "41112222",mail: "poli@poli.com",informacionExtra: "soy el poli",ubicacion: u1,servicios:serv1)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[], complejo:poli)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[])
 		
 		cancha.agregarPrecio(l3)
 		cancha.agregarPrecio(l4)

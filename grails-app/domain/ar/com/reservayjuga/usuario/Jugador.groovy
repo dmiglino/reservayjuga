@@ -1,6 +1,6 @@
 package ar.com.reservayjuga.usuario
 
-import ar.com.reservayjuga.complejo.Complejo;
+import ar.com.reservayjuga.reserva.Reserva
 
 class Jugador {
 	
@@ -12,12 +12,14 @@ class Jugador {
 	String sexo
 	Date fechaNacimiento 
 	
+	static hasMany = [reservas : Reserva]
+	
     static constraints = {
 		nombre blank: false
 		apellido blank: false
 		telefono blank: false
 		mail blank: false
-		clave blank: false
+		clave size: 6..8, blank: false
 		sexo blank: true
 		fechaNacimiento nullable: true
     }

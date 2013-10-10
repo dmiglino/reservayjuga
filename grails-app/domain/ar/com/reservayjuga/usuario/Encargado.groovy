@@ -6,9 +6,10 @@ class Encargado {
 
 	String nombre
 	String apellido
-	Complejo complejo
 	String nombreUsuario
 	String clave
+	
+	static belongsTo = [complejo : Complejo]
 	
     static constraints = {
 		nombre blank: false
