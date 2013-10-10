@@ -1,7 +1,13 @@
 package ar.com.reservayjuga.usuario
 
-class SistemaRyJ {
+import ar.com.reservayjuga.complejo.Complejo;
 
+class SistemaRyJ {
+	
+	String nombreUsuario
+	String clave
+	
     static constraints = {
     }
+
 }
