@@ -1,17 +1,24 @@
 package ar.com.reservayjuga.complejo
 
-
-
 import grails.test.mixin.*
 import org.junit.*
 
-/**
- * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
- */
 @TestFor(Imagen)
 class ImagenTests {
 
-    void testSomething() {
-       fail "Implement me"
+    void testConstraints() {
+		
+		Imagen imagen = new Imagen ()
+		assertFalse imagen.validate()
+		assertTrue imagen.hasErrors()
+		assertNull imagen.save()
+		
+		assertEquals "nullable", imagen.errors["nombre"].code
+		assertEquals "nullable", imagen.errors["extension"].code
+		assertEquals "nullable", imagen.errors["portada"].code
+		
+		assertNull imagen.errors["descripcion"]
+		assertNull imagen.errors["fecha"]
+		assertNull imagen.errors["foto"]
     }
 }

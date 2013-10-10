@@ -1,17 +1,22 @@
 package ar.com.reservayjuga.complejo
 
-
-
 import grails.test.mixin.*
 import org.junit.*
 
-/**
- * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
- */
 @TestFor(Horario)
 class HorarioTests {
 
-    void testSomething() {
-       fail "Implement me"
+	void testConstraints() {
+		
+		Horario horario = new Horario ()
+		horario.horarioApertura = ""
+		assertFalse horario.validate()
+		assertTrue horario.hasErrors()
+		assertNull horario.save()
+		
+		assertEquals "nullable", horario.errors["dia"].code
+		assertEquals "blank", horario.errors["horarioApertura"].code
+		assertEquals "nullable", horario.errors["horarioCierre"].code
     }
+
 }
