@@ -25,4 +25,9 @@ class Servicios {
 		estacionamiento nullable: false
 		precioEstacionamiento nullable: false
     }
+
+	static mapping = {
+		table "SERVICIOS"
+	}
+
 }

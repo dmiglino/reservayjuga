@@ -7,13 +7,15 @@ class Ubicacion {
 	String localidad
 	String provincia
 	String pais
-	
-    static constraints = {
+
+	static constraints = {
 		direccion blank: false
 		barrio blank: false
 		localidad blank: false
 		provincia blank: false
 		pais blank: false
-    }
+	}
+
+	static mapping = { table "UBICACION" }
 	
 }

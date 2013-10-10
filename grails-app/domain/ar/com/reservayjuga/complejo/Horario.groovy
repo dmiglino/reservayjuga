@@ -12,4 +12,8 @@ class Horario {
 		dia nullable: false
     }
 
+	static mapping = {
+		table "HORARIO"
+	}
+
 }

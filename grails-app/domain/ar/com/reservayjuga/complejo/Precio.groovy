@@ -11,4 +11,9 @@ class Precio {
 		precio nullable: false
 		dia nullable: true
     }
+
+	static mapping = {
+		table "PRECIO"
+	}
+
 }

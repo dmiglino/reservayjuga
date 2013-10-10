@@ -20,6 +20,8 @@ class Jugador {
 		clave blank: false
 		sexo blank: true
 		fechaNacimiento nullable: false
-    
     }
+	
+	static mapping = { table "USUARIO" }
+	
 }

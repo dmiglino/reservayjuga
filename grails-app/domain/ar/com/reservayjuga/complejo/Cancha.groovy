@@ -16,5 +16,7 @@ class Cancha {
 		cantidadJugadores nullable: false
 		cubierta nullable: false
     }
-
+	
+	static mapping = { table "CANCHA" }
+	
 }

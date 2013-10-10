@@ -7,7 +7,10 @@ class Extras {
 	Float precioArbitro
 	Float precioPechera
 	Float precioPelota
+
+	static constraints = {
+	}
+
+	static mapping = { table "EXTRAS" }
 	
-    static constraints = {
-    }
 }

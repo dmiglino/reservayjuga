@@ -15,8 +15,8 @@ class Complejo {
 	List<Horario> horarios
 	List<Imagen> imagenes
 	List<Cancha> canchas
-	
-    static constraints = {
+
+	static constraints = {
 		nombre blank: false
 		webSite blank: true
 		telefono1 blank: false
@@ -25,6 +25,8 @@ class Complejo {
 		telefono4 blank: true
 		mail blank: false
 		informacionExtra blank: true
-    
-    }
+	}
+
+	static mapping = { table "COMPLEJO" }
+
 }

@@ -17,4 +17,7 @@ class Encargado {
 		clave blank: false
 		complejo nullable: false
     }
+	
+	static mapping = { table "USUARIO" }
+
 }

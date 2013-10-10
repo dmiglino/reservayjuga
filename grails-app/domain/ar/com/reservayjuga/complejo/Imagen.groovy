@@ -13,4 +13,9 @@ class Imagen {
 		extension blank: false
 		descripcion blank: true
     }
+
+	static mapping = {
+		table "IMAGEN"
+	}
+
 }
