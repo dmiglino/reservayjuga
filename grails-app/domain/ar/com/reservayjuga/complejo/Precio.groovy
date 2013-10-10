@@ -16,4 +16,9 @@ class Precio {
 		table "PRECIO"
 	}
 
+	
+	@Override
+	String toString() {
+		"${precio}"
+	}
 }

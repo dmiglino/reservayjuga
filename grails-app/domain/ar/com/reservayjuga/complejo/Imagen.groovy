@@ -23,5 +23,9 @@ class Imagen {
 	static mapping = {
 		table "IMAGEN"
 	}
-
+	
+	@Override
+	String toString() {
+		"${nombre}"
+	}
 }

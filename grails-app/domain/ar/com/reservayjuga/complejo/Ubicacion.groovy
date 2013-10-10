@@ -20,4 +20,8 @@ class Ubicacion {
 
 	static mapping = { table "UBICACION" }
 	
+	@Override
+	String toString() {
+		"${direccion}, ${barrio}, ${localidad}"
+	}
 }

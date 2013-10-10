@@ -24,4 +24,8 @@ class Jugador {
 	
 	static mapping = { table "JUGADOR" }
 	
+	@Override
+	String toString() {
+		"${nombre} ${apellido}"
+	}
 }

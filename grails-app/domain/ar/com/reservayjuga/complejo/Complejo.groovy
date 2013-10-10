@@ -44,4 +44,9 @@ class Complejo {
 			agregarCancha(it)
 		}
 	}
+	
+	@Override
+	String toString() {
+		"${nombre}"
+	}
 }

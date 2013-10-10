@@ -17,5 +17,9 @@ class Horario {
 	static mapping = {
 		table "HORARIO"
 	}
-
+	
+	@Override
+	String toString() {
+		"${horarioApertura} - ${horarioCierre}"
+	}
 }

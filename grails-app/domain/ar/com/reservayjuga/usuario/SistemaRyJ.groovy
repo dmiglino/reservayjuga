@@ -14,4 +14,8 @@ class SistemaRyJ {
 
 	static mapping = { table "USUARIO" }
 	
+	@Override
+	String toString() {
+		"${nombreUsuario}"
+	}
 }

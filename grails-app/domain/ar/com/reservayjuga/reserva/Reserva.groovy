@@ -32,4 +32,8 @@ class Reserva {
 
 	static mapping = { table "RESERVA" }
 	
+	@Override
+	String toString() {
+		"Reserva del jugador ${jugador} para la cancha ${cancha}"
+	}
 }

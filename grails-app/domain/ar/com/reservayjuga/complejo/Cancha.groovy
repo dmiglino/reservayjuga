@@ -22,4 +22,8 @@ class Cancha {
 	
 	static mapping = { table "CANCHA" }
 	
+	@Override
+	String toString() {
+		"${nombre} - ${deporte} (${cantidadJugadores})"
+	}
 }

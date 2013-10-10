@@ -19,5 +19,9 @@ class Encargado {
     }
 	
 	static mapping = { table "USUARIO" }
-
+	
+	@Override
+	String toString() {
+		"${nombre} ${apellido}"
+	}
 }
