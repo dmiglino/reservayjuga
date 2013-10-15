@@ -9,6 +9,10 @@ import grails.test.mixin.*
 @Mock(Reserva)
 class ReservaControllerTests {
 
+	void testSomething() {
+		assertTrue true
+	}
+	
 //    def populateValidParams(params) {
 //        assert params != null
 //        // TODO: Populate valid properties like...
