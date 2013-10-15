@@ -11,7 +11,26 @@ import org.junit.*
 @TestFor(SistemaRyJ)
 class SistemaRyJTests {
 
-    void testSomething() {
-       fail "Implement me"
+  void testConstraints() {
+		SistemaRyJ sistemaRyJ = new SistemaRyJ()
+		assertFalse sistemaRyJ.validate()
+		assertTrue sistemaRyJ.hasErrors()
+		assertNull sistemaRyJ.save()
+		 
+		assertEquals "nullable", sistemaRyJ.errors["nombreUsuario"].code
+		assertEquals "nullable", sistemaRyJ.errors["clave"].code
     }
+	
+	void testAtributes() {
+		SistemaRyJ sistemaRyJ = new SistemaRyJ(nombreUsuario: "Simpa", clave:"campeon")
+		assertTrue sistemaRyJ.validate()
+		assertEquals "Simpa", sistemaRyJ.nombreUsuario
+		assertEquals "campeon", sistemaRyJ.clave
+	}
+	
+	void testToString() {
+		SistemaRyJ sistemaRyJ = new SistemaRyJ(nombreUsuario: "Simpa", clave:"campeon")
+		assertEquals "Simpa", sistemaRyJ.toString()
+	}
+
 }

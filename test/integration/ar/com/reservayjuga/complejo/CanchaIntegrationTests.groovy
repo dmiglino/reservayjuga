@@ -47,6 +47,7 @@ class CanchaIntegrationTests extends GroovyTestCase {
 		DBUtils.validateAndSave([cancha2])
 		assertEquals cancha, complejoPersistido
 		assertEquals 2, Cancha.findAll().size()
+		assertEquals 2, Precio.findAll().size()
 	}
 	
 	void testFailSave() {
