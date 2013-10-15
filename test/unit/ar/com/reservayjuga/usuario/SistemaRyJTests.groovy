@@ -22,14 +22,14 @@ class SistemaRyJTests {
     }
 	
 	void testAtributes() {
-		SistemaRyJ sistemaRyJ = new SistemaRyJ(nombreUsuario: "Simpa", clave:"campeon")
+		SistemaRyJ sistemaRyJ = new SistemaRyJ(nombreUsuario: "Simpa", clave:"campeon", mail:"sistema@ryj.com")
 		assertTrue sistemaRyJ.validate()
 		assertEquals "Simpa", sistemaRyJ.nombreUsuario
 		assertEquals "campeon", sistemaRyJ.clave
 	}
 	
 	void testToString() {
-		SistemaRyJ sistemaRyJ = new SistemaRyJ(nombreUsuario: "Simpa", clave:"campeon")
+		SistemaRyJ sistemaRyJ = new SistemaRyJ(nombreUsuario: "Simpa", clave:"campeon", mail:"sistema@ryj.com")
 		assertEquals "Simpa", sistemaRyJ.toString()
 	}
 

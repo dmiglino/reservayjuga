@@ -1,23 +1,22 @@
 package ar.com.reservayjuga.usuario
 
-import ar.com.reservayjuga.complejo.Complejo;
+abstract class Usuario {
 
-class SistemaRyJ extends Usuario {
-	
 	String mail
 	String nombreUsuario
 	String clave
 
 	static constraints = {
-		mail email:true, blank: false
 		nombreUsuario blank: false
-		clave blank: false
+		mail email:true, blank: false
+		clave size: 6..8, blank: false
 	}
-
+	
 	static mapping = { table "USUARIO" }
 	
 	@Override
 	String toString() {
 		"${nombreUsuario}"
 	}
+
 }
