@@ -2,6 +2,8 @@ package ar.com.reservayjuga.reserva
 
 import ar.com.reservayjuga.complejo.Cancha
 import ar.com.reservayjuga.complejo.Complejo
+import ar.com.reservayjuga.states.ReservaPendienteState
+import ar.com.reservayjuga.states.ReservaState
 import ar.com.reservayjuga.usuario.Jugador
 
 class Reserva {
@@ -14,8 +16,8 @@ class Reserva {
 	String horaFin
 	Float senia
 	Float precioTotal
-	String tipoReserva //online o presencial
-	//	ReservaState estado = ReservaStatePendiente // pendiente, señada, concretada
+	TipoReservaEnum tipoReserva //online o presencial
+	ReservaState estado = new ReservaPendienteState() // pendiente, señada, concretada
 
 	static constraints = {
 		complejo nullable: false
