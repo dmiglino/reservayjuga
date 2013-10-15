@@ -17,7 +17,7 @@ class Reserva {
 	Float senia
 	Float precioTotal
 	TipoReservaEnum tipoReserva //online o presencial
-	ReservaState estado = new ReservaPendienteState() // pendiente, señada, concretada
+	ReservaEnum estado = ReservaEnum.PENDIENTE // pendiente, señada, concretada
 
 	static constraints = {
 		complejo nullable: false
@@ -29,7 +29,7 @@ class Reserva {
 		senia nullable: false
 		precioTotal nullable: false
 		tipoReserva blank: false
-		tipoReserva blank: false
+		estado nullable: false
 	}
 
 	static mapping = { table "RESERVA" }
