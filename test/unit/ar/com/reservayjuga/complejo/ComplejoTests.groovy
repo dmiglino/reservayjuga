@@ -116,8 +116,7 @@ class ComplejoTests {
 		Cancha cancha3 = new Cancha(nombre:"Cancha 3", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:8, cubierta: true, precios:[])
 		
 		complejo.agregarCancha(cancha1)
-		complejo.agregarCancha(cancha2)
-		complejo.agregarCancha(cancha3)
+		complejo.agregarCancha([cancha2,cancha3])
 		
 		assertEquals 3, complejo.canchas.size()
 	}

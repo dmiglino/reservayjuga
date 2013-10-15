@@ -43,9 +43,9 @@ class CanchaIntegrationTests extends GroovyTestCase {
 		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[m2,m3])
 		Cancha cancha2 = new Cancha(nombre:"Muni-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[m2])
 		
-		Cancha complejoPersistido = DBUtils.validateAndSave(cancha)
+		Cancha canchaPersistida = DBUtils.validateAndSave(cancha)
 		DBUtils.validateAndSave([cancha2])
-		assertEquals cancha, complejoPersistido
+		assertEquals cancha, canchaPersistida
 		assertEquals 2, Cancha.findAll().size()
 		assertEquals 2, Precio.findAll().size()
 	}
