@@ -5,6 +5,8 @@ import grails.test.mixin.*
 
 import org.junit.*
 
+import ar.com.reservayjuga.reserva.Reserva
+
 @TestFor(Complejo)
 class ComplejoTests {
 
@@ -52,6 +54,10 @@ class ComplejoTests {
 		assertEquals 1, complejo.horarios.size()
 		assertTrue complejo.servicios.vestuario
 		assertEquals false, complejo.servicios.television
+		
+		assertNull complejo.reservas
+		complejo.agregarReserva(new Reserva())
+		assertEquals 1, complejo.reservas.size()
 	}
 
 	

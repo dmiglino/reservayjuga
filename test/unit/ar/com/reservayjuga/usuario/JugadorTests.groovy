@@ -3,7 +3,10 @@ package ar.com.reservayjuga.usuario
 
 
 import grails.test.mixin.*
+
 import org.junit.*
+
+import ar.com.reservayjuga.reserva.Reserva
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
@@ -36,6 +39,10 @@ class JugadorTests {
 		assertEquals "d@m.com", jugador.mail
 		assertEquals "1234567", jugador.clave
 		assertEquals "M", jugador.sexo
+		
+		assertNull jugador.reservas
+		jugador.agregarReserva(new Reserva())
+		assertEquals 1, jugador.reservas.size()
 	}
 	
 	void testToString() {

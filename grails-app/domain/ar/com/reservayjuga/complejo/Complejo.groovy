@@ -32,7 +32,11 @@ class Complejo {
 	}
 
 	static mapping = { table "COMPLEJO" }
-
+	
+	void agregarReserva(Reserva reserva) {
+		addToReservas(reserva)
+	}
+	
 	void agregarCancha(Cancha cancha) {
 		addToCanchas(cancha)
 	}

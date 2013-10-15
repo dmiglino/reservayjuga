@@ -80,8 +80,8 @@ class ComplejoIntegrationTests extends GroovyTestCase {
 		
 		// creacion de reserva
 		Reserva res = new Reserva(complejo:complejo, jugador: jugador, cancha: cancha, dia: new Date(), horaInicio: "11:00", horaFin: "12:00", senia: 99, precioTotal: 450, tipoReserva: "ONLINE")
-		complejo.addToReservas(res)
-		jugador.addToReservas(res)
+		complejo.agregarReserva(res)
+		jugador.agregarReserva(res)
 
 		assertEquals 1, Reserva.list().size()
 		

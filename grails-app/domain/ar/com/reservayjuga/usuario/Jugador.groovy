@@ -30,4 +30,9 @@ class Jugador {
 	String toString() {
 		"${nombre} ${apellido}"
 	}
+	
+	void agregarReserva(Reserva reserva) {
+		addToReservas(reserva)
+	}
+	
 }
