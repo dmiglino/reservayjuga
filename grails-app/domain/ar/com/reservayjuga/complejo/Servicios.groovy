@@ -32,4 +32,8 @@ class Servicios {
 		table "SERVICIOS"
 	}
 
+	@Override
+	String toString() {
+		"" + (vestuario ? "Vestuario, " : "") + (television ? "Television, " : "")  + (bebida ? "Bebida, " : "")  + (comida ? "Comida, " : "")  + (ayudaMedica ? "Ayuda medica, " : "")  + (torneo ? "Torneo, " : "")  + (wifi ? "Wifi, " : "")  + (gimnasio ? "Gimnasio, " : "")  + (estacionamiento ? "Estacionamiento" : "") 
+	}
 }

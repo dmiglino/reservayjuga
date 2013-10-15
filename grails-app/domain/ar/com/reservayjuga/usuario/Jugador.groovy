@@ -18,7 +18,7 @@ class Jugador {
 		nombre blank: false
 		apellido blank: false
 		telefono blank: false
-		mail blank: false
+		mail email:true, blank: false
 		clave size: 6..8, blank: false
 		sexo blank: true
 		fechaNacimiento nullable: true

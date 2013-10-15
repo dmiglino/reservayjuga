@@ -6,11 +6,18 @@ class Extras {
 	Boolean quierePechera
 	Float precioArbitro
 	Float precioPechera
-	Float precioPelota
 
 	static constraints = {
+		quiereArbitro nullable : false
+		quierePechera nullable : false
+		precioArbitro nullable : true
+		precioPechera nullable : true
 	}
 
 	static mapping = { table "EXTRAS" }
 	
+	@Override
+	String toString() {
+		"" + (quiereArbitro ? "Arbitro" : "") + (quierePechera  && quiereArbitro ? " y " : "") + (quierePechera ? "Pecheras" : "") 
+	}
 }

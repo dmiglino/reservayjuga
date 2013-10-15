@@ -6,6 +6,7 @@ class Encargado {
 
 	String nombre
 	String apellido
+	String mail
 	String nombreUsuario
 	String clave
 	
@@ -15,7 +16,8 @@ class Encargado {
 		nombre blank: false
 		apellido blank: false
 		nombreUsuario blank: false
-		clave blank: false
+		mail email:true, blank: false
+		clave size: 6..8, blank: false
 		complejo nullable: false
     }
 	
