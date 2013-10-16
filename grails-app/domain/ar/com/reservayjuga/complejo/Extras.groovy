@@ -6,7 +6,9 @@ class Extras {
 	Boolean quierePechera
 	Float precioArbitro
 	Float precioPechera
-
+	
+	static belongsTo = Complejo
+	
 	static constraints = {
 		quiereArbitro nullable : false
 		quierePechera nullable : false

@@ -3,12 +3,14 @@ import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.complejo.Cancha
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.DeporteEnum
+import ar.com.reservayjuga.complejo.Extras
 import ar.com.reservayjuga.complejo.Horario
 import ar.com.reservayjuga.complejo.Imagen
 import ar.com.reservayjuga.complejo.Precio
 import ar.com.reservayjuga.complejo.Servicios
 import ar.com.reservayjuga.complejo.SuperficieEnum
 import ar.com.reservayjuga.complejo.Ubicacion
+import ar.com.reservayjuga.usuario.Encargado
 import ar.com.reservayjuga.usuario.Jugador
 
 class BootStrap {
@@ -33,8 +35,9 @@ class BootStrap {
 				crearUbicaciones()
 				crearComplejos()
 				crearCancha()
-//				crearExtras()
+				crearExtras()
 				crearJugadores()
+				crearEncargados()
 				asociarCanchasAComplejos()
 				break;
 			case Environment.PRODUCTION:
@@ -76,7 +79,9 @@ class BootStrap {
 	}
 	
 	def crearExtras() {
-		
+		Extras extras1 = new Extras(quiereArbitro: true, quierePechera: true, precioArbitro: 50f, precioPechera: 3.5f)
+		Extras extras2 = new Extras(quiereArbitro: false, quierePechera: false, precioArbitro: 35f, precioPechera: 5.2f)
+		DBUtils.validateAndSave([extras1, extras2])
 	}
 	
 	def crearHorarios() {
@@ -153,6 +158,16 @@ class BootStrap {
 			mail: "d@m.com",
 			clave: "asdasd", sexo: "M")
 		DBUtils.validateAndSave(jug)
+	}
+	
+	def crearEncargados() {
+		Encargado enc = new Encargado(nombre: "die",
+			apellido: "mig",
+			nombreUsuario: "elencargado",
+			mail: "d@m.com",
+			clave: "asdasd",
+			complejo: poli)
+		DBUtils.validateAndSave(enc)
 	}
 	
 	def asociarCanchasAComplejos() {

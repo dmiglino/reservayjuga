@@ -29,7 +29,7 @@ class HorarioTests {
 	
 	void testToString() {
 		Horario horario = new Horario(horarioApertura:"10:00",horarioCierre:"22:00",dia:1)
-		assertEquals "10:00 - 22:00", horario.toString()
+		assertEquals "1: 10:00 - 22:00", horario.toString()
 	}
 
 }

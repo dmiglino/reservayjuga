@@ -12,10 +12,12 @@ class Complejo {
 	String telefono4
 	String mail
 	String informacionExtra
+	String porcentajeSenia
 	Ubicacion ubicacion
 	Servicios servicios
-
-	static hasMany = [horarios: Horario, imagenes: Imagen, canchas: Cancha, reservas : Reserva]
+	Extras extras
+	
+	static hasMany = [horarios: Horario, imagenes: Imagen, canchas: Cancha, reservas: Reserva]
 	
 	static constraints = {
 		nombre blank: false
@@ -24,11 +26,13 @@ class Complejo {
 		telefono2 nullable: true
 		telefono3 nullable: true
 		telefono4 nullable: true
+		porcentajeSenia nullable: true
 		mail email: true, nullable:false
 		informacionExtra blank: true, maxSize:1000
 		horarios nullable: true
 		imagenes nullable: true
 		canchas nullable: true
+		extras nullable: true
 	}
 
 	static mapping = { table "COMPLEJO" }

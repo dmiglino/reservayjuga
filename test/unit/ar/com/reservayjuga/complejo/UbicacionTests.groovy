@@ -25,7 +25,6 @@ void testConstraints() {
 
 	void testAtributes() {
 		Ubicacion ubicacion = new Ubicacion(direccion:"Escobar 666", barrio:"Villa Pueyrredon", localidad: "Capital Federal", provincia:"Buenos Aires", pais: "Argentina")
-		
 		assertTrue ubicacion.validate()
 		assertEquals "Escobar 666", ubicacion.direccion
 		assertEquals "Villa Pueyrredon", ubicacion.barrio

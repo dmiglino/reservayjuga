@@ -14,9 +14,4 @@ abstract class Usuario {
 	
 	static mapping = { table "USUARIO" }
 	
-	@Override
-	String toString() {
-		"${nombreUsuario}"
-	}
-
 }

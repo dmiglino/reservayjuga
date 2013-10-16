@@ -20,6 +20,6 @@ class Horario {
 	
 	@Override
 	String toString() {
-		"${horarioApertura} - ${horarioCierre}"
+		"${dia}: ${horarioApertura} - ${horarioCierre}"
 	}
 }
