@@ -1,6 +1,7 @@
 package ar.com.reservayjuga.complejo
 
 import ar.com.reservayjuga.DBUtils
+import ar.com.reservayjuga.ubicacion.Barrio
 
 class ComplejoService {
 
@@ -33,11 +34,12 @@ class ComplejoService {
 
 		// datos de ubicacion
 		if(complejo.ubicacion) {
-			complejo.ubicacion.barrio.localidad.provincia.pais.nombre = "Argentina"
-			complejo.ubicacion.barrio.localidad.provincia.nombre = "Buenos Aires"
-			complejo.ubicacion.barrio.localidad.nombre = "CABA"
-			complejo.ubicacion.barrio.nombre = "VP"
-			complejo.ubicacion.direccion = "Escobar"
+			if(datos.barrio?.id) {
+				Barrio barrioSeleccionado = Barrio.findById(datos.barrio.id)
+				println "barrioSeleccionado: " + barrioSeleccionado
+				complejo.ubicacion.barrio = barrioSeleccionado
+			}
+			complejo.ubicacion.direccion = datos.direccion
 		}
 		
 		// datos de servicios

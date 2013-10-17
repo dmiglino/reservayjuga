@@ -316,37 +316,20 @@
 								</div>
 
 								<div id="provinciasDiv" class="form-group">
-									<g:if test="${complejo.ubicacion.pais.provincias}">
+									<g:if test="${complejo?.ubicacion?.pais?.provincias}">
 										<g:include controller="pais" action="getProvincias" id="${complejo?.ubicacion?.pais?.id}" />
 									</g:if>
 								</div>
 								
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-3">Localidad</label> <select
-										class="col-xs-4 col-sm-5-" id="form-field-select-3">
-										<option value="">&nbsp;</option>
-										<option value="AL">Capital Federal</option>
-										<option value="AK">GBA Norte</option>
-										<option value="AZ">GBA Sur</option>
-										<option value="AR">GBA Oeste</option>
-									</select>
+										for="direccion">Direccion</label>
+
+									<div class="col-sm-9">
+										<g:textField name="direccion" value="${complejo?.ubicacion?.direccion}" class="col-xs-10 col-sm-5"/>
+									</div>
 								</div>
-
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-4">Barrio</label> <select
-										class="col-xs-4 col-sm-5-" id="form-field-select-4">
-										<option value="">&nbsp;</option>
-										<option value="AL">Belgrano</option>
-										<option value="AK">Saavedra</option>
-										<option value="AZ">Caballito</option>
-										<option value="AR">Monserrat</option>
-										<option value="CA">Retiro</option>
-									</select>
-								</div>
-
-
+								
 							<div class="page-header">
 								<h1>
 									<small> Servicios </small>
