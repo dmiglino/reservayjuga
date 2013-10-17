@@ -38,4 +38,24 @@ class Reserva {
 	String toString() {
 		"Reserva del jugador ${jugador} para la cancha ${cancha}"
 	}
+	
+	Boolean isPendiente() {
+		this.estado.value.isPendiente()
+	}
+	
+	Boolean isSeniada() {
+		this.estado.value.isSeniada()
+	}
+	
+	Boolean isConcretada() {
+		this.estado.value.isConcretada()
+	}
+	
+	void seniar() {
+		this.estado = ReservaEnum.SENIADA
+	}
+	
+	void concretar() {
+		this.estado = ReservaEnum.CONCRETADA
+	}
 }
