@@ -2,7 +2,11 @@ package ar.com.reservayjuga.complejo
 
 class ImagenService {
 
-    def createImagenes(def imagenesMap) {
+    def createImagenes(def params) {
+		def imagenesMap = [[nombre:params.nombreFoto1, extension:params.extFoto1, descripcion:params.descFoto1, portada:params.portadaFoto1],
+			[nombre:params.nombreFoto2, extension:params.extFoto2, descripcion:params.descFoto2, portada:params.portadaFoto2],
+			[nombre:params.nombreFoto3, extension:params.extFoto3, descripcion:params.descFoto3, portada:params.portadaFoto3]]
+		
 		List imagenes = []
 		
 		int dia = 1
