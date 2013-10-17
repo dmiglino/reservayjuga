@@ -1,6 +1,7 @@
 package ar.com.reservayjuga.complejo
 
 import ar.com.reservayjuga.reserva.Reserva
+import ar.com.reservayjuga.ubicacion.Ubicacion;
 
 class Complejo {
 

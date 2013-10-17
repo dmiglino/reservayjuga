@@ -8,13 +8,18 @@ import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.Horario
 import ar.com.reservayjuga.complejo.Servicios
-import ar.com.reservayjuga.complejo.Ubicacion
 import ar.com.reservayjuga.exception.InvalidEntityException
+import ar.com.reservayjuga.ubicacion.Barrio
+import ar.com.reservayjuga.ubicacion.Localidad
+import ar.com.reservayjuga.ubicacion.Pais
+import ar.com.reservayjuga.ubicacion.Provincia
+import ar.com.reservayjuga.ubicacion.Ubicacion
 
 class EncargadoIntegrationTests extends GroovyTestCase {
 	
 	void testSave() {
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Mor�n 2379", barrio:"Agronom�a", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina").save()).save()).save()).save()
+		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Horario hora = new Horario (dia: 1, horarioApertura: "10:00", horarioCierre: "18:00")
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi, horarios: hora)

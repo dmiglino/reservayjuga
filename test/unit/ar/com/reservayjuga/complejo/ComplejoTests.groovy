@@ -6,6 +6,11 @@ import grails.test.mixin.*
 import org.junit.*
 
 import ar.com.reservayjuga.reserva.Reserva
+import ar.com.reservayjuga.ubicacion.Barrio
+import ar.com.reservayjuga.ubicacion.Localidad
+import ar.com.reservayjuga.ubicacion.Pais
+import ar.com.reservayjuga.ubicacion.Provincia
+import ar.com.reservayjuga.ubicacion.Ubicacion
 
 @TestFor(Complejo)
 class ComplejoTests {
@@ -34,7 +39,8 @@ class ComplejoTests {
     }
 	
 	void testAtributes() {
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Mor�n 2379", barrio:"Agronom�a", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina"))))
+		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Horario hora = new Horario (dia: 1, horarioApertura: "10:00", horarioCierre: "18:00")
 		
@@ -46,11 +52,11 @@ class ComplejoTests {
 		assertEquals "4574-0077", complejo.telefono1
 		assertEquals "garden@mail.com", complejo.mail
 		assertEquals "Info garden", complejo.informacionExtra
-		assertEquals "Pedro Mor�n 2379", complejo.ubicacion.direccion
-		assertEquals "Agronom�a", complejo.ubicacion.barrio
-		assertEquals "Capital Federal", complejo.ubicacion.localidad
-		assertEquals "Buenos Aires", complejo.ubicacion.provincia
-		assertEquals "Argentina", complejo.ubicacion.pais
+		assertEquals "Pedro Moran 2379", complejo.ubicacion.direccion
+		assertEquals "Agronomia", complejo.ubicacion.barrio.nombre
+		assertEquals "Capital Federal", complejo.ubicacion.localidad.nombre
+		assertEquals "Buenos Aires", complejo.ubicacion.provincia.nombre
+		assertEquals "Argentina", complejo.ubicacion.pais.nombre
 		assertEquals 1, complejo.horarios.size()
 		assertTrue complejo.servicios.vestuario
 		assertEquals false, complejo.servicios.television
@@ -62,7 +68,8 @@ class ComplejoTests {
 
 	
 	void testToString() {
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Mor�n 2379", barrio:"Agronom�a", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina"))))
+		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Horario hora = new Horario (dia: 1, horarioApertura: "10:00", horarioCierre: "18:00")
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi, horarios: hora)		
@@ -80,7 +87,8 @@ class ComplejoTests {
 		Horario feriados = new Horario (dia: 8, horarioApertura: "11:00", horarioCierre: "19:00")
 		Horario verga = new Horario (dia: 229, hoarioApertura: "11:00", horarioCierre:"14:00")
 		
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Mor�n 2379", barrio:"Agronom�a", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina"))))
+		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Horario hora = new Horario (dia: 1, horarioApertura: "10:00", horarioCierre: "18:00")
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi, horarios: [])
@@ -107,7 +115,8 @@ class ComplejoTests {
 	}
 	
 	void testCanchas() {
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Mor�n 2379", barrio:"Agronom�a", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina"))))
+		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi, horarios: [], canchas: [])
 		

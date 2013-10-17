@@ -20,7 +20,7 @@ class HorarioService {
 		List horarios = []
 		
 		int dia = 1
-		horariosMap.each {
+		params.each {
 			Horario horario = new Horario(dia:dia, horarioApertura: it.desde, horarioCierre: it.hasta)
 			horarios.add(horario)
 			dia++

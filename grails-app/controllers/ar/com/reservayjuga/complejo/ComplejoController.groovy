@@ -2,6 +2,7 @@ package ar.com.reservayjuga.complejo
 
 import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.exception.InvalidEntityException
+import ar.com.reservayjuga.ubicacion.Ubicacion;
 import ar.com.reservayjuga.usuario.Encargado
 
 class ComplejoController {

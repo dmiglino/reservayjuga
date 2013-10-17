@@ -9,7 +9,11 @@ import ar.com.reservayjuga.complejo.Imagen
 import ar.com.reservayjuga.complejo.Precio
 import ar.com.reservayjuga.complejo.Servicios
 import ar.com.reservayjuga.complejo.SuperficieEnum
-import ar.com.reservayjuga.complejo.Ubicacion
+import ar.com.reservayjuga.ubicacion.Barrio
+import ar.com.reservayjuga.ubicacion.Localidad
+import ar.com.reservayjuga.ubicacion.Pais
+import ar.com.reservayjuga.ubicacion.Provincia
+import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Encargado
 import ar.com.reservayjuga.usuario.Jugador
 
@@ -24,6 +28,10 @@ class BootStrap {
 	Imagen f1,f2
 	Servicios serv1
 	Ubicacion u1,u2
+	Pais argentina, brasil
+	Provincia baires, saopaulo
+	Localidad caba, vtelopez, morumbiloc
+	Barrio pueyrre, saavedra, florida, olivos, morumbibar
 	
 	def init = { servletContext ->
 		switch (Environment.current) {
@@ -139,11 +147,43 @@ class BootStrap {
 	}
 	
 	def crearUbicaciones() {
-		u1 = new Ubicacion(direccion: "Casa",barrio: "VP",localidad: "CABA",provincia: "BsAs",pais: "Argentina")
-		u2 = new Ubicacion(direccion: "Casa",barrio: "OL",localidad: "VLopez",provincia: "BsAs",pais: "Argentina")
+		crearPaises()
+		crearProvincias()
+		crearLocalidades()
+		crearBarrios()
+		u1 = new Ubicacion(direccion: "Escobar", barrio: pueyrre)
+		u2 = new Ubicacion(direccion: "OHiggins", barrio: florida)
 		DBUtils.validateAndSave([u1,u2])
 	}
 	
+	def crearPaises() {
+		argentina = new Pais(nombre:"Argentina")
+		brasil = new Pais(nombre:"Brasil")
+		DBUtils.validateAndSave([argentina,brasil])
+	}
+
+	def crearProvincias() {
+		baires = new Provincia(nombre:"Buenos Aires", pais:argentina)
+		saopaulo = new Provincia(nombre:"Sao Paulo", pais:brasil)
+		DBUtils.validateAndSave([baires,saopaulo])
+	}
+
+	def crearLocalidades() {
+		caba = new Localidad(nombre:"CABA", provincia:baires)
+		vtelopez = new Localidad(nombre:"Vte Lopez", provincia:baires)
+		morumbiloc = new Localidad(nombre:"Morumbi", provincia:saopaulo)
+		DBUtils.validateAndSave([caba,vtelopez,morumbiloc])
+	}
+
+	def crearBarrios() {
+		pueyrre = new Barrio(nombre:"Villa Pueyrredon", localidad:caba)
+		saavedra = new Barrio(nombre:"Saavedra", localidad:caba)
+		florida = new Barrio(nombre:"Florida", localidad:vtelopez) 
+ 		olivos = new Barrio(nombre:"Olivos", localidad:vtelopez)
+		morumbibar = new Barrio(nombre:"Morumbi", localidad:morumbiloc)
+		DBUtils.validateAndSave([pueyrre,saavedra,florida,olivos,morumbibar])
+	}
+
 	def crearComplejos() {
 		poli = new Complejo(nombre: "Poli",webSite: "www.poli.com",telefono1: "4111-2222",telefono2: "15-1324-3546",mail: "poli@poli.com",informacionExtra: "soy el poli",ubicacion: u1,servicios:serv1)
 		terraza = new Complejo(nombre: "Terraza",webSite: "www.terraza.com",telefono1: "43334444",telefono2: "15-1234-4321",mail: "terraza@terraza.com",informacionExtra: "soy la terraza",ubicacion: u1,servicios:serv1)

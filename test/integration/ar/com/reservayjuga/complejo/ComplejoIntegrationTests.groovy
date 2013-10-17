@@ -3,18 +3,23 @@ package ar.com.reservayjuga.complejo
 import static org.junit.Assert.*
 
 import org.junit.*
-import org.springframework.dao.DataIntegrityViolationException
 
 import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.exception.InvalidEntityException
 import ar.com.reservayjuga.reserva.Reserva
+import ar.com.reservayjuga.ubicacion.Barrio
+import ar.com.reservayjuga.ubicacion.Localidad
+import ar.com.reservayjuga.ubicacion.Pais
+import ar.com.reservayjuga.ubicacion.Provincia
+import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Jugador
 
 class ComplejoIntegrationTests extends GroovyTestCase {
     
 	// Agrego canchas y se persisten. Borro el complejo y se borran las canchas de la DB
 	void testCanchas() {
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Moran 2379", barrio:"Agronomia", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina").save()).save()).save()).save()
+		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi, horarios: [], canchas: []).save()
 		
@@ -41,7 +46,8 @@ class ComplejoIntegrationTests extends GroovyTestCase {
 	
 	// Se borra el complejo y se borra todo de la DB
 	void testServiciosUbicacionHorarioImagen() {
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Moran 2379", barrio:"Agronomia", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina").save()).save()).save()).save()
+		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Horario hora = new Horario (dia: 1, horarioApertura: "10:00", horarioCierre: "18:00")
 		Imagen ima = new Imagen(nombre: "foto", extension: ".jpg", descripcion: "foto cancha 1", fecha: new Date(), portada: true)
@@ -72,7 +78,8 @@ class ComplejoIntegrationTests extends GroovyTestCase {
 	
 	//No se tiene que borrar la reserva de la DB aunque se borre el complejo
 	void testReserva() {
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Mor�n 2379", barrio:"Agronom�a", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina").save()).save()).save()).save()
+		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Cancha cancha = new Cancha(nombre:"Cancha 1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[]).save()
 		Complejo complejo = new Complejo(nombre: "Poli Club", webSite: "", telefono1:"4574-0077", mail:"poli@mail.com", informacionExtra: "Info poli", ubicacion: ubi, servicios: servi, horarios: [], canchas: []).save()
@@ -96,7 +103,8 @@ class ComplejoIntegrationTests extends GroovyTestCase {
 	}
 	
 	void testSave() {
-		Ubicacion ubi = new Ubicacion (direccion:"Pedro Mor�n 2379", barrio:"Agronom�a", localidad:"Capital Federal", provincia:"Buenos Aires", pais:"Argentina")
+		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina").save()).save()).save()).save()
+		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		
 		Complejo complejo1 = new Complejo(nombre: "Poli Club", webSite: "", telefono1:"4574-0077", mail:"poli@mail.com", informacionExtra: "Info poli", ubicacion: ubi, servicios: servi, horarios: [], canchas: [])

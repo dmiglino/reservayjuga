@@ -1,7 +1,8 @@
 package ar.com.reservayjuga.complejo
 
-import grails.test.GrailsUnitTestCase;
+import grails.test.GrailsUnitTestCase
 import grails.test.mixin.*
+
 import org.junit.*
 
 /**
@@ -9,7 +10,7 @@ import org.junit.*
  */
 class HorarioServiceTests extends GrailsUnitTestCase {
 
-	def horarioService = new HorarioService()
+	HorarioService horarioService = new HorarioService()
 	
     void testCreateHorarios() {
 		def horariosMap = [[desde:"lunesDesde", hasta:"lunesHasta"],

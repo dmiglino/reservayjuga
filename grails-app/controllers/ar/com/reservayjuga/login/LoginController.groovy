@@ -1,4 +1,4 @@
-package reservayjuga
+package ar.com.reservayjuga.login
 
 class LoginController {
 

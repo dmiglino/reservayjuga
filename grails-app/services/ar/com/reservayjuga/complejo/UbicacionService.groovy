@@ -1,5 +1,11 @@
 package ar.com.reservayjuga.complejo
 
+import ar.com.reservayjuga.ubicacion.Barrio
+import ar.com.reservayjuga.ubicacion.Localidad
+import ar.com.reservayjuga.ubicacion.Pais
+import ar.com.reservayjuga.ubicacion.Provincia
+import ar.com.reservayjuga.ubicacion.Ubicacion
+
 class UbicacionService {
 
 	/**
@@ -8,7 +14,8 @@ class UbicacionService {
 	 * @return ubicacion
 	 */
     Ubicacion createUbicacion(def map) {
-		Ubicacion ubicacion = new Ubicacion(direccion:map.direccion, barrio:map.barrio, localidad:map.localidad, provincia:map.provincia, pais:map.pais)
+		Barrio barrio = new Barrio(nombre:map.barrio, localidad: new Localidad(nombre:map.localidad, provincia:new Provincia(nombre:map.provincia, pais: new Pais(nombre:map.pais))))
+		Ubicacion ubicacion = new Ubicacion(direccion:map.direccion, barrio:barrio)
 		return ubicacion
     }
 

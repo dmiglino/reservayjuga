@@ -9,7 +9,7 @@ import org.junit.*
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.Horario
 import ar.com.reservayjuga.complejo.Servicios
-import ar.com.reservayjuga.complejo.Ubicacion
+import ar.com.reservayjuga.ubicacion.Ubicacion;
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
