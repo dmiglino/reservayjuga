@@ -19,6 +19,10 @@ class ComplejoController {
 		render "<h1>pagina que muestra los datos del complejo que se podran modificar</h1>"
 	}
 	
+	def administrarIndex = {
+		render(view: "administrar-complejo")
+}
+	
 	def actualizarInformacionComplejo = {
 		// TODO autorizados admins y encargados
 		Map resp = [:]
