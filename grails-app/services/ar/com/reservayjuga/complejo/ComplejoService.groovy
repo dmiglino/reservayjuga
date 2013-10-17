@@ -33,11 +33,11 @@ class ComplejoService {
 
 		// datos de ubicacion
 		if(complejo.ubicacion) {
-			complejo.ubicacion.barrio.localidad.provincia.pais.nombre = "datos.pais"
-			complejo.ubicacion.barrio.localidad.provincia.nombre = "datos.provincia"
-			complejo.ubicacion.barrio.localidad.nombre = "datos.localidad"
-			complejo.ubicacion.barrio.nombre = "datos.barrio"
-			complejo.ubicacion.direccion = "datos.direccion"
+			complejo.ubicacion.barrio.localidad.provincia.pais.nombre = "Argentina"
+			complejo.ubicacion.barrio.localidad.provincia.nombre = "Buenos Aires"
+			complejo.ubicacion.barrio.localidad.nombre = "CABA"
+			complejo.ubicacion.barrio.nombre = "VP"
+			complejo.ubicacion.direccion = "Escobar"
 		}
 		
 		// datos de servicios

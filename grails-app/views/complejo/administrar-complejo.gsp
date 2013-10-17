@@ -300,32 +300,27 @@
 							</div>
 								
 
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-1">Pais</label> <select
-										class="col-xs-4 col-sm-5-" id="form-field-select-1">
-										<option value="">&nbsp;</option>
-										<option value="AL">Argentina</option>
-										<option value="AK">Brasil</option>
-										<option value="AZ">Paraguay</option>
-										<option value="AR">Uruguay</option>
-										<option value="CA">Venezuela</option>
-									</select>
+								<div id="paisesDiv" class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="pais">
+										<g:message code="ubicacion.pais.label" default="Pais" />
+									</label>
+									<g:select id="pais" name="pais.id" from="${ar.com.reservayjuga.ubicacion.Pais.list()}"
+										optionKey="id" required="" noSelection="['':'Selecciona un Pais']" class="col-xs-4 col-sm-5-"
+										onchange="${remoteFunction (
+											controller: 'pais',
+											action: 'getProvincias',
+											params: '\'id=\' + this.value',
+											update: 'provinciasDiv'
+										)}"
+										value="${complejo?.ubicacion?.pais?.id}" class="many-to-one" />
 								</div>
 
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-2">Provincia</label> <select
-										class="col-xs-4 col-sm-5-" id="form-field-select-2">
-										<option value="">&nbsp;</option>
-										<option value="AL">Buenos Aires</option>
-										<option value="AK">Corrientes</option>
-										<option value="AZ">Formosa</option>
-										<option value="AR">Salta</option>
-										<option value="CA">Tucuman</option>
-									</select>
+								<div id="provinciasDiv" class="form-group">
+									<g:if test="${complejo.ubicacion.pais.provincias}">
+										<g:include controller="pais" action="getProvincias" id="${complejo?.ubicacion?.pais?.id}" />
+									</g:if>
 								</div>
-
+								
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-select-3">Localidad</label> <select
