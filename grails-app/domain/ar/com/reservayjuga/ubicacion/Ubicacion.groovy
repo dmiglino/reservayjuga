@@ -14,8 +14,11 @@ class Ubicacion {
 		barrio nullable: false
 	}
 
-	static mapping = { table "UBICACION" }
-	
+	static mapping = { 
+		table "UBICACION" 
+		barrio lazy:false
+	}
+
 	@Override
 	String toString() {
 		"${direccion}, ${barrio}, ${getLocalidad()}"

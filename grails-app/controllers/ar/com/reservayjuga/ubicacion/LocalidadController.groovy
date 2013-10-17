@@ -4,11 +4,14 @@ class LocalidadController {
 	def scaffold = true
 
     def getBarrios() {
-		println "getBarrios"
-		def localidad = Localidad.get(params.id)
-		println localidad
-		def barrios = localidad.barrios
-		println barrios
+		println "getBarrios: " + params.id
+		def barrios
+		if(params.id) {
+			def localidad = Localidad.get(params.id)
+			println localidad
+			barrios = localidad.barrios
+			println barrios
+		}
 		render(template:"selectBarrios", model:[barriosList:barrios])
 	}
 

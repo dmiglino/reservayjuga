@@ -40,6 +40,7 @@ class ComplejoService {
 				complejo.ubicacion.barrio = barrioSeleccionado
 			}
 			complejo.ubicacion.direccion = datos.direccion
+//			println "complejo.ubicacion.direccion: " +complejo.ubicacion.direccion
 		}
 		
 		// datos de servicios

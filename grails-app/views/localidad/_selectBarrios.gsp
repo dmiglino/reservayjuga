@@ -7,7 +7,7 @@
 		</label>
 		<g:select id="barrio" name="barrio.id" from="${barriosList}"
 			optionKey="id" required="" noSelection="['':'Selecciona un Barrio']" class="col-xs-4 col-sm-5-"
-			value="${complejo?.ubicacion?.pais?.provincias?.localidades?.barrio?.id}" class="many-to-one" />
+			value="${complejo?.ubicacion?.barrio?.id}" class="many-to-one" />
 	</g:if>
 	<g:else>
 		No existen barrios para esta localidad

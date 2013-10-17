@@ -13,7 +13,7 @@
 				params: '\'id=\' + this.value',
 				update: 'barriosDiv'
 			)}"
-			value="${complejo?.ubicacion?.pais?.provincias?.localidades?.barrios?.id}" class="many-to-one" />
+			value="${complejo?.ubicacion?.localidad?.id}" class="many-to-one" />
 	</g:if>
 	<g:else>
 		No existen localidades para esta provincia
@@ -21,7 +21,7 @@
 </div>
 
 <div id="barriosDiv" class="form-group">
-	<g:if test="${complejo?.ubicacion?.pais?.provincias?.localidades}">
-		<g:include controller="localidad" action="getBarrios" id="${complejo?.ubicacion?.pais?.provincias?.localidades?.id}" />
+	<g:if test="${complejo?.ubicacion?.localidad}">
+		<g:include controller="localidad" action="getBarrios" id="${complejo?.ubicacion?.localidad?.id}" />
 	</g:if>
 </div>

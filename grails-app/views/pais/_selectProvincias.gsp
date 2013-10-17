@@ -13,7 +13,7 @@
 				params: '\'id=\' + this.value',
 				update: 'localidadesDiv'
 			)}"
-			value="${complejo?.ubicacion?.pais?.provincias?.localidades?.id}" class="many-to-one" />
+			value="${complejo?.ubicacion?.provincia?.id}" class="many-to-one" />
 	</g:if>
 	<g:else>
 		No existen provincias para este país
@@ -21,7 +21,7 @@
 </div>
 
 <div id="localidadesDiv" class="form-group">
-	<g:if test="${complejo?.ubicacion?.pais?.provincias}">
-<%--	<g:include controller="provincia" action="getLocalidades" id="${complejo?.ubicacion?.pais?.provincias?.id}" />--%>
+	<g:if test="${complejo?.ubicacion?.provincia}">
+		<g:include controller="provincia" action="getLocalidades" id="${complejo?.ubicacion?.provincia?.id}" />
 	</g:if>
 </div>
