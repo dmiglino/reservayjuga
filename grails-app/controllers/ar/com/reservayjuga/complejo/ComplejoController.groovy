@@ -1,5 +1,7 @@
 package ar.com.reservayjuga.complejo
 
+import ar.com.reservayjuga.DBUtils
+import ar.com.reservayjuga.exception.InvalidEntityException
 import ar.com.reservayjuga.usuario.Encargado
 
 class ComplejoController {
@@ -16,22 +18,27 @@ class ComplejoController {
 	}
 	
 	def administrarComplejo = {
-		render(view: "administrar-complejo")
+			// TODO autorizados admins y encargados
+			// TODO recuperar el complejo del encargado
+		Encargado encargado = Encargado.list().get(0)
+		render(view: "administrar-complejo", model: [complejo : encargado.complejo])
 	}
 	
 	def actualizarInformacionComplejo = {
-		// TODO autorizados admins y encargados
-		Map resp = [:]
+			// TODO autorizados admins y encargados
+			// TODO recuperar el encargado logueado
+		Encargado encargado = Encargado.list().get(0)
+		Complejo complejo = encargado.complejo
 		try {
-			Encargado encargado = Encargado.findById(1) // TODO obtener el usuario logueado
-			List horarios = horarioService.createHorarios(params)
-			List imagenes = imagenService.createImagenes(params)
-			complejoService.actualizarDatosComplejo(encargado.complejo, params, horarios, imagenes)
-		} catch (Exception e) {
-			resp?.content?.message = "Error al actualizar"
-			resp.status = 400
+//			List horarios = horarioService.createHorarios(params)
+//			List imagenes = imagenService.createImagenes(params)
+			
+			flash.message = "Complejo <${complejo}> actualizado"
+			complejoService.actualizarDatosComplejo(complejo, params, [], []) 
+		} catch (InvalidEntityException e) {
+			flash.message = "Error Actualizando el complejo <${complejo}>"
 		} finally {
-			return [response:resp, status:resp.status]
+			render(view: "administrar-complejo", model: [ complejo: complejo ])
 		}
 	}
 	

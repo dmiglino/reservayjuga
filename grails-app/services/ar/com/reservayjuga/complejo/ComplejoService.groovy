@@ -21,50 +21,54 @@ class ComplejoService {
 	 * @return complejo actualizado
 	 */
 	def actualizarDatosComplejo(Complejo complejo, def datos, def horarios, def imagenes) {
-		// datos generales
-		complejo.nombre = datos.nombre
-		complejo.webSite = datos.webSite
-		complejo.telefono1 = datos.telefono
-		complejo.mail = datos.mail
-		complejo.informacionExtra = datos.info
-		complejo.porcentajeSenia = datos.porcSenia
-
-		// datos de ubicacion
-		if(complejo.ubicacion) {
-			complejo.ubicacion.pais = datos.pais
-			complejo.ubicacion.provincia = datos.provincia
-			complejo.ubicacion.localidad = datos.localidad
-			complejo.ubicacion.barrio = datos.barrio
-			complejo.ubicacion.direccion = datos.direccion
-		}
 		
-		// datos de servicios
-		if(complejo.servicios) {
-			complejo.servicios.vestuario = datos.vestuario
-			complejo.servicios.television = datos.television
-			complejo.servicios.bebida = datos.bebida
-			complejo.servicios.comida = datos.comida
-			complejo.servicios.ayudaMedica = datos.ayudaMedica
-			complejo.servicios.torneo = datos.torneo
-			complejo.servicios.wifi = datos.wifi
-			complejo.servicios.gimnasio = datos.gimnasio
-			complejo.servicios.estacionamiento = datos.estacionamiento
-			complejo.servicios.precioEstacionamiento = datos.precioEstacionamiento
-		}
+		complejo.properties = datos
+		DBUtils.validateAndSave(complejo)
 		
-		// datos de extras
-		if(complejo.extras) {
-			complejo.extras.quiereArbitro = datos.quiereArbitro
-			complejo.extras.quierePechera = datos.quierePechera
-			complejo.extras.precioArbitro = datos.precioArbitro
-			complejo.extras.precioPechera = datos.precioPechera
-		}
-		
-		//datos de horarios
-		if(complejo.horarios) {
-			complejo.horarios.clear()
-			complejo.horarios.addAll(horarios)
-		}
+//		// datos generales
+//		complejo.nombre = datos.nombre
+//		complejo.webSite = datos.webSite
+//		complejo.telefono1 = datos.telefono
+//		complejo.mail = datos.mail
+//		complejo.informacionExtra = datos.info
+//		complejo.porcentajeSenia = datos.porcSenia
+//
+//		// datos de ubicacion
+//		if(complejo.ubicacion) {
+//			complejo.ubicacion.pais = datos.pais
+//			complejo.ubicacion.provincia = datos.provincia
+//			complejo.ubicacion.localidad = datos.localidad
+//			complejo.ubicacion.barrio = datos.barrio
+//			complejo.ubicacion.direccion = datos.direccion
+//		}
+//		
+//		// datos de servicios
+//		if(complejo.servicios) {
+//			complejo.servicios.vestuario = datos.vestuario
+//			complejo.servicios.television = datos.television
+//			complejo.servicios.bebida = datos.bebida
+//			complejo.servicios.comida = datos.comida
+//			complejo.servicios.ayudaMedica = datos.ayudaMedica
+//			complejo.servicios.torneo = datos.torneo
+//			complejo.servicios.wifi = datos.wifi
+//			complejo.servicios.gimnasio = datos.gimnasio
+//			complejo.servicios.estacionamiento = datos.estacionamiento
+//			complejo.servicios.precioEstacionamiento = datos.precioEstacionamiento
+//		}
+//		
+//		// datos de extras
+//		if(complejo.extras) {
+//			complejo.extras.quiereArbitro = datos.quiereArbitro
+//			complejo.extras.quierePechera = datos.quierePechera
+//			complejo.extras.precioArbitro = datos.precioArbitro
+//			complejo.extras.precioPechera = datos.precioPechera
+//		}
+//		
+//		//datos de horarios
+//		if(complejo.horarios) {
+//			complejo.horarios.clear()
+//			complejo.horarios.addAll(horarios)
+//		}
 //		Horario horario = complejo.horarios.find{dia == 1}
 //		if(horario) {
 //			horario.horarioApertura = datos.lunesDesde
@@ -105,14 +109,14 @@ class ComplejoService {
 //			horario.horarioApertura = datos.feriadoDesde
 //			horario.horarioCierre = datos.feriadoHasta
 //		}
-		
-		//datos de imagenes
-		if(complejo.imagenes) {
-			complejo.imagenes.clear()
-			complejo.imagenes.addAll(imagenes)
-		}
-		
-		DBUtils.validateAndSave(complejo)
+//		
+//		//datos de imagenes
+//		if(complejo.imagenes) {
+//			complejo.imagenes.clear()
+//			complejo.imagenes.addAll(imagenes)
+//		}
+//		
+//		DBUtils.validateAndSave(complejo)
 	}
 	
 }
