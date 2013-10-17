@@ -292,11 +292,13 @@
 
 							<g:submitButton name="actualizarInformacionComplejo" value="Actualizar Informacion Complejo"/>
 								
-								<div class="page-header">
-									<h1>
-										<small> Ubicacion </small>
-									</h1>
-								</div>
+								
+							<div class="page-header">
+								<h1>
+									<small> Ubicacion </small>
+								</h1>
+							</div>
+								
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
@@ -350,88 +352,103 @@
 								</div>
 
 
-								<div class="page-header">
-									<h1>
-										<small> Servicios </small>
-									</h1>
-								</div>
+							<div class="page-header">
+								<h1>
+									<small> Servicios </small>
+								</h1>
+							</div>
 
 
 								<div class="checkbox">
-									<label> <input name="form-field-checkbox"
-										type="checkbox" class="ace" /> <span class="lbl">
-											Vestuario</span>
+									<label> 
+										<g:checkBox name="servicios.vestuario" value="${complejo?.servicios?.vestuario}" class="col-xs-4 col-sm-5-"/>
+										<span class="lbl">Vestuario</span>
 									</label>
 								</div>
 
 								<div class="checkbox">
-									<label> <input name="form-field-checkbox"
-										type="checkbox" class="ace" /> <span class="lbl">
-											Bebida</span>
+									<label> 
+										<g:checkBox name="servicios.bebida" value="${complejo?.servicios?.bebida}" class="col-xs-4 col-sm-5-"/>
+										<span class="lbl">Bebida</span>
 									</label>
 								</div>
 
 								<div class="checkbox">
-									<label> <input name="form-field-checkbox"
-										type="checkbox" class="ace" /> <span class="lbl">
-											Ayuda medica</span>
+									<label> 
+										<g:checkBox name="servicios.ayudaMedica" value="${complejo?.servicios?.ayudaMedica}" class="col-xs-4 col-sm-5-"/>
+										<span class="lbl">Ayuda medica</span>
 									</label>
 								</div>
 
 								<div class="checkbox">
-									<label> <input name="form-field-checkbox"
-										type="checkbox" class="ace" /> <span class="lbl"> Wifi</span>
+									<label> 
+										<g:checkBox name="servicios.wifi" value="${complejo?.servicios?.wifi}" class="col-xs-4 col-sm-5-"/>
+										<span class="lbl"> Wifi</span>
 									</label>
 								</div>
 
 								<div class="checkbox">
-									<label> <input name="form-field-checkbox"
-										type="checkbox" class="ace" /> <span class="lbl"> TV</span>
+									<label> 
+										<g:checkBox name="servicios.television" value="${complejo?.servicios?.television}" class="col-xs-4 col-sm-5-"/>
+										<span class="lbl"> TV</span>
 									</label>
 								</div>
 
 								<div class="checkbox">
-									<label> <input name="form-field-checkbox"
-										type="checkbox" class="ace" /> <span class="lbl">
-											Comida</span>
+									<label> 
+										<g:checkBox name="servicios.comida" checked="${complejo?.servicios?.comida}" class="col-xs-4 col-sm-5-"/>
+										<span class="lbl">Comida</span>
 									</label>
 								</div>
 
 								<div class="checkbox">
-									<label> <input name="form-field-checkbox"
-										type="checkbox" class="ace" /> <span class="lbl">
-											Torneos</span>
+									<label> 
+										<g:checkBox name="servicios.torneo" checked="${complejo?.servicios?.torneo}" value="${complejo?.servicios?.torneo}" class="col-xs-4 col-sm-5-"/>
+										<span class="lbl">Torneos</span>
 									</label>
 								</div>
 
 								<div class="checkbox">
-									<label> <input name="form-field-checkbox"
-										type="checkbox" class="ace" /> <span class="lbl">
-											Gimnasio</span>
+									<label> 
+										<g:checkBox name="servicios.gimnasio" checked="${complejo?.servicios?.gimnasio}" value="${complejo?.servicios?.gimnasio}" class="col-xs-4 col-sm-5-"/>
+										<span class="lbl">Gimnasio</span>
 									</label>
 								</div>
 
 								<div class="checkbox">
-									<label> <input name="form-field-checkbox"
-										type="checkbox" class="ace" /> <span class="lbl">
-											Estacionamiento</span>
+									<label> 
+										<g:checkBox name="servicios.estacionamiento" checked="${complejo?.servicios?.estacionamiento}" class="col-xs-4 col-sm-5-"/>
+										<span class="lbl">Estacionamiento</span>
 									</label>
 								</div>
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-7">Precio estacionamiento </label>
+										for="precioEstacinamiento">Precio estacionamiento</label>
 
 									<div class="col-sm-9">
-										<input type="text" id="Text1" class="col-xs-3 col-sm-2" />
+										<g:textField name="precioEstacionamiento" value="${complejo?.servicios?.precioEstacionamiento}" class="col-xs-10 col-sm-5"/>
 									</div>
 								</div>
 
-								<div class="page-header">
-									<h1>
-										<small> Configuracion de senia e items extras </small>
-									</h1>
-								</div>
+
+<%--								<g:each in="${complejo?.servicios?.properties}" var="serv" status="i">--%>
+<%--									<div class="checkbox">--%>
+<%--										<label> --%>
+<%--											<g:checkBox name="${serv.key}" value="${serv.key}" checked="${serv}" class="col-xs-4 col-sm-5-" />--%>
+<%--		    								<span class="lbl">"${serv.key}"</span>--%>
+<%--	    								</label>--%>
+<%--									</div>--%>
+<%--								</g:each>--%>
+
+
+							<div class="page-header">
+								<h1>
+									<small> Configuracion de senia e items extras </small>
+								</h1>
+							</div>
+								
+								
 								<span class="lbl"> Porcentaje de senia</span> <br /> <br /> <input
 									type="text" class="input-mini" id="spinner3" />
 

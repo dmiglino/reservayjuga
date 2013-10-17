@@ -33,16 +33,16 @@ class ComplejoService {
 
 		// datos de ubicacion
 		if(complejo.ubicacion) {
-			complejo.ubicacion.barrio.localidad.provincia.pais.nombre = datos.pais
-			complejo.ubicacion.barrio.localidad.provincia.nombre = datos.provincia
-			complejo.ubicacion.barrio.localidad.nombre = datos.localidad
-			complejo.ubicacion.barrio.nombre = datos.barrio
-			complejo.ubicacion.direccion = datos.direccion
+			complejo.ubicacion.barrio.localidad.provincia.pais.nombre = "datos.pais"
+			complejo.ubicacion.barrio.localidad.provincia.nombre = "datos.provincia"
+			complejo.ubicacion.barrio.localidad.nombre = "datos.localidad"
+			complejo.ubicacion.barrio.nombre = "datos.barrio"
+			complejo.ubicacion.direccion = "datos.direccion"
 		}
 		
 		// datos de servicios
 		if(complejo.servicios) {
-			complejo.servicios.properties = datos
+			complejo.servicios.properties = datos.servicios
 //			complejo.servicios.vestuario = datos.vestuario
 //			complejo.servicios.television = datos.television
 //			complejo.servicios.bebida = datos.bebida
