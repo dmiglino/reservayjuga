@@ -33,9 +33,8 @@ class ComplejoController {
 		try {
 //			List horarios = horarioService.createHorarios(params)
 //			List imagenes = imagenService.createImagenes(params)
-			
-			flash.message = "Complejo <${complejo}> actualizado"
 			complejoService.actualizarDatosComplejo(complejo, params, [], []) 
+			flash.message = "Complejo <${complejo}> actualizado"
 		} catch (InvalidEntityException e) {
 			flash.message = "Error Actualizando el complejo <${complejo}>"
 		} finally {

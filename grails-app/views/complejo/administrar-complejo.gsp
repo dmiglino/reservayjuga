@@ -312,11 +312,12 @@
 											params: '\'id=\' + this.value',
 											update: 'provinciasDiv'
 										)}"
-										value="${complejo?.ubicacion?.pais?.id}" class="many-to-one" />
+										value="${complejo?.ubicacion?.pais?.id}" 
+										class="many-to-one" />
 								</div>
 
 								<div id="provinciasDiv" class="form-group">
-									<g:if test="${complejo?.ubicacion?.pais?.provincias}">
+									<g:if test="${complejo?.ubicacion?.pais}">
 										<g:include controller="pais" action="getProvincias" id="${complejo?.ubicacion?.pais?.id}" />
 									</g:if>
 								</div>

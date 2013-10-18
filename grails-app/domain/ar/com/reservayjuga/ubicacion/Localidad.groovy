@@ -11,6 +11,11 @@ class Localidad {
 		nombre blank:false
 		provincia nullable:false
     }
+
+	static mapping = { 
+		table "LOCALIDAD" 
+		provincia lazy:false
+	}
 	
 	@Override
 	String toString() {
