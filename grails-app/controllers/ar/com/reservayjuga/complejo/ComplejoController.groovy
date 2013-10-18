@@ -38,7 +38,8 @@ class ComplejoController {
 		} catch (InvalidEntityException e) {
 			flash.message = "Error Actualizando el complejo <${complejo}>"
 		} finally {
-			render(view: "administrar-complejo", model: [ complejo: complejo ])
+			redirect(action: administrarComplejo)
+//			render(view: "administrar-complejo", model: [ complejo: complejo ])
 		}
 	}
 	
