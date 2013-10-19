@@ -290,8 +290,6 @@
 
 								<div class="space-4"></div>
 
-							<g:submitButton name="actualizarInformacionComplejo" value="Actualizar Informacion Complejo"/>
-								
 								
 							<div class="page-header">
 								<h1>
@@ -403,19 +401,16 @@
 								</div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="precioEstacinamiento">Precio estacionamiento</label>
-
-									<div class="col-sm-9">
-										<g:textField name="precioEstacionamiento" value="${complejo?.servicios?.precioEstacionamiento}" class="col-xs-10 col-sm-5"/>
-									</div>
+									<label> 
+										<g:textField name="servicios.precioEstacionamiento" value="${complejo?.servicios?.precioEstacionamiento}" class="col-xs-10 col-sm-5"/>
+										<span class="lbl">Precio Estacionamiento</span>
+									</label>
 								</div>
-
 
 <%--								<g:each in="${complejo?.servicios?.properties}" var="serv" status="i">--%>
 <%--									<div class="checkbox">--%>
 <%--										<label> --%>
-<%--											<g:checkBox name="${serv.key}" value="${serv.key}" checked="${serv}" class="col-xs-4 col-sm-5-" />--%>
+<%--											<g:checkBox name="${serv.key}" value="${serv.value}" checked="${serv.value}" class="col-xs-4 col-sm-5-" />--%>
 <%--		    								<span class="lbl">"${serv.key}"</span>--%>
 <%--	    								</label>--%>
 <%--									</div>--%>
@@ -570,7 +565,7 @@
 									    <div class="col-sm-4">
 											<div class="widget-box">
 												<div class="widget-header">
-													<h4>Custom File Input</h4>
+													<h4>Carga de Imagenes</h4>
 
 													<span class="widget-toolbar">
 														<a href="#" data-action="collapse">
@@ -605,7 +600,9 @@
 										<button class="btn btn-info" type="button">
 											<i class="icon-ok bigger-110"></i> Guardar
 										</button>
-
+										
+										<g:submitButton class="btn btn-info" name="actualizarInformacionComplejo" value="Actualizar Informacion del Complejo" />
+								
 										&nbsp; &nbsp; &nbsp;
 									</div>
 								</div>
