@@ -35,15 +35,12 @@ class ComplejoController {
 		Encargado encargado = Encargado.list().get(0)
 		Complejo complejo = encargado.complejo
 		try {
-//			List horarios = horarioService.createHorarios(params)
-//			List imagenes = imagenService.createImagenes(params)
 			complejoService.actualizarDatosComplejo(complejo, params) 
 			flash.message = "Complejo <${complejo}> actualizado"
 		} catch (InvalidEntityException e) {
 			flash.message = "Error Actualizando el complejo <${complejo}>"
 		} finally {
 			redirect(action: administrarComplejo)
-//			render(view: "administrar-complejo", model: [ complejo: complejo ])
 		}
 	}
 	

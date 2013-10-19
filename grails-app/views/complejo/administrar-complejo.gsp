@@ -433,7 +433,7 @@
 										for="porcentajeSenia">Porcentaje de senia</label>
 
 									<div class="col-sm-9">
-										<g:textField name="porcentajeSenia" value="${complejo?.porcentajeSenia}" class="input-mini" id="spinner3" />
+										<g:textField name="porcentajeSenia" value="${complejo?.porcentajeSenia}" class="input-mini" id="spinner4" />
 									</div>
 								</div>
 
@@ -454,14 +454,14 @@
 										</label>
 										<g:select id="horarioApertura"
 											name="horarios.${dia.toString()}.apertura"
-											from="${horariosApertura}" required="false"
+											from="${["8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]}"
 											noSelection="['':'Selecciona un Horario']"
 											class="col-xs-4 col-sm-5-"
 											value="${complejo?.horarios.find{it.dia == dia}?.horarioApertura}"
 											class="many-to-one" />
 										<g:select id="horarioCierre"
 											name="horarios.${dia.toString()}.cierre"
-											from="${horariosCierre}" required="false"
+											from="${["9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"]}"
 											noSelection="['':'Selecciona un Horario']"
 											class="col-xs-4 col-sm-5-"
 											value="${complejo?.horarios.find{it.dia == dia}?.horarioCierre}"
@@ -879,6 +879,7 @@
 				});
 				$('#spinner2').ace_spinner({value:0,min:0,max:10000,step:100, touch_spinner: true, icon_up:'icon-caret-up', icon_down:'icon-caret-down'});
 				$('#spinner3').ace_spinner({value:0,min:-100,max:100,step:10, on_sides: true, icon_up:'icon-plus smaller-75', icon_down:'icon-minus smaller-75', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
+				$('#spinner4').ace_spinner({value:50,min:0,max:100,step:5, on_sides: true, icon_up:'icon-plus smaller-75', icon_down:'icon-minus smaller-75', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
 			
 			
 				
