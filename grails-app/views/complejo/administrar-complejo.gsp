@@ -616,33 +616,129 @@
 										<small> Imagenes </small>
 									</h1>
 								</div>
-								<div class="row">
-									<div class="col-sm-4">
-										<div class="widget-box">
-											<div class="widget-header">
-												<h4>Custom File Input</h4>
+								
+								<div class="row">										
+									<!-- inicio tabla -->		
+										<div class="col-sm-8">
+										<div class="table-responsive">
+											<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+												<thead>
+													<tr>
+														<th>Nombre</th>
+														<th class="hidden-480">Descripcion</th>
 
-												<span class="widget-toolbar"> <a href="#"
-													data-action="collapse"> <i class="icon-chevron-up"></i>
-												</a> <a href="#" data-action="close"> <i class="icon-remove"></i>
-												</a>
-												</span>
-											</div>
+														<th>
+															<i class="icon-time bigger-110 hidden-480"></i>
+															Fecha
+														</th>
+														<th class="hidden-480">Portada</th>
 
-											<div class="widget-body">
-												<div class="widget-main">
-													<input type="file" id="id-input-file-2" /> <input
-														multiple="" type="file" id="id-input-file-3" /> <label>
-														<input type="checkbox" name="file-format"
-														id="id-file-format" class="ace" /> <span class="lbl">
-															Allow only images</span>
-													</label>
+														<th>Acciones</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<tr>
+														<td>Imagen 1</td>
+														<td class="hidden-480">Vista panoramica del predio</td>
+														<td>10-08-2013</td>
+
+														<td class="hidden-480">Si</td>
+
+														<td>
+															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+																<button class="btn btn-xs btn-info">
+																	<i class="icon-edit bigger-120"></i>
+																</button>
+
+																<button class="btn btn-xs btn-danger">
+																	<i class="icon-trash bigger-120"></i>
+																</button>
+															</div>
+
+														</td>
+													</tr>
+													
+													<tr>
+														<td>Imagen 2</td>
+														<td class="hidden-480">Cancha de futbol 11</td>
+														<td>16-08-2013</td>
+
+														<td class="hidden-480">No</td>
+
+														<td>
+															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+																<button class="btn btn-xs btn-info">
+																	<i class="icon-edit bigger-120"></i>
+																</button>
+
+																<button class="btn btn-xs btn-danger">
+																	<i class="icon-trash bigger-120"></i>
+																</button>
+															</div>
+
+														</td>
+													</tr>
+													
+													<tr>
+														<td>Imagen 3</td>
+														<td class="hidden-480">Entrada del complejo</td>
+														<td>27-06-2013</td>
+
+														<td class="hidden-480">No</td>
+
+														<td>
+															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+																<button class="btn btn-xs btn-info">
+																	<i class="icon-edit bigger-120"></i>
+																</button>
+
+																<button class="btn btn-xs btn-danger">
+																	<i class="icon-trash bigger-120"></i>
+																</button>
+															</div>
+
+														</td>
+													</tr>
+
+													
+												</tbody>
+											</table>
+										</div><!-- /.table-responsive -->
+									    </div>
+									    
+									    <!-- inicio selector de imagenes -->
+									    <div class="col-sm-4">
+											<div class="widget-box">
+												<div class="widget-header">
+													<h4>Custom File Input</h4>
+
+													<span class="widget-toolbar">
+														<a href="#" data-action="collapse">
+															<i class="icon-chevron-up"></i>
+														</a>
+
+														<a href="#" data-action="close">
+															<i class="icon-remove"></i>
+														</a>
+													</span>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main">
+														<input type="file" id="id-input-file-2" />
+														<input multiple="" type="file" id="id-input-file-3" />
+														<label>
+															<input type="checkbox" name="file-format" id="id-file-format" class="ace" />
+															<span class="lbl"> Allow only images</span>
+														</label>
+													</div>
 												</div>
 											</div>
 										</div>
+										<!-- fin selector de imagenes -->
+										
 									</div>
-								</div>
-
 
 
 								<div class="clearfix form-actions">
