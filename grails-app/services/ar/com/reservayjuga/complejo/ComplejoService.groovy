@@ -24,10 +24,12 @@ class ComplejoService {
 	def actualizarDatosComplejo(Complejo complejo, def datos, def horarios, def imagenes) {
 		
 //		// datos generales
+		println "complejo.porcentajeSenia 1: " + complejo.porcentajeSenia
 		complejo.properties = datos
+		println "complejo.porcentajeSenia 2: " + complejo.porcentajeSenia
 //		complejo.nombre = datos.nombre
 //		complejo.webSite = datos.webSite
-//		complejo.telefono1 = datos.telefono
+//		complejo.telefono1 = datos.telefono1
 //		complejo.mail = datos.mail
 //		complejo.informacionExtra = datos.info
 //		complejo.porcentajeSenia = datos.porcSenia
@@ -61,6 +63,7 @@ class ComplejoService {
 		// datos de extras
 		if(complejo.extras) {
 			complejo.extras.properties = datos
+			
 //			complejo.extras.quiereArbitro = datos.quiereArbitro
 //			complejo.extras.quierePechera = datos.quierePechera
 //			complejo.extras.precioArbitro = datos.precioArbitro

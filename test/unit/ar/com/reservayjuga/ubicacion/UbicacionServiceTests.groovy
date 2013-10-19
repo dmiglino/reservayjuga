@@ -6,7 +6,6 @@ import grails.test.GrailsUnitTestCase;
 import grails.test.mixin.*
 import org.junit.*
 
-import ar.com.reservayjuga.complejo.UbicacionService;
 import ar.com.reservayjuga.ubicacion.Ubicacion;
 
 /**

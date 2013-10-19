@@ -1,17 +1,12 @@
 package ar.com.reservayjuga.ubicacion
 
 class LocalidadController {
+	
 	def scaffold = true
-
+	LocalidadService localidadService
+	
     def getBarrios() {
-		println "getBarrios: " + params.id
-		def barrios
-		if(params.id) {
-			def localidad = Localidad.get(params.id)
-			println localidad
-			barrios = localidad.barrios
-			println barrios
-		}
+		def barrios = localidadService.getBarrios(params.id)
 		render(template:"selectBarrios", model:[barriosList:barrios])
 	}
 

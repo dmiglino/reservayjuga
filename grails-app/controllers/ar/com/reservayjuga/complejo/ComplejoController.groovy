@@ -3,6 +3,7 @@ package ar.com.reservayjuga.complejo
 import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.exception.InvalidEntityException
 import ar.com.reservayjuga.ubicacion.Ubicacion;
+import ar.com.reservayjuga.ubicacion.UbicacionService;
 import ar.com.reservayjuga.usuario.Encargado
 
 class ComplejoController {
@@ -22,7 +23,9 @@ class ComplejoController {
 			// TODO autorizados admins y encargados
 			// TODO recuperar el complejo del encargado
 		Encargado encargado = Encargado.list().get(0)
-		render(view: "administrar-complejo", model: [complejo : encargado.complejo])
+		List horariosApertura = ["9:00","10:00","11:00"]
+		List horariosCierre = ["9:00","10:00","11:00"]
+		render(view: "administrar-complejo", model: [complejo : encargado.complejo, horariosApertura : horariosApertura, horariosCierre : horariosCierre])
 	}
 	
 	def actualizarInformacionComplejo = {

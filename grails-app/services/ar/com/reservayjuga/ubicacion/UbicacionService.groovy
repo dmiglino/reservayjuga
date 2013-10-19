@@ -1,4 +1,4 @@
-package ar.com.reservayjuga.complejo
+package ar.com.reservayjuga.ubicacion
 
 import ar.com.reservayjuga.ubicacion.Barrio
 import ar.com.reservayjuga.ubicacion.Localidad

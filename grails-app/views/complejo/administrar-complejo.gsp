@@ -331,6 +331,7 @@
 									</div>
 								</div>
 								
+								
 							<div class="page-header">
 								<h1>
 									<small> Servicios </small>
@@ -427,15 +428,35 @@
 								</h1>
 							</div>
 								
-								
-								<span class="lbl"> Porcentaje de senia</span> <br /> <br /> <input
-									type="text" class="input-mini" id="spinner3" />
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right"
+										for="porcentajeSenia">Porcentaje de senia</label>
 
-								<div class="page-header">
-									<h1>
-										<small> Horarios Operativos </small>
-									</h1>
+									<div class="col-sm-9">
+										<g:textField name="porcentajeSenia" value="${complejo?.porcentajeSenia}" class="input-mini" id="spinner3" />
+									</div>
 								</div>
+
+
+							<div class="page-header">
+								<h1>
+									<small> Horarios Operativos </small>
+								</h1>
+							</div>
+								
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="horarioApertura">
+										<g:message code="ubicacion.lunes.label" default="Lunes" />
+									</label>
+									<g:select id="horarioApertura" name="horarioApertura" from="${horariosApertura}"
+										required="" noSelection="['':'Selecciona un Horario']" class="col-xs-4 col-sm-5-"
+										class="many-to-one" />
+									<g:select id="horarioCierre" name="horarioCierre" from="${horariosCierre}"
+										required="" noSelection="['':'Selecciona un Horario']" class="col-xs-4 col-sm-5-"
+										class="many-to-one" />
+								</div>
+								
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-select-2">Lunes </label> <select
