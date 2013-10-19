@@ -21,7 +21,7 @@ class ComplejoService {
 	 * @param complejo, datos
 	 * @return complejo actualizado
 	 */
-	def actualizarDatosComplejo(Complejo complejo, def datos, def horarios, def imagenes) {
+	def actualizarDatosComplejo(Complejo complejo, def datos) {
 		
 //		// datos generales
 		println "complejo.porcentajeSenia 1: " + complejo.porcentajeSenia
@@ -63,7 +63,6 @@ class ComplejoService {
 		// datos de extras
 		if(complejo.extras) {
 			complejo.extras.properties = datos
-			
 //			complejo.extras.quiereArbitro = datos.quiereArbitro
 //			complejo.extras.quierePechera = datos.quierePechera
 //			complejo.extras.precioArbitro = datos.precioArbitro
@@ -71,50 +70,28 @@ class ComplejoService {
 		}
 		
 //		//datos de horarios
-//		if(complejo.horarios) {
-//			complejo.horarios.clear()
-//			complejo.horarios.addAll(horarios)
-//		}
-//		Horario horario = complejo.horarios.find{dia == 1}
-//		if(horario) {
-//			horario.horarioApertura = datos.lunesDesde
-//			horario.horarioCierre = datos.lunesHasta
-//		}
-//		horario = complejo.horarios.find{dia == 2}
-//		if(horario) {
-//			horario.horarioApertura = datos.martesDesde
-//			horario.horarioCierre = datos.martesHasta
-//		}
-//		horario = complejo.horarios.find{dia == 3}
-//		if(horario) {
-//			horario.horarioApertura = datos.miercolesDesde
-//			horario.horarioCierre = datos.miercolesHasta
-//		}
-//		horario = complejo.horarios.find{dia == 4}
-//		if(horario) {
-//			horario.horarioApertura = datos.juevesDesde
-//			horario.horarioCierre = datos.juevesHasta
-//		}
-//		horario = complejo.horarios.find{dia == 5}
-//		if(horario) {
-//			horario.horarioApertura = datos.viernesDesde
-//			horario.horarioCierre = datos.viernesHasta
-//		}
-//		horario = complejo.horarios.find{dia == 6}
-//		if(horario) {
-//			horario.horarioApertura = datos.sabadoDesde
-//			horario.horarioCierre = datos.sabadoHasta
-//		}
-//		horario = complejo.horarios.find{dia == 7}
-//		if(horario) {
-//			horario.horarioApertura = datos.domingoDesde
-//			horario.horarioCierre = datos.domingoHasta
-//		}
-//		horario = complejo.horarios.find{dia == 8}
-//		if(horario) {
-//			horario.horarioApertura = datos.feriadoDesde
-//			horario.horarioCierre = datos.feriadoHasta
-//		}
+		if(datos.horarios) {
+			if(!complejo.horarios) {
+				complejo.horarios = []
+			}
+			println "complejo.horarios 1: ${complejo.horarios}"
+			for(int eachDia = 1; eachDia <= 8; eachDia++) {
+				println "horario del dia ${eachDia}: ${datos.horarios[eachDia.toString()]}"
+				Horario horario = complejo.horarios.find{it.dia == eachDia}
+				def datosHorariosDia = datos.horarios[eachDia.toString()]
+				if(horario) {
+					horario.horarioApertura = datosHorariosDia.apertura
+					horario.horarioCierre = datosHorariosDia.cierre
+					println "horaro ${horario} ACTUALIZADO"
+				} else {
+					horario = new Horario(dia:eachDia, horarioApertura: datosHorariosDia.apertura, horarioCierre: datosHorariosDia.cierre)
+					println "horaro ${horario} CREADO"
+					complejo.agregarHorario(horario)
+				}
+			}
+			println "complejo.horarios 2: ${complejo.horarios}"
+		}
+		
 //		
 //		//datos de imagenes
 //		if(complejo.imagenes) {

@@ -25,6 +25,7 @@ class ComplejoController {
 		Encargado encargado = Encargado.list().get(0)
 		List horariosApertura = ["9:00","10:00","11:00"]
 		List horariosCierre = ["9:00","10:00","11:00"]
+		def horariosComplejo
 		render(view: "administrar-complejo", model: [complejo : encargado.complejo, horariosApertura : horariosApertura, horariosCierre : horariosCierre])
 	}
 	
@@ -36,7 +37,7 @@ class ComplejoController {
 		try {
 //			List horarios = horarioService.createHorarios(params)
 //			List imagenes = imagenService.createImagenes(params)
-			complejoService.actualizarDatosComplejo(complejo, params, [], []) 
+			complejoService.actualizarDatosComplejo(complejo, params) 
 			flash.message = "Complejo <${complejo}> actualizado"
 		} catch (InvalidEntityException e) {
 			flash.message = "Error Actualizando el complejo <${complejo}>"

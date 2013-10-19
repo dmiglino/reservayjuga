@@ -443,172 +443,31 @@
 									<small> Horarios Operativos </small>
 								</h1>
 							</div>
-								
-								
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right" for="horarioApertura">
-										<g:message code="ubicacion.lunes.label" default="Lunes" />
-									</label>
-									<g:select id="horarioApertura" name="horarioApertura" from="${horariosApertura}"
-										required="" noSelection="['':'Selecciona un Horario']" class="col-xs-4 col-sm-5-"
-										class="many-to-one" />
-									<g:select id="horarioCierre" name="horarioCierre" from="${horariosCierre}"
-										required="" noSelection="['':'Selecciona un Horario']" class="col-xs-4 col-sm-5-"
-										class="many-to-one" />
-								</div>
-								
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-2">Lunes </label> <select
-										class="col-xs-2 col-sm-4-" id="Select1">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select> <select class="col-xs-2 col-sm-4-" id="Select2">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-2">Martes </label> <select
-										class="col-xs-2 col-sm-4-" id="Select3">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select> <select class="col-xs-2 col-sm-4-" id="Select4">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-2">Miercoles </label> <select
-										class="col-xs-2 col-sm-4-" id="Select5">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select> <select class="col-xs-2 col-sm-4-" id="Select6">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-2">Jueves </label> <select
-										class="col-xs-2 col-sm-4-" id="Select7">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select> <select class="col-xs-2 col-sm-4-" id="Select8">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-2">Viernes </label> <select
-										class="col-xs-2 col-sm-4-" id="Select9">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select> <select class="col-xs-2 col-sm-4-" id="Select10">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-2">Sabado </label> <select
-										class="col-xs-2 col-sm-4-" id="Select11">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select> <select class="col-xs-2 col-sm-4-" id="Select12">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-2">Domingo </label> <select
-										class="col-xs-2 col-sm-4-" id="Select13">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select> <select class="col-xs-2 col-sm-4-" id="Select14">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="form-field-select-2">Feriado </label> <select
-										class="col-xs-2 col-sm-4-" id="Select15">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select> <select class="col-xs-2 col-sm-4-" id="Select16">
-										<option value="">&nbsp;</option>
-										<option value="1">9:00</option>
-										<option value="2">10:00</option>
-										<option value="3">11:00</option>
-										<option value="4">12:00</option>
-										<option value="5">13:00</option>
-									</select>
-								</div>
+
+
+								<g:each in="${[1,2,3,4,5,6,7,8]}" var="dia" status="i">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="horarioApertura"> 
+											<g:message
+												code="horario.${dia.toString()}.label"
+												default="Dia ${dia.toString()}" />
+										</label>
+										<g:select id="horarioApertura"
+											name="horarios.${dia.toString()}.apertura"
+											from="${horariosApertura}" required="false"
+											noSelection="['':'Selecciona un Horario']"
+											class="col-xs-4 col-sm-5-"
+											value="${complejo?.horarios.find{it.dia == dia}?.horarioApertura}"
+											class="many-to-one" />
+										<g:select id="horarioCierre"
+											name="horarios.${dia.toString()}.cierre"
+											from="${horariosCierre}" required="false"
+											noSelection="['':'Selecciona un Horario']"
+											class="col-xs-4 col-sm-5-"
+											value="${complejo?.horarios.find{it.dia == dia}?.horarioCierre}"
+											class="many-to-one" />
+									</div>
+								</g:each>
 
 
 								<div class="page-header">
