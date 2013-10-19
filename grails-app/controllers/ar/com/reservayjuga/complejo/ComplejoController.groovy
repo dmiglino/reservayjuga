@@ -29,6 +29,7 @@ class ComplejoController {
 		render(view: "administrar-complejo", model: [complejo : encargado.complejo, horariosApertura : horariosApertura, horariosCierre : horariosCierre])
 	}
 	
+	
 	def actualizarInformacionComplejo = {
 			// TODO autorizados admins y encargados
 			// TODO recuperar el encargado logueado
