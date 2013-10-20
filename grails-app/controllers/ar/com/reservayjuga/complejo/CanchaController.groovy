@@ -11,6 +11,12 @@ class CanchaController {
 		// TODO recuperar el complejo del encargado
 	render(view: "administrar-cancha", model: [])
 	}
+	
+	def agregarCancha = {
+		// TODO autorizados admins y encargados
+		// TODO recuperar el complejo del encargado
+	render(view: "agregar-cancha", model: [])
+	}
 
 	
 }
