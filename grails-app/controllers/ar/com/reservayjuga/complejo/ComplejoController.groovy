@@ -1,9 +1,11 @@
 package ar.com.reservayjuga.complejo
 
+import org.springframework.dao.DataIntegrityViolationException
+
 import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.exception.InvalidEntityException
-import ar.com.reservayjuga.ubicacion.Ubicacion;
-import ar.com.reservayjuga.ubicacion.UbicacionService;
+import ar.com.reservayjuga.ubicacion.Ubicacion
+import ar.com.reservayjuga.ubicacion.UbicacionService
 import ar.com.reservayjuga.usuario.Encargado
 
 class ComplejoController {
@@ -104,5 +106,28 @@ class ComplejoController {
 			return [response:resp, status:resp.status]
 		}
 	}
+	
+	def deleteImagen() {
+		// TODO autorizados admins y encargados
+		// TODO recuperar el encargado logueado
+		Encargado encargado = Encargado.list().get(0)
+		Complejo complejo = encargado.complejo
+		Long idImagen = params.id
+		def imagenInstance = Imagen.get(params.id)
+		
+		if (!imagenInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
+			render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
+		}
 
+		try {
+			complejo.eliminarImagen(imagenInstance)
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
+		}
+		catch (DataIntegrityViolationException e) {
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
+		} finally {
+			render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
+		}
+	}
 }

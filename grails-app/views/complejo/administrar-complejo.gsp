@@ -510,7 +510,7 @@
 															<span class="lbl"> 
 																<g:message code="comunes.nombre.label" default="Nombre" />
 															</span>
-															<g:textField name="imagen.nombre" />
+															<g:textField name="imagen.nombre" id="imagen.nombre" />
 														</label>
 													</div>
 													
@@ -519,14 +519,15 @@
 															<span class="lbl"> 
 																<g:message code="comunes.descripcion.label" default="Descripcion" />
 															</span>
-															<g:textArea name="imagen.descripcion" />
+															<g:textArea name="imagen.descripcion" id="imagen.descripcion" />
 														</label>
 													</div>
 												</div>
 												
 												<div class="widget-body">
 													<div class="widget-main">
-														<g:submitToRemote class="btn btn-info" update="[success:'imagenesDiv']" url="[controller:'complejo', action:'agregarImagen']" value="Subir Imagen" />
+														<g:submitToRemote class="btn btn-info" update="[success:'imagenesDiv']" after="cleanImageFields();" 
+															url="[controller:'complejo', action:'agregarImagen']" value="Subir Imagen" />
 													</div>
 												</div>
 											</div>
@@ -676,6 +677,14 @@
 	<!-- inline scripts related to this page -->
 
 	<script type="text/javascript">
+
+		function cleanImageFields() {
+			var nombre = document.getElementById("imagen.nombre");
+			nombre.value = "";
+			var descripcion = document.getElementById("imagen.descripcion");
+			descripcion.value = "";
+		}
+		
 			jQuery(function($) {
 				$('#id-disable-check').on('click', function() {
 					var inp = $('#form-input-readonly').get(0);

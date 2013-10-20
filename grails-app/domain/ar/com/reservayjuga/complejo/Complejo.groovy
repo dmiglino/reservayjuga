@@ -69,6 +69,11 @@ class Complejo {
 		this.addToImagenes(imagen)
 	}
 	
+	void eliminarImagen(Imagen imagen) {
+		removeFromImagenes(imagen)
+		imagen.delete()
+	}
+	
 	Boolean hasHorario(Horario horario) {
 		this.horarios.contains(horario)
 	}

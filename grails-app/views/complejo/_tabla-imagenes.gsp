@@ -21,10 +21,10 @@
 												<tbody>
 													<g:each in="${imagenes}" var="imagen" status="i">
 														<tr>
-															<td>${imagen.nombre}</td>
-															<td>${imagen.descripcion}</td>
-															<td><g:formatDate date="${imagen.fecha}" format="yyyy-MM-dd" /></td>
-															<td class="hidden-480"><g:formatBoolean boolean="${imagen.portada}" true="SI" false="NO" /></td>
+															<td>${imagen?.nombre}</td>
+															<td>${imagen?.descripcion}</td>
+															<td><g:formatDate date="${imagen?.fecha}" format="yyyy-MM-dd" /></td>
+															<td class="hidden-480"><g:formatBoolean boolean="${imagen?.portada}" true="SI" false="NO" /></td>
 	
 															<td>
 																<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
@@ -32,9 +32,9 @@
 																		<i class="icon-edit bigger-120"></i>
 																	</button>
 	
-																	<button class="btn btn-xs btn-danger">
-																		<i class="icon-trash bigger-120"></i>
-																	</button>
+																	<g:hiddenField name="idImagen" value="${imagen?.id}" />
+																	<g:remoteLink controller="complejo" action="deleteImagen" id="${imagen?.id}" update="[success:'imagenesDiv',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
+				
 																</div>
 	
 															</td>
