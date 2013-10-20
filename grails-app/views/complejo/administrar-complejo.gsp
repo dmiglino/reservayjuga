@@ -206,7 +206,7 @@
 
 							<g:form action="actualizarInformacionComplejo" class="form-horizontal" role="form">
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
+									<label class="col-sm-3 control-label"
 										for="nombre"> Nombre </label>
 
 									<div class="col-sm-9">
@@ -217,7 +217,7 @@
 								<div class="space-4"></div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
+									<label class="col-sm-3 control-label"
 										for="webSite">Sitio Web </label>
 
 									<div class="col-sm-9">
@@ -228,7 +228,7 @@
 								<div class="space-4"></div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
+									<label class="col-sm-3 control-label"
 										for="mail">Mail </label>
 
 									<div class="col-sm-9">
@@ -239,7 +239,7 @@
 								<div class="space-4"></div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
+									<label class="col-sm-3 control-label"
 										for="telefono1">Telefono 1 </label>
 
 									<div class="col-sm-9">
@@ -250,7 +250,7 @@
 								<div class="space-4"></div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
+									<label class="col-sm-3 control-label"
 										for="telefono2">Telefono 2 </label>
 
 									<div class="col-sm-9">
@@ -261,7 +261,7 @@
 								<div class="space-4"></div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
+									<label class="col-sm-3 control-label"
 										for="telefono3">Telefono 3 </label>
 
 									<div class="col-sm-9">
@@ -272,7 +272,7 @@
 								<div class="space-4"></div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
+									<label class="col-sm-3 control-label"
 										for="telefono4">Telefono 4 </label>
 
 									<div class="col-sm-9">
@@ -283,7 +283,7 @@
 								<div class="space-4"></div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
+									<label class="col-sm-3 control-label"
 										for=informacionExtra> Informacion Extra </label>
 									<g:textArea name="informacionExtra" value="${complejo?.informacionExtra}" class="col-xs-4 col-sm-5-"/>
 								</div>
@@ -299,7 +299,7 @@
 								
 
 								<div id="paisesDiv" class="form-group">
-									<label class="col-sm-3 control-label no-padding-right" for="pais">
+									<label class="col-sm-3 control-label" for="pais">
 										<g:message code="ubicacion.pais.label" default="Pais" />
 									</label>
 									<g:select id="pais" name="pais.id" from="${ar.com.reservayjuga.ubicacion.Pais.list()}"
@@ -321,7 +321,7 @@
 								</div>
 								
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
+									<label class="col-sm-3 control-label"
 										for="direccion">Direccion</label>
 
 									<div class="col-sm-9">
@@ -442,9 +442,9 @@
 
 								<g:each in="${[1,2,3,4,5,6,7,8]}" var="dia" status="i">
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="horarioApertura"> 
+										<label class="col-sm-3 control-label" for="horarioApertura"> 
 											<g:message
-												code="horario.${dia.toString()}.label"
+												code="horario.dia.${dia.toString()}.label"
 												default="Dia ${dia.toString()}" />
 										</label>
 										<g:select id="horarioApertura"

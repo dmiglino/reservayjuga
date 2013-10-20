@@ -2,7 +2,7 @@
 
 <div class="form-group">
 	<g:if test="${provinciasList}">
-		<label class="col-sm-3 control-label no-padding-right" for="provincia">
+		<label class="col-sm-3 control-label" for="provincia">
 			<g:message code="ubicacion.provincia.label" default="Provincia" />
 		</label>
 		<g:select id="provincia" name="provincia.id" from="${provinciasList}"
