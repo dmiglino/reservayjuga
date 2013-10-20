@@ -285,7 +285,7 @@
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for=informacionExtra> Informacion Extra </label>
-									<g:textArea name="informacionExtra" value="${complejo?.informacionExtra}"" class="col-xs-4 col-sm-5-"/>
+									<g:textArea name="informacionExtra" value="${complejo?.informacionExtra}" class="col-xs-4 col-sm-5-"/>
 								</div>
 
 								<div class="space-4"></div>
@@ -471,96 +471,11 @@
 									</h1>
 								</div>
 								
-								<div class="row">										
-									<!-- inicio tabla -->		
-										<div class="col-sm-8">
-										<div class="table-responsive">
-											<table id="sample-table-1" class="table table-striped table-bordered table-hover">
-												<thead>
-													<tr>
-														<th>Nombre</th>
-														<th class="hidden-480">Descripcion</th>
-
-														<th>
-															<i class="icon-time bigger-110 hidden-480"></i>
-															Fecha
-														</th>
-														<th class="hidden-480">Portada</th>
-
-														<th>Acciones</th>
-													</tr>
-												</thead>
-
-												<tbody>
-													<tr>
-														<td>Imagen 1</td>
-														<td class="hidden-480">Vista panoramica del predio</td>
-														<td>10-08-2013</td>
-
-														<td class="hidden-480">Si</td>
-
-														<td>
-															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-																<button class="btn btn-xs btn-info">
-																	<i class="icon-edit bigger-120"></i>
-																</button>
-
-																<button class="btn btn-xs btn-danger">
-																	<i class="icon-trash bigger-120"></i>
-																</button>
-															</div>
-
-														</td>
-													</tr>
-													
-													<tr>
-														<td>Imagen 2</td>
-														<td class="hidden-480">Cancha de futbol 11</td>
-														<td>16-08-2013</td>
-
-														<td class="hidden-480">No</td>
-
-														<td>
-															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-																<button class="btn btn-xs btn-info">
-																	<i class="icon-edit bigger-120"></i>
-																</button>
-
-																<button class="btn btn-xs btn-danger">
-																	<i class="icon-trash bigger-120"></i>
-																</button>
-															</div>
-
-														</td>
-													</tr>
-													
-													<tr>
-														<td>Imagen 3</td>
-														<td class="hidden-480">Entrada del complejo</td>
-														<td>27-06-2013</td>
-
-														<td class="hidden-480">No</td>
-
-														<td>
-															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-																<button class="btn btn-xs btn-info">
-																	<i class="icon-edit bigger-120"></i>
-																</button>
-
-																<button class="btn btn-xs btn-danger">
-																	<i class="icon-trash bigger-120"></i>
-																</button>
-															</div>
-
-														</td>
-													</tr>
-
-													
-												</tbody>
-											</table>
-										</div><!-- /.table-responsive -->
-									    </div>
-									    
+								<div class="row">	
+									<div id="imagenesDiv">									
+										<g:render template="tabla-imagenes" model="[imagenes : complejo?.imagenes]" />
+									</div>
+									
 									    <!-- inicio selector de imagenes -->
 									    <div class="col-sm-4">
 											<div class="widget-box">
@@ -577,7 +492,7 @@
 														</a>
 													</span>
 												</div>
-
+												
 												<div class="widget-body">
 													<div class="widget-main">
 														<input type="file" id="id-input-file-2" />
@@ -586,6 +501,32 @@
 															<input type="checkbox" name="file-format" id="id-file-format" class="ace" />
 															<span class="lbl"> Allow only images</span>
 														</label>
+													</div>
+												</div>
+												
+												<div class="widget-body">
+													<div class="widget-main">
+														<label>
+															<span class="lbl"> 
+																<g:message code="comunes.nombre.label" default="Nombre" />
+															</span>
+															<g:textField name="imagen.nombre" />
+														</label>
+													</div>
+													
+													<div class="widget-main">
+														<label>
+															<span class="lbl"> 
+																<g:message code="comunes.descripcion.label" default="Descripcion" />
+															</span>
+															<g:textArea name="imagen.descripcion" />
+														</label>
+													</div>
+												</div>
+												
+												<div class="widget-body">
+													<div class="widget-main">
+														<g:submitToRemote class="btn btn-info" update="[success:'imagenesDiv']" url="[controller:'complejo', action:'agregarImagen']" value="Subir Imagen" />
 													</div>
 												</div>
 											</div>
@@ -675,7 +616,7 @@
 		class="btn-scroll-up btn btn-sm btn-inverse"> <i
 		class="icon-double-angle-up icon-only bigger-110"></i>
 	</a>
-	</div>
+
 	<!-- /.main-container -->
 
 	<!-- basic scripts -->

@@ -45,6 +45,25 @@ class ComplejoController {
 		}
 	}
 	
+	def agregarImagen = {
+		println "agregarImagen: " +params.imagen
+			// TODO autorizados admins y encargados
+			// TODO recuperar el encargado logueado
+		Encargado encargado = Encargado.list().get(0)
+		Complejo complejo = encargado.complejo
+		if(params.imagen) {
+			if(!complejo.imagenes) {
+				complejo.imagenes = []
+			}
+			//TODO pasar cosas a ImagenService
+			Imagen imagen = new Imagen(nombre: params.imagen.nombre, descripcion: params.imagen.descripcion, fecha: new Date(), portada: false)
+			DBUtils.validateAndSave(imagen) // TODO o se graba despues todo junto?
+			complejo.agregarImagen(imagen)
+		}
+		render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
+//		redirect(action: administrarComplejo)
+	}
+	
 	def crearComplejo = {
 		// TODO autorizados solo admins
 		Map resp = [:]

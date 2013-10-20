@@ -65,6 +65,10 @@ class Complejo {
 		this.addToHorarios(horario)
 	}
 	
+	void agregarImagen(Imagen imagen) {
+		this.addToImagenes(imagen)
+	}
+	
 	Boolean hasHorario(Horario horario) {
 		this.horarios.contains(horario)
 	}

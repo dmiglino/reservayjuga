@@ -60,7 +60,7 @@ class ComplejoServiceIntegrationTests extends GroovyTestCase {
 		Complejo complejoCreado = complejoService.createComplejo(complejoMap, ubicacion, servicios, extras, null, null)
 		
 		complejoMap = [nombre:"Garden", webSite:"www.garden.com", mail:"garden@garden.com", telefono1:"12345678", informacionExtra:"info del garden", porcentajeSenia:"50%", pais:"Argentina", provincia:"Buenos Aires", localidad:"Capital Federal", barrio:"Villa Pueyrredon", direccion:"Escobar 666", vestuario:false,television:false,bebida:false,comida:false,ayudaMedica:true,torneo:true,wifi:false,gimnasio:true,estacionamiento:true, quiereArbitro:true, quierePechera:false, precioArbitro:30f, precioPechera:0]
-		complejoService.actualizarDatosComplejo(complejoCreado,complejoMap,null,null)
+		complejoService.actualizarDatosComplejo(complejoCreado,complejoMap)
 		
 		assertEquals "Garden", complejoCreado.nombre
 		assertEquals "www.garden.com", complejoCreado.webSite

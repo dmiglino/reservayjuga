@@ -75,6 +75,7 @@ class ComplejoService {
 				complejo.horarios = []
 			}
 			println "complejo.horarios 1: ${complejo.horarios}"
+			// TODO pasar cosas a HorarioService
 			for(int eachDia = 1; eachDia <= 8; eachDia++) {
 				println "horario del dia ${eachDia}: ${datos.horarios[eachDia.toString()]}"
 				Horario horario = complejo.horarios.find{it.dia == eachDia}
@@ -91,13 +92,6 @@ class ComplejoService {
 			}
 			println "complejo.horarios 2: ${complejo.horarios}"
 		}
-		
-//		
-//		//datos de imagenes
-//		if(complejo.imagenes) {
-//			complejo.imagenes.clear()
-//			complejo.imagenes.addAll(imagenes)
-//		}
 		
 		DBUtils.validateAndSave(complejo)
 	}

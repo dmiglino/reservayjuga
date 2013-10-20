@@ -13,7 +13,7 @@ class Imagen {
 	
     static constraints = {
 		nombre blank: false
-		extension blank: false
+		extension nullable: true
 		descripcion blank: true
 		fecha nullable: true
 		portada nullable: false
