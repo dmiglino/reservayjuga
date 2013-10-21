@@ -10,28 +10,25 @@ import ar.com.reservayjuga.usuario.Encargado
 
 class ComplejoController {
 
-	UbicacionService ubicacionService
-	ServiciosService serviciosService
-	ExtrasService extrasService
-	HorarioService horarioService
-	ImagenService imagenService
 	ComplejoService complejoService
 	
     def index() {
 		redirect(action: administrarComplejo)
 	}
 	
+	/**
+	 * Carga la pagina principal de administracion de complejo
+	 */
 	def administrarComplejo = {
 			// TODO autorizados admins y encargados
 			// TODO recuperar el complejo del encargado
 		Encargado encargado = Encargado.list().get(0)
-		List horariosApertura = ["9:00","10:00","11:00"]
-		List horariosCierre = ["9:00","10:00","11:00"]
-		def horariosComplejo
-		render(view: "administrar-complejo", model: [complejo : encargado.complejo, horariosApertura : horariosApertura, horariosCierre : horariosCierre])
+		render(view: "administrar-complejo", model: [complejo : encargado.complejo])
 	}
 	
-	
+	/**
+	 * Actualiza los datos del complejo
+	 */
 	def actualizarInformacionComplejo = {
 			// TODO autorizados admins y encargados
 			// TODO recuperar el encargado logueado
@@ -47,23 +44,18 @@ class ComplejoController {
 		}
 	}
 	
+	/**
+	 * Crea una nueva imagen y la guarda en el complejo
+	 */
 	def agregarImagen = {
+		println "Imagen: " +params.image_file_1
 		println "agregarImagen: " +params.imagen
 			// TODO autorizados admins y encargados
 			// TODO recuperar el encargado logueado
 		Encargado encargado = Encargado.list().get(0)
 		Complejo complejo = encargado.complejo
-		if(params.imagen) {
-			if(!complejo.imagenes) {
-				complejo.imagenes = []
-			}
-			//TODO pasar cosas a ImagenService
-			Imagen imagen = new Imagen(nombre: params.imagen.nombre, descripcion: params.imagen.descripcion, fecha: new Date(), portada: false)
-			DBUtils.validateAndSave(imagen) // TODO o se graba despues todo junto?
-			complejo.agregarImagen(imagen)
-		}
+		complejoService.crearImagenParaComplejo(complejo, params.imagen)
 		render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
-//		redirect(action: administrarComplejo)
 	}
 	
 	def crearComplejo = {
@@ -107,24 +99,21 @@ class ComplejoController {
 		}
 	}
 	
+	/**
+	 * Elimina la imagen indicada del complejo y de la BD 
+	 */
 	def deleteImagen() {
 		// TODO autorizados admins y encargados
 		// TODO recuperar el encargado logueado
 		Encargado encargado = Encargado.list().get(0)
 		Complejo complejo = encargado.complejo
-		Long idImagen = params.id
-		def imagenInstance = Imagen.get(params.id)
 		
-		if (!imagenInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
-			render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
-		}
-
 		try {
-			complejo.eliminarImagen(imagenInstance)
+			complejoService.eliminarImagenDelComplejo(complejo, params.id)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
-		}
-		catch (DataIntegrityViolationException e) {
+//		TODO } catch (ImagenNoEncontradaException e) {
+//			flash.message = message(code: 'default.not.found.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
+		}  catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
 		} finally {
 			render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])

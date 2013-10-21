@@ -8,13 +8,10 @@ class PaisService {
 	 * @return provincias del pais
 	 */
     def getProvincias(def id) {
-		println "getProvincias: " + id
 		def provincias
 		if(id) {
 			def pais = Pais.get(id)
-			println pais
 			provincias = pais.provincias
-			println provincias
 		}
 		return provincias
     }

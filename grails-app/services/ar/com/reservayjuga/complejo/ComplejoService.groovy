@@ -2,9 +2,16 @@ package ar.com.reservayjuga.complejo
 
 import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.ubicacion.Barrio
+import ar.com.reservayjuga.ubicacion.UbicacionService;
 
 class ComplejoService {
-
+	
+	UbicacionService ubicacionService
+	ServiciosService serviciosService
+	ExtrasService extrasService
+	HorarioService horarioService
+	ImagenService imagenService
+	
 	/**
 	 * Crea el complejo a partir de los datos pasados por parametro
 	 * @param values, ubicacion, servicios, extras, horarios, imagenes
@@ -22,78 +29,60 @@ class ComplejoService {
 	 * @return complejo actualizado
 	 */
 	def actualizarDatosComplejo(Complejo complejo, def datos) {
-		
-//		// datos generales
-		println "complejo.porcentajeSenia 1: " + complejo.porcentajeSenia
+		// datos generales
 		complejo.properties = datos
-		println "complejo.porcentajeSenia 2: " + complejo.porcentajeSenia
-//		complejo.nombre = datos.nombre
-//		complejo.webSite = datos.webSite
-//		complejo.telefono1 = datos.telefono1
-//		complejo.mail = datos.mail
-//		complejo.informacionExtra = datos.info
-//		complejo.porcentajeSenia = datos.porcSenia
 
 		// datos de ubicacion
-		if(complejo.ubicacion) {
-			if(datos.barrio?.id) {
-				Barrio barrioSeleccionado = Barrio.findById(datos.barrio.id)
-				println "barrioSeleccionado: " + barrioSeleccionado
-				complejo.ubicacion.barrio = barrioSeleccionado
-			}
-			complejo.ubicacion.direccion = datos.direccion
-//			println "complejo.ubicacion.direccion: " +complejo.ubicacion.direccion
+		if(datos.ubicacion) {
+			ubicacionService.guardarUbicacionDelComplejo(complejo, datos.ubicacion)
 		}
 		
 		// datos de servicios
 		if(complejo.servicios) {
 			complejo.servicios.properties = datos.servicios
-//			complejo.servicios.vestuario = datos.vestuario
-//			complejo.servicios.television = datos.television
-//			complejo.servicios.bebida = datos.bebida
-//			complejo.servicios.comida = datos.comida
-//			complejo.servicios.ayudaMedica = datos.ayudaMedica
-//			complejo.servicios.torneo = datos.torneo
-//			complejo.servicios.wifi = datos.wifi
-//			complejo.servicios.gimnasio = datos.gimnasio
-//			complejo.servicios.estacionamiento = datos.estacionamiento
-//			complejo.servicios.precioEstacionamiento = datos.precioEstacionamiento
 		}
 		
 		// datos de extras
 		if(complejo.extras) {
 			complejo.extras.properties = datos
-//			complejo.extras.quiereArbitro = datos.quiereArbitro
-//			complejo.extras.quierePechera = datos.quierePechera
-//			complejo.extras.precioArbitro = datos.precioArbitro
-//			complejo.extras.precioPechera = datos.precioPechera
 		}
 		
-//		//datos de horarios
+		//datos de horarios
 		if(datos.horarios) {
 			if(!complejo.horarios) {
 				complejo.horarios = []
 			}
-			println "complejo.horarios 1: ${complejo.horarios}"
-			// TODO pasar cosas a HorarioService
-			for(int eachDia = 1; eachDia <= 8; eachDia++) {
-				println "horario del dia ${eachDia}: ${datos.horarios[eachDia.toString()]}"
-				Horario horario = complejo.horarios.find{it.dia == eachDia}
-				def datosHorariosDia = datos.horarios[eachDia.toString()]
-				if(horario) {
-					horario.horarioApertura = datosHorariosDia.apertura
-					horario.horarioCierre = datosHorariosDia.cierre
-					println "horaro ${horario} ACTUALIZADO"
-				} else {
-					horario = new Horario(dia:eachDia, horarioApertura: datosHorariosDia.apertura, horarioCierre: datosHorariosDia.cierre)
-					println "horaro ${horario} CREADO"
-					complejo.agregarHorario(horario)
-				}
-			}
-			println "complejo.horarios 2: ${complejo.horarios}"
+			horarioService.guardarHorariosParaComplejo(complejo, datos.horarios)
 		}
 		
 		DBUtils.validateAndSave(complejo)
+	}
+	
+	/**
+	 * Crea una nueva imagen y la guarda en el complejo
+	 * @param complejo
+	 * @param imagenData
+	 */
+	void crearImagenParaComplejo(complejo, imagenData) {
+		if(imagenData) {
+			if(!complejo.imagenes) {
+				complejo.imagenes = []
+			}
+			imagenService.crearImagenParaComplejo(complejo, imagenData)
+		}
+	}
+	
+	/**
+	 * Elimina la imagen indicada del complejo y de la BD 
+	 * @param complejo
+	 * @param imagenId
+	 */
+	void eliminarImagenDelComplejo(Complejo complejo, def imagenId) {
+		def imagenInstance = imagenService().findImagenById(imagenId)
+		if(!imagenInstance) {
+//			TODO throw new ImagenNoEncontradaException(imagenId)
+		}
+		complejo.eliminarImagen(imagenInstance)
 	}
 	
 }

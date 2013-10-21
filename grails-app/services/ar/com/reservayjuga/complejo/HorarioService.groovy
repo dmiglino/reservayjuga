@@ -28,4 +28,29 @@ class HorarioService {
 
 		return horarios
     }
+	
+	/**
+	 * Busca todos los horarios del complejo (del dia 1 al dia 8), y crea o actualiza segun corresponda.
+	 * @param complejo
+	 * @param horarios
+	 */
+	void guardarHorariosParaComplejo(Complejo complejo, def horarios) {
+		println "complejo.horarios 1: ${complejo.horarios}"
+		for(int eachDia = 1; eachDia <= 8; eachDia++) {
+			println "horario del dia ${eachDia}: ${horarios[eachDia.toString()]}"
+			Horario horario = complejo.horarios.find{it.dia == eachDia}
+			def datosHorariosDia = horarios[eachDia.toString()]
+			if(horario) {
+				horario.horarioApertura = datosHorariosDia.apertura
+				horario.horarioCierre = datosHorariosDia.cierre
+				println "horaro ${horario} ACTUALIZADO"
+			} else {
+				horario = new Horario(dia:eachDia, horarioApertura: datosHorariosDia.apertura, horarioCierre: datosHorariosDia.cierre)
+				println "horaro ${horario} CREADO"
+				complejo.agregarHorario(horario)
+			}
+		}
+		println "complejo.horarios 2: ${complejo.horarios}"
+	}
+
 }

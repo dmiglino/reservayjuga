@@ -15,7 +15,7 @@ class Imagen {
 		nombre blank: false
 		extension nullable: true
 		descripcion blank: true
-		fecha nullable: true
+		fecha nullable: false
 		portada nullable: false
 		foto nullable: true
     }

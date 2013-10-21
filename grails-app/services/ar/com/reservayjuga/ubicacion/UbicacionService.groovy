@@ -1,13 +1,11 @@
 package ar.com.reservayjuga.ubicacion
 
-import ar.com.reservayjuga.ubicacion.Barrio
-import ar.com.reservayjuga.ubicacion.Localidad
-import ar.com.reservayjuga.ubicacion.Pais
-import ar.com.reservayjuga.ubicacion.Provincia
-import ar.com.reservayjuga.ubicacion.Ubicacion
+import ar.com.reservayjuga.complejo.Complejo
 
 class UbicacionService {
 
+	BarrioService barrioService
+	
 	/**
 	 * Crea una ubicacion a partir de los datos pasados por parametro
 	 * @param map
@@ -18,5 +16,25 @@ class UbicacionService {
 		Ubicacion ubicacion = new Ubicacion(direccion:map.direccion, barrio:barrio)
 		return ubicacion
     }
+
+	/**
+	 * Actualiza la ubicacion del complejo
+	 * @param complejo
+	 * @param datos
+	 */
+	void guardarUbicacionDelComplejo(Complejo complejo, def datos) {
+		def barrio = barrioService.findBarrioById(datos.barrio.id)
+		if(!barrio) {
+//			TODO throw new BarrioNoEncontradoException(datos.barrio.id)
+		}
+		def direccion = datos.direccion
+		if(complejo.ubicacion) {
+			complejo.ubicacion.barrio = barrio
+			complejo.ubicacion.direccion = direccion
+		} else {
+			Ubicacion ubicacion = new Ubicacion(barrio: barrio, direccion: direccion)
+			complejo.ubicacion = ubicacion
+		}
+	}
 
 }
