@@ -5,7 +5,7 @@ class Imagen {
 	String nombre
 	String extension
 	String descripcion
-	Date fecha
+	Date fecha = new Date()
 	Boolean portada
 	byte[] foto
 	

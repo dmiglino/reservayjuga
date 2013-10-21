@@ -8,7 +8,7 @@ class Barrio {
 	
     static constraints = {
 		nombre blank:false
-		localidad nullable:false
+//		localidad nullable:false
     }
 
 	static mapping = { 

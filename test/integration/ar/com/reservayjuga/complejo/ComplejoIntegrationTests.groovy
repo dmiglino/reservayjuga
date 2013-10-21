@@ -53,8 +53,8 @@ class ComplejoIntegrationTests extends GroovyTestCase {
 		Imagen ima = new Imagen(nombre: "foto", extension: ".jpg", descripcion: "foto cancha 1", fecha: new Date(), portada: true)
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi, horarios: [], canchas: []).save()
 		
-		complejo.addToHorarios(hora)
-		complejo.addToImagenes(ima)
+		complejo.agregarHorario(hora)
+		complejo.agregarImagen(ima)
 		
 		assertEquals ubi, complejo.ubicacion
 		assertEquals servi, complejo.servicios
@@ -67,6 +67,10 @@ class ComplejoIntegrationTests extends GroovyTestCase {
 		assertEquals 1, Servicios.list().size()
 		assertEquals 1, Horario.list().size()
 		assertEquals 1, Imagen.list().size()
+		
+		complejo.eliminarImagen(ima)
+		assertTrue complejo.imagenes.isEmpty()
+		assertEquals 0, Imagen.list().size()
 		
 		complejo.delete()
 		

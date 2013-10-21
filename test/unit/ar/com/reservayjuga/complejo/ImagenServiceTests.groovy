@@ -13,6 +13,10 @@ class ImagenServiceTests extends GrailsUnitTestCase {
 
 	ImagenService imagenService = new ImagenService()
 	
+	void testGetDomain() {
+		assertEquals Imagen, imagenService.getDomain()
+	}
+	
     void testCreateImagenes() {
 		def imagenesMap = [[nombre:"nombreFoto1", extension:"bmp", descripcion:"descFoto1", portada:true],
 				[nombre:"nombreFoto2", extension:"jpg", descripcion:"descFoto2", portada:false],

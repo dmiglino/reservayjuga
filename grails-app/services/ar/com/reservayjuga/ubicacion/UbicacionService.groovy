@@ -1,6 +1,7 @@
 package ar.com.reservayjuga.ubicacion
 
 import ar.com.reservayjuga.complejo.Complejo
+import ar.com.reservayjuga.exception.EntityNotFoundException
 
 class UbicacionService {
 
@@ -23,9 +24,9 @@ class UbicacionService {
 	 * @param datos
 	 */
 	void guardarUbicacionDelComplejo(Complejo complejo, def datos) {
-		def barrio = barrioService.findBarrioById(datos.barrio.id)
+		def barrio = barrioService.findEntityById(datos.barrio.id)
 		if(!barrio) {
-//			TODO throw new BarrioNoEncontradoException(datos.barrio.id)
+			throw new EntityNotFoundException("Barrio", datos.barrio.id)
 		}
 		def direccion = datos.direccion
 		if(complejo.ubicacion) {

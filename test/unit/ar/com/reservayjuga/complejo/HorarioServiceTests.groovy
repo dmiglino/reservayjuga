@@ -32,4 +32,5 @@ class HorarioServiceTests extends GrailsUnitTestCase {
 		assertEquals "domingoDesde", horarios.find{it.dia == 7}.horarioApertura
 		assertEquals "feriadoHasta", horarios.find{it.dia == 8}.horarioCierre
     }
+	
 }

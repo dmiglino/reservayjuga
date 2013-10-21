@@ -1,8 +1,9 @@
 package ar.com.reservayjuga.complejo
 
 import ar.com.reservayjuga.DBUtils
+import ar.com.reservayjuga.common.GenericService
 
-class ImagenService {
+class ImagenService extends GenericService<Imagen> {
 
     def createImagenes(def params) {
 		def imagenesMap = [[nombre:params.nombreFoto1, extension:params.extFoto1, descripcion:params.descFoto1, portada:params.portadaFoto1],
@@ -27,17 +28,13 @@ class ImagenService {
 	 * @param imagenData
 	 */
 	void crearImagenParaComplejo(Complejo complejo, def imagenData) {
-		Imagen imagen = new Imagen(nombre: imagenData.nombre, descripcion: imagenData.descripcion, fecha: new Date(), portada: false)
+		Imagen imagen = new Imagen(nombre: imagenData.nombre, descripcion: imagenData.descripcion, extension: imagenData.extension, portada: (imagenData.portada ? imagenData.portada : false))
 		DBUtils.validateAndSave(imagen) // TODO o se graba despues todo junto?
 		complejo.agregarImagen(imagen)
 	}
-    
-	/**
-	 * Busca la imagen segun el ID indicado
-	 * @param id
-	 * @return imagen
-	 */
-	Imagen findImagenById(def id) {
-		Imagen.get(id)
+	
+	@Override
+	def getDomain() {
+		Imagen
 	}
 }

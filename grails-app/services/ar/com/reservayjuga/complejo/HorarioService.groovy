@@ -40,11 +40,11 @@ class HorarioService {
 			println "horario del dia ${eachDia}: ${horarios[eachDia.toString()]}"
 			Horario horario = complejo.horarios.find{it.dia == eachDia}
 			def datosHorariosDia = horarios[eachDia.toString()]
-			if(horario) {
+			if(horario && datosHorariosDia) {
 				horario.horarioApertura = datosHorariosDia.apertura
 				horario.horarioCierre = datosHorariosDia.cierre
 				println "horaro ${horario} ACTUALIZADO"
-			} else {
+			} else if(!horario && datosHorariosDia) {
 				horario = new Horario(dia:eachDia, horarioApertura: datosHorariosDia.apertura, horarioCierre: datosHorariosDia.cierre)
 				println "horaro ${horario} CREADO"
 				complejo.agregarHorario(horario)

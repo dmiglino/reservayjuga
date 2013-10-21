@@ -9,7 +9,7 @@ class Localidad {
 	
     static constraints = {
 		nombre blank:false
-		provincia nullable:false
+//		provincia nullable:true
     }
 
 	static mapping = { 

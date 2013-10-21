@@ -9,7 +9,7 @@ import org.junit.*
 @TestFor(Barrio)
 class BarrioTests {
 
-void testConstraints() {
+	void testConstraints() {
 		Barrio barrio = new Barrio()
 		assertFalse barrio.validate()
 		assertTrue barrio.hasErrors()

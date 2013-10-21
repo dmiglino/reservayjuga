@@ -20,4 +20,5 @@ class InvalidEntityException extends ReservaYJugaException {
 		error = "invalid_entity_error"
 		status = 400
 	}
+
 }

@@ -1,8 +1,8 @@
 package ar.com.reservayjuga.complejo
 
 import ar.com.reservayjuga.DBUtils
-import ar.com.reservayjuga.ubicacion.Barrio
-import ar.com.reservayjuga.ubicacion.UbicacionService;
+import ar.com.reservayjuga.exception.EntityNotFoundException
+import ar.com.reservayjuga.ubicacion.UbicacionService
 
 class ComplejoService {
 	
@@ -78,9 +78,9 @@ class ComplejoService {
 	 * @param imagenId
 	 */
 	void eliminarImagenDelComplejo(Complejo complejo, def imagenId) {
-		def imagenInstance = imagenService().findImagenById(imagenId)
+		def imagenInstance = imagenService.findEntityById(imagenId)
 		if(!imagenInstance) {
-//			TODO throw new ImagenNoEncontradaException(imagenId)
+			throw new EntityNotFoundException("Imagen", imagenId)
 		}
 		complejo.eliminarImagen(imagenInstance)
 	}

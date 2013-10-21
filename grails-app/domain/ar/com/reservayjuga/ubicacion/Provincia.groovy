@@ -9,7 +9,7 @@ class Provincia {
 	
     static constraints = {
 		nombre blank:false
-		pais nullable:false
+//		pais nullable:false
     }
 
 	static mapping = { 
