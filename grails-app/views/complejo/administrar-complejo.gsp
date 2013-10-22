@@ -557,6 +557,77 @@
 			</div>
 			<!-- /.page-content -->
 		</div><!-- /.main-content -->
+		
+		                    <!-- COMIENZO DEL MODAL PARA EDITAR IMAGENES -->
+                			<div id="modal-form" class="modal" tabindex="-1">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="blue bigger">Edicion de imagenes</h4>
+											</div>
+
+											<div class="modal-body overflow-visible">
+												<div class="row">
+													<div class="col-xs-12 col-sm-5">
+														<div class="space"></div>
+
+														<input type="file" />
+													</div>
+
+													<div class="col-xs-12 col-sm-7">
+														
+														<div class="form-group">
+															<label for="form-field-first">Nombre</label>
+															<div>
+																<input class="input-medium" type="text" id="form-field-first" placeholder="" value="" />
+															</div>
+														</div>
+														
+														<div class="space-4"></div>
+
+														<div class="form-group">
+															<label for="form-field-username">Descripcion</label>
+
+															<div>
+																<input class="input-large" type="text" id="form-field-username" placeholder="" value="" />
+															</div>
+														</div>
+
+														<div class="space-4"></div>
+														
+														<div class="form-group">
+															<label for="form-field-select-3">Portada</label>
+
+															<div>
+																<select class="chosen-select" data-placeholder="">
+																	<option value="">&nbsp;</option>
+																	<option value="SI">Si</option>
+																	<option value="NO">No</option>
+																</select>
+															</div>
+														</div>
+
+														
+													</div>
+												</div>
+											</div>
+
+											<div class="modal-footer">
+												<button class="btn btn-sm" data-dismiss="modal">
+													<i class="icon-remove"></i>
+													Cancel
+												</button>
+
+												<button class="btn btn-sm btn-primary">
+													<i class="icon-ok"></i>
+													Save
+												</button>
+											</div>
+										</div>
+									</div>
+								</div><!-- FIN DEL MODAL PARA EDITAR IMAGENES -->
+		
 
 		<div class="ace-settings-container" id="ace-settings-container">
 			<div class="btn btn-app btn-xs btn-warning ace-settings-btn"
@@ -850,7 +921,29 @@
 					//$('#form-field-tags').autosize({append: "\n"});
 				}
 				
+
+
+				/////////
+				$('#modal-form input[type=file]').ace_file_input({
+					style:'well',
+					btn_choose:'Drop files here or click to choose',
+					btn_change:null,
+					no_icon:'icon-cloud-upload',
+					droppable:true,
+					thumbnail:'large'
+				})
 				
+				//chosen plugin inside a modal will have a zero width because the select element is originally hidden
+				//and its width cannot be determined.
+				//so we set the width after modal is show
+				$('#modal-form').on('shown.bs.modal', function () {
+					$(this).find('.chosen-container').each(function(){
+						$(this).find('a:first-child').css('width' , '210px');
+						$(this).find('.chosen-drop').css('width' , '210px');
+						$(this).find('.chosen-search input').css('width' , '200px');
+					});
+				})
+	
 				
 			
 						

@@ -28,10 +28,8 @@
 	
 															<td>
 																<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-																	<button class="btn btn-xs btn-info">
-																		<i class="icon-edit bigger-120"></i>
-																	</button>
-	
+																	<a href="#modal-form" role="button" class="btn btn-xs btn-info" data-toggle="modal"> <i class="icon-edit bigger-120"></i> </a>
+																		
 																	<g:hiddenField name="idImagen" value="${imagen?.id}" />
 																	<g:remoteLink controller="complejo" action="deleteImagen" id="${imagen?.id}" update="[success:'imagenesDiv',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
 				
