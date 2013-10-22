@@ -2,10 +2,9 @@ package ar.com.reservayjuga.complejo
 
 import org.springframework.dao.DataIntegrityViolationException
 
-import ar.com.reservayjuga.DBUtils
+import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.exception.InvalidEntityException
 import ar.com.reservayjuga.ubicacion.Ubicacion
-import ar.com.reservayjuga.ubicacion.UbicacionService
 import ar.com.reservayjuga.usuario.Encargado
 
 class ComplejoController {
@@ -110,11 +109,11 @@ class ComplejoController {
 		
 		try {
 			complejoService.eliminarImagenDelComplejo(complejo, params.id)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
-//		TODO } catch (ImagenNoEncontradaException e) {
-//			flash.message = message(code: 'default.not.found.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
+		} catch (EntityNotFoundException e) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		}  catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		} finally {
 			render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
 		}

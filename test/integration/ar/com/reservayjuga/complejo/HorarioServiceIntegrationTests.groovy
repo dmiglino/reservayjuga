@@ -11,7 +11,7 @@ class HorarioServiceIntegrationTests extends GroovyTestCase {
 	
 	@Test
 	void testGuardarHorariosParaComplejo() {
-		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden")
+		Complejo complejo = new Complejo (horarios: [new Horario(dia:3,horarioApertura:"12:12",horarioCierre:"21:21")], nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden")
 		def datos = ["1":[apertura:"09:00",cierre:"21:00"],
 			"2":[apertura:"10:00",cierre:"22:00"],
 			"3":[apertura:"10:00",cierre:"21:00"],
@@ -21,7 +21,7 @@ class HorarioServiceIntegrationTests extends GroovyTestCase {
 			"7":[apertura:"09:00",cierre:"23:00"],
 			"8":[apertura:"08:00",cierre:"22:00"]]
 		
-		assertNull complejo.horarios
+		assertFalse complejo.horarios.isEmpty()
 		
 		horarioService.guardarHorariosParaComplejo(complejo, datos)
 		
