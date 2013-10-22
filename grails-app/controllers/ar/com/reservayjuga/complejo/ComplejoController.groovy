@@ -43,20 +43,6 @@ class ComplejoController {
 		}
 	}
 	
-	/**
-	 * Crea una nueva imagen y la guarda en el complejo
-	 */
-	def agregarImagen = {
-		println "Imagen: " +params.image_file_1
-		println "agregarImagen: " +params.imagen
-			// TODO autorizados admins y encargados
-			// TODO recuperar el encargado logueado
-		Encargado encargado = Encargado.list().get(0)
-		Complejo complejo = encargado.complejo
-		complejoService.crearImagenParaComplejo(complejo, params.imagen)
-		render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
-	}
-	
 	def crearComplejo = {
 		// TODO autorizados solo admins
 		Map resp = [:]
@@ -97,6 +83,21 @@ class ComplejoController {
 			return [response:resp, status:resp.status]
 		}
 	}
+	
+	/**
+	 * Crea una nueva imagen y la guarda en el complejo
+	 */
+	def agregarImagen = {
+		println "Imagen: " +params.image_file_1
+		println "agregarImagen: " +params.imagen
+			// TODO autorizados admins y encargados
+			// TODO recuperar el encargado logueado
+		Encargado encargado = Encargado.list().get(0)
+		Complejo complejo = encargado.complejo
+		complejoService.crearImagenParaComplejo(complejo, params.imagen)
+		render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
+	}
+	
 	
 	/**
 	 * Elimina la imagen indicada del complejo y de la BD 

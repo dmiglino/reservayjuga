@@ -45,9 +45,11 @@ class HorarioService {
 				horario.horarioCierre = datosHorariosDia.cierre
 				println "horaro ${horario} ACTUALIZADO"
 			} else if(!horario && datosHorariosDia) {
-				horario = new Horario(dia:eachDia, horarioApertura: datosHorariosDia.apertura, horarioCierre: datosHorariosDia.cierre)
-				println "horaro ${horario} CREADO"
-				complejo.agregarHorario(horario)
+				if(datosHorariosDia.apertura && datosHorariosDia.cierre) {
+					horario = new Horario(dia:eachDia, horarioApertura: datosHorariosDia.apertura, horarioCierre: datosHorariosDia.cierre)
+					println "horaro ${horario} CREADO"
+					complejo.agregarHorario(horario)
+				}
 			}
 		}
 		println "complejo.horarios 2: ${complejo.horarios}"
