@@ -1,11 +1,11 @@
 package ar.com.reservayjuga.complejo
 
 import static org.junit.Assert.*
-import groovy.util.GroovyTestCase;
 
 import org.junit.*
 
 import ar.com.reservayjuga.DBUtils
+import ar.com.reservayjuga.exception.EntityNotFoundException
 
 class ImagenServiceIntegrationTests extends GroovyTestCase {
 	
@@ -51,5 +51,37 @@ class ImagenServiceIntegrationTests extends GroovyTestCase {
 		assertEquals "jpg", imgComp.extension
 		assertTrue imgComp.portada
     }
-
+	
+	@Test
+	void testEditarImagen() {
+		Imagen imagen = new Imagen(descripcion:"descripcionFoto",nombre:"nombreFoto",portada:true).save()
+		
+		def imagenes = Imagen.list()
+		assertNotNull imagenes
+		assertEquals 1, imagenes.size()
+		
+		imagenService.editarImagen([idImagenEdit: imagen.id, descripcionImagenEdit:"descEditada",nombreImagenEdit:"nomEditado",portadaImagenEdit:false])
+		
+		imagenes = Imagen.list()
+		assertNotNull imagenes
+		assertEquals 1, imagenes.size()
+		Imagen img = imagenes.get(0)
+		
+		assertNotNull img
+		assertEquals "descEditada", img.descripcion
+		assertEquals "nomEditado", img.nombre
+		assertFalse img.portada
+	}
+	
+	@Test
+	void testFailEditarImagen() {
+		Imagen imagen = new Imagen(descripcion:"descripcionFoto",nombre:"nombreFoto",portada:true).save()
+		
+		def imagenes = Imagen.list()
+		assertNotNull imagenes
+		assertEquals 1, imagenes.size()
+		shouldFail(EntityNotFoundException) {
+			imagenService.editarImagen([idImagenEdit: 123, descripcionImagenEdit:"descEditada",nombreImagenEdit:"nomEditado",portadaImagenEdit:false])
+		}
+	}
 }

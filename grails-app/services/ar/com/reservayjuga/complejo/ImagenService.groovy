@@ -39,16 +39,16 @@ class ImagenService extends GenericService<Imagen> {
 		complejo.agregarImagen(imagen)
 	}
 	
-	void editarImagen(def params) {
-		def imagenInstance = findEntityById(params.idImagenEdit)
+	void editarImagen(def datos) {
+		def imagenInstance = findEntityById(datos.idImagenEdit)
 		
 		if(!imagenInstance) {
-			throw new EntityNotFoundException("Imagen", params.idImagenEdit)
+			throw new EntityNotFoundException("Imagen", datos.idImagenEdit)
 		}
 		
-		imagenInstance.nombre = params.nombreImagenEdit
-		imagenInstance.descripcion = params.descripcionImagenEdit
-		imagenInstance.portada = params.portadaImagenEdit
+		imagenInstance.nombre = datos.nombreImagenEdit
+		imagenInstance.descripcion = datos.descripcionImagenEdit
+		imagenInstance.portada = datos.portadaImagenEdit
 //		imagenInstance.foto = params.fotoImagenEdit
 	}
 	

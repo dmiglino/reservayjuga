@@ -85,7 +85,7 @@ class ComplejoService {
 		complejo.eliminarImagen(imagenInstance)
 	}
 	
-	void editarImagen(def params) {
-		imagenService.editarImagen(params)
+	void editarImagen(def datos) {
+		imagenService.editarImagen(datos)
 	}
 }
