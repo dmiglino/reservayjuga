@@ -624,7 +624,7 @@
 					</button>
 	
 					<g:submitToRemote class="btn btn-info" update="[success:'imagenesDiv']" after="closeModal();"
-						url="[controller:'complejo', action:'editarImagen']" value="Grabar Imagen" >
+						url="[controller:'imagen', action:'editarImagen']" value="Grabar Imagen" >
 						<i class="icon-ok"></i>
 					</g:submitToRemote>
 				</div>

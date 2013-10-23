@@ -60,7 +60,7 @@ class HorarioServiceIntegrationTests extends GroovyTestCase {
 		def datos = ["1":[apertura:"09:00",cierre:"21:00"],
 			"3":[apertura:"10:00",cierre:"21:00"],
 			"5":[apertura:"11:00",cierre:"21:00"],
-			"7":[apertura:"09:00",cierre:"23:00"],
+			"7":[apertura:"09:00"],
 			"11":[apertura:"09:00",cierre:"23:00"]
 		]
 		
@@ -69,7 +69,7 @@ class HorarioServiceIntegrationTests extends GroovyTestCase {
 		horarioService.guardarHorariosParaComplejo(complejo, datos)
 		
 		assertNotNull complejo.horarios
-		assertEquals 4, complejo.horarios.size()
+		assertEquals 3, complejo.horarios.size()
 		
 		Horario horario = complejo.horarios.find{it.dia == 1}
 		assertEquals "09:00", horario.horarioApertura
@@ -87,8 +87,7 @@ class HorarioServiceIntegrationTests extends GroovyTestCase {
 		horario = complejo.horarios.find{it.dia == 6}
 		assertNull horario
 		horario = complejo.horarios.find{it.dia == 7}
-		assertEquals "09:00", horario.horarioApertura
-		assertEquals "23:00", horario.horarioCierre
+		assertNull horario
 		horario = complejo.horarios.find{it.dia == 8}
 		assertNull horario
 		horario = complejo.horarios.find{it.dia == 11}

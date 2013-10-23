@@ -141,8 +141,5 @@ class ComplejoController {
 			render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
 		}
 	}
-	
-	def editarImagen() {
-		complejoService.editarImagen(params)
-	}
+
 }

@@ -54,7 +54,8 @@ class ImagenServiceIntegrationTests extends GroovyTestCase {
 	
 	@Test
 	void testEditarImagen() {
-		Imagen imagen = new Imagen(descripcion:"descripcionFoto",nombre:"nombreFoto",portada:true).save()
+		Imagen imagen = new Imagen(descripcion:"descripcionFoto",nombre:"nombreFoto",portada:true)
+		DBUtils.validateAndSave(imagen)
 		
 		def imagenes = Imagen.list()
 		assertNotNull imagenes
