@@ -2,9 +2,15 @@ package ar.com.reservayjuga.complejo
 
 import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.common.GenericService
+import ar.com.reservayjuga.exception.EntityNotFoundException
 
 class ImagenService extends GenericService<Imagen> {
-
+	
+	@Override
+	def getDomain() {
+		Imagen
+	}
+	
     def createImagenes(def params) {
 		def imagenesMap = [[nombre:params.nombreFoto1, extension:params.extFoto1, descripcion:params.descFoto1, portada:params.portadaFoto1],
 			[nombre:params.nombreFoto2, extension:params.extFoto2, descripcion:params.descFoto2, portada:params.portadaFoto2],
@@ -33,8 +39,17 @@ class ImagenService extends GenericService<Imagen> {
 		complejo.agregarImagen(imagen)
 	}
 	
-	@Override
-	def getDomain() {
-		Imagen
+	void editarImagen(def params) {
+		def imagenInstance = findEntityById(params.idImagenEdit)
+		
+		if(!imagenInstance) {
+			throw new EntityNotFoundException("Imagen", params.idImagenEdit)
+		}
+		
+		imagenInstance.nombre = params.nombreImagenEdit
+		imagenInstance.descripcion = params.descripcionImagenEdit
+		imagenInstance.portada = params.portadaImagenEdit
+//		imagenInstance.foto = params.fotoImagenEdit
 	}
+	
 }

@@ -88,8 +88,30 @@ class ComplejoController {
 	 * Crea una nueva imagen y la guarda en el complejo
 	 */
 	def agregarImagen = {
-		println "Imagen: " +params.image_file_1
-		println "agregarImagen: " +params.imagen
+		println params
+		println "Imagen: " +params.foto2
+		println "agregarImagen: " +params.foto
+		println "input-file-2: "+ params.id_input_file_2
+		println "input-file-3: "+ params.id_input_file_3
+		def content = request.multiFileMap?.foto?.collect { file ->
+			def charset = (file.contentType =~ /charset=([^;]+)/).
+				collect { it[1].trim() }.join('') ?: 'ISO-8859-1'
+			new String(file.bytes, charset)
+		}?.join('\n') ?: ''
+	
+		println "content: "+content
+		
+		content = request.multiFileMap?.foto2?.collect { file ->
+			def charset = (file.contentType =~ /charset=([^;]+)/).
+				collect { it[1].trim() }.join('') ?: 'ISO-8859-1'
+			new String(file.bytes, charset)
+		}?.join('\n') ?: ''
+			
+		println "content2: "+content
+		
+		println "req1: "+request.getFile("id_input_file_2")
+		println "req2: "+request.getFile("id_input_file_3")
+		
 			// TODO autorizados admins y encargados
 			// TODO recuperar el encargado logueado
 		Encargado encargado = Encargado.list().get(0)
@@ -118,5 +140,9 @@ class ComplejoController {
 		} finally {
 			render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
 		}
+	}
+	
+	def editarImagen() {
+		complejoService.editarImagen(params)
 	}
 }

@@ -204,7 +204,7 @@
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
 
-							<g:form action="actualizarInformacionComplejo" class="form-horizontal" role="form">
+							<g:form id="formUpdateComplejo" action="actualizarInformacionComplejo" class="form-horizontal" role="form"  enctype="multipart/form-data">
 								<div class="form-group">
 									<label class="col-sm-3 control-label"
 										for="nombre"> Nombre </label>
@@ -451,16 +451,14 @@
 											name="horarios.${dia.toString()}.apertura"
 											from="${["8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]}"
 											noSelection="['':'Selecciona un Horario']"
-											class="col-xs-4 col-sm-5-"
-											value="${complejo?.horarios.find{it.dia == dia}?.horarioApertura}"
-											class="many-to-one" />
+											class="col-xs-4 col-sm-5- many-to-one"
+											value="${complejo?.horarios.find{it.dia == dia}?.horarioApertura}" />
 										<g:select id="horarioCierre"
 											name="horarios.${dia.toString()}.cierre"
 											from="${["9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"]}"
 											noSelection="['':'Selecciona un Horario']"
-											class="col-xs-4 col-sm-5-"
-											value="${complejo?.horarios.find{it.dia == dia}?.horarioCierre}"
-											class="many-to-one" />
+											class="col-xs-4 col-sm-5- many-to-one"
+											value="${complejo?.horarios.find{it.dia == dia}?.horarioCierre}" />
 									</div>
 								</g:each>
 
@@ -477,6 +475,7 @@
 									</div>
 									
 									    <!-- inicio selector de imagenes -->
+									    <g:uploadForm controller="complejo" action="agregarImagen">
 									    <div class="col-sm-4">
 											<div class="widget-box">
 												<div class="widget-header">
@@ -495,8 +494,8 @@
 												
 												<div class="widget-body">
 													<div class="widget-main">
-														<input type="file" id="id-input-file-2" />
-														<input multiple="" type="file" id="id-input-file-3" />
+														<input type="file" id="id_input_file_2" name="foto" />
+														<input multiple type="file" name="foto2" id="id_input_file_3" />
 														<label>
 															<input type="checkbox" name="file-format" id="id-file-format" class="ace" />
 															<span class="lbl"> Allow only images</span>
@@ -526,12 +525,14 @@
 												
 												<div class="widget-body">
 													<div class="widget-main">
+													<input type="submit" value="subir" />
 														<g:submitToRemote class="btn btn-info" update="[success:'imagenesDiv']" after="cleanImageFields();" 
 															url="[controller:'complejo', action:'agregarImagen']" value="Subir Imagen" />
 													</div>
 												</div>
 											</div>
 										</div>
+										</g:uploadForm>
 										<!-- fin selector de imagenes -->
 										
 									</div>
@@ -557,77 +558,82 @@
 			</div>
 			<!-- /.page-content -->
 		</div><!-- /.main-content -->
-		
-		                    <!-- COMIENZO DEL MODAL PARA EDITAR IMAGENES -->
-                			<div id="modal-form" class="modal" tabindex="-1">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal">&times;</button>
-												<h4 class="blue bigger">Edicion de imagenes</h4>
-											</div>
 
-											<div class="modal-body overflow-visible">
-												<div class="row">
-													<div class="col-xs-12 col-sm-5">
-														<div class="space"></div>
 
-														<input type="file" />
-													</div>
+<!-- COMIENZO DEL MODAL PARA EDITAR IMAGENES -->
+<g:formRemote name="formEditImage" url="[controller:'complejo', action:'editarImagen']">
+	<div id="modal-form" class="modal" tabindex="-1">
+		<div class="modal-dialog" >
+			<div class="modal-content" >
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="blue bigger">Edicion de imagenes</h4>
+				</div>
+	
+				<div class="modal-body overflow-visible">
+					<div class="row">
+						<div class="col-xs-12 col-sm-5">
+							<div class="space"></div>
+	
+							<input type="file" name="fotoImagenEdit"/>
+						</div>
+	
+						<div class="col-xs-12 col-sm-7">
+							
+							<g:hiddenField name="idImagenEdit" value="" />
+								
+							<div class="form-group">
+								<label for="form-field-first">Nombre</label>
+								<div>
+									<g:textField name="nombreImagenEdit" value="" class="input-medium" id="nombreImagenEdit" />
+								</div>
+							</div>
+							
+							<div class="space-4"></div>
+	
+							<div class="form-group">
+								<label for="form-field-username">Descripcion</label>
+	
+								<div>
+									<g:textField name="descripcionImagenEdit" value="" class="input-large" id="descripcionImagenEdit" />
+								</div>
+							</div>
+	
+							<div class="space-4"></div>
+							
+							<div class="form-group">
+								<label for="form-field-select-3">Portada</label>
+	
+								<div>
+									<g:select id="portadaImagenEdit" 
+										name="portadaImagenEdit"
+										from="${["true","false"]}"
+										noSelection="['':'']"
+										class="chosen-select one-to-one"
+										value=""  />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+	
+				<div class="modal-footer">
+					<button class="btn btn-sm" data-dismiss="modal">
+						<i class="icon-remove"></i>
+						Cancel
+					</button>
+	
+					<g:submitToRemote class="btn btn-info" update="[success:'imagenesDiv']" after="closeModal();"
+						url="[controller:'complejo', action:'editarImagen']" value="Grabar Imagen" >
+						<i class="icon-ok"></i>
+					</g:submitToRemote>
+				</div>
+			</div>
+		</div>
+	</div>
+</g:formRemote>
+<!-- FIN DEL MODAL PARA EDITAR IMAGENES -->
 
-													<div class="col-xs-12 col-sm-7">
-														
-														<div class="form-group">
-															<label for="form-field-first">Nombre</label>
-															<div>
-																<input class="input-medium" type="text" id="form-field-first" placeholder="" value="" />
-															</div>
-														</div>
-														
-														<div class="space-4"></div>
-
-														<div class="form-group">
-															<label for="form-field-username">Descripcion</label>
-
-															<div>
-																<input class="input-large" type="text" id="form-field-username" placeholder="" value="" />
-															</div>
-														</div>
-
-														<div class="space-4"></div>
-														
-														<div class="form-group">
-															<label for="form-field-select-3">Portada</label>
-
-															<div>
-																<select class="chosen-select" data-placeholder="">
-																	<option value="">&nbsp;</option>
-																	<option value="SI">Si</option>
-																	<option value="NO">No</option>
-																</select>
-															</div>
-														</div>
-
-														
-													</div>
-												</div>
-											</div>
-
-											<div class="modal-footer">
-												<button class="btn btn-sm" data-dismiss="modal">
-													<i class="icon-remove"></i>
-													Cancel
-												</button>
-
-												<button class="btn btn-sm btn-primary">
-													<i class="icon-ok"></i>
-													Save
-												</button>
-											</div>
-										</div>
-									</div>
-								</div><!-- FIN DEL MODAL PARA EDITAR IMAGENES -->
-		
 
 		<div class="ace-settings-container" id="ace-settings-container">
 			<div class="btn btn-app btn-xs btn-warning ace-settings-btn"
@@ -749,12 +755,27 @@
 
 	<script type="text/javascript">
 
-		function cleanImageFields() {
-			var nombre = document.getElementById("imagen.nombre");
-			nombre.value = "";
-			var descripcion = document.getElementById("imagen.descripcion");
-			descripcion.value = "";
-		}
+			function closeModal() {
+				$('#modal-form').modal('hide');
+			}
+	
+			$(document).on("click", ".open-EditImageModal", function () {
+			     var imageId = $(this).data('id');
+			     var nombre = document.getElementById("nombreImagen").value;
+			     var descripcion = document.getElementById("descripcionImagen").value;
+			     var portada = document.getElementById("portadaImagen").value;
+			     var foto = document.getElementById("fotoImagen").value;
+			     $(".modal-body #idImagenEdit").val(imageId);
+			     $(".modal-body #nombreImagenEdit").val(nombre);
+			     $(".modal-body #descripcionImagenEdit").val(descripcion);
+			     $(".modal-body #portadaImagenEdit").val(portada);
+			     $(".modal-body #fotoImagenEdit").val(foto);
+			});
+
+			function cleanImageFields() {
+				document.getElementById("imagen.nombre").value = "";
+				document.getElementById("imagen.descripcion").value = "";
+			}
 		
 			jQuery(function($) {
 				$('#id-disable-check').on('click', function() {
@@ -801,7 +822,7 @@
 		
 				
 					
-				$('#id-input-file-1 , #id-input-file-2').ace_file_input({
+				$('#id_input_file_1 , #id_input_file_2').ace_file_input({
 					no_file:'No File ...',
 					btn_choose:'Choose',
 					btn_change:'Change',
@@ -814,7 +835,7 @@
 					//
 				});
 				
-				$('#id-input-file-3').ace_file_input({
+				$('#id_input_file_3').ace_file_input({
 					style:'well',
 					btn_choose:'Drop files here or click to choose',
 					btn_change:null,
@@ -883,7 +904,7 @@
 							return files;
 						}
 					}
-					var file_input = $('#id-input-file-3');
+					var file_input = $('#id_input_file_3');
 					file_input.ace_file_input('update_settings', {'before_change':before_change, 'btn_choose': btn_choose, 'no_icon':no_icon})
 					file_input.ace_file_input('reset_input');
 				});

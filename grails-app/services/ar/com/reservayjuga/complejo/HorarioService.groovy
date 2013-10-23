@@ -49,6 +49,8 @@ class HorarioService {
 					horario = new Horario(dia:eachDia, horarioApertura: datosHorariosDia.apertura, horarioCierre: datosHorariosDia.cierre)
 					println "horaro ${horario} CREADO"
 					complejo.agregarHorario(horario)
+				} else {
+					println "no se indico horario de apertura o cierre.. tirar error o que?" // TODO
 				}
 			}
 		}
