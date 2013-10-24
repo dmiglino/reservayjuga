@@ -142,24 +142,4 @@ class ComplejoController {
 		}
 	}
 	
-	/**
-	 * Elimina la cancha indicada del complejo y de la BD
-	 */
-	def deleteCancha() {
-		// TODO autorizados admins y encargados
-		// TODO recuperar el encargado logueado
-		Encargado encargado = Encargado.list().get(0)
-		Complejo complejo = encargado.complejo
-		
-		try {
-			complejoService.eliminarCanchaDelComplejo(complejo, params.id)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
-		} catch (EntityNotFoundException e) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
-		}  catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
-		} finally {
-			render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
-		}
-	}
 }

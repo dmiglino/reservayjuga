@@ -1,9 +1,12 @@
 package ar.com.reservayjuga.complejo
 
+import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.common.GenericService
 import ar.com.reservayjuga.exception.EntityNotFoundException
 
 class CanchaService extends GenericService<Cancha> {
+	
+	ComplejoService complejoService
 	
 	@Override
 	public Object getDomain() {
@@ -19,7 +22,7 @@ class CanchaService extends GenericService<Cancha> {
 		new Cancha(datos)
     }
 	
-	void editarCancha(def datos) {
+	def editarCancha(def datos) {
 		Cancha canchaInstance = findEntityById(datos.idCanchaEdit)
 		
 		if(!canchaInstance) {
@@ -31,6 +34,31 @@ class CanchaService extends GenericService<Cancha> {
 		canchaInstance.cubierta = datos.cubiertaCanchaEdit
 		canchaInstance.superficie = datos.superficieCanchaEdit
 		canchaInstance.cantidadJugadores = datos.cantidadJugadoresCanchaEdit
+		DBUtils.validateAndSave(canchaInstance)
+	}
+	
+	/**
+	 * Crea una nueva imagen y la guarda en el complejo
+	 * @param complejo
+	 * @param imagenData
+	 */
+	void crearCanchaParaComplejo(Complejo complejo, def canchaData) {
+		Cancha cancha = crearCancha(canchaData)
+		DBUtils.validateAndSave(cancha) // TODO o se graba despues todo junto?
+		complejoService.agregarCancha(complejo, cancha)
+	}
+	
+	/**
+	 * Elimina la cancha indicada del complejo y de la BD
+	 * @param complejo
+	 * @param canchaId
+	 */
+	void eliminarCanchaDelComplejo(Complejo complejo, def canchaId) {
+		def canchaInstance = findEntityById(canchaId)
+		if(!canchaInstance) {
+			throw new EntityNotFoundException("Cancha", canchaId)
+		}
+		complejoService.eliminarCancha(complejo, canchaInstance)
 	}
 
 }

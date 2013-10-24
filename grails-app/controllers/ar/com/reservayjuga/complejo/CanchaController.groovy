@@ -1,13 +1,14 @@
 package ar.com.reservayjuga.complejo
 
-import ar.com.reservayjuga.DBUtils
+import org.springframework.dao.DataIntegrityViolationException
+
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.usuario.Encargado
 
 class CanchaController {
 	
 	CanchaService canchaService
-	ComplejoService complejoService
+//	ComplejoService complejoService
 	
 	def index() {
 		redirect(action: administrarCancha)
@@ -37,10 +38,7 @@ class CanchaController {
 		// TODO recuperar el complejo del encargado
 		Encargado encargado = Encargado.list().get(0)
 		Complejo complejo = encargado.complejo
-		println "params.cancha: "+params.cancha
-		Cancha cancha = canchaService.crearCancha(params.cancha)
-		DBUtils.validateAndSave(cancha)
-		complejoService.agregarCancha(complejo,cancha)
+		canchaService.crearCanchaParaComplejo(complejo, params.cancha)
 		redirect(action: administrarCancha)
 	}
 	
@@ -54,4 +52,24 @@ class CanchaController {
 	
 	}
 	
+	/**
+	 * Elimina la cancha indicada del complejo y de la BD
+	 */
+	def deleteCancha = {
+		// TODO autorizados admins y encargados
+		// TODO recuperar el encargado logueado
+		Encargado encargado = Encargado.list().get(0)
+		Complejo complejo = encargado.complejo
+		
+		try {
+			canchaService.eliminarCanchaDelComplejo(complejo, params.id)
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
+		} catch (EntityNotFoundException e) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
+		}  catch (DataIntegrityViolationException e) {
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
+		} finally {
+			render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
+		}
+	}
 }

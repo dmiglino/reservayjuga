@@ -11,7 +11,7 @@ class ComplejoService {
 	ExtrasService extrasService
 	HorarioService horarioService
 	ImagenService imagenService
-	CanchaService canchaService
+//	CanchaService canchaService
 	
 	/**
 	 * Crea el complejo a partir de los datos pasados por parametro
@@ -69,7 +69,8 @@ class ComplejoService {
 			if(!complejo.imagenes) {
 				complejo.imagenes = []
 			}
-			imagenService.crearImagenParaComplejo(complejo, imagenData)
+			Imagen imagen = imagenService.crearImagenParaComplejo(complejo, imagenData)
+			agregarImagen(complejo, imagen)
 		}
 	}
 	
@@ -87,19 +88,40 @@ class ComplejoService {
 	}
 	
 	/**
+	 * Agrega una imagen al complejo
+	 * @param complejo
+	 * @param imagen
+	 */
+	void agregarImagen(Complejo complejo, Imagen imagen) {
+		if(imagen) {
+			if(!complejo.imagenes) {
+				complejo.imagenes = []
+			}
+			complejo.agregarImagen(imagen)
+		}
+	}
+	
+	/**
+	 * Agrega una cancha al complejo
+	 * @param complejo
+	 * @param cancha
+	 */
+	void agregarCancha(Complejo complejo, Cancha cancha) {
+		if(cancha) {
+			if(!complejo.canchas) {
+				complejo.canchas = []
+			}
+			complejo.agregarCancha(cancha)
+		}
+	}
+	
+	/**
 	 * Elimina la imagen indicada del complejo y de la BD
 	 * @param complejo
 	 * @param imagenId
 	 */
-	void eliminarCanchaDelComplejo(Complejo complejo, def canchaId) {
-		def canchaInstance = canchaService.findEntityById(canchaId)
-		if(!canchaInstance) {
-			throw new EntityNotFoundException("Cancha", canchaId)
-		}
-		complejo.eliminarCancha(canchaInstance)
+	void eliminarCancha(Complejo complejo, Cancha cancha) {
+		complejo.eliminarCancha(cancha)
 	}
 	
-	void agregarCancha(Complejo complejo, Cancha cancha) {
-		complejo.agregarCancha(cancha)
-	}
 }

@@ -2,6 +2,7 @@ package ar.com.reservayjuga.complejo
 
 
 
+import grails.test.GrailsUnitTestCase;
 import grails.test.mixin.*
 
 import org.junit.*
@@ -9,8 +10,7 @@ import org.junit.*
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
-@TestFor(CanchaService)
-class CanchaServiceTests {
+class CanchaServiceTests extends GrailsUnitTestCase {
 	
 	CanchaService canchaService = new CanchaService()
 	
