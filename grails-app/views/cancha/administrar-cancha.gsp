@@ -209,9 +209,9 @@
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 
-								<form class="form-horizontal" role="form">
-									
-						            <div class="row">										
+								<g:form action="agregarCancha" class="form-horizontal" role="form" >
+							
+						            <div class="row" id="canchasDiv" >										
 									<!-- inicio tabla -->		
 										<div class="col-xs-12">
 										<div class="table-responsive">
@@ -228,79 +228,51 @@
 												</thead>
 
 												<tbody>
-													<tr>
-														<td>Cancha 1 - Camp Nou</td>
-														<td class="hidden-480">Futbol</td>
-														<td>5</td>
-                                                        <td>Si</td>
-                                                        <td>Sintetico con arena</td>
-														<td>
-															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-																<a href="#modal-form" role="button" class="btn btn-xs btn-info" data-toggle="modal"> <i class="icon-edit bigger-120"></i> </a>
-																<button class="btn btn-xs btn-danger">
-																	<i class="icon-trash bigger-120"></i>
-																</button>
-															</div>
-														</td>
-													</tr>
-													
-													<tr>
-														<td>Cancha 2 - San Siro</td>
-														<td class="hidden-480">Futbol</td>
-														<td>8</td>
-                                                        <td>Si</td>
-                                                        <td>Sintetico con caucho</td>
-														<td>
-															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-															    <a href="#modal-form" role="button" class="btn btn-xs btn-info" data-toggle="modal"> <i class="icon-edit bigger-120"></i> </a>
-																<button class="btn btn-xs btn-danger">
-																	<i class="icon-trash bigger-120"></i>
-																</button>
-															</div>
-														</td>
-													</tr>
-													
-													<tr>
-														<td>Cancha 3 - Wembley</td>
-														<td class="hidden-480">Futbol</td>
-														<td>11</td>
-                                                        <td>No</td>
-                                                        <td>Cesped</td>
-														<td>
-															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-																<a href="#modal-form" role="button" class="btn btn-xs btn-info" data-toggle="modal"> <i class="icon-edit bigger-120"></i> </a>
-																<button class="btn btn-xs btn-danger">
-																	<i class="icon-trash bigger-120"></i>
-																</button>
-															</div>
-														</td>
-													</tr>
+													<g:each in="${canchas}" var="cancha" status="i">
+														<tr>
+															<td>${cancha?.nombre}</td>
+															<td>${cancha?.deporte}</td>
+															<td>${cancha?.cantidadJugadores}</td>
+															<td class="hidden-480"><g:formatBoolean boolean="${cancha?.cubierta}" true="SI" false="NO" /></td>
+															<td>${cancha?.superficie}</td>
+															
+															<td>
+																<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+										<%--							<g:hiddenField name="idCancha" value="${cancha?.id}" />--%>
+																	<g:hiddenField name="nombreCancha" value="${cancha?.nombre}" />
+																	<g:hiddenField name="deporteCancha" value="${cancha?.deporte}" />
+																	<g:hiddenField name="cantidadJugadoresCancha" value="${cancha?.cantidadJugadores}" />
+																	<g:hiddenField name="cubiertaCancha" value="${cancha?.cubierta}" />
+																	<g:hiddenField name="superficieCancha" value="${cancha?.superficie}" />
+																		
+																	<a href="#modal-form" data-id="${cancha?.id}" role="button" class="open-EditCanchaModal btn btn-xs btn-info" data-toggle="modal"> <i class="icon-edit bigger-120"></i> </a>
+																	<g:remoteLink controller="complejo" action="deleteCancha" id="${cancha?.id}" update="[success:'canchasDiv',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
+																</div>
+															</td>
+														</tr>
+													</g:each>
 												</tbody>
 											</table>
 										</div><!-- /.table-responsive -->
 									    </div>
 									</div>
 						            
-						            
                                     
 									<div class="clearfix form-actions">
 										<div class="col-md-offset-3 col-md-9">
-											<button class="btn btn-info" type="button">
-												<i class="icon-ok bigger-110"></i>
-												Agregar cancha
-											</button>
-
+											<g:actionSubmit action="agregarCancha" class="btn btn-info" value="Agregar Cancha" />
 											&nbsp; &nbsp; &nbsp;
 										</div>
 									</div>
-								</form>
+								</g:form>
 								</div>
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
 				</div><!-- /.main-content -->
                 
-                                <!-- comienzo DEL MODAL BOX PARA EDITAR -->
+                           <!-- comienzo DEL MODAL BOX PARA EDITAR -->
+                           <g:formRemote name="formEditCancha" url="[controller:'cancha', action:'editarCancha']">
                 				<div id="modal-form" class="modal" tabindex="-1">
 									<div class="modal-dialog">
 										<div class="modal-content">
@@ -313,12 +285,14 @@
 												<div class="row">
 													    <div class="col-xs-8 col-sm-8">
 														<div class="space-4"></div>
-                                                        <form class="form-horizontal" role="form">
+
+														<g:hiddenField name="idCanchaEdit" value="" />
+														
 														<div class="form-group">
 															<label class="col-sm-6 control-label" for="form-field-username">Nombre</label>
 
 															<div>
-																<input class="col-sm-6" type="text" id="form-field-username" />
+																<g:textField name="nombreCanchaEdit" value="" class="col-sm-6" id="nombreCanchaEdit" />
 															</div>
 														</div>
 
@@ -328,20 +302,19 @@
 															<label class="col-sm-6 control-label" for="form-field-select-3">Deporte</label>
 
 															<div>
-																<select class="chosen-select" data-placeholder="Choose a Country...">
-																	<option value="">&nbsp;</option>
-																	<option value="FU">Futbol</option>
-																	<option value="TE">Tenis</option>
-																	<option value="TE">Padel</option>
-																	<option value="TE">Squash</option>
-																</select>
+																<g:select id="deporteCanchaEdit" 
+																	name="deporteCanchaEdit"
+																	from="${deportesDisponibles}"
+																	noSelection="['':'']"
+																	class="chosen-select one-to-one"
+																	value=""  />
 															</div>
 														</div>
 														
 														<div class="form-group">
 															<label class="col-sm-6 control-label" for="form-field-select-3">Cantidad de jugadores</label>
 														    <div>
-														        <input type="text" class="input-mini" id="spinner1" />
+																<g:textField name="cantidadJugadoresCanchaEdit" value="" class="input-mini" id="cantidadJugadoresCanchaEdit" />
 														    </div>
 														</div>
 														
@@ -350,31 +323,26 @@
                                                         <div class="form-group">
 															<label class="col-sm-6 control-label" for="form-field-select-3">Techado</label>
 															<div>
-																<select class="chosen-select" data-placeholder="Choose a Country...">
-																	<option value="">&nbsp;</option>
-																	<option value="Si">Si</option>
-																	<option value="No">No</option>
-																</select>
+																<g:select id="cubiertaCanchaEdit" 
+																	name="cubiertaCanchaEdit"
+																	from="${["true","false"]}"
+																	noSelection="['':'']"
+																	class="chosen-select one-to-one"
+																	value=""  />
 															</div>
 														</div>
 														
 												      <div class="form-group">
 															<label class="col-sm-6 control-label" for="form-field-select-3">Superficie</label>
 															<div>
-																<select class="chosen-select">
-																	<option value="">&nbsp;</option>
-																	<option value="Si">Sintetico con arena</option>
-																	<option value="No">Sintetico con caucho</option>
-																	<option value="No">Cesped natural</option>
-																	<option value="No">Baldosa</option>
-																	<option value="No">Goma</option>
-																	<option value="No">Cemento</option>
-																	<option value="No">Parquet</option>
-																	<option value="No">Polvo de ladrillo</option>
-																</select>
+																<g:select id="superficieCanchaEdit" 
+																	name="superficieCanchaEdit"
+																	from="${superficiesDisponibles}"
+																	noSelection="['':'']"
+																	class="chosen-select one-to-one"
+																	value=""  />
 															</div>
 														</div>
-														</form>     
 													</div>
 												</div>
 											</div>
@@ -385,14 +353,15 @@
 													Cancel
 												</button>
 
-												<button class="btn btn-sm btn-primary">
+												<g:submitToRemote class="btn btn-info" update="[success:'canchasDiv']" after="closeModal();"
+													url="[controller:'cancha', action:'editarCancha']" value="Grabar Cancha" >
 													<i class="icon-ok"></i>
-													Save
-												</button>
+												</g:submitToRemote>
 											</div>
 										</div>
 									</div>
 								</div>
+							</g:formRemote>
                 <!-- FIN DEL MODAL BOX PARA EDITAR -->
                 
                 
@@ -501,6 +470,27 @@
 		<!-- inline scripts related to this page -->
 
 		<script type="text/javascript">
+		
+			function closeModal() {
+				$('#modal-form').modal('hide');
+			}
+	
+			$(document).on("click", ".open-EditCanchaModal", function () {
+			     var canchaId = $(this).data('id');
+			     var nombre = document.getElementById("nombreCancha").value;
+			     var deporte = document.getElementById("deporteCancha").value;
+			     var cantidadJugadores = document.getElementById("cantidadJugadoresCancha").value;
+			     var cubierta = document.getElementById("cubiertaCancha").value;
+			     var superficie = document.getElementById("superficieCancha").value;
+			     $(".modal-body #idCanchaEdit").val(canchaId);
+			     $(".modal-body #nombreCanchaEdit").val(nombre);
+			     $(".modal-body #deporteCanchaEdit").val(deporte);
+			     $(".modal-body #cantidadJugadoresCanchaEdit").val(cantidadJugadores);
+			     $(".modal-body #cubiertaCanchaEdit").value(cubierta);
+			     $(".modal-body #superficieCanchaEdit").val(superficie);
+			     alert($(".modal-body #idCanchaEdit").val());
+			});
+			
 			jQuery(function($) {
 				$('#id-disable-check').on('click', function() {
 					var inp = $('#form-input-readonly').get(0);

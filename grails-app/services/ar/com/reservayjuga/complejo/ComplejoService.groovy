@@ -11,6 +11,7 @@ class ComplejoService {
 	ExtrasService extrasService
 	HorarioService horarioService
 	ImagenService imagenService
+	CanchaService canchaService
 	
 	/**
 	 * Crea el complejo a partir de los datos pasados por parametro
@@ -85,4 +86,20 @@ class ComplejoService {
 		complejo.eliminarImagen(imagenInstance)
 	}
 	
+	/**
+	 * Elimina la imagen indicada del complejo y de la BD
+	 * @param complejo
+	 * @param imagenId
+	 */
+	void eliminarCanchaDelComplejo(Complejo complejo, def canchaId) {
+		def canchaInstance = canchaService.findEntityById(canchaId)
+		if(!canchaInstance) {
+			throw new EntityNotFoundException("Cancha", canchaId)
+		}
+		complejo.eliminarCancha(canchaInstance)
+	}
+	
+	void agregarCancha(Complejo complejo, Cancha cancha) {
+		complejo.agregarCancha(cancha)
+	}
 }

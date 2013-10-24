@@ -13,7 +13,7 @@ class Cancha {
 	
     static constraints = {
 		nombre blank: false
-		deporte blank: false
+		deporte nullable: false
 		superficie nullable: false
 		cantidadJugadores nullable: false
 		cubierta nullable: false

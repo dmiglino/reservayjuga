@@ -28,8 +28,7 @@
 
 					<td>
 						<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-
-<%--							<g:hiddenField name="idImagen" value="${imagen?.id}" />--%>
+<%--						<g:hiddenField name="idImagen" value="${imagen?.id}" />--%>
 							<g:hiddenField name="nombreImagen" value="${imagen?.nombre}" />
 							<g:hiddenField name="descripcionImagen" value="${imagen?.descripcion}" />
 							<g:hiddenField name="portadaImagen" value="${imagen?.portada}" />
@@ -37,7 +36,6 @@
 								
 							<a href="#modal-form" data-id="${imagen?.id}" role="button" class="open-EditImageModal btn btn-xs btn-info" data-toggle="modal"> <i class="icon-edit bigger-120"></i> </a>
 							<g:remoteLink controller="complejo" action="deleteImagen" id="${imagen?.id}" update="[success:'imagenesDiv',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
-	
 						</div>
 					</td>
 				</tr>

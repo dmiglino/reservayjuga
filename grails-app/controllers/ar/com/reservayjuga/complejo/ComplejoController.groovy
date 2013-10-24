@@ -88,29 +88,29 @@ class ComplejoController {
 	 * Crea una nueva imagen y la guarda en el complejo
 	 */
 	def agregarImagen = {
-		println params
-		println "Imagen: " +params.foto2
-		println "agregarImagen: " +params.foto
-		println "input-file-2: "+ params.id_input_file_2
-		println "input-file-3: "+ params.id_input_file_3
-		def content = request.multiFileMap?.foto?.collect { file ->
-			def charset = (file.contentType =~ /charset=([^;]+)/).
-				collect { it[1].trim() }.join('') ?: 'ISO-8859-1'
-			new String(file.bytes, charset)
-		}?.join('\n') ?: ''
-	
-		println "content: "+content
-		
-		content = request.multiFileMap?.foto2?.collect { file ->
-			def charset = (file.contentType =~ /charset=([^;]+)/).
-				collect { it[1].trim() }.join('') ?: 'ISO-8859-1'
-			new String(file.bytes, charset)
-		}?.join('\n') ?: ''
-			
-		println "content2: "+content
-		
-		println "req1: "+request.getFile("id_input_file_2")
-		println "req2: "+request.getFile("id_input_file_3")
+//		println params
+//		println "Imagen: " +params.foto2
+//		println "agregarImagen: " +params.foto
+//		println "input-file-2: "+ params.id_input_file_2
+//		println "input-file-3: "+ params.id_input_file_3
+//		def content = request.multiFileMap?.foto?.collect { file ->
+//			def charset = (file.contentType =~ /charset=([^;]+)/).
+//				collect { it[1].trim() }.join('') ?: 'ISO-8859-1'
+//			new String(file.bytes, charset)
+//		}?.join('\n') ?: ''
+//	
+//		println "content: "+content
+//		
+//		content = request.multiFileMap?.foto2?.collect { file ->
+//			def charset = (file.contentType =~ /charset=([^;]+)/).
+//				collect { it[1].trim() }.join('') ?: 'ISO-8859-1'
+//			new String(file.bytes, charset)
+//		}?.join('\n') ?: ''
+//			
+//		println "content2: "+content
+//		
+//		println "req1: "+request.getFile("id_input_file_2")
+//		println "req2: "+request.getFile("id_input_file_3")
 		
 			// TODO autorizados admins y encargados
 			// TODO recuperar el encargado logueado
@@ -141,5 +141,25 @@ class ComplejoController {
 			render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
 		}
 	}
-
+	
+	/**
+	 * Elimina la cancha indicada del complejo y de la BD
+	 */
+	def deleteCancha() {
+		// TODO autorizados admins y encargados
+		// TODO recuperar el encargado logueado
+		Encargado encargado = Encargado.list().get(0)
+		Complejo complejo = encargado.complejo
+		
+		try {
+			complejoService.eliminarCanchaDelComplejo(complejo, params.id)
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
+		} catch (EntityNotFoundException e) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
+		}  catch (DataIntegrityViolationException e) {
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
+		} finally {
+			render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
+		}
+	}
 }

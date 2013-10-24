@@ -216,7 +216,7 @@
 															<label class="col-sm-2 control-label" for="form-field-username">Nombre</label>
 
 															<div>
-																<input class="col-sm-4" type="text" id="Text1" />
+																<g:textField name="cancha.nombre" value="" class="col-sm-6" id="form-field-username" />
 															</div>
 														</div>
 
@@ -224,22 +224,20 @@
 														
 														<div class="form-group">
 															<label class="col-sm-2 control-label" for="form-field-select-3">Deporte</label>
-
-															<div>
-																<select class="chosen-select" data-placeholder="Choose a Country...">
-																	<option value="">&nbsp;</option>
-																	<option value="FU">Futbol</option>
-																	<option value="TE">Tenis</option>
-																	<option value="TE">Padel</option>
-																	<option value="TE">Squash</option>
-																</select>
+																<g:select id="deporte" 
+																	name="cancha.deporte"
+																	from="${deportesDisponibles}"
+																	noSelection="['':'']"
+																	class="chosen-select one-to-one"
+																	value=""  />
 															</div>
 														</div>
 														
 														<div class="form-group">
 															<label class="col-sm-2 control-label" for="form-field-select-3">Cantidad de jugadores</label>
 														    <div>
-														        <input type="text" class="input-mini" id="spinner1" />
+														    	<g:textField name="cancha.cantidadJugadores" value="" class="input-mini" />
+<%--														    	<g:textField name="cancha.cantidadJugadores" value="" class="input-mini" id="spinner1" />--%>
 														    </div>
 														</div>
 														
@@ -248,28 +246,24 @@
                                                         <div class="form-group">
 															<label class="col-sm-2 control-label" for="form-field-select-3">Techado</label>
 															<div>
-																<select class="chosen-select" data-placeholder="Choose a Country...">
-																	<option value="">&nbsp;</option>
-																	<option value="Si">Si</option>
-																	<option value="No">No</option>
-																</select>
+																<g:select id="cubierta" 
+																	name="cancha.cubierta"
+																	from="${["true","false"]}"
+																	noSelection="['':'']"
+																	class="chosen-select one-to-one"
+																	value=""  />
 															</div>
 														</div>
 														
 												      <div class="form-group">
 															<label class="col-sm-2 control-label" for="form-field-select-3">Superficie</label>
 															<div>
-																<select class="chosen-select">
-																	<option value="">&nbsp;</option>
-																	<option value="Si">Sintetico con arena</option>
-																	<option value="No">Sintetico con caucho</option>
-																	<option value="No">Cesped natural</option>
-																	<option value="No">Baldosa</option>
-																	<option value="No">Goma</option>
-																	<option value="No">Cemento</option>
-																	<option value="No">Parquet</option>
-																	<option value="No">Polvo de ladrillo</option>
-																</select>
+																<g:select id="superficie" 
+																	name="cancha.superficie"
+																	from="${superficiesDisponibles}"
+																	noSelection="['':'']"
+																	class="chosen-select one-to-one"
+																	value=""  />
 															</div>
 														</div>
 														
@@ -283,11 +277,8 @@
 						                 
 						                            <div class="clearfix form-actions">
 										            <div class="col-md-offset-3 col-md-9">
-											            <button class="btn btn-info" type="button">
-												            <i class="icon-ok bigger-110"></i>
-												            Agregar cancha
-											            </button>
-
+														<g:actionSubmit action="administrarCancha" class="btn btn-info" value="Volver" />
+														<g:actionSubmit action="crearCancha" class="btn btn-info" value="Crear Cancha" />
 											            &nbsp; &nbsp; &nbsp;
 										            </div>
 									            </div>
