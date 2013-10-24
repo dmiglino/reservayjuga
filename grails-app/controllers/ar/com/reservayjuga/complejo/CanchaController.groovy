@@ -18,7 +18,7 @@ class CanchaController {
 		// TODO recuperar el complejo del encargado
 		Encargado encargado = Encargado.list().get(0)
 		Complejo complejo = encargado.complejo
-		def canchas = complejo.canchas. as List
+		def canchas = complejo.canchas as List
 		def deportesDisponibles = DeporteEnum.values()
 		def superficiesDisponibles = SuperficieEnum.values()
 		render(view: "administrar-cancha", model: [canchas:canchas, deportesDisponibles:deportesDisponibles, superficiesDisponibles:superficiesDisponibles])
