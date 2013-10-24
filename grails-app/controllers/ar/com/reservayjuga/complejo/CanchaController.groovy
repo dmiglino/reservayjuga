@@ -69,7 +69,7 @@ class CanchaController {
 		}  catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		} finally {
-			render(template:"tabla-imagenes", model:[imagenes : complejo.imagenes])
+			redirect(action: administrarCancha)
 		}
 	}
 }

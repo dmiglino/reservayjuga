@@ -246,7 +246,7 @@
 																	<g:hiddenField name="superficieCancha" value="${cancha?.superficie}" />
 																		
 																	<a href="#modal-form" data-id="${cancha?.id}" role="button" class="open-EditCanchaModal btn btn-xs btn-info" data-toggle="modal"> <i class="icon-edit bigger-120"></i> </a>
-																	<g:remoteLink controller="complejo" action="deleteCancha" id="${cancha?.id}" update="[success:'canchasDiv',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
+																	<g:remoteLink controller="cancha" action="deleteCancha" id="${cancha?.id}" update="[success:'canchasDiv',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
 																</div>
 															</td>
 														</tr>
