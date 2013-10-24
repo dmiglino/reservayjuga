@@ -5,7 +5,7 @@ import ar.com.reservayjuga.common.GenericService
 import ar.com.reservayjuga.exception.EntityNotFoundException
 
 class ImagenService extends GenericService<Imagen> {
-	
+
 	@Override
 	def getDomain() {
 		Imagen

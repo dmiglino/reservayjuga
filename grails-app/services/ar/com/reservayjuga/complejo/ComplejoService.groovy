@@ -70,7 +70,6 @@ class ComplejoService {
 				complejo.imagenes = []
 			}
 			Imagen imagen = imagenService.crearImagenParaComplejo(complejo, imagenData)
-			agregarImagen(complejo, imagen)
 		}
 	}
 	
