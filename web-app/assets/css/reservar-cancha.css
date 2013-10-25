@@ -1,0 +1,71 @@
+﻿
+.ul-canchas {list-style:none;
+
+} ul.canchas li {
+	background: transparent url("images/cancha.png") no-repeat 0 0;
+	width: 64px;
+	margin: 0 5px 8px 0;
+	height: 64px;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	text-align: left;
+	cursor: pointer;
+	float: left;
+
+
+}ul.ul-canchas li.cancha-futbol span {
+background: #1283A8 url("images/bg_span_n.png") repeat-x 0 0;
+padding: 4px;
+-moz-border-radius: 13px;
+-webkit-border-radius: 13px;
+border-radius: 13px;
+-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.9);
+-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.9);
+box-shadow: 0 0 4px rgba(0, 0, 0, 0.9);
+border: 1px solid #1693BC;
+font-family: 'CantarellRegular','DroidSansRegular',Helvetica,sans-serif!important;
+font-size: 12px!important;
+color: #FFF!important;
+font-weight: bold;
+
+} ul.ul-canchas li.off:hover {
+	background: transparent url("images/cancha.png") no-repeat 0 0;
+	cursor: default;
+
+} ul.ul-canchas li.off span,
+ul.ul-canchas li.off:hover span { 
+	background: #fff;
+	padding: 5px;
+	border: none;
+	color: #ccc; 
+	text-shadow: none;
+	-moz-box-shadow: 0 0 4px rgba(190, 190, 190, 0.7);
+	-webkit-box-shadow: 0 0 4px rgba(190, 190, 190, 0.7);
+	box-shadow: 0 0 4px rgba(190, 190, 190, 0.7);
+
+
+} ul.ul-canchas li:hover,.ul-canchas li.active,.ul-canchas li.active:hover {
+	background: transparent url("images/cancha.png") no-repeat 0 0;
+	
+
+}.cancha-futbol {background: rgba(0, 0, 0, 0) url("images/cancha.png") no-repeat 0 0;background-repeat: no-repeat;width: 64px;height:64px;margin: 0 5px 8px 0;padding:0;border: 0; border-radius: 0; box-shadow: none; text-align: left; cursor: pointer; float:left;
+
+
+} ul.ul-canchas li:hover span, ul.ul-canchas li.active span, ul.ul-canchas li.active:hover span {
+background: url("images/bg_li_hour.png") repeat-x scroll 0 0 #FF4D00;
+color: #FFF;
+text-shadow: 1px 1px 0 rgba(164, 69, 0, 0.6);
+border: 0;
+padding: 5px;
+-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+
+
+
+} ul.ul-canchas li:hover, ul.ul-canchas li.active, ul.ul-canchas li.active:hover {
+background: rgba(0, 0, 0, 0) url("images/cancha.png") no-repeat 0 0;
+
+}
