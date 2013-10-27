@@ -211,52 +211,9 @@
 
 								<g:form action="agregarCancha" class="form-horizontal" role="form" >
 							
-						            <div class="row" id="canchasDiv" >										
-									<!-- inicio tabla -->		
-										<div class="col-xs-12">
-										<div class="table-responsive">
-											<table id="sample-table-1" class="table table-striped table-bordered table-hover">
-												<thead>
-													<tr>
-														<th>Nombre</th>
-														<th class="hidden-480">Deporte</th>
-														<th class="hidden-480">Cantidad de jugadores</th>
-														<th class="hidden-480">Techado</th>
-														<th class="hidden-480">Superficie</th>
-														<th>Acciones</th>
-													</tr>
-												</thead>
-
-												<tbody>
-													<g:each in="${canchas}" var="cancha" status="i">
-														<tr>
-															<td>${cancha?.nombre}</td>
-															<td>${cancha?.deporte}</td>
-															<td>${cancha?.cantidadJugadores}</td>
-															<td class="hidden-480"><g:formatBoolean boolean="${cancha?.cubierta}" true="SI" false="NO" /></td>
-															<td>${cancha?.superficie}</td>
-															
-															<td>
-																<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-										<%--							<g:hiddenField name="idCancha" value="${cancha?.id}" />--%>
-																	<g:hiddenField name="nombreCancha" value="${cancha?.nombre}" />
-																	<g:hiddenField name="deporteCancha" value="${cancha?.deporte}" />
-																	<g:hiddenField name="cantidadJugadoresCancha" value="${cancha?.cantidadJugadores}" />
-																	<g:hiddenField name="cubiertaCancha" value="${cancha?.cubierta}" />
-																	<g:hiddenField name="superficieCancha" value="${cancha?.superficie}" />
-																		
-																	<a href="#modal-form" data-id="${cancha?.id}" role="button" class="open-EditCanchaModal btn btn-xs btn-info" data-toggle="modal"> <i class="icon-edit bigger-120"></i> </a>
-																	<g:remoteLink controller="cancha" action="deleteCancha" id="${cancha?.id}" update="[success:'canchasDiv',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
-																</div>
-															</td>
-														</tr>
-													</g:each>
-												</tbody>
-											</table>
-										</div><!-- /.table-responsive -->
-									    </div>
+						            <div class="row" id="tabla_canchas" >
+						            	<g:render template="tabla_canchas" model="model" />										
 									</div>
-						            
                                     
 									<div class="clearfix form-actions">
 										<div class="col-md-offset-3 col-md-9">
@@ -471,6 +428,30 @@
 
 		<script type="text/javascript">
 		
+<%--			$(document).ready(function() {--%>
+<%--			    setupGridAjax();--%>
+<%--			});--%>
+<%--			 --%>
+<%--			// Turn all sorting and paging links into ajax requests for the grid--%>
+<%--			function setupGridAjax() {--%>
+				alert($("#tabla_canchas").find(".paginateButtons a, th.sortable a"));
+<%--			    $("#tabla_canchas").find(".paginateButtons a, th.sortable a").live('click', function(event) {--%>
+<%--			        event.preventDefault();--%>
+<%--			        var url = $(this).attr('href');--%>
+			 alert(url);
+<%--			        var grid = $(this).parents(".ajax");--%>
+<%--			        $(grid).html($("#spinner").html());--%>
+			 alert(grid);
+<%--			        $.ajax({--%>
+<%--			            type: 'GET',--%>
+<%--			            url: url,--%>
+<%--			            success: function(data) {--%>
+<%--			                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('slow');});--%>
+<%--			            }--%>
+<%--			        })--%>
+<%--			    });--%>
+<%--			}--%> 
+			
 			function closeModal() {
 				$('#modal-form').modal('hide');
 			}

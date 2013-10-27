@@ -8,12 +8,26 @@ import ar.com.reservayjuga.usuario.Encargado
 class CanchaController {
 	
 	CanchaService canchaService
-//	ComplejoService complejoService
 	
 	def index() {
 		redirect(action: administrarCancha)
 	}
-
+	
+//    def list = {
+//		println params
+//        params.max = Math.min(params.max ? params.max.intValue() : 10, 100)
+//		Encargado encargado = Encargado.list().get(0)
+//		Complejo complejo = encargado.complejo
+//		def canchas = complejo.canchas.sort { i1, i2 -> 
+//			if(params.order == "asc") {
+//				i1."${params.sort}" <=> i2."${params.sort}" 
+//			} else {
+//				i2."${params.sort}" <=> i1."${params.sort}"
+//			}
+//		}
+//		render(template: "tabla_canchas", model: [canchas:canchas, canchasTotal:canchas.size()])
+//    }
+	
 	def administrarCancha = {
 		// TODO autorizados admins y encargados
 		// TODO recuperar el complejo del encargado
@@ -22,8 +36,22 @@ class CanchaController {
 		def canchas = complejo.canchas as List
 		def deportesDisponibles = DeporteEnum.values()
 		def superficiesDisponibles = SuperficieEnum.values()
-		render(view: "administrar-cancha", model: [canchas:canchas, deportesDisponibles:deportesDisponibles, superficiesDisponibles:superficiesDisponibles])
-	}
+		
+		def sortProperty = params.sort ? params.sort : "nombre"
+		canchas.sort { i1, i2 ->
+			if(params.order == "desc") {
+				i2."${sortProperty}" <=> i1."${sortProperty}"
+			} else {
+				i1."${sortProperty}" <=> i2."${sortProperty}"
+			}
+		}
+
+//		if(!params.sort) {
+			render(view: "administrar-cancha", model: [canchas:canchas, deportesDisponibles:deportesDisponibles, superficiesDisponibles:superficiesDisponibles])
+//		} else {
+//			render(template: "tabla_canchas", model: [canchas:canchas, canchasTotal:canchas.size()])
+//		}
+    }
 	
 	def agregarCancha = {
 		// TODO autorizados admins y encargados
