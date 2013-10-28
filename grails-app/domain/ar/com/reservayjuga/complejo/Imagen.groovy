@@ -26,6 +26,6 @@ class Imagen {
 	
 	@Override
 	String toString() {
-		"${nombre}"
+		this.nombre
 	}
 }

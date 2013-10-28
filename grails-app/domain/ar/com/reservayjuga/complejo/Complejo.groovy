@@ -36,7 +36,9 @@ class Complejo {
 		extras nullable: true
 	}
 
-	static mapping = { table "COMPLEJO" }
+	static mapping = {
+		table "COMPLEJO" 
+	}
 	
 	void agregarReserva(Reserva reserva) {
 		addToReservas(reserva)

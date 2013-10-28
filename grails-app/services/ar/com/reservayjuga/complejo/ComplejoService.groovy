@@ -123,4 +123,7 @@ class ComplejoService {
 		complejo.eliminarCancha(cancha)
 	}
 	
+	void eliminarTodasLasImagenesDelComplejo(Complejo complejo) {
+		complejo.imagenes?.clear()
+	}
 }

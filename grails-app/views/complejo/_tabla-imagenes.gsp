@@ -5,16 +5,21 @@
 	<table id="imagenesTable" class="table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
-				<g:sortableColumn property="imagenes.nombre" title="${message(code: 'comun.nombre.label', default: 'Nombre')}" />
-				<g:sortableColumn property="imagenes.descripcion" title="${message(code: 'comun.descripcion.label', default: 'Descripcion')}" />
-
+				<th class="hidden-480">Nombre</th>
+				<th class="hidden-480">Descripcion</th>
 				<th>
 					<i class="icon-time bigger-110 hidden-480"></i>
 					Fecha
 				</th>
 				<th class="hidden-480">Portada</th>
 
-				<th>Acciones</th>
+				<th>
+					Acciones
+					<g:if test="${imagenes}">
+						&nbsp;&nbsp;
+						<g:remoteLink controller="complejo" action="deleteAllImagenes" id="${imagen?.id}" update="[success:'imagenesDiv',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
+					</g:if>
+				</th>
 			</tr>
 		</thead>
 		

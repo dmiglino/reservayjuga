@@ -14,4 +14,5 @@ class ImagenController {
 			// TODO mostrar error en pantalla
 		}
 	}
+	
 }

@@ -471,7 +471,7 @@
 								
 								<div class="row">	
 									<div id="imagenesDiv">									
-										<g:render template="tabla-imagenes" model="[imagenes : complejo?.imagenes]" />
+										<g:render template="tabla-imagenes" model="[imagenes : imagenesList]" />
 									</div>
 									
 									    <!-- inicio selector de imagenes -->
