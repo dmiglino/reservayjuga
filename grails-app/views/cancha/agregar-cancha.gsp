@@ -216,10 +216,24 @@
 															<label class="col-sm-2 control-label" for="form-field-username">Nombre</label>
 
 															<div>
-																<g:textField name="cancha.nombre" value="" class="col-sm-6" id="form-field-username" />
+																<g:textField name="cancha.nombre" value="${cancha?.nombre}" class="col-sm-6" id="form-field-username" />
 															</div>
 														</div>
 
+														<div class="space-4"></div>
+														
+                                                        <div class="form-group">
+															<label class="col-sm-2 control-label" for="form-field-select-3">Techado</label>
+															<div>
+																<g:select id="cubierta" 
+																	name="cancha.cubierta"
+																	from="${["true","false"]}"
+																	noSelection="['':'']"
+																	class="chosen-select one-to-one"
+																	value="${cancha?.cubierta}"  />
+															</div>
+														</div>
+														
 														<div class="space-4"></div>
 														
 														<div class="form-group">
@@ -229,42 +243,31 @@
 																	from="${deportesDisponibles}"
 																	noSelection="['':'']"
 																	class="chosen-select one-to-one"
-																	value=""  />
+																	optionValue="${ {deporte -> g.message(code:deporte.textCode)} }"
+																	value="${cancha?.deporte}" 
+																	onchange="${remoteFunction (
+																		controller: 'cancha',
+																		action: 'getSuperficies',
+																		params: '\'id=\' + this.value',
+																		update: 'superficiesDiv'
+																	)}" />
 															</div>
 														</div>
+														
+														<div id="superficiesDiv" class="form-group">
+															<g:if test="${cancha?.deporte}">
+																<g:include controller="cancha" action="getSuperficies" id="${cancha?.deporte}" />
+															</g:if>
+														</div>
+														
+														<g:hiddenField id="superficieCancha" name="cancha.superficie" value="" />
 														
 														<div class="form-group">
 															<label class="col-sm-2 control-label" for="form-field-select-3">Cantidad de jugadores</label>
 														    <div>
-														    	<g:textField name="cancha.cantidadJugadores" value="" class="input-mini" />
+														    	<g:textField name="cancha.cantidadJugadores" value="${cancha?.cantidadJugadores}" class="input-mini" />
 <%--														    	<g:textField name="cancha.cantidadJugadores" value="" class="input-mini" id="spinner1" />--%>
 														    </div>
-														</div>
-														
-														<div class="space-4"></div>
-                                                        
-                                                        <div class="form-group">
-															<label class="col-sm-2 control-label" for="form-field-select-3">Techado</label>
-															<div>
-																<g:select id="cubierta" 
-																	name="cancha.cubierta"
-																	from="${["true","false"]}"
-																	noSelection="['':'']"
-																	class="chosen-select one-to-one"
-																	value=""  />
-															</div>
-														</div>
-														
-												      <div class="form-group">
-															<label class="col-sm-2 control-label" for="form-field-select-3">Superficie</label>
-															<div>
-																<g:select id="superficie" 
-																	name="cancha.superficie"
-																	from="${superficiesDisponibles}"
-																	noSelection="['':'']"
-																	class="chosen-select one-to-one"
-																	value=""  />
-															</div>
 														</div>
 														
 	                                                <div class="page-header">
@@ -394,6 +397,32 @@
 		<!-- inline scripts related to this page -->
 
 		<script type="text/javascript">
+		
+			function updateSuperficies(items) {
+			    var control = document.getElementById('selSuperficie')
+			
+			    // Clear all previous options
+			    var i = control.length
+			    while (i > 0) {
+			        i--
+			        control.remove(i)
+			    }
+			
+			    // Rebuild the select
+			    for (i=0; i < items.length; i++) {
+			        var optItem = items[i]
+			        var opt = document.createElement('option');
+			        opt.text = optItem.value
+			        opt.value = optItem.id
+			        try {
+			                control.add(opt, null) // doesn't work in IE
+			        }
+			        catch(ex) {
+			                control.add(opt) // IE only
+			        }
+			    }
+			}
+
 			jQuery(function($) {
 				$('#id-disable-check').on('click', function() {
 					var inp = $('#form-input-readonly').get(0);

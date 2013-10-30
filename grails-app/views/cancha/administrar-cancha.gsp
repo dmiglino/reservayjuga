@@ -254,28 +254,6 @@
 														</div>
 
 														<div class="space-4"></div>
-														
-														<div class="form-group">
-															<label class="col-sm-6 control-label" for="form-field-select-3">Deporte</label>
-
-															<div>
-																<g:select id="deporteCanchaEdit" 
-																	name="deporteCanchaEdit"
-																	from="${deportesDisponibles}"
-																	noSelection="['':'']"
-																	class="chosen-select one-to-one"
-																	value=""  />
-															</div>
-														</div>
-														
-														<div class="form-group">
-															<label class="col-sm-6 control-label" for="form-field-select-3">Cantidad de jugadores</label>
-														    <div>
-																<g:textField name="cantidadJugadoresCanchaEdit" value="" class="input-mini" id="cantidadJugadoresCanchaEdit" />
-														    </div>
-														</div>
-														
-														<div class="space-4"></div>
                                                         
                                                         <div class="form-group">
 															<label class="col-sm-6 control-label" for="form-field-select-3">Techado</label>
@@ -289,7 +267,21 @@
 															</div>
 														</div>
 														
-												      <div class="form-group">
+														<div class="form-group">
+															<label class="col-sm-6 control-label" for="form-field-select-3">Deporte</label>
+
+															<div>
+																<g:select id="deporteCanchaEdit" 
+																	name="deporteCanchaEdit"
+																	from="${deportesDisponibles}"
+																	noSelection="['':'']"
+																	class="chosen-select one-to-one"
+																	optionValue="${ {deporte -> g.message(code:deporte.textCode)} }"
+																	value=""  />
+															</div>
+														</div>
+														
+												     	<div class="form-group">
 															<label class="col-sm-6 control-label" for="form-field-select-3">Superficie</label>
 															<div>
 																<g:select id="superficieCanchaEdit" 
@@ -297,9 +289,20 @@
 																	from="${superficiesDisponibles}"
 																	noSelection="['':'']"
 																	class="chosen-select one-to-one"
+																	optionValue="${ {superficie -> g.message(code:superficie.textCode)} }"
 																	value=""  />
 															</div>
 														</div>
+														
+														<div class="space-4"></div>
+														
+														<div class="form-group">
+															<label class="col-sm-6 control-label" for="form-field-select-3">Cantidad de jugadores</label>
+														    <div>
+																<g:textField name="cantidadJugadoresCanchaEdit" value="" class="input-mini" id="cantidadJugadoresCanchaEdit" />
+														    </div>
+														</div>
+														
 													</div>
 												</div>
 											</div>

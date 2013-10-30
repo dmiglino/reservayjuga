@@ -3,6 +3,7 @@ package ar.com.reservayjuga.complejo
 import org.springframework.dao.DataIntegrityViolationException
 
 import ar.com.reservayjuga.exception.EntityNotFoundException
+import ar.com.reservayjuga.exception.ReservaYJugaException
 import ar.com.reservayjuga.usuario.Encargado
 
 class CanchaController {
@@ -12,21 +13,6 @@ class CanchaController {
 	def index() {
 		redirect(action: administrarCancha)
 	}
-	
-//    def list = {
-//		println params
-//        params.max = Math.min(params.max ? params.max.intValue() : 10, 100)
-//		Encargado encargado = Encargado.list().get(0)
-//		Complejo complejo = encargado.complejo
-//		def canchas = complejo.canchas.sort { i1, i2 -> 
-//			if(params.order == "asc") {
-//				i1."${params.sort}" <=> i2."${params.sort}" 
-//			} else {
-//				i2."${params.sort}" <=> i1."${params.sort}"
-//			}
-//		}
-//		render(template: "tabla_canchas", model: [canchas:canchas, canchasTotal:canchas.size()])
-//    }
 	
 	def administrarCancha = {
 		// TODO autorizados admins y encargados
@@ -46,11 +32,7 @@ class CanchaController {
 			}
 		}
 
-//		if(!params.sort) {
-			render(view: "administrar-cancha", model: [canchas:canchas, deportesDisponibles:deportesDisponibles, superficiesDisponibles:superficiesDisponibles])
-//		} else {
-//			render(template: "tabla_canchas", model: [canchas:canchas, canchasTotal:canchas.size()])
-//		}
+		render(view: "administrar-cancha", model: [canchas:canchas, canchasTotal:canchas.size(), deportesDisponibles:deportesDisponibles, superficiesDisponibles:superficiesDisponibles])
     }
 	
 	def agregarCancha = {
@@ -58,16 +40,23 @@ class CanchaController {
 		// TODO recuperar el complejo del encargado
 		def deportesDisponibles = DeporteEnum.values()
 		def superficiesDisponibles = SuperficieEnum.values()
-		render(view: "agregar-cancha", model: [deportesDisponibles:deportesDisponibles, superficiesDisponibles:superficiesDisponibles])
+		render(view: "agregar-cancha", model: [cancha:new Cancha(), deportesDisponibles:deportesDisponibles, superficiesDisponibles:superficiesDisponibles])
 	}
 	
 	def crearCancha = {
 		// TODO autorizados admins y encargados
 		// TODO recuperar el complejo del encargado
-		Encargado encargado = Encargado.list().get(0)
-		Complejo complejo = encargado.complejo
-		canchaService.crearCanchaParaComplejo(complejo, params.cancha)
-		redirect(action: administrarCancha)
+		try {
+			Encargado encargado = Encargado.list().get(0)
+			Complejo complejo = encargado.complejo
+			println "params: " +params
+			canchaService.crearCanchaParaComplejo(complejo, params.cancha)
+			redirect(action: administrarCancha)
+		} catch(ReservaYJugaException e) {
+			println "error ${e} - falta manejo de errores"
+			flash.message = message(code: 'default.created.message', args: [message(code: 'cancha.label', default: 'Cancha'), params.cancha.nombre])
+			redirect(action: agregarCancha)
+		}
 	}
 	
 	def editarCancha = {
@@ -99,5 +88,14 @@ class CanchaController {
 		} finally {
 			redirect(action: administrarCancha)
 		}
+	}
+	
+	def getSuperficies() {
+		DeporteEnum deporte = params.id as DeporteEnum
+		println "dep: "+deporte
+		def superficiesDisponibles = deporte?.superficies
+		println "sup: "+superficiesDisponibles
+		render(template:"selectSuperficies", model:[superficiesDisponibles:superficiesDisponibles])
+//		render superficiesDisponibles as JSON
 	}
 }

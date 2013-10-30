@@ -1,5 +1,3 @@
-<%@ page import="ar.com.reservayjuga.reserva.Reserva" %>
-
 <div class="form-group">
 	<g:if test="${barriosList}">
 		<label class="col-sm-3 control-label" for="barrio">
