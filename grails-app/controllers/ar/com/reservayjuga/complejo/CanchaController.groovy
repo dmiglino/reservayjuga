@@ -92,10 +92,12 @@ class CanchaController {
 	
 	def getSuperficies() {
 		DeporteEnum deporte = params.id as DeporteEnum
-		println "dep: "+deporte
 		def superficiesDisponibles = deporte?.superficies
-		println "sup: "+superficiesDisponibles
 		render(template:"selectSuperficies", model:[superficiesDisponibles:superficiesDisponibles])
-//		render superficiesDisponibles as JSON
+	}
+	
+	def selectToEdit = {
+		Cancha cancha = Cancha.get(params.id)
+		[cancha:cancha]
 	}
 }

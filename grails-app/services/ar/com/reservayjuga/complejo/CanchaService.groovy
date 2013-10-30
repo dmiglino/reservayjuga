@@ -32,8 +32,8 @@ class CanchaService extends GenericService<Cancha> {
 		canchaInstance.nombre = datos.nombreCanchaEdit
 		canchaInstance.deporte = datos.deporteCanchaEdit
 		canchaInstance.cubierta = datos.cubiertaCanchaEdit
-		canchaInstance.superficie = datos.superficieCanchaEdit
-		canchaInstance.cantidadJugadores = datos.cantidadJugadoresCanchaEdit
+		canchaInstance.superficie = datos.superficie
+		canchaInstance.cantidadJugadores = new Integer(datos.cantidadJugadoresCanchaEdit)
 		DBUtils.validateAndSave(canchaInstance)
 	}
 	

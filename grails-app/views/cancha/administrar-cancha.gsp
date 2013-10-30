@@ -212,7 +212,9 @@
 								<g:form action="agregarCancha" class="form-horizontal" role="form" >
 							
 						            <div class="row" id="tabla_canchas" >
-						            	<g:render template="tabla_canchas" model="model" />										
+
+						            	<g:render template="tabla_canchas" model="['cancha':cancha]" />
+						            									
 									</div>
                                     
 									<div class="clearfix form-actions">
@@ -240,16 +242,18 @@
 
 											<div class="modal-body overflow-visible">
 												<div class="row">
-													    <div class="col-xs-8 col-sm-8">
+												    <div class="col-xs-8 col-sm-8">
 														<div class="space-4"></div>
 
 														<g:hiddenField name="idCanchaEdit" value="" />
 														
+<%--                                            			<g:render template="form_cancha" model="['cancha':['nombre':'asd','deporte':'FUTBOL','cubierta':true], 'edit':true]" />--%>
+                                            	cancha: ${cancha}
 														<div class="form-group">
 															<label class="col-sm-6 control-label" for="form-field-username">Nombre</label>
 
 															<div>
-																<g:textField name="nombreCanchaEdit" value="" class="col-sm-6" id="nombreCanchaEdit" />
+																<g:textField name="nombreCanchaEdit" value="${cancha?.nombre}" class="col-sm-6" id="nombreCanchaEdit" />
 															</div>
 														</div>
 
@@ -269,7 +273,7 @@
 														
 														<div class="form-group">
 															<label class="col-sm-6 control-label" for="form-field-select-3">Deporte</label>
-
+<%--															${deportesDisponibles}--%>
 															<div>
 																<g:select id="deporteCanchaEdit" 
 																	name="deporteCanchaEdit"
@@ -277,22 +281,25 @@
 																	noSelection="['':'']"
 																	class="chosen-select one-to-one"
 																	optionValue="${ {deporte -> g.message(code:deporte.textCode)} }"
-																	value=""  />
+																	value="${cancha?.deporte}" 
+																	onchange="${remoteFunction (
+																		controller: 'cancha',
+																		action: 'getSuperficies',
+																		params: '\'id=\' + this.value',
+																		update: 'superficiesDiv'
+																	)}" />
 															</div>
 														</div>
 														
-												     	<div class="form-group">
-															<label class="col-sm-6 control-label" for="form-field-select-3">Superficie</label>
-															<div>
-																<g:select id="superficieCanchaEdit" 
-																	name="superficieCanchaEdit"
-																	from="${superficiesDisponibles}"
-																	noSelection="['':'']"
-																	class="chosen-select one-to-one"
-																	optionValue="${ {superficie -> g.message(code:superficie.textCode)} }"
-																	value=""  />
-															</div>
+														<g:hiddenField id="superficieCancha" name="superficieCanchaEdit" value="" />
+												
+														<div id="superficiesDiv" class="form-group">
+															<g:if test="${cancha?.deporte}">
+																<g:include controller="cancha" action="getSuperficies" id="${cancha?.deporte}" />
+															</g:if>
 														</div>
+														
+<%--														<g:hiddenField id="superficieCancha" name="cancha.superficie" value="" />--%>
 														
 														<div class="space-4"></div>
 														
@@ -431,48 +438,24 @@
 
 		<script type="text/javascript">
 		
-<%--			$(document).ready(function() {--%>
-<%--			    setupGridAjax();--%>
-<%--			});--%>
-<%--			 --%>
-<%--			// Turn all sorting and paging links into ajax requests for the grid--%>
-<%--			function setupGridAjax() {--%>
-				alert($("#tabla_canchas").find(".paginateButtons a, th.sortable a"));
-<%--			    $("#tabla_canchas").find(".paginateButtons a, th.sortable a").live('click', function(event) {--%>
-<%--			        event.preventDefault();--%>
-<%--			        var url = $(this).attr('href');--%>
-			 alert(url);
-<%--			        var grid = $(this).parents(".ajax");--%>
-<%--			        $(grid).html($("#spinner").html());--%>
-			 alert(grid);
-<%--			        $.ajax({--%>
-<%--			            type: 'GET',--%>
-<%--			            url: url,--%>
-<%--			            success: function(data) {--%>
-<%--			                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('slow');});--%>
-<%--			            }--%>
-<%--			        })--%>
-<%--			    });--%>
-<%--			}--%> 
-			
 			function closeModal() {
 				$('#modal-form').modal('hide');
 			}
 	
 			$(document).on("click", ".open-EditCanchaModal", function () {
 			     var canchaId = $(this).data('id');
-			     var nombre = document.getElementById("nombreCancha").value;
-			     var deporte = document.getElementById("deporteCancha").value;
-			     var cantidadJugadores = document.getElementById("cantidadJugadoresCancha").value;
-			     var cubierta = document.getElementById("cubiertaCancha").value;
-			     var superficie = document.getElementById("superficieCancha").value;
+<%--			     var nombre = document.getElementById("nombreCancha").value; --%>
+<%--			     var deporte = document.getElementById("deporteCancha").value; --%>
+<%--			     var cantidadJugadores = document.getElementById("cantidadJugadoresCancha").value; --%>
+<%--			     var cubierta = document.getElementById("cubiertaCancha").value; --%>
+<%--			     var superficie = document.getElementById("superficieCancha").value; --%>
 			     $(".modal-body #idCanchaEdit").val(canchaId);
-			     $(".modal-body #nombreCanchaEdit").val(nombre);
-			     $(".modal-body #deporteCanchaEdit").val(deporte);
-			     $(".modal-body #cantidadJugadoresCanchaEdit").val(cantidadJugadores);
-			     $(".modal-body #cubiertaCanchaEdit").value(cubierta);
-			     $(".modal-body #superficieCanchaEdit").val(superficie);
-			     alert($(".modal-body #idCanchaEdit").val());
+<%--			     $(".modal-body #nombreCanchaEdit").val(nombre); --%>
+<%--			     $(".modal-body #deporteCanchaEdit").val(deporte); --%>
+<%--			     $(".modal-body #cantidadJugadoresCanchaEdit").val(cantidadJugadores); --%>
+<%--			     $(".modal-body #cubiertaCanchaEdit").value(cubierta); --%>
+<%--			     $(".modal-body #superficieCanchaEdit").val(superficie); --%>
+					var newData = $.get("${createLink(controller: 'cancha', action: 'selectToEdit')}/"+canchaId);
 			});
 			
 			jQuery(function($) {
