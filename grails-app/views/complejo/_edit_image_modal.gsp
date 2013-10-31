@@ -11,8 +11,9 @@
 						<div class="col-xs-12 col-sm-5">
 							<div class="space"></div>
 							<div id="input-file" >
-								<input type="file" name="fotoImagenEdit"/>
+								<input type="file" name="fotoImagenEdit" value="" />
 							</div>
+							<div id="vista_previa"><!-- miniatura -->Vista previa</div>
 						</div>
 	
 						<div class="col-xs-12 col-sm-7">

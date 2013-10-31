@@ -34,7 +34,7 @@ class ImagenService extends GenericService<Imagen> {
 	 * @param imagenData
 	 */
 	void crearImagenParaComplejo(Complejo complejo, def imagenData) {
-		Imagen imagen = new Imagen(nombre: imagenData.nombre, descripcion: imagenData.descripcion, extension: imagenData.extension, portada: (imagenData.portada ? imagenData.portada : false))
+		Imagen imagen = new Imagen(nombre: imagenData.nombre, descripcion: imagenData.descripcion, extension: imagenData.extension, foto: imagenData.foto, portada: (imagenData.portada ? imagenData.portada : false))
 		DBUtils.validateAndSave(imagen) // TODO o se graba despues todo junto?
 		complejo.agregarImagen(imagen)
 	}

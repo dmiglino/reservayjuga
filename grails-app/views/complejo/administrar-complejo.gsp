@@ -393,7 +393,7 @@
 													</span>
 												</div>
 												
-												<g:hiddenField name="foto2" id="foto2" value="" />
+												<g:hiddenField name="imagen.foto" id="foto2" value="" />
 														
 												<div class="widget-body">
 													<div class="widget-main">
@@ -431,7 +431,7 @@
 													<div class="widget-main">
 													<input type="submit" value="subir" />
 														<g:submitToRemote class="btn btn-info" update="[success:'imagenesDiv']" after="cleanImageFields();" 
-															url="[controller:'complejo', action:'agregarImagen']" value="Subir Imagen" before="testImagen();" />
+															url="[controller:'complejo', action:'agregarImagen']" value="Subir Imagen" before="setImagenToForm();" />
 													</div>
 												</div>
 											</div>
@@ -554,16 +554,17 @@
 			     $(".modal-body #nombreImagenEdit").val(nombre);
 			     $(".modal-body #descripcionImagenEdit").val(descripcion);
 			     $(".modal-body #portadaImagenEdit").val(portada);
-			     $(".modal-body #fotoImagenEdit").val(foto);
+
+			    	alert("fot: "+foto);
+			     $(".input-file #fotoImagenEdit").val(foto);
+<%--			     document.getElementById("fotoImagenEdit").value = foto;--%>
+			     document.getElementById("vista_previa").innerHTML='<img src="'+foto+'" width="100" height="75" >';
+<%--			     alert("input: "+document.getElementById("fotoImagenEdit").value);--%>
 			});
 
-			function testImagen() {
-				 var fot = document.getElementById("foto").value;
-				 alert(fot);
-
+			function setImagenToForm() {
+				var fot = document.getElementById("foto").value;
 				document.getElementById("foto2").value = fot;
-				 var fot2 = document.getElementById("foto2").value;
-				 alert(fot2);
 			}
 		</script>
 

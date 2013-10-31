@@ -95,8 +95,8 @@ class ComplejoController {
 	 */
 	def agregarImagen = {
 		println params
-//		println "Imagen: " +params.foto2
-		println "agregarImagen: " +params.foto2
+		println "Imagen: " +params.foto2
+		println "agregarImagen: " +params.imagen.foto
 //		println "input-file-2: "+ params.id_input_file_2
 //		println "input-file-3: "+ params.id_input_file_3
 //		def content = request.multiFileMap?.foto?.collect { file ->
