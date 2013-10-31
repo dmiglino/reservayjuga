@@ -54,58 +54,7 @@
 	</head>
 
 	<body>
-		<div class="navbar navbar-default" id="navbar">
-			<script type="text/javascript">
-				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
-			</script>
-
-			<div class="navbar-container" id="navbar-container">
-				<div class="navbar-header pull-left">
-					<a href="#" class="navbar-brand">
-						<small>
-							<i class="icon-leaf"></i>
-							Encargado del complejo
-						</small>
-					</a><!-- /.brand -->
-				</div><!-- /.navbar-header -->
-
-	    <div class="navbar-header pull-right" role="navigation">
-					<ul class="nav ace-nav">
-						
-						
-						
-						<li class="light-blue">
-							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<span class="user-info">
-									<small>Bienvenido,</small>
-									Encargado
-								</span>
-
-								<i class="icon-caret-down"></i>
-							</a>
-
-							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-								<li>
-									<a href="#">
-										<i class="icon-cog"></i>
-										Settings
-									</a>
-								</li>
-
-								<li class="divider"></li>
-
-								<li>
-									<a href="#">
-										<i class="icon-off"></i>
-										Logout
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul><!-- /.ace-nav -->
-				</div><!-- /.navbar-header -->
-			</div><!-- /.container -->
-		</div>
+		<g:render template="/layouts/navigation_bar" model="['tituloPagina':'Encargado de las canchas', 'tipoUsuario':'Encargado']" />
 
 		<div class="main-container" id="main-container">
 			<script type="text/javascript">
@@ -113,70 +62,8 @@
 			</script>
 
 			<div class="main-container-inner">
-				<a class="menu-toggler" id="menu-toggler" href="#">
-					<span class="menu-text"></span>
-				</a>
-
-				<div class="sidebar" id="sidebar">
-					<script type="text/javascript">
-						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
-					</script>
-
-				
-                    <ul class="nav nav-list">
-						<li>
-							<a href="index.html">
-								<i class="icon-dashboard"></i>
-								<span class="menu-text"> Panel de control </span>
-							</a>
-						</li>
-						
-						<li>
-							<a href="administrar-complejo.html">
-								<i class="icon-dashboard"></i>
-								<span class="menu-text"> Administrar Complejo </span>
-							</a>
-						</li>
-						
-						<li>
-							<a href="index.html">
-								<i class="icon-dashboard"></i>
-								<span class="menu-text"> Administrar Canchas </span>
-							</a>
-						</li>
-						
-						<li>
-							<a href="index.html">
-								<i class="icon-dashboard"></i>
-								<span class="menu-text"> Administrar Reservas </span>
-							</a>
-						</li>
-						
-						<li>
-							<a href="index.html">
-								<i class="icon-dashboard"></i>
-								<span class="menu-text"> Reservar Cancha </span>
-							</a>
-						</li>
-						
-						<li>
-							<a href="index.html">
-								<i class="icon-dashboard"></i>
-								<span class="menu-text"> Estadisticas </span>
-							</a>
-						</li>
-
-						
-					</ul><!-- /.nav-list -->
-
-					<div class="sidebar-collapse" id="sidebar-collapse">
-						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
-					</div>
-
-					<script type="text/javascript">
-						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
-					</script>
-				</div>
+			
+				<g:render template="/layouts/sidebar_panel" />
 
 				<div class="main-content">
 					<div class="breadcrumbs" id="breadcrumbs">
@@ -221,53 +108,8 @@
 					</div><!-- /.page-content -->
 				</div><!-- /.main-content -->
                 
-				<div class="ace-settings-container" id="ace-settings-container">
-					<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-						<i class="icon-cog bigger-150"></i>
-					</div>
-
-					<div class="ace-settings-box" id="ace-settings-box">
-						<div>
-							<div class="pull-left">
-								<select id="skin-colorpicker" class="hide">
-									<option data-skin="default" value="#438EB9">#438EB9</option>
-									<option data-skin="skin-1" value="#222A2D">#222A2D</option>
-									<option data-skin="skin-2" value="#C6487E">#C6487E</option>
-									<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-								</select>
-							</div>
-							<span>&nbsp; Choose Skin</span>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar" />
-							<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar" />
-							<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs" />
-							<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" />
-							<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
-						</div>
-
-						<div>
-							<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container" />
-							<label class="lbl" for="ace-settings-add-container">
-								Inside
-								<b>.container</b>
-							</label>
-						</div>
-					</div>
-				</div><!-- /#ace-settings-container -->
+				<g:render template="/layouts/settings_box" /> 
+				
 			</div><!-- /.main-container-inner -->
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
@@ -320,6 +162,7 @@
 
 		<!-- ace scripts -->
 
+		<script src="../assets/js/ace-jquery-commons.js"></script>
 		<script src="../assets/js/ace-elements.min.js"></script>
 		<script src="../assets/js/ace.min.js"></script>
 
@@ -352,195 +195,7 @@
 			    }
 			}
 
-			jQuery(function($) {
-				$('#id-disable-check').on('click', function() {
-					var inp = $('#form-input-readonly').get(0);
-					if(inp.hasAttribute('disabled')) {
-						inp.setAttribute('readonly' , 'true');
-						inp.removeAttribute('disabled');
-						inp.value="This text field is readonly!";
-					}
-					else {
-						inp.setAttribute('disabled' , 'disabled');
-						inp.removeAttribute('readonly');
-						inp.value="This text field is disabled!";
-					}
-				});
 			
-			
-				$(".chosen-select").chosen(); 
-				$('#chosen-multiple-style').on('click', function(e){
-					var target = $(e.target).find('input[type=radio]');
-					var which = parseInt(target.val());
-					if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
-					 else $('#form-field-select-4').removeClass('tag-input-style');
-				});
-			
-			
-				$('[data-rel=tooltip]').tooltip({container:'body'});
-				$('[data-rel=popover]').popover({container:'body'});
-				
-				$('textarea[class*=autosize]').autosize({append: "\n"});
-				$('textarea.limited').inputlimiter({
-					remText: '%n character%s remaining...',
-					limitText: 'max allowed : %n.'
-				});
-			
-				$.mask.definitions['~']='[+-]';
-				$('.input-mask-date').mask('99/99/9999');
-				$('.input-mask-phone').mask('(999) 999-9999');
-				$('.input-mask-eyescript').mask('~9.99 ~9.99 999');
-				$(".input-mask-product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
-			
-			    
-			    /////////
-				$('#modal-form input[type=file]').ace_file_input({
-					style:'well',
-					btn_choose:'Drop files here or click to choose',
-					btn_change:null,
-					no_icon:'icon-cloud-upload',
-					droppable:true,
-					thumbnail:'large'
-				})
-				
-				//chosen plugin inside a modal will have a zero width because the select element is originally hidden
-				//and its width cannot be determined.
-				//so we set the width after modal is show
-				$('#modal-form').on('shown.bs.modal', function () {
-					$(this).find('.chosen-container').each(function(){
-						$(this).find('a:first-child').css('width' , '210px');
-						$(this).find('.chosen-drop').css('width' , '210px');
-						$(this).find('.chosen-search input').css('width' , '200px');
-					});
-				})
-			
-		
-				
-					
-				$('#id-input-file-1 , #id-input-file-2').ace_file_input({
-					no_file:'No File ...',
-					btn_choose:'Choose',
-					btn_change:'Change',
-					droppable:false,
-					onchange:null,
-					thumbnail:false //| true | large
-					//whitelist:'gif|png|jpg|jpeg'
-					//blacklist:'exe|php'
-					//onchange:''
-					//
-				});
-				
-				$('#id-input-file-3').ace_file_input({
-					style:'well',
-					btn_choose:'Drop files here or click to choose',
-					btn_change:null,
-					no_icon:'icon-cloud-upload',
-					droppable:true,
-					thumbnail:'small'//large | fit
-					//,icon_remove:null//set null, to hide remove/reset button
-					/**,before_change:function(files, dropped) {
-						//Check an example below
-						//or examples/file-upload.html
-						return true;
-					}*/
-					/**,before_remove : function() {
-						return true;
-					}*/
-					,
-					preview_error : function(filename, error_code) {
-						//name of the file that failed
-						//error_code values
-						//1 = 'FILE_LOAD_FAILED',
-						//2 = 'IMAGE_LOAD_FAILED',
-						//3 = 'THUMBNAIL_FAILED'
-						//alert(error_code);
-					}
-			
-				}).on('change', function(){
-					//console.log($(this).data('ace_input_files'));
-					//console.log($(this).data('ace_input_method'));
-				});
-				
-			
-				//dynamically change allowed formats by changing before_change callback function
-				$('#id-file-format').removeAttr('checked').on('change', function() {
-					var before_change
-					var btn_choose
-					var no_icon
-					if(this.checked) {
-						btn_choose = "Drop images here or click to choose";
-						no_icon = "icon-picture";
-						before_change = function(files, dropped) {
-							var allowed_files = [];
-							for(var i = 0 ; i < files.length; i++) {
-								var file = files[i];
-								if(typeof file === "string") {
-									//IE8 and browsers that don't support File Object
-									if(! (/\.(jpe?g|png|gif|bmp)$/i).test(file) ) return false;
-								}
-								else {
-									var type = $.trim(file.type);
-									if( ( type.length > 0 && ! (/^image\/(jpe?g|png|gif|bmp)$/i).test(type) )
-											|| ( type.length == 0 && ! (/\.(jpe?g|png|gif|bmp)$/i).test(file.name) )//for android's default browser which gives an empty string for file.type
-										) continue;//not an image so don't keep this file
-								}
-								
-								allowed_files.push(file);
-							}
-							if(allowed_files.length == 0) return false;
-			
-							return allowed_files;
-						}
-					}
-					else {
-						btn_choose = "Drop files here or click to choose";
-						no_icon = "icon-cloud-upload";
-						before_change = function(files, dropped) {
-							return files;
-						}
-					}
-					var file_input = $('#id-input-file-3');
-					file_input.ace_file_input('update_settings', {'before_change':before_change, 'btn_choose': btn_choose, 'no_icon':no_icon})
-					file_input.ace_file_input('reset_input');
-				});
-			
-			
-			
-			
-				$('#spinner1').ace_spinner({value:5,min:2,max:11,step:1, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
-				.on('change', function(){
-					//alert(this.value)
-				});
-				$('#spinner2').ace_spinner({value:0,min:0,max:10000,step:100, touch_spinner: true, icon_up:'icon-caret-up', icon_down:'icon-caret-down'});
-				$('#spinner3').ace_spinner({value:0,min:-100,max:100,step:10, on_sides: true, icon_up:'icon-plus smaller-75', icon_down:'icon-minus smaller-75', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
-			
-			
-				
-				
-				
-				//we could just set the data-provide="tag" of the element inside HTML, but IE8 fails!
-				var tag_input = $('#form-field-tags');
-				if(! ( /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase())) ) 
-				{
-					tag_input.tag(
-					  {
-						placeholder:tag_input.attr('placeholder'),
-						//enable typeahead by specifying the source array
-						source: ace.variable_US_STATES,//defined in ace.js >> ace.enable_search_ahead
-					  }
-					);
-				}
-				else {
-					//display a textarea for old IE, because it doesn't support this plugin or another one I tried!
-					tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();
-					//$('#form-field-tags').autosize({append: "\n"});
-				}
-				
-				
-				
-			
-						
-			});
 		</script>
 	</body>
 </html>

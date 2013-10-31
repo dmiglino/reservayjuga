@@ -94,9 +94,9 @@ class ComplejoController {
 	 * Crea una nueva imagen y la guarda en el complejo
 	 */
 	def agregarImagen = {
-//		println params
+		println params
 //		println "Imagen: " +params.foto2
-//		println "agregarImagen: " +params.foto
+		println "agregarImagen: " +params.foto2
 //		println "input-file-2: "+ params.id_input_file_2
 //		println "input-file-3: "+ params.id_input_file_3
 //		def content = request.multiFileMap?.foto?.collect { file ->
@@ -182,8 +182,6 @@ class ComplejoController {
     def ordenarImagenes	= {
 		Encargado encargado = Encargado.list().get(0)
 		Complejo complejo = encargado.complejo
-		println " complejo params.property: ${params.sort}"
-		println " complejo params: ${params}"
 		def listaOrdenada = []
 		if(params.order == "asc") {
 			listaOrdenada = complejo.imagenes.sort { i1, i2 -> i1."${params.sort}" <=> i2."${params.sort}" }
@@ -191,7 +189,6 @@ class ComplejoController {
 			listaOrdenada = complejo.imagenes.sort { i1, i2 -> i2."${params.sort}" <=> i1."${params.sort}" }
 		}
 //		params.max = Math.min(max ?: 10, 100)
-		println " imagenes: ${listaOrdenada}"
         render(view: "administrar-complejo", model: [complejo: complejo, imagenes: listaOrdenada, imagenesSize: listaOrdenada.size()])
     }
 	
