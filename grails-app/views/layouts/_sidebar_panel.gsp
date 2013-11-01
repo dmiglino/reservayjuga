@@ -16,42 +16,42 @@
 		<li>
 			<a href="/ReservaYJuga/login">
 				<i class="icon-dashboard"></i>
-				<span class="menu-text"> Panel de control </span>
+				<span class="menu-text"> <g:message code="sidebar.panel.label" default="Panel de control" /> </span>
 			</a>
 		</li>
 		
 		<li>
 			<a href="/ReservaYJuga/complejo">
 				<i class="icon-dashboard"></i>
-				<span class="menu-text"> Administrar Complejo </span>
+				<span class="menu-text"> <g:message code="sidebar.administrar.complejo.label" default="Administrar Complejo" /> </span>
 			</a>
 		</li>
 		
 		<li>
 			<a href="/ReservaYJuga/cancha">
 				<i class="icon-dashboard"></i>
-				<span class="menu-text"> Administrar Canchas </span>
+				<span class="menu-text"> <g:message code="sidebar.administrar.cancha.label" default="Administrar Canchas" /> </span>
 			</a>
 		</li>
 		
 		<li>
 			<a href="/ReservaYJuga/reserva">
 				<i class="icon-dashboard"></i>
-				<span class="menu-text"> Administrar Reservas </span>
+				<span class="menu-text"> <g:message code="sidebar.administrar.reserva.label" default="Administrar Reservas" /> </span>
 			</a>
 		</li>
 		
 		<li>
 			<a href="/ReservaYJuga/reserva">
 				<i class="icon-dashboard"></i>
-				<span class="menu-text"> Reservar Cancha </span>
+				<span class="menu-text"> <g:message code="sidebar.reservar.label" default="Reservar Cancha" /> </span>
 			</a>
 		</li>
 		
 		<li>
 			<a href="index.html">
 				<i class="icon-dashboard"></i>
-				<span class="menu-text"> Estadisticas </span>
+				<span class="menu-text"> <g:message code="sidebar.estadisticas.label" default="Estadisticas" /> </span>
 			</a>
 		</li>
 		

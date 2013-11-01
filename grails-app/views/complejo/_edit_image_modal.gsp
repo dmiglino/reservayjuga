@@ -3,7 +3,7 @@
 			<div class="modal-content" >
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="blue bigger">Edicion de imagenes</h4>
+					<h4 class="blue bigger"><g:message code="modal.imagen.titulo.label" default="Edicion de imagenes" /></h4>
 				</div>
 	
 				<div class="modal-body overflow-visible">
@@ -13,7 +13,7 @@
 							<div id="input-file" >
 								<input type="file" name="fotoImagenEdit" value="" />
 							</div>
-							<div id="vista_previa"><!-- miniatura -->Vista previa</div>
+							<div id="vista_previa"><!-- miniatura --><g:message code="modal.imagen.vistaprevia.label" default="Vista previa" /></div>
 						</div>
 	
 						<div class="col-xs-12 col-sm-7">
@@ -21,7 +21,7 @@
 							<g:hiddenField name="idImagenEdit" value="" />
 								
 							<div class="form-group">
-								<label for="form-field-first">Nombre</label>
+								<label for="form-field-first"><g:message code="common.nombre.label" default="Nombre" /></label>
 								<div>
 									<g:textField name="nombreImagenEdit" value="" class="input-medium" id="nombreImagenEdit" />
 								</div>
@@ -30,7 +30,7 @@
 							<div class="space-4"></div>
 	
 							<div class="form-group">
-								<label for="form-field-username">Descripcion</label>
+								<label for="form-field-username"><g:message code="common.descripcion.label" default="Descripcion" /></label>
 	
 								<div>
 									<g:textField name="descripcionImagenEdit" value="" class="input-large" id="descripcionImagenEdit" />
@@ -40,7 +40,7 @@
 							<div class="space-4"></div>
 							
 							<div class="form-group">
-								<label for="form-field-select-3">Portada</label>
+								<label for="form-field-select-3"><g:message code="common.portada.label" default="Portada" /></label>
 	
 								<div>
 									<g:select id="portadaImagenEdit" 
@@ -58,7 +58,7 @@
 				<div class="modal-footer">
 					<button class="btn btn-sm" data-dismiss="modal">
 						<i class="icon-remove"></i>
-						Cancel
+						<g:message code="common.cancelar.label" default="Cancelar" />
 					</button>
 	
 					<g:submitToRemote class="btn btn-info" update="[success:'imagenesDiv']" after="closeModal();"

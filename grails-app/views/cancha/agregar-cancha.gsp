@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="layout" content="main"/>
-		<title>Agregar nueva cancha</title>
+		<title><g:message code="cancha.agregar.nueva.label" default="Agregar nueva cancha" /></title>
 	</head>
 
 	<body>
@@ -18,14 +18,14 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home home-icon"></i>
-								<a href="#">Panel de control</a>
+								<a href="#"><g:message code="sidebar.panel.label" default="Panel de Control" /></a>
 							</li>
 
 							<li>
-								<a href="#">Administrar Canchas</a>
+								<a href="#"><g:message code="sidebar.administrar.cancha.label" default="Administrar Canchas" /></a>
 							</li>
 							<li>
-								<a href="#">Agregar Cancha</a>
+								<a href="#"><g:message code="breadcrumbs.agregar.cancha.label" default="Agregar Cancha" /></a>
 							</li>
 						</ul><!-- .breadcrumb -->
 					</div>
@@ -34,7 +34,7 @@
 						<div class="page-header">
 							<h1>
 							    <small>
-								    Datos de la cancha
+								    <g:message code="cancha.agregar.datos.label" default="Datos de la cancha" />
 								</small>
 							</h1>
 						</div><!-- /.page-header -->

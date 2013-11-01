@@ -13,34 +13,33 @@
 					<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
 				</select>
 			</div>
-			<span>&nbsp; Choose Skin</span>
+			<span>&nbsp; <g:message code="settings.choose.skin.label" default="Choose Skin" /></span>
 		</div>
 
 		<div>
 			<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar" />
-			<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
+			<label class="lbl" for="ace-settings-navbar"> <g:message code="settings.fixed.navbar.label" default="Fixed Navbar" /></label>
 		</div>
 
 		<div>
 			<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar" />
-			<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+			<label class="lbl" for="ace-settings-sidebar"> <g:message code="settings.fixed.sidebar.label" default="Fixed Sidebar" /></label>
 		</div>
 
 		<div>
 			<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs" />
-			<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+			<label class="lbl" for="ace-settings-breadcrumbs"> <g:message code="settings.fixed.breadcrumbs.label" default="Fixed Breadcrumbs" /></label>
 		</div>
 
 		<div>
 			<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" />
-			<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
+			<label class="lbl" for="ace-settings-rtl"> <g:message code="settings.righttoleft.label" default="Right To Left" /> </label>
 		</div>
 
 		<div>
 			<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container" />
 			<label class="lbl" for="ace-settings-add-container">
-				Inside
-				<b>.container</b>
+				<g:message code="settings.inside.label" default="Inside" />
 			</label>
 		</div>
 	</div>

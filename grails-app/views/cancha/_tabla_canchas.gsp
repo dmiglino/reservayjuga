@@ -4,11 +4,11 @@
 		<table id="sample-table-1" class="ajax table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
-					<g:sortableColumn property="nombre" title="${message(code: 'comun.nombre.label', default: 'Nombre')}" />
-					<g:sortableColumn property="deporte" title="${message(code: 'comun.deporte.label', default: 'Deporte')}" />
-					<g:sortableColumn property="cantidadJugadores" title="${message(code: 'comun.cantidadJugadores.label', default: 'Cantidad de jugadores')}" />
-					<g:sortableColumn property="cubierta" title="${message(code: 'comun.techado.label', default: 'Techado')}" />
-					<g:sortableColumn property="superficie" title="${message(code: 'comun.superficie.label', default: 'Superficie')}" />
+					<g:sortableColumn property="nombre" title="${message(code: 'common.nombre.label', default: 'Nombre')}" />
+					<g:sortableColumn property="deporte" title="${message(code: 'common.deporte.label', default: 'Deporte')}" />
+					<g:sortableColumn property="cantidadJugadores" title="${message(code: 'common.cantidad.jugadores.label', default: 'Cantidad de jugadores')}" />
+					<g:sortableColumn property="cubierta" title="${message(code: 'common.techado.label', default: 'Techado')}" />
+					<g:sortableColumn property="superficie" title="${message(code: 'common.superficie.label', default: 'Superficie')}" />
 					<th>Acciones</th>
 				</tr>
 			</thead>

@@ -1,6 +1,6 @@
 
 <div class="form-group">
-	<label class="col-sm-2 control-label" for="form-field-username">Nombre</label>
+	<label class="col-sm-2 control-label" for="form-field-username"><g:message code="common.nombre.label" default="Nombre" /></label>
 
 	<div>
 		<g:textField name="cancha.nombre" value="${cancha?.nombre}"
@@ -11,7 +11,7 @@
 <div class="space-4"></div>
 
 <div class="form-group">
-	<label class="col-sm-2 control-label" for="form-field-select-3">Techado</label>
+	<label class="col-sm-2 control-label" for="form-field-select-3"><g:message code="common.techado.label" default="Techado" /></label>
 	<div>
 		<g:select id="cubierta" name="cancha.cubierta"
 			from="${["true","false"]}" noSelection="['':'']"
@@ -22,7 +22,7 @@
 <div class="space-4"></div>
 
 <div class="form-group">
-	<label class="col-sm-2 control-label" for="form-field-select-3">Deporte</label>
+	<label class="col-sm-2 control-label" for="form-field-select-3"><g:message code="common.deporte.label" default="Deporte" /></label>
 	<g:select id="deporte" name="cancha.deporte"
 		from="${deportesDisponibles}" noSelection="['':'']"
 		class="chosen-select one-to-one"
@@ -46,8 +46,7 @@
 <g:hiddenField id="superficieCancha" name="cancha.superficie" value="" />
 
 <div class="form-group">
-	<label class="col-sm-2 control-label" for="form-field-select-3">Cantidad
-		de jugadores</label>
+	<label class="col-sm-2 control-label" for="form-field-select-3"><g:message code="common.cantidad.jugadores.label" default="Cantidad de Jugadores" /></label>
 	<div>
 		<%--		<g:textField name="cancha.cantidadJugadores" value="${cancha?.cantidadJugadores}" class="input-mini" />--%>
 		<g:textField name="cancha.cantidad" value="" class="input-mini"
@@ -59,7 +58,7 @@
 
 <div class="page-header">
 	<h1>
-		<small> Precios </small>
+		<small> <g:message code="common.precios.label" default="Precios" /> </small>
 	</h1>
 </div>
 
@@ -78,7 +77,7 @@
 <g:else>
 	<div class="modal-footer">
 		<button class="btn btn-sm" data-dismiss="modal">
-			<i class="icon-remove"></i> Cancel
+			<i class="icon-remove"></i> <g:message code="common.cancelar.label" default="Cancelar" />
 		</button>
 
 		<g:submitToRemote class="btn btn-info" update="[success:'canchasDiv']"

@@ -25,19 +25,19 @@
 					<a data-toggle="dropdown" href="#"
 						class="dropdown-toggle"> 
 						<span class="user-info"> 
-							<small>Bienvenido,</small>
+							<small><g:message code="header.bienvenido.label" default="Bienvenido," /></small>
 								${tipoUsuario}
 						</span> <i class="icon-caret-down"></i>
 					</a>
 	
 					<ul
 						class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-						<li><a href="#"> <i class="icon-cog"></i> Settings
+						<li><a href="#"> <i class="icon-cog"></i> <g:message code="header.settings.label" default="Settings" />
 						</a></li>
 	
 						<li class="divider"></li>
 	
-						<li><a href="#"> <i class="icon-off"></i> Logout
+						<li><a href="#"> <i class="icon-off"></i> <g:message code="header.logout.label" default="Logout" />
 						</a></li>
 					</ul>
 				</li>

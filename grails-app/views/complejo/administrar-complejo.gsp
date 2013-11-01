@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="layout" content="main"/>
-	<title>Encargado del complejo</title>
+	<title><g:message code="complejo.titulo.label" default="Administracion de Complejo" /></title>
 </head>
 
 <body>
@@ -19,10 +19,11 @@
 					</script>
 
 					<ul class="breadcrumb">
-						<li><i class="icon-home home-icon"></i> <a href="#">Panel
-								de control</a></li>
+						<li><i class="icon-home home-icon"></i><a href="#">
+							<g:message code="sidebar.panel.label" default="Panel de Control" />
+						</a></li>
 
-						<li><a href="#">Administrar Complejo</a></li>
+						<li><a href="#"><g:message code="sidebar.administrar.complejo.label" default="Administrar Complejo" /></a></li>
 					</ul>
 					<!-- .breadcrumb -->
 				</div>
@@ -31,7 +32,7 @@
 				<div class="page-content">
 					<div class="page-header">
 						<h1>
-							<small> Datos Generales </small>
+							<small> <g:message code="common.datos.generales.label" default="Datos Generales" /> </small>
 						</h1>
 					</div>
 					<!-- /.page-header -->
@@ -48,7 +49,7 @@
 							<g:form id="formUpdateComplejo" action="actualizarInformacionComplejo" class="form-horizontal" role="form"  enctype="multipart/form-data">
 								<div class="form-group">
 									<label class="col-sm-3 control-label"
-										for="nombre"> Nombre </label>
+										for="nombre"> <g:message code="common.nombre.label" default="Nombre" /> </label>
 
 									<div class="col-sm-9">
 										<g:textField name="nombre" value="${complejo?.nombre}" class="col-xs-10 col-sm-5"/>
@@ -59,7 +60,7 @@
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label"
-										for="webSite">Sitio Web </label>
+										for="webSite"><g:message code="common.website.label" default="Sitio Web" /> </label>
 
 									<div class="col-sm-9">
 										<g:textField name="webSite" value="${complejo?.webSite}" class="col-xs-10 col-sm-5"/>
@@ -70,7 +71,7 @@
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label"
-										for="mail">Mail </label>
+										for="mail"><g:message code="common.email.label" default="Mail" /> </label>
 
 									<div class="col-sm-9">
 										<g:textField name="mail" value="${complejo?.mail}" class="col-xs-10 col-sm-5"/>
@@ -81,7 +82,7 @@
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label"
-										for="telefono1">Telefono 1 </label>
+										for="telefono1"><g:message code="common.telefono.1.label" default="Telefono 1" /> </label>
 
 									<div class="col-sm-9">
 										<g:textField name="telefono1" value="${complejo?.telefono1}" class="col-xs-10 col-sm-5"/>
@@ -92,7 +93,7 @@
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label"
-										for="telefono2">Telefono 2 </label>
+										for="telefono2"><g:message code="common.telefono.2.label" default="Telefono 2" /> </label>
 
 									<div class="col-sm-9">
 										<g:textField name="telefono2" value="${complejo?.telefono2}" class="col-xs-10 col-sm-5"/>
@@ -103,7 +104,7 @@
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label"
-										for="telefono3">Telefono 3 </label>
+										for="telefono3"><g:message code="common.telefono.3.label" default="Telefono 3" /> </label>
 
 									<div class="col-sm-9">
 										<g:textField name="telefono3" value="${complejo?.telefono3}" class="col-xs-10 col-sm-5"/>
@@ -114,7 +115,7 @@
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label"
-										for="telefono4">Telefono 4 </label>
+										for="telefono4"><g:message code="common.telefono.4.label" default="Telefono 4" /> </label>
 
 									<div class="col-sm-9">
 										<g:textField name="telefono4" value="${complejo?.telefono4}" class="col-xs-10 col-sm-5"/>
@@ -125,7 +126,7 @@
 
 								<div class="form-group">
 									<label class="col-sm-3 control-label"
-										for=informacionExtra> Informacion Extra </label>
+										for=informacionExtra> <g:message code="common.info.extra.label" default="Informacion Extra" /> </label>
 									<g:textArea name="informacionExtra" value="${complejo?.informacionExtra}" class="col-xs-4 col-sm-5-"/>
 								</div>
 
@@ -134,7 +135,7 @@
 								
 							<div class="page-header">
 								<h1>
-									<small> Ubicacion </small>
+									<small> <g:message code="ubicacion.titulo.label" default="Ubicacion" /> </small>
 								</h1>
 							</div>
 								
@@ -163,7 +164,9 @@
 								
 								<div class="form-group">
 									<label class="col-sm-3 control-label"
-										for="direccion">Direccion</label>
+										for="direccion">
+										<g:message code="ubicacion.direccion.label" default="Direccion" />
+									</label>
 
 									<div class="col-sm-9">
 										<g:textField name="direccion" value="${complejo?.ubicacion?.direccion}" class="col-xs-10 col-sm-5"/>
@@ -173,7 +176,7 @@
 								
 							<div class="page-header">
 								<h1>
-									<small> Servicios </small>
+									<small> <g:message code="servicios.titulo.label" default="Servicios" /> </small>
 								</h1>
 							</div>
 
@@ -181,70 +184,70 @@
 								<div class="checkbox">
 									<label> 
 										<g:checkBox name="servicios.vestuario" value="${complejo?.servicios?.vestuario}" class="col-xs-4 col-sm-5-"/>
-										<span class="lbl">Vestuario</span>
+										<span class="lbl"><g:message code="servicios.vestuario.label" default="Vestuario" /></span>
 									</label>
 								</div>
 
 								<div class="checkbox">
 									<label> 
 										<g:checkBox name="servicios.bebida" value="${complejo?.servicios?.bebida}" class="col-xs-4 col-sm-5-"/>
-										<span class="lbl">Bebida</span>
+										<span class="lbl"><g:message code="servicios.bebida.label" default="Bebida" /></span>
 									</label>
 								</div>
 
 								<div class="checkbox">
 									<label> 
 										<g:checkBox name="servicios.ayudaMedica" value="${complejo?.servicios?.ayudaMedica}" class="col-xs-4 col-sm-5-"/>
-										<span class="lbl">Ayuda medica</span>
+										<span class="lbl"><g:message code="servicios.ayudamedica.label" default="Ayuda medica" /></span>
 									</label>
 								</div>
 
 								<div class="checkbox">
 									<label> 
 										<g:checkBox name="servicios.wifi" value="${complejo?.servicios?.wifi}" class="col-xs-4 col-sm-5-"/>
-										<span class="lbl"> Wifi</span>
+										<span class="lbl"> <g:message code="servicios.wifi.label" default="Wifi" /></span>
 									</label>
 								</div>
 
 								<div class="checkbox">
 									<label> 
 										<g:checkBox name="servicios.television" value="${complejo?.servicios?.television}" class="col-xs-4 col-sm-5-"/>
-										<span class="lbl"> TV</span>
+										<span class="lbl"> <g:message code="servicios.tv.label" default="TV" /></span>
 									</label>
 								</div>
 
 								<div class="checkbox">
 									<label> 
 										<g:checkBox name="servicios.comida" checked="${complejo?.servicios?.comida}" class="col-xs-4 col-sm-5-"/>
-										<span class="lbl">Comida</span>
+										<span class="lbl"><g:message code="servicios.comida.label" default="Comida" /></span>
 									</label>
 								</div>
 
 								<div class="checkbox">
 									<label> 
 										<g:checkBox name="servicios.torneo" checked="${complejo?.servicios?.torneo}" value="${complejo?.servicios?.torneo}" class="col-xs-4 col-sm-5-"/>
-										<span class="lbl">Torneos</span>
+										<span class="lbl"><g:message code="servicios.torneos.label" default="Torneos" /></span>
 									</label>
 								</div>
 
 								<div class="checkbox">
 									<label> 
 										<g:checkBox name="servicios.gimnasio" checked="${complejo?.servicios?.gimnasio}" value="${complejo?.servicios?.gimnasio}" class="col-xs-4 col-sm-5-"/>
-										<span class="lbl">Gimnasio</span>
+										<span class="lbl"><g:message code="servicios.gimnasio.label" default="Gimnasio" /></span>
 									</label>
 								</div>
 
 								<div class="checkbox">
 									<label> 
 										<g:checkBox name="servicios.estacionamiento" checked="${complejo?.servicios?.estacionamiento}" class="col-xs-4 col-sm-5-"/>
-										<span class="lbl">Estacionamiento</span>
+										<span class="lbl"><g:message code="servicios.estacionamiento.label" default="Estacionamiento" /></span>
 									</label>
 								</div>
 
 								<div class="form-group">
 									<label> 
 										<g:textField name="servicios.precioEstacionamiento" value="${complejo?.servicios?.precioEstacionamiento}" class="col-xs-10 col-sm-5"/>
-										<span class="lbl">Precio Estacionamiento</span>
+										<span class="lbl"><g:message code="servicios.estacionamiento.precio.label" default="Precio Estacionamiento" /></span>
 									</label>
 								</div>
 
@@ -260,13 +263,13 @@
 
 							<div class="page-header">
 								<h1>
-									<small> Configuracion de senia e items extras </small>
+									<small> <g:message code="config.senia.titulo.label" default="Configuracion de seña e items extras" /> </small>
 								</h1>
 							</div>
 								
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
-										for="porcentajeSenia">Porcentaje de senia</label>
+										for="porcentajeSenia"><g:message code="config.senia.label" default="Porcentaje de seña" /></label>
 
 									<div class="col-sm-9">
 										<g:textField name="porcentajeSenia" value="${complejo?.porcentajeSenia}" class="input-mini" id="spinner4" />
@@ -276,7 +279,7 @@
 
 							<div class="page-header">
 								<h1>
-									<small> Horarios Operativos </small>
+									<small> <g:message code="horario.titulo.label" default="Horarios Operativos" /> </small>
 								</h1>
 							</div>
 
@@ -306,7 +309,7 @@
 
 								<div class="page-header">
 									<h1>
-										<small> Imagenes </small>
+										<small> <g:message code="imagenes.titulo.label" default="Imagenes" /> </small>
 									</h1>
 								</div>
 								
@@ -320,7 +323,7 @@
 									    <div class="col-sm-4">
 											<div class="widget-box">
 												<div class="widget-header">
-													<h4>Carga de Imagenes</h4>
+													<h4><g:message code="imagenes.carga.label" default="Carga de Imagenes" /></h4>
 
 													<span class="widget-toolbar">
 														<a href="#" data-action="collapse">

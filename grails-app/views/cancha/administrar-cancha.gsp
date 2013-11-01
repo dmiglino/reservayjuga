@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="layout" content="main"/>
-		<title>Canchas del complejo</title>
+		<title><g:message code="cancha.titulo.label" default="Administracion de Canchas" /></title>
 	</head>
 
 	<body>
@@ -18,11 +18,11 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home home-icon"></i>
-								<a href="#">Panel de control</a>
+								<a href="#"><g:message code="sidebar.panel.label" default="Panel de Control" /></a>
 							</li>
 
 							<li>
-								<a href="#">Administrar Canchas</a>
+								<a href="#"><g:message code="sidebar.administrar.cancha.label" default="Administrar Canchas" /></a>
 							</li>
 						</ul><!-- .breadcrumb -->
 					</div>
@@ -67,7 +67,7 @@
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal">&times;</button>
-												<h4 class="blue bigger">Edicion de canchas</h4>
+												<h4 class="blue bigger"><g:message code="cancha.edicion.label" default="Edicion de Cancha" /></h4>
 											</div>
 
 											<div class="modal-body overflow-visible">
@@ -80,7 +80,7 @@
 <%--                                            			<g:render template="form_cancha" model="['cancha':['nombre':'asd','deporte':'FUTBOL','cubierta':true], 'edit':true]" />--%>
                                             	
 														<div class="form-group">
-															<label class="col-sm-6 control-label" for="form-field-username">Nombre</label>
+															<label class="col-sm-6 control-label" for="form-field-username"><g:message code="common.nombre.label" default="Nombre" /></label>
 
 															<div>
 																<g:textField name="nombreCanchaEdit" value="${cancha?.nombre}" class="col-sm-6" id="nombreCanchaEdit" />
@@ -90,7 +90,7 @@
 														<div class="space-4"></div>
                                                         
                                                         <div class="form-group">
-															<label class="col-sm-6 control-label" for="form-field-select-3">Techado</label>
+															<label class="col-sm-6 control-label" for="form-field-select-3"><g:message code="common.techado.label" default="Techado" /></label>
 															<div>
 																<g:select id="cubiertaCanchaEdit" 
 																	name="cubiertaCanchaEdit"
@@ -102,7 +102,7 @@
 														</div>
 														
 														<div class="form-group">
-															<label class="col-sm-6 control-label" for="form-field-select-3">Deporte</label>
+															<label class="col-sm-6 control-label" for="form-field-select-3"><g:message code="common.deporte.label" default="Deporte" /></label>
 															<div>
 																<g:select id="deporteCanchaEdit" 
 																	name="deporteCanchaEdit"
@@ -133,7 +133,7 @@
 														<div class="space-4"></div>
 														
 														<div class="form-group">
-															<label class="col-sm-6 control-label" for="form-field-select-3">Cantidad de jugadores</label>
+															<label class="col-sm-6 control-label" for="form-field-select-3"><g:message code="common.cantidad.jugadores.label" default="Cantidad de Jugadores" /></label>
 														    <div>
 																<g:textField name="cantidadJugadoresCanchaEdit" value="" class="input-mini" id="cantidadJugadoresCanchaEdit" />
 														    </div>

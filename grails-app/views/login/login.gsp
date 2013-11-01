@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>Login Page - Encargado del complejo</title>
+		<title><g:message code="login.titulo.label" default="Pagina de Login" /></title>
 
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -50,10 +50,10 @@
 							<div class="center">
 								<h1>
 									<i class="icon-leaf green"></i>
-									<span class="red">Sistema</span>
-									<br /><span class="white">Reserva y Juga</span>
+									<span class="red"><g:message code="login.sistema.label" default="Sistema" /></span>
+									<br /><span class="white"><g:message code="login.aplicacion.label" default="Reserva y Juga" /></span>
 								</h1>
-								<h4 class="blue">Encargado del complejo</h4>
+								<h4 class="blue"><g:message code="login.usuario.label" default="Encargado del complejo" /></h4>
 							</div>
 
 							<div class="space-6"></div>
@@ -64,7 +64,7 @@
 										<div class="widget-main">
 											<h4 class="header blue lighter bigger">
 												<i class="icon-coffee green"></i>
-												Ingrese su informacion
+												<g:message code="login.ingresar.informacion.label" default="Ingrese su informacion" />
 											</h4>
 
 											<div class="space-6"></div>
@@ -90,12 +90,12 @@
 													<div class="clearfix">
 														<label class="inline">
 															<input type="checkbox" class="ace" />
-															<span class="lbl"> Remember Me</span>
+															<span class="lbl"> <g:message code="login.recordar.label" default="Recordarme" /></span>
 														</label>
 
 														<button type="button" class="width-35 pull-right btn btn-sm btn-primary">
 															<i class="icon-key"></i>
-															Login
+															<g:message code="login.login.label" default="Ingresar" />
 														</button>
 													</div>
 
@@ -109,7 +109,7 @@
 											<div>
 												<a href="#" onclick="show_box('forgot-box'); return false;" class="forgot-password-link">
 													<i class="icon-arrow-left"></i>
-													I forgot my password
+													<g:message code="login.olvida.clave.label" default="Olvide mi clave" />
 												</a>
 											</div>
 										</div>
@@ -121,12 +121,12 @@
 										<div class="widget-main">
 											<h4 class="header red lighter bigger">
 												<i class="icon-key"></i>
-												Retrieve Password
+												<g:message code="login.recuperar.password.label" default="Recuperar Clave" />
 											</h4>
 
 											<div class="space-6"></div>
 											<p>
-												Enter your email and to receive instructions
+												<g:message code="login.ingresas.email.label" default="Ingresa tu email para obtener instrucciones a seguir" />
 											</p>
 
 											<form>
@@ -141,7 +141,7 @@
 													<div class="clearfix">
 														<button type="button" class="width-35 pull-right btn btn-sm btn-danger">
 															<i class="icon-lightbulb"></i>
-															Send Me!
+															<g:message code="login.enviame.label" default="Enviame!" />
 														</button>
 													</div>
 												</fieldset>
@@ -150,7 +150,7 @@
 
 										<div class="toolbar center">
 											<a href="#" onclick="show_box('login-box'); return false;" class="back-to-login-link">
-												Back to login
+												<g:message code="login.volver.login.label" default="Volver a Login" />
 												<i class="icon-arrow-right"></i>
 											</a>
 										</div>
