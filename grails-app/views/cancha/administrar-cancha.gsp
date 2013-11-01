@@ -146,7 +146,7 @@
 											<div class="modal-footer">
 												<button class="btn btn-sm" data-dismiss="modal">
 													<i class="icon-remove"></i>
-													Cancel
+													<g:message code="common.cancelar.label" default="Cancelar" />
 												</button>
 
 												<g:submitToRemote class="btn btn-info" update="[success:'canchasDiv']" after="closeModal();"

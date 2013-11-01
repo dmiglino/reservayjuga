@@ -22,13 +22,17 @@ class ComplejoController {
 			// TODO autorizados admins y encargados
 			// TODO recuperar el complejo del encargado
 		Encargado encargado = Encargado.list().get(0)
-		def imagenes = []
-		if(encargado.complejo.imagenes) {
-			imagenes = encargado.complejo.imagenes.sort { i1, i2 ->
-				i1.nombre <=> i2.nombre
+		if(encargado) {
+			def imagenes = []
+			if(encargado.complejo.imagenes) {
+				imagenes = encargado.complejo.imagenes.sort { i1, i2 ->
+					i1.nombre <=> i2.nombre
+				}
 			}
+			render(view: "administrar-complejo", model: [complejo : encargado.complejo, imagenesList : imagenes])
+		} else {
+			render(view: "login")
 		}
-		render(view: "administrar-complejo", model: [complejo : encargado.complejo, imagenesList : imagenes])
 	}
 	
 	/**
@@ -122,14 +126,21 @@ class ComplejoController {
 			// TODO recuperar el encargado logueado
 		Encargado encargado = Encargado.list().get(0)
 		Complejo complejo = encargado.complejo
-		complejoService.crearImagenParaComplejo(complejo, params.imagen)
-		def imagenes = []
-		if(encargado.complejo.imagenes) {
-			imagenes = encargado.complejo.imagenes.sort { i1, i2 ->
-				i1.nombre <=> i2.nombre
+		try {
+			complejoService.crearImagenParaComplejo(complejo, params.imagen)
+			def imagenes = []
+			if(encargado.complejo.imagenes) {
+				imagenes = encargado.complejo.imagenes.sort { i1, i2 ->
+					i1.nombre <=> i2.nombre
+				}
 			}
+			flash.message = "Imagen <${complejo}> creada"
+		} catch (InvalidEntityException e) {
+			flash.message = "Error creando la imagen <${complejo}>"
+		} finally {
+			render(template:"tabla-imagenes", model:[imagenes : imagenes])
 		}
-		render(template:"tabla-imagenes", model:[imagenes : imagenes])
+
 	}
 	
 	
