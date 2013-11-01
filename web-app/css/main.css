@@ -134,7 +134,7 @@ img {
 
 /* NAVIGATION MENU */
 
-.nav {
+.nav-scaffold {
 	background-color: #efefef;
 	padding: 0.5em 0.75em;
 	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
@@ -143,13 +143,13 @@ img {
 	zoom: 1;
 }
 
-.nav ul {
+.nav-scaffold ul {
 	overflow: hidden;
 	padding-left: 0;
 	zoom: 1;
 }
 
-.nav li {
+.nav-scaffold li {
 	display: block;
 	float: left;
 	list-style-type: none;
@@ -157,7 +157,7 @@ img {
 	padding: 0;
 }
 
-.nav a {
+.nav-scaffold a {
 	color: #666666;
 	display: block;
 	padding: 0.25em 0.7em;
@@ -167,38 +167,38 @@ img {
 	        border-radius: 0.3em;
 }
 
-.nav a:active, .nav a:visited {
+.nav-scaffold a:active, .nav-scaffold a:visited {
 	color: #666666;
 }
 
-.nav a:focus, .nav a:hover {
+.nav-scaffold a:focus, .nav-scaffold a:hover {
 	background-color: #999999;
 	color: #ffffff;
 	outline: none;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
 }
 
-.no-borderradius .nav a:focus, .no-borderradius .nav a:hover {
+.no-borderradius .nav-scaffold a:focus, .no-borderradius .nav-scaffold a:hover {
 	background-color: transparent;
 	color: #444444;
 	text-decoration: underline;
 }
 
-.nav a.home, .nav a.list, .nav a.create {
+.nav-scaffold a.home, .nav-scaffold a.list, .nav-scaffold a.create {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
 }
 
-.nav a.home {
+.nav-scaffold a.home {
 	background-image: url(../images/skin/house.png);
 }
 
-.nav a.list {
+.nav-scaffold a.list {
 	background-image: url(../images/skin/database_table.png);
 }
 
-.nav a.create {
+.nav-scaffold a.create {
 	background-image: url(../images/skin/database_add.png);
 }
 
