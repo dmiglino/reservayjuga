@@ -8,6 +8,7 @@ class Pais {
 	
     static constraints = {
 		nombre blank:false
+		provincias display:false
     }
 	
 	@Override
