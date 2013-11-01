@@ -14,7 +14,7 @@
 
     <ul class="nav nav-list">
 		<li>
-			<a href="/ReservaYJuga">
+			<a href="/ReservaYJuga/panelControl">
 				<i class="icon-dashboard"></i>
 				<span class="menu-text"> <g:message code="sidebar.panel.label" default="Panel de control" /> </span>
 			</a>

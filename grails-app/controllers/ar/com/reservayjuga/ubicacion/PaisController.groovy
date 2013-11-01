@@ -9,4 +9,5 @@ class PaisController {
 		def provincias = paisService.getProvincias(params.id)
 		render(template:"selectProvincias", model:[provinciasList:provincias])
 	}
+
 }
