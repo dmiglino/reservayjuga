@@ -14,35 +14,35 @@
 
                 <ul class="nav nav-list">
 		<li>
-			<a href="index.html">
+			<a href="/ReservaYJuga/login">
 				<i class="icon-dashboard"></i>
 				<span class="menu-text"> Panel de control </span>
 			</a>
 		</li>
 		
 		<li>
-			<a href="administrar-complejo.html">
+			<a href="/ReservaYJuga/complejo">
 				<i class="icon-dashboard"></i>
 				<span class="menu-text"> Administrar Complejo </span>
 			</a>
 		</li>
 		
 		<li>
-			<a href="index.html">
+			<a href="/ReservaYJuga/cancha">
 				<i class="icon-dashboard"></i>
 				<span class="menu-text"> Administrar Canchas </span>
 			</a>
 		</li>
 		
 		<li>
-			<a href="index.html">
+			<a href="/ReservaYJuga/reserva">
 				<i class="icon-dashboard"></i>
 				<span class="menu-text"> Administrar Reservas </span>
 			</a>
 		</li>
 		
 		<li>
-			<a href="index.html">
+			<a href="/ReservaYJuga/reserva">
 				<i class="icon-dashboard"></i>
 				<span class="menu-text"> Reservar Cancha </span>
 			</a>
@@ -54,7 +54,7 @@
 				<span class="menu-text"> Estadisticas </span>
 			</a>
 		</li>
-
+		
 		
 	</ul> <!-- /.nav-list -->
 
