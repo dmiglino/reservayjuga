@@ -37,7 +37,7 @@
 	
 						<li class="divider"></li>
 	
-						<li><a href="#"> <i class="icon-off"></i> <g:message code="header.logout.label" default="Logout" />
+						<li><a href="/ReservaYJuga/login"> <i class="icon-off"></i> <g:message code="header.logout.label" default="Logout" />
 						</a></li>
 					</ul>
 				</li>

@@ -12,9 +12,9 @@
 	</script>
 
 
-                <ul class="nav nav-list">
+    <ul class="nav nav-list">
 		<li>
-			<a href="/ReservaYJuga/login">
+			<a href="/ReservaYJuga">
 				<i class="icon-dashboard"></i>
 				<span class="menu-text"> <g:message code="sidebar.panel.label" default="Panel de control" /> </span>
 			</a>
