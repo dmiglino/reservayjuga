@@ -132,13 +132,13 @@
 			<![endif]-->
 	
 		<script src="/ReservaYJuga/assets/js/fuelux/fuelux.spinner.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/bootstrap-colorpicker.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/bootstrap-tag.min.js"></script>
 		<script src="/ReservaYJuga/assets/js/chosen.jquery.min.js"></script>
 		<script src="/ReservaYJuga/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="/ReservaYJuga/assets/js/date-time/bootstrap-timepicker.min.js"></script>
 		<script src="/ReservaYJuga/assets/js/date-time/moment.min.js"></script>
 		<script src="/ReservaYJuga/assets/js/date-time/daterangepicker.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/bootstrap-colorpicker.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/bootstrap-tag.min.js"></script>
 		<script src="/ReservaYJuga/assets/js/jquery.knob.min.js"></script>
 		<script src="/ReservaYJuga/assets/js/jquery.autosize.min.js"></script>
 		<script src="/ReservaYJuga/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
