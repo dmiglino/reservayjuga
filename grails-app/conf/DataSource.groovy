@@ -1,20 +1,27 @@
 dataSource {
     pooled = true
-    driverClassName = "org.h2.Driver"
+//    driverClassName = "org.h2.Driver"
     username = "sa"
     password = ""
 }
 hibernate {
     cache.use_second_level_cache = true
-    cache.use_query_cache = false
+    cache.use_query_cache = true
     cache.region.factory_class = 'net.sf.ehcache.hibernate.EhCacheRegionFactory'
 }
 // environment specific settings
 environments {
     development {
         dataSource {
-            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+//            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+//            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+			dbCreate = "create"
+			driverClassName = "com.mysql.jdbc.Driver"
+			username = "root"
+//			password = "root"
+			url = "jdbc:mysql://localhost/reservas_db"
+			cache.provider_class='com.opensymphony.oscache.hibernate.OSCacheProvider'
+			logSql = true
         }
     }
     test {
@@ -25,9 +32,15 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
-            pooled = true
+			//dbCreate = "create-drop"
+			//url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+			dbCreate = "validate"
+			driverClassName = "com.mysql.jdbc.Driver"
+			username = "ryj_admin"
+			password = "ryj_admin"
+			url = "jdbc:mysql://localhost/reservas_db"
+			cache.provider_class='com.opensymphony.oscache.hibernate.OSCacheProvider'
+			
             properties {
                maxActive = -1
                minEvictableIdleTimeMillis=1800000
@@ -38,6 +51,7 @@ environments {
                testOnReturn=true
                validationQuery="SELECT 1"
             }
+			logSql = true
         }
     }
 }

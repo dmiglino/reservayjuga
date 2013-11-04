@@ -11,6 +11,10 @@ class Pais {
 		provincias display:false
     }
 	
+	static mapping = {
+		table "PAIS"
+	}
+	
 	@Override
 	String toString() {
 		this.nombre

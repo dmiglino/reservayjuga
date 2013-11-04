@@ -20,4 +20,5 @@ class Encargado extends SecUser {
 	String toString() {
 		"${nombre} ${apellido}"
 	}
+	
 }

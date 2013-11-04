@@ -16,9 +16,10 @@ import ar.com.reservayjuga.ubicacion.Provincia
 import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Encargado
 import ar.com.reservayjuga.usuario.Jugador
-import ar.com.seguridad.SecRole;
-import ar.com.seguridad.SecUser;
-import ar.com.seguridad.SecUserSecRole;
+import ar.com.reservayjuga.usuario.SistemaRyJ
+import ar.com.seguridad.SecRole
+import ar.com.seguridad.SecUser
+import ar.com.seguridad.SecUserSecRole
 
 class BootStrap {
 
@@ -40,37 +41,26 @@ class BootStrap {
 		
 		switch (Environment.current) {
 			case Environment.DEVELOPMENT:
-				crearPrecio()
-				crearHorarios()
-				crearImagen()
-				crearServicios()
-				crearUbicaciones()
-				crearComplejos()
-				crearCancha()
-				crearExtras()
-				crearJugadores()
-				//crearEncargados()
-				asociarCanchasAComplejos()
+				println "creando datos iniciales..."
+				if(primeraVez()) {
+					crearPrecio()
+					crearHorarios()
+					crearImagen()
+					crearServicios()
+					crearUbicaciones()
+					crearComplejos()
+					crearCancha()
+					crearExtras()
+					crearJugadores()
+					crearEncargados()
+					crearAdministrador()
+					asociarCanchasAComplejos()
+				}
 				break;
 			case Environment.PRODUCTION:
 				println "No special configuration required"
 				break;	
 		}
-		
-		def role = SecRole.findByAuthority("ENCARGADO_ROLE")
-
-		if(!role)
-			role = new SecRole(authority:"ENCARGADO_ROLE").save(flush:true)
-
-		def user = SecUser.findByUsername("encargadoTerraza")
-		if(!user)
-			user = new Encargado(apellido: "Cuevas",nombre: "Pipino",username:"encargadoTerraza",password:"encargado",enable:true,complejo:terraza).save(flush:true)
-		SecUserSecRole.create(user,role,true)
-		
-		def user1 = SecUser.findByUsername("encargadoPoli")
-		if(!user1)
-			user1 = new Encargado(apellido: "Ricardo",nombre: "Rojas",username:"encargadoPoli",password:"encargado",enable:true,complejo:poli).save(flush:true)
-		SecUserSecRole.create(user1,role,true)
 	}
 
 	def destroy = {
@@ -211,23 +201,50 @@ class BootStrap {
 	}
 	
 	def crearJugadores() {
-		Jugador jug = new Jugador(nombre: "die",
-			apellido: "mig",
-			telefono: "123",
-			mail: "d@m.com",
-			clave: "asdasd", sexo: "M")
-		DBUtils.validateAndSave(jug)
+		def role = SecRole.findByAuthority("JUGADOR_ROLE")
+		
+		if(!role)
+			role = new SecRole(authority:"JUGADOR_ROLE").save(flush:true)
+		
+		def user = SecUser.findByUsername("jugadorTom")
+		if(!user)
+			user = new Jugador(apellido: "Esca",nombre: "Tom",username:"jugadorTom",password:"jugador",enable:true, telefono:"12345678", mail:"t@e.com").save(flush:true)
+		SecUserSecRole.create(user,role,true)
+		
+		def user1 = SecUser.findByUsername("jugadorDie")
+		if(!user1)
+			user1 = new Jugador(apellido: "Mig",nombre: "Die",username:"jugadorDie",password:"jugador",enable:true, telefono:"12345678", mail:"d@m.com").save(flush:true)
+		SecUserSecRole.create(user1,role,true)
 	}
 	
-//	def crearEncargados() {
-//		Encargado enc = new Encargado(nombre: "die",
-//			apellido: "mig",
-//			nombreUsuario: "elencargado",
-//			mail: "d@m.com",
-//			clave: "asdasd",
-//			complejo: poli)
-//		DBUtils.validateAndSave(enc)
-//	}
+	def crearEncargados() {
+		def role = SecRole.findByAuthority("ENCARGADO_ROLE")
+		
+		if(!role)
+			role = new SecRole(authority:"ENCARGADO_ROLE").save(flush:true)
+		
+		def user = SecUser.findByUsername("encargadoTerraza")
+		if(!user)
+			user = new Encargado(apellido: "Cuevas",nombre: "Pipino",username:"encargadoTerraza",password:"encargado",enable:true,complejo:terraza).save(flush:true)
+		SecUserSecRole.create(user,role,true)
+		
+		def user1 = SecUser.findByUsername("encargadoPoli")
+		if(!user1)
+			user1 = new Encargado(apellido: "Ricardo",nombre: "Rojas",username:"encargadoPoli",password:"encargado",enable:true,complejo:poli).save(flush:true)
+		SecUserSecRole.create(user1,role,true)
+	}
+	
+	def crearAdministrador() {
+		def role = SecRole.findByAuthority("ADMIN_ROLE")
+		
+		if(!role)
+			role = new SecRole(authority:"ADMIN_ROLE").save(flush:true)
+		
+		def user = SecUser.findByUsername("admin")
+		if(!user)
+			user = new SistemaRyJ(apellido: "Cuevas",nombre: "Pipino",username:"admin",password:"encargado",enable:true,complejo:terraza).save(flush:true)
+		SecUserSecRole.create(user,role,true)
+	}
 	
 	def asociarCanchasAComplejos() {
 		poli.agregarCancha([p1,p2,p3,p4,p5,p6,p7])
@@ -236,4 +253,7 @@ class BootStrap {
 		DBUtils.validateAndSave([poli,terraza,muni])
 	}
 
+	Boolean primeraVez() {
+		Complejo.list()?.size() == 0
+	}
 }

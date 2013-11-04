@@ -8,7 +8,7 @@ import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Encargado
 
 class ComplejoController {
-	def springSecurityService
+	def authenticationService
 	ComplejoService complejoService
 	
     def index() {
@@ -22,7 +22,7 @@ class ComplejoController {
 			// TODO autorizados admins y encargados
 			// TODO recuperar el complejo del encargado
 	//	Encargado encargado = Encargado.list().get(0)
-		Encargado encargado = Encargado.get(springSecurityService.getPrincipal().id.toLong())
+		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 		if(encargado) {
 			def imagenes = []
 			if(encargado.complejo.imagenes) {
@@ -42,7 +42,7 @@ class ComplejoController {
 	def actualizarInformacionComplejo = {
 			// TODO autorizados admins y encargados
 			// TODO recuperar el encargado logueado
-		Encargado encargado = Encargado.list().get(0)
+		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 		Complejo complejo = encargado.complejo
 		try {
 			complejoService.actualizarDatosComplejo(complejo, params) 
@@ -125,7 +125,7 @@ class ComplejoController {
 		
 			// TODO autorizados admins y encargados
 			// TODO recuperar el encargado logueado
-		Encargado encargado = Encargado.list().get(0)
+		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 		Complejo complejo = encargado.complejo
 		try {
 			complejoService.crearImagenParaComplejo(complejo, params.imagen)
@@ -151,7 +151,7 @@ class ComplejoController {
 	def deleteImagen() {
 		// TODO autorizados admins y encargados
 		// TODO recuperar el encargado logueado
-		Encargado encargado = Encargado.list().get(0)
+		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 		Complejo complejo = encargado.complejo
 		def imagenes = []
 		
@@ -175,7 +175,7 @@ class ComplejoController {
 	def deleteAllImagenes = {
 		// TODO autorizados admins y encargados
 		// TODO recuperar el encargado logueado
-		Encargado encargado = Encargado.list().get(0)
+		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 		Complejo complejo = encargado.complejo
 		def imagenes = []
 		

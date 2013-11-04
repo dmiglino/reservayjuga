@@ -1,14 +1,14 @@
 package ar.com.reservayjuga.usuario
 
 import ar.com.reservayjuga.reserva.Reserva
+import ar.com.seguridad.SecUser;
 
-class Jugador {
+class Jugador extends SecUser {
 	
 	String nombre
 	String apellido
 	String telefono
 	String mail
-	String clave
 	String sexo
 	Date fechaNacimiento 
 	
@@ -19,12 +19,11 @@ class Jugador {
 		apellido blank: false
 		telefono blank: false
 		mail email:true, blank: false
-		clave size: 6..8, blank: false
 		sexo blank: true
 		fechaNacimiento nullable: true
     }
 	
-	static mapping = { table "JUGADOR" }
+//	static mapping = { table "JUGADOR" }
 	
 	@Override
 	String toString() {

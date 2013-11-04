@@ -13,4 +13,9 @@ abstract class ReservaState {
 	Boolean isConcretada() {
 		false
 	}
+	
+	Boolean isCancelada() {
+		false
+	}
+	
 }

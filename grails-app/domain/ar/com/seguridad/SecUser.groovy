@@ -1,6 +1,6 @@
 package ar.com.seguridad
 
-class SecUser {
+abstract class SecUser {
 
 	transient springSecurityService
 
@@ -19,6 +19,7 @@ class SecUser {
 	}
 
 	static mapping = {
+		table "USUARIO"
 		password column: '`password`'
 	}
 
