@@ -8,7 +8,7 @@ import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Encargado
 
 class ComplejoController {
-
+	def springSecurityService
 	ComplejoService complejoService
 	
     def index() {
@@ -21,7 +21,8 @@ class ComplejoController {
 	def administrarComplejo = {
 			// TODO autorizados admins y encargados
 			// TODO recuperar el complejo del encargado
-		Encargado encargado = Encargado.list().get(0)
+	//	Encargado encargado = Encargado.list().get(0)
+		Encargado encargado = Encargado.get(springSecurityService.getPrincipal().id.toLong())
 		if(encargado) {
 			def imagenes = []
 			if(encargado.complejo.imagenes) {

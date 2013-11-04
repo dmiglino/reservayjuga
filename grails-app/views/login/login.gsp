@@ -68,19 +68,23 @@
 											</h4>
 
 											<div class="space-6"></div>
-
-											<form>
+											
+											<g:if test='${flash.message}'>
+												<div class='login_message'>${flash.message}</div>
+											</g:if>
+											
+											<form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="Username" />
+															<input type='text' class='form-control' name='j_username' id='username'/>
 															<i class="icon-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="Password" />
+															<input type='password' class='form-control' name='j_password' id='password'/>
 															<i class="icon-lock"></i>
 														</span>
 													</label>
@@ -89,14 +93,15 @@
 
 													<div class="clearfix">
 														<label class="inline">
-															<input type="checkbox" class="ace" />
-															<span class="lbl"> <g:message code="login.recordar.label" default="Recordarme" /></span>
+															<input type='checkbox' class='ace' name='${rememberMeParameter}' id='remember_me' <g:if test='${hasCookie}'>checked='checked'</g:if>/>
+															<span class="lbl"> <g:message code="springSecurity.login.remember.me.label"/></span>
 														</label>
-
-														<button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+														
+														<input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'>
 															<i class="icon-key"></i>
 															<g:message code="login.login.label" default="Ingresar" />
-														</button>
+														</input>
+
 													</div>
 
 													<div class="space-4"></div>

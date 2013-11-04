@@ -1,5 +1,7 @@
 package ar.com.reservayjuga.usuario
 
+import ar.com.seguridad.SecUser;
+
 abstract class Usuario {
 
 	String mail

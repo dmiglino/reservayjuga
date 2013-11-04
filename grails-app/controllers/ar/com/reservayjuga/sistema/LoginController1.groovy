@@ -1,6 +1,6 @@
 package ar.com.reservayjuga.sistema
 
-class LoginController {
+class LoginController1 {
 
     def index() { 
 		render(view: "login")

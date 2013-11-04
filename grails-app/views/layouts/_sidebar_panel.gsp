@@ -22,35 +22,35 @@
 		
 		<li>
 			<a href="/ReservaYJuga/complejo">
-				<i class="icon-dashboard"></i>
+				<i class="icon-list"></i>
 				<span class="menu-text"> <g:message code="sidebar.administrar.complejo.label" default="Administrar Complejo" /> </span>
 			</a>
 		</li>
 		
 		<li>
 			<a href="/ReservaYJuga/cancha">
-				<i class="icon-dashboard"></i>
+				<i class="icon-edit"></i>
 				<span class="menu-text"> <g:message code="sidebar.administrar.cancha.label" default="Administrar Canchas" /> </span>
 			</a>
 		</li>
 		
 		<li>
 			<a href="/ReservaYJuga/reserva">
-				<i class="icon-dashboard"></i>
+				<i class="icon-calendar"></i>
 				<span class="menu-text"> <g:message code="sidebar.administrar.reserva.label" default="Administrar Reservas" /> </span>
 			</a>
 		</li>
 		
 		<li>
 			<a href="/ReservaYJuga/reserva">
-				<i class="icon-dashboard"></i>
+				<i class="icon-file-alt"></i>
 				<span class="menu-text"> <g:message code="sidebar.reservar.label" default="Reservar Cancha" /> </span>
 			</a>
 		</li>
 		
 		<li>
 			<a href="index.html">
-				<i class="icon-dashboard"></i>
+				<i class="icon-tag"></i>
 				<span class="menu-text"> <g:message code="sidebar.estadisticas.label" default="Estadisticas" /> </span>
 			</a>
 		</li>

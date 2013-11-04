@@ -16,6 +16,9 @@ import ar.com.reservayjuga.ubicacion.Provincia
 import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Encargado
 import ar.com.reservayjuga.usuario.Jugador
+import ar.com.seguridad.SecRole;
+import ar.com.seguridad.SecUser;
+import ar.com.seguridad.SecUserSecRole;
 
 class BootStrap {
 
@@ -34,6 +37,7 @@ class BootStrap {
 	Barrio pueyrre, saavedra, florida, olivos, morumbibar
 	
 	def init = { servletContext ->
+		
 		switch (Environment.current) {
 			case Environment.DEVELOPMENT:
 				crearPrecio()
@@ -45,13 +49,28 @@ class BootStrap {
 				crearCancha()
 				crearExtras()
 				crearJugadores()
-				crearEncargados()
+				//crearEncargados()
 				asociarCanchasAComplejos()
 				break;
 			case Environment.PRODUCTION:
 				println "No special configuration required"
-				break;
+				break;	
 		}
+		
+		def role = SecRole.findByAuthority("ENCARGADO_ROLE")
+
+		if(!role)
+			role = new SecRole(authority:"ENCARGADO_ROLE").save(flush:true)
+
+		def user = SecUser.findByUsername("encargadoTerraza")
+		if(!user)
+			user = new Encargado(apellido: "Cuevas",nombre: "Pipino",username:"encargadoTerraza",password:"encargado",enable:true,complejo:terraza).save(flush:true)
+		SecUserSecRole.create(user,role,true)
+		
+		def user1 = SecUser.findByUsername("encargadoPoli")
+		if(!user1)
+			user1 = new Encargado(apellido: "Ricardo",nombre: "Rojas",username:"encargadoPoli",password:"encargado",enable:true,complejo:poli).save(flush:true)
+		SecUserSecRole.create(user1,role,true)
 	}
 
 	def destroy = {
@@ -200,15 +219,15 @@ class BootStrap {
 		DBUtils.validateAndSave(jug)
 	}
 	
-	def crearEncargados() {
-		Encargado enc = new Encargado(nombre: "die",
-			apellido: "mig",
-			nombreUsuario: "elencargado",
-			mail: "d@m.com",
-			clave: "asdasd",
-			complejo: poli)
-		DBUtils.validateAndSave(enc)
-	}
+//	def crearEncargados() {
+//		Encargado enc = new Encargado(nombre: "die",
+//			apellido: "mig",
+//			nombreUsuario: "elencargado",
+//			mail: "d@m.com",
+//			clave: "asdasd",
+//			complejo: poli)
+//		DBUtils.validateAndSave(enc)
+//	}
 	
 	def asociarCanchasAComplejos() {
 		poli.agregarCancha([p1,p2,p3,p4,p5,p6,p7])

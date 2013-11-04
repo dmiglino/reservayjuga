@@ -7,7 +7,7 @@ import ar.com.reservayjuga.exception.ReservaYJugaException
 import ar.com.reservayjuga.usuario.Encargado
 
 class CanchaController {
-	
+	def springSecurityService
 	CanchaService canchaService
 	
 	def index() {
@@ -17,7 +17,8 @@ class CanchaController {
 	def administrarCancha = {
 		// TODO autorizados admins y encargados
 		// TODO recuperar el complejo del encargado
-		Encargado encargado = Encargado.list().get(0)
+		//Encargado encargado = Encargado.list().get(0)
+		Encargado encargado = Encargado.get(springSecurityService.getPrincipal().id.toLong())
 		Complejo complejo = encargado.complejo
 		def canchas = complejo.canchas as List
 		def deportesDisponibles = DeporteEnum.values()

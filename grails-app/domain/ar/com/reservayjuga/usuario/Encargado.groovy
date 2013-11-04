@@ -1,8 +1,9 @@
 package ar.com.reservayjuga.usuario
 
 import ar.com.reservayjuga.complejo.Complejo
+import ar.com.seguridad.SecUser;
 
-class Encargado extends Usuario {
+class Encargado extends SecUser {
 
 	String nombre
 	String apellido
@@ -12,7 +13,7 @@ class Encargado extends Usuario {
     static constraints = {
 		nombre blank: false
 		apellido blank: false
-		complejo nullable: false
+		complejo nullable: true
     }
 	
 	@Override

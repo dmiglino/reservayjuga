@@ -26,7 +26,7 @@
 						class="dropdown-toggle"> 
 						<span class="user-info"> 
 							<small><g:message code="header.bienvenido.label" default="Bienvenido," /></small>
-								${tipoUsuario}
+								<sec:username/>
 						</span> <i class="icon-caret-down"></i>
 					</a>
 	
@@ -36,9 +36,10 @@
 						</a></li>
 	
 						<li class="divider"></li>
-	
-						<li><a href="/ReservaYJuga/login"> <i class="icon-off"></i> <g:message code="header.logout.label" default="Logout" />
-						</a></li>
+						<sec:ifLoggedIn>
+						<li><g:link controller="logout" actions="index"> <i class="icon-off"></i> <g:message code="header.logout.label" default="Logout" /></g:link>
+						</li>
+						</sec:ifLoggedIn>
 					</ul>
 				</li>
 				
