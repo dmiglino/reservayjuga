@@ -18,22 +18,26 @@ class CanchaController {
 		// TODO autorizados admins y encargados
 		// TODO recuperar el complejo del encargado
 		//Encargado encargado = Encargado.list().get(0)
+		def canchas
+		def canchasTotal
+		def deportesDisponibles
+		def superficiesDisponibles
 		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
-		Complejo complejo = encargado.complejo
-		def canchas = complejo.canchas as List
-		def deportesDisponibles = DeporteEnum.values()
-		def superficiesDisponibles = SuperficieEnum.values()
-		
-		def sortProperty = params.sort ? params.sort : "nombre"
-		canchas.sort { i1, i2 ->
-			if(params.order == "desc") {
-				i2."${sortProperty}" <=> i1."${sortProperty}"
+		if(encargado) {
+			Complejo complejo = encargado.complejo
+			if(complejo) {
+				canchas = canchaService.getCanchasDelComplejo(complejo, params)
+				canchasTotal = canchaService.countTotal(complejo)
+				
+				deportesDisponibles = DeporteEnum.values()
+				superficiesDisponibles = SuperficieEnum.values()
 			} else {
-				i1."${sortProperty}" <=> i2."${sortProperty}"
+				println "Complejo no encontrado.."
 			}
+		} else {
+			println "Encargado no encontrado.."
 		}
-
-		render(view: "administrar-cancha", model: [canchas:canchas, canchasTotal:canchas.size(), deportesDisponibles:deportesDisponibles, superficiesDisponibles:superficiesDisponibles])
+		render(view: "administrar-cancha", model: [canchas:canchas, canchasTotal:canchasTotal, deportesDisponibles:deportesDisponibles, superficiesDisponibles:superficiesDisponibles])
     }
 	
 	def agregarCancha = {

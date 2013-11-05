@@ -31,6 +31,8 @@
 		<!-- basic styles -->
 		<link rel="stylesheet" href="/ReservaYJuga/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/ReservaYJuga/assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="/ReservaYJuga/assets/css/pagination.css" />
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		
 		<!--[if IE 7]>
 				  <link rel="stylesheet" href="/ReservaYJuga/assets/css/font-awesome-ie7.min.css" />

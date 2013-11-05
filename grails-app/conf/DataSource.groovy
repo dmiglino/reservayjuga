@@ -15,7 +15,7 @@ environments {
         dataSource {
 //            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
 //            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
-			dbCreate = "create"
+			dbCreate = "update"
 			driverClassName = "com.mysql.jdbc.Driver"
 			username = "root"
 //			password = "root"

@@ -1,5 +1,8 @@
 package ar.com.reservayjuga.complejo
 
+import org.hibernate.criterion.Order
+import org.hibernate.criterion.Restrictions
+
 import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.common.GenericService
 import ar.com.reservayjuga.exception.EntityNotFoundException
@@ -61,4 +64,33 @@ class CanchaService extends GenericService<Cancha> {
 		complejoService.eliminarCancha(complejo, canchaInstance)
 	}
 
+	/**
+	 * @param complejo
+	 * @param params
+	 * @return canchas del complejo listas para paginacion
+	 */
+	def getCanchasDelComplejo(Complejo complejo, def params) {
+		def max = Math.min(params.max ? params.int('max') : 10, 100)
+		def offset = Math.min(params.offset ? params.int('offset') : 0, 100)
+		def sortProperty = params.sort ? params.sort : "nombre"
+		
+		def criter = Cancha.createCriteria()
+			.add(Restrictions.eq("complejo", complejo))
+			.addOrder(Order.asc(sortProperty))
+			.setFirstResult(offset)
+			.setMaxResults(max)
+		
+		criter.list()
+	}
+	
+	/**
+	 * @param complejo
+	 * @return cantidad total de canchas del complejo
+	 */
+	def countTotal(Complejo complejo) {
+		Cancha.createCriteria().count {
+			eq('complejo', complejo)
+		}
+	}
+	
 }

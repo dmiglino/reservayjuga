@@ -66,7 +66,7 @@
 			<g:actionSubmit action="administrarCancha" class="btn btn-info"
 				value="Volver" />
 			<g:actionSubmit action="crearCancha" class="btn btn-info"
-				value="Crear Cancha" onclick="test();" />
+				value="Crear Cancha" onclick="setCantJugValue();" />
 			&nbsp; &nbsp; &nbsp;
 		</div>
 	</div>
@@ -91,7 +91,6 @@
                      
 	function setCantJugValue() {
 		var spinnerValue = document.getElementById('spinner1').value;
-		alert(spinnerValue);
 		document.getElementById('cantJugValue').value = spinnerValue;
 	}
                       

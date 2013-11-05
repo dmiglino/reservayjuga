@@ -42,6 +42,6 @@
 	</div><!-- /.table-responsive -->
     </div>
 
-<%--    <div class="pagination">--%>
-<%--	    <g:paginate total="${canchasTotal}" />--%>
-<%--	</div>--%>
+    <div class="pagination">
+	    <g:paginate controller="cancha" action="administrarCancha" total="${canchasTotal}" />
+	</div>
