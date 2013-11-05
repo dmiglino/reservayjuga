@@ -1,7 +1,7 @@
 package ar.com.reservayjuga.usuario
 
 import ar.com.reservayjuga.complejo.Complejo
-import ar.com.seguridad.SecUser;
+import ar.com.reservayjuga.seguridad.SecUser;
 
 class Encargado extends SecUser {
 

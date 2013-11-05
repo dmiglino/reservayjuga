@@ -1,7 +1,7 @@
 package ar.com.reservayjuga.usuario
 
 import ar.com.reservayjuga.reserva.Reserva
-import ar.com.seguridad.SecUser;
+import ar.com.reservayjuga.seguridad.SecUser;
 
 class Jugador extends SecUser {
 	

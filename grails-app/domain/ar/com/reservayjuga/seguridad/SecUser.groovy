@@ -1,4 +1,4 @@
-package ar.com.seguridad
+package ar.com.reservayjuga.seguridad
 
 abstract class SecUser {
 
