@@ -42,7 +42,6 @@ class LocalidadServiceIntegrationTests extends GroovyTestCase {
 		assertTrue barrios.isEmpty()
 		
 		barrios = localidadService.getBarrios(null)
-		println barrios
 		assertNotNull barrios
 		assertTrue barrios.isEmpty()
 	}

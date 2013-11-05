@@ -39,7 +39,6 @@ class ImagenServiceIntegrationTests extends GroovyTestCase {
 		imagenService.crearImagenParaComplejo(complejo, [descripcion:"descripcionFoto",nombre:"nombreFoto",extension:"jpg",portada:true])
 		
 		def imagenes = complejo.imagenes as List
-		println imagenes
 		assertNotNull imagenes
 		assertEquals 1, imagenes.size()
 		

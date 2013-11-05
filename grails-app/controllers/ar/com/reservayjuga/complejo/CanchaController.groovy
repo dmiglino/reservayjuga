@@ -50,7 +50,6 @@ class CanchaController {
 		try {
 			Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 			Complejo complejo = encargado.complejo
-			println "params: " +params
 			canchaService.crearCanchaParaComplejo(complejo, params.cancha)
 			redirect(action: administrarCancha)
 		} catch(ReservaYJugaException e) {
