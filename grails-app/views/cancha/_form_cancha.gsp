@@ -49,10 +49,8 @@
 	<label class="col-sm-2 control-label" for="form-field-select-3"><g:message code="common.cantidad.jugadores.label" default="Cantidad de Jugadores" /></label>
 	<div>
 		<%--		<g:textField name="cancha.cantidadJugadores" value="${cancha?.cantidadJugadores}" class="input-mini" />--%>
-		<g:textField name="cancha.cantidad" value="" class="input-mini"
-			id="spinner1" />
-		<g:hiddenField name="cancha.cantidadJugadores" id="cantJugValue"
-			value="" />
+		<g:textField name="cancha.cantidad" value="" class="input-mini" id="spinner1" />
+		<g:hiddenField name="cancha.cantidadJugadores" id="cantJugValue" value="" />
 	</div>
 </div>
 
@@ -93,6 +91,7 @@
                      
 	function setCantJugValue() {
 		var spinnerValue = document.getElementById('spinner1').value;
+		alert(spinnerValue);
 		document.getElementById('cantJugValue').value = spinnerValue;
 	}
                       

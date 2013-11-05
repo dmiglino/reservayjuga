@@ -208,13 +208,15 @@ class BootStrap {
 		
 		def user = SecUser.findByUsername("jugadorTom")
 		if(!user)
-			user = new Jugador(apellido: "Esca",nombre: "Tom",username:"jugadorTom",password:"jugador",enable:true, telefono:"12345678", mail:"t@e.com").save(flush:true)
+			user = new Jugador(apellido: "Esca",nombre: "Tom",username:"jugadorTom",password:"jugador",enable:true, telefono:"12345678", mail:"t@e.com", sexo:"F")
+		DBUtils.validateAndSave(user)
 		SecUserSecRole.create(user,role,true)
 		
-		def user1 = SecUser.findByUsername("jugadorDie")
-		if(!user1)
-			user1 = new Jugador(apellido: "Mig",nombre: "Die",username:"jugadorDie",password:"jugador",enable:true, telefono:"12345678", mail:"d@m.com").save(flush:true)
-		SecUserSecRole.create(user1,role,true)
+		user = SecUser.findByUsername("jugadorDie")
+		if(!user)
+			user = new Jugador(apellido: "Mig",nombre: "Die",username:"jugadorDie",password:"jugador",enable:true, telefono:"12345678", mail:"d@m.com", sexo:"M")
+		DBUtils.validateAndSave(user)
+		SecUserSecRole.create(user,role,true)
 	}
 	
 	def crearEncargados() {
@@ -225,13 +227,15 @@ class BootStrap {
 		
 		def user = SecUser.findByUsername("encargadoTerraza")
 		if(!user)
-			user = new Encargado(apellido: "Cuevas",nombre: "Pipino",username:"encargadoTerraza",password:"encargado",enable:true,complejo:terraza).save(flush:true)
+			user = new Encargado(apellido: "Cuevas",nombre: "Pipino",mail: "terraza@ryj.com",username:"encargadoTerraza",password:"encargado",enable:true,complejo:terraza)
+		DBUtils.validateAndSave(user)
 		SecUserSecRole.create(user,role,true)
 		
-		def user1 = SecUser.findByUsername("encargadoPoli")
-		if(!user1)
-			user1 = new Encargado(apellido: "Ricardo",nombre: "Rojas",username:"encargadoPoli",password:"encargado",enable:true,complejo:poli).save(flush:true)
-		SecUserSecRole.create(user1,role,true)
+		user = SecUser.findByUsername("encargadoPoli")
+		if(!user)
+			user = new Encargado(apellido: "Ricardo",nombre: "Rojas",mail: "poli@ryj.com",username:"encargadoPoli",password:"encargado",enable:true,complejo:poli)
+		DBUtils.validateAndSave(user)
+		SecUserSecRole.create(user,role,true)
 	}
 	
 	def crearAdministrador() {
@@ -242,7 +246,8 @@ class BootStrap {
 		
 		def user = SecUser.findByUsername("admin")
 		if(!user)
-			user = new SistemaRyJ(apellido: "Capo",nombre: "Admin",username:"admin",password:"admin",enable:true).save(flush:true)
+			user = new SistemaRyJ(mail: "admin@ryj.com",username:"admin",password:"admin10",enable:true)
+		DBUtils.validateAndSave(user)
 		SecUserSecRole.create(user,role,true)
 	}
 	

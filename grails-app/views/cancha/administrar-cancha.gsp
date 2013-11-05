@@ -31,7 +31,7 @@
 						<div class="page-header">
 							<h1>
 							    <small>
-									Listado de canchas
+									<g:message code="cancha.listado.label" default="Listado de canchas" />
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -43,9 +43,7 @@
 								<g:form action="agregarCancha" class="form-horizontal" role="form" >
 							
 						            <div class="row" id="tabla_canchas" >
-
 						            	<g:render template="tabla_canchas" model="['cancha':cancha]" />
-						            									
 									</div>
                                     
 									<div class="clearfix form-actions">
@@ -55,7 +53,7 @@
 										</div>
 									</div>
 								</g:form>
-								</div>
+								
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
