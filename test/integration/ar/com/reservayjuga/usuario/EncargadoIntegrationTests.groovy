@@ -25,13 +25,25 @@ class EncargadoIntegrationTests extends GroovyTestCase {
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi, horarios: hora)
 		DBUtils.validateAndSave(complejo)
 				
-		Encargado encargado1 = new Encargado(nombre:"Diego", apellido:"Miglino", nombreUsuario:"diegol", mail:"d@m.com", clave:"1234567", complejo:complejo)
-		Encargado encargado2 = new Encargado(nombre:"Tomas", apellido:"Escamez", nombreUsuario:"tomase", mail:"d@m.com", clave:"7654321", complejo:complejo)
+		Encargado encargado1 = new Encargado(nombre:"Diego", apellido:"Miglino", username:"diegol", mail:"d@m.com", password:"1234567", complejo:complejo)
+		Encargado encargado2 = new Encargado(nombre:"Tomas", apellido:"Escamez", username:"tomase", mail:"d@m.com", password:"7654321", complejo:complejo)
 		
 		Encargado encargadoPersistido = DBUtils.validateAndSave(encargado1)
 		DBUtils.validateAndSave([encargado2])
 		assertEquals encargado1, encargadoPersistido
 		assertEquals 2, Encargado.findAll().size()
+	}
+	
+	void testUniqueConstraint() {
+		Encargado encargado = new Encargado(nombre:"Diego", apellido:"Miglino", username:"diegol", mail:"d@m.com", password:"1234567")
+		DBUtils.validateAndSave(encargado)
+		
+		Encargado encargado1 = new Encargado(nombre:"Diego", apellido:"Miglino", username:"diegol", mail:"d@m.com", password:"1234567")
+		assertFalse encargado1.validate()
+		assertEquals "unique", encargado1.errors["username"].code
+		shouldFail(InvalidEntityException) {
+			DBUtils.validateAndSave(encargado1)
+		}
 	}
 	
 	void testFailSave() {

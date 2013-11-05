@@ -15,7 +15,10 @@ abstract class SecUser {
 
 	static constraints = {
 		username blank: false, unique: true
-		password blank: false
+		password validator: {
+			if (!it) return ['nullable']
+			else if (it.size() < 6) return ['size.toosmall']
+		}
 	}
 
 	static mapping = {

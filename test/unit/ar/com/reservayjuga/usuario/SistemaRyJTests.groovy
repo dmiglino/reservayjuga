@@ -17,19 +17,19 @@ class SistemaRyJTests {
 		assertTrue sistemaRyJ.hasErrors()
 		assertNull sistemaRyJ.save()
 		 
-		assertEquals "nullable", sistemaRyJ.errors["nombreUsuario"].code
-		assertEquals "nullable", sistemaRyJ.errors["clave"].code
+		assertEquals "nullable", sistemaRyJ.errors["username"].code
+		assertEquals "nullable", sistemaRyJ.errors["password"].code
     }
 	
 	void testAtributes() {
-		SistemaRyJ sistemaRyJ = new SistemaRyJ(nombreUsuario: "Simpa", clave:"campeon", mail:"sistema@ryj.com")
+		SistemaRyJ sistemaRyJ = new SistemaRyJ(username: "Simpa", password:"campeon", mail:"sistema@ryj.com")
 		assertTrue sistemaRyJ.validate()
-		assertEquals "Simpa", sistemaRyJ.nombreUsuario
-		assertEquals "campeon", sistemaRyJ.clave
+		assertEquals "Simpa", sistemaRyJ.username
+		assertEquals "campeon", sistemaRyJ.password
 	}
 	
 	void testToString() {
-		SistemaRyJ sistemaRyJ = new SistemaRyJ(nombreUsuario: "Simpa", clave:"campeon", mail:"sistema@ryj.com")
+		SistemaRyJ sistemaRyJ = new SistemaRyJ(username: "Simpa", password:"campeon", mail:"sistema@ryj.com")
 		assertEquals "Simpa", sistemaRyJ.toString()
 	}
 

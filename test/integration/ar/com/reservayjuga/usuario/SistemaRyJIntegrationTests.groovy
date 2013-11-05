@@ -11,13 +11,25 @@ import ar.com.reservayjuga.exception.InvalidEntityException
 class SistemaRyJIntegrationTests extends GroovyTestCase {
 
 	void testSave() {
-		SistemaRyJ sistemaRyJ1 = new SistemaRyJ(nombreUsuario: "Simpa", clave:"campeon", mail:"sistema@ryj.com")
-		SistemaRyJ sistemaRyJ2 = new SistemaRyJ(nombreUsuario: "Asd", clave:"fghfgh", mail:"sistema@ryj.com")
+		SistemaRyJ sistemaRyJ1 = new SistemaRyJ(username: "Simpa", password:"campeon", mail:"sistema@ryj.com")
+		SistemaRyJ sistemaRyJ2 = new SistemaRyJ(username: "Asd", password:"fghfgh", mail:"sistema@ryj.com")
 		
 		SistemaRyJ sistemaRyJPersistido = DBUtils.validateAndSave(sistemaRyJ1)
 		DBUtils.validateAndSave([sistemaRyJ2])
 		assertEquals sistemaRyJ1, sistemaRyJPersistido
 		assertEquals 2, SistemaRyJ.findAll().size()
+	}
+	
+	void testUniqueConstraint() {
+		SistemaRyJ sistemaRyJ1 = new SistemaRyJ(username: "Simpa", password:"campeon", mail:"sistema@ryj.com")
+		DBUtils.validateAndSave(sistemaRyJ1)
+		
+		SistemaRyJ sistemaRyJ2 = new SistemaRyJ(username: "Simpa", password:"campeon", mail:"sistema@ryj.com")
+		assertFalse sistemaRyJ2.validate()
+		assertEquals "unique", sistemaRyJ2.errors["username"].code
+		shouldFail(InvalidEntityException) {
+			DBUtils.validateAndSave(sistemaRyJ2)
+		}
 	}
 	
 	void testFailSave() {

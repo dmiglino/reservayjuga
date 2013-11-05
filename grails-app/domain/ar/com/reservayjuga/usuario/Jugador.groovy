@@ -3,6 +3,9 @@ package ar.com.reservayjuga.usuario
 import ar.com.reservayjuga.reserva.Reserva
 import ar.com.reservayjuga.seguridad.SecUser;
 
+/**
+ * Representa al jugador que utilizara el sistema para reservar canchas.
+ */
 class Jugador extends SecUser {
 	
 	String nombre
@@ -22,8 +25,6 @@ class Jugador extends SecUser {
 		sexo blank: true
 		fechaNacimiento nullable: true
     }
-	
-//	static mapping = { table "JUGADOR" }
 	
 	@Override
 	String toString() {

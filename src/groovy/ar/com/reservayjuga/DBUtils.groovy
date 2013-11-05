@@ -13,7 +13,7 @@ class DBUtils {
 	 * Valida la entidad antes de persistirla.
 	 * @param flushValue
 	 */
-	static def validateAndSave(def entity, boolean flushValue) {
+	static def validateAndSave(def entity, boolean flushValue = true) {
 		if(entity.validate())
 			entity.save(flush:flushValue)
 		else
@@ -22,15 +22,15 @@ class DBUtils {
 		return entity
 	}
 	
-	static def validateAndSave(def entity) {
-		validateAndSave(entity, true)
-	}
+//	static def validateAndSave(def entity) {
+//		validateAndSave(entity, true)
+//	}
 	
-	static def validateAndSave(List entities) {
-		validateAndSave(entities, true)
-	}
+//	static def validateAndSave(List entities) {
+//		validateAndSave(entities, true)
+//	}
 	
-	static def validateAndSave(List entities, boolean flushValue) {
+	static def validateAndSave(List entities, boolean flushValue = true) {
 		entities.each {
 			validateAndSave(it, flushValue)
 		}

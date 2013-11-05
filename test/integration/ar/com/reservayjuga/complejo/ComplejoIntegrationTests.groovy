@@ -87,7 +87,7 @@ class ComplejoIntegrationTests extends GroovyTestCase {
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Cancha cancha = new Cancha(nombre:"Cancha 1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[]).save()
 		Complejo complejo = new Complejo(nombre: "Poli Club", webSite: "", telefono1:"4574-0077", mail:"poli@mail.com", informacionExtra: "Info poli", ubicacion: ubi, servicios: servi, horarios: [], canchas: []).save()
-		Jugador jugador = new Jugador(nombre: "Die", apellido: "Migli", telefono: "4534556", mail: "die@mail.com", clave: "1234567", sexo: "M", fechaNacimiento: new Date()).save()
+		Jugador jugador = new Jugador(nombre: "Die", apellido: "Migli", username:"dmiglino", telefono: "4534556", mail: "die@mail.com", password: "1234567", sexo: "M", fechaNacimiento: new Date()).save()
 		
 		// creacion de reserva
 		Reserva res = new Reserva(complejo:complejo, jugador: jugador, cancha: cancha, dia: new Date(), horaInicio: "11:00", horaFin: "12:00", senia: 99, precioTotal: 450, tipoReserva: "ONLINE")

@@ -45,7 +45,7 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
 		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[precio]).save()
 		assertEquals "Poli-1", cancha.nombre
-		canchaService.editarCancha([idCanchaEdit: cancha.id, nombreCanchaEdit:"Poli-TENIS", deporteCanchaEdit:DeporteEnum.TENIS, superficieCanchaEdit: SuperficieEnum.POLVO_DE_LADRILLO, cantidadJugadoresCanchaEdit: 2, cubiertaCanchaEdit: false])
+		canchaService.editarCancha([idCanchaEdit: cancha.id, nombreCanchaEdit:"Poli-TENIS", deporteCanchaEdit:DeporteEnum.TENIS, superficie: SuperficieEnum.POLVO_DE_LADRILLO, cantidadJugadoresCanchaEdit: 2, cubiertaCanchaEdit: false])
 		assertEquals "Poli-TENIS", cancha.nombre
 		assertEquals DeporteEnum.TENIS, cancha.deporte
 		assertEquals SuperficieEnum.POLVO_DE_LADRILLO, cancha.superficie

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse
 
 import org.springframework.security.access.annotation.Secured
 
+
 @Secured('permitAll')
 class LogoutController {
 
