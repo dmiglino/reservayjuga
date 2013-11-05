@@ -1,5 +1,8 @@
 package ar.com.reservayjuga.complejo
 
+import org.hibernate.criterion.Order
+import org.hibernate.criterion.Restrictions
+
 import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.common.GenericService
 import ar.com.reservayjuga.exception.EntityNotFoundException
@@ -34,7 +37,7 @@ class ImagenService extends GenericService<Imagen> {
 	 * @param imagenData
 	 */
 	void crearImagenParaComplejo(Complejo complejo, def imagenData) {
-		Imagen imagen = new Imagen(nombre: imagenData.nombre, descripcion: imagenData.descripcion, extension: imagenData.extension, foto: imagenData.foto, portada: (imagenData.portada ? imagenData.portada : false))
+		Imagen imagen = new Imagen(nombre: imagenData.nombre, descripcion: imagenData.descripcion, extension: imagenData.extension, foto: imagenData.foto, portada: (imagenData.portada ? imagenData.portada : false), complejo:complejo)
 		DBUtils.validateAndSave(imagen) // TODO o se graba despues todo junto?
 		complejo.agregarImagen(imagen)
 	}
@@ -52,4 +55,32 @@ class ImagenService extends GenericService<Imagen> {
 //		imagenInstance.foto = params.fotoImagenEdit
 	}
 	
+	/**
+	 * @param complejo
+	 * @param params
+	 * @return imagenes del complejo listas para paginacion
+	 */
+	def getImagenesDelComplejo(Complejo complejo, def params) {
+		def max = Math.min(params.max ? params.int('max') : 5, 100)
+		def offset = Math.min(params.offset ? params.int('offset') : 0, 100)
+		def sortProperty = params.sort ? params.sort : "nombre"
+		
+		def criter = Imagen.createCriteria()
+			.add(Restrictions.eq("complejo", complejo))
+			.addOrder(Order.asc(sortProperty))
+			.setFirstResult(offset)
+			.setMaxResults(max)
+		
+		criter.list()
+	}
+	
+	/**
+	 * @param complejo
+	 * @return cantidad total de imagenes del complejo
+	 */
+	def countTotal(Complejo complejo) {
+		Imagen.createCriteria().count {
+			eq('complejo', complejo)
+		}
+	}
 }

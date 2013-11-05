@@ -126,4 +126,21 @@ class ComplejoService {
 	void eliminarTodasLasImagenesDelComplejo(Complejo complejo) {
 		complejo.imagenes?.clear()
 	}
+	
+	/**
+	 * @param complejo
+	 * @param params
+	 * @return imagenes del complejo listas para paginacion
+	 */
+	def getImagenesDelComplejo(Complejo complejo, def params) {
+		imagenService.getImagenesDelComplejo(complejo, params)
+	}
+	
+	/**
+	 * @param complejo
+	 * @return cantidad total de imagenes del complejo
+	 */
+	def countTotal(Complejo complejo) {
+		imagenService.countTotal(complejo)
+	}
 }

@@ -19,18 +19,16 @@ class ComplejoController {
 	 * Carga la pagina principal de administracion de complejo
 	 */
 	def administrarComplejo = {
-			// TODO autorizados admins y encargados
-			// TODO recuperar el complejo del encargado
-	//	Encargado encargado = Encargado.list().get(0)
 		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 		if(encargado) {
 			def imagenes = []
-			if(encargado.complejo.imagenes) {
-				imagenes = encargado.complejo.imagenes.sort { i1, i2 ->
-					i1.nombre <=> i2.nombre
-				}
+			def imagenesTotal = 0
+			Complejo complejo = encargado.complejo
+			if(complejo) {
+				imagenes = complejoService.getImagenesDelComplejo(complejo,params)
+				imagenesTotal = complejoService.countTotal(complejo)
 			}
-			render(view: "administrar-complejo", model: [complejo : encargado.complejo, imagenesList : imagenes])
+			render(view: "administrar-complejo", model: [complejo : encargado.complejo, imagenesList : imagenes, imagenesTotal: imagenesTotal])
 		} else {
 			render(view: "login")
 		}
@@ -123,61 +121,42 @@ class ComplejoController {
 //		println "req1: "+request.getFile("id_input_file_2")
 //		println "req2: "+request.getFile("id_input_file_3")
 		
-			// TODO autorizados admins y encargados
-			// TODO recuperar el encargado logueado
 		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 		Complejo complejo = encargado.complejo
+
 		try {
 			complejoService.crearImagenParaComplejo(complejo, params.imagen)
-			def imagenes = []
-			if(encargado.complejo.imagenes) {
-				imagenes = encargado.complejo.imagenes.sort { i1, i2 ->
-					i1.nombre <=> i2.nombre
-				}
-			}
 			flash.message = "Imagen <${complejo}> creada"
 		} catch (InvalidEntityException e) {
 			flash.message = "Error creando la imagen <${complejo}>"
 		} finally {
-			render(template:"tabla-imagenes", model:[imagenes : imagenes])
+			renderTablaImagenes(complejo,params)
 		}
 
 	}
-	
 	
 	/**
 	 * Elimina la imagen indicada del complejo y de la BD 
 	 */
 	def deleteImagen() {
-		// TODO autorizados admins y encargados
-		// TODO recuperar el encargado logueado
 		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 		Complejo complejo = encargado.complejo
-		def imagenes = []
 		
 		try {
 			complejoService.eliminarImagenDelComplejo(complejo, params.id)
-			if(encargado.complejo.imagenes) {
-				imagenes = encargado.complejo.imagenes.sort { i1, i2 ->
-					i1.nombre <=> i2.nombre
-				}
-			}
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		} catch (EntityNotFoundException e) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		}  catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		} finally {
-			render(template:"tabla-imagenes", model:[imagenes : imagenes])
+			renderTablaImagenes(complejo,params)
 		}
 	}
 	
 	def deleteAllImagenes = {
-		// TODO autorizados admins y encargados
-		// TODO recuperar el encargado logueado
 		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 		Complejo complejo = encargado.complejo
-		def imagenes = []
 		
 		try {
 			complejoService.eliminarTodasLasImagenesDelComplejo(complejo)
@@ -187,21 +166,19 @@ class ComplejoController {
 		}  catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		} finally {
-			render(template:"tabla-imagenes", model:[imagenes : imagenes])
+			renderTablaImagenes(complejo,params)
 		}
 	}
 	
-    def ordenarImagenes	= {
-		Encargado encargado = Encargado.list().get(0)
+	def ordenarImagenes	= {
+		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 		Complejo complejo = encargado.complejo
-		def listaOrdenada = []
-		if(params.order == "asc") {
-			listaOrdenada = complejo.imagenes.sort { i1, i2 -> i1."${params.sort}" <=> i2."${params.sort}" }
-		} else {
-			listaOrdenada = complejo.imagenes.sort { i1, i2 -> i2."${params.sort}" <=> i1."${params.sort}" }
-		}
-//		params.max = Math.min(max ?: 10, 100)
-        render(view: "administrar-complejo", model: [complejo: complejo, imagenes: listaOrdenada, imagenesSize: listaOrdenada.size()])
-    }
+		renderTablaImagenes(complejo,params)
+	}
 	
+	def renderTablaImagenes(complejo,params) {
+		def imagenes = complejoService.getImagenesDelComplejo(complejo,params)
+		def imagenesTotal = complejoService.countTotal(complejo)
+		render(template:"tabla-imagenes", model: [imagenes: imagenes, imagenesTotal: imagenesTotal])
+	}
 }

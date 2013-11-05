@@ -9,7 +9,7 @@ class Imagen {
 	Boolean portada
 	byte[] foto
 	
-	static belongsTo = Complejo
+	static belongsTo = [complejo:Complejo]
 	
     static constraints = {
 		nombre blank: false
