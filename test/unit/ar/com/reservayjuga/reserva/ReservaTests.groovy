@@ -72,17 +72,27 @@ class ReservaTests {
 		assertTrue reserva.isPendiente()
 		assertFalse reserva.isSeniada()
 		assertFalse reserva.isConcretada()
+		assertFalse reserva.isCancelada()
 		
 		reserva.seniar()
 		
 		assertFalse reserva.isPendiente()
 		assertTrue reserva.isSeniada()
 		assertFalse reserva.isConcretada()
+		assertFalse reserva.isCancelada()
 		
 		reserva.concretar()
 		
 		assertFalse reserva.isPendiente()
 		assertFalse reserva.isSeniada()
 		assertTrue reserva.isConcretada()
+		assertFalse reserva.isCancelada()
+		
+		reserva.cancelar()
+		
+		assertFalse reserva.isPendiente()
+		assertFalse reserva.isSeniada()
+		assertFalse reserva.isConcretada()
+		assertTrue reserva.isCancelada()
 	}
 }

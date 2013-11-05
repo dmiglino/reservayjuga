@@ -1,5 +1,6 @@
 package ar.com.reservayjuga.reserva;
 
+import ar.com.reservayjuga.states.ReservaCanceladaState
 import ar.com.reservayjuga.states.ReservaConcretadaState
 import ar.com.reservayjuga.states.ReservaPendienteState
 import ar.com.reservayjuga.states.ReservaSeniadaState
@@ -9,7 +10,8 @@ public enum ReservaEnum {
 	
 	PENDIENTE(new ReservaPendienteState()),
 	SENIADA(new ReservaSeniadaState()),
-	CONCRETADA(new ReservaConcretadaState())
+	CONCRETADA(new ReservaConcretadaState()),
+	CANCELADA(new ReservaCanceladaState())
 	
 	private ReservaState value
 	
@@ -27,5 +29,9 @@ public enum ReservaEnum {
 	
 	Boolean isConcretada() {
 		this.value.isConcretada()
+	}
+	
+	Boolean isCancelada() {
+		this.value.isCancelada()
 	}
 } 

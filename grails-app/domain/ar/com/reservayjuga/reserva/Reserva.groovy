@@ -51,11 +51,19 @@ class Reserva {
 		this.estado.value.isConcretada()
 	}
 	
+	Boolean isCancelada() {
+		this.estado.value.isCancelada()
+	}
+	
 	void seniar() {
 		this.estado = ReservaEnum.SENIADA
 	}
 	
 	void concretar() {
 		this.estado = ReservaEnum.CONCRETADA
+	}
+	
+	void cancelar() {
+		this.estado = ReservaEnum.CANCELADA
 	}
 }
