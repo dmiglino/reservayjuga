@@ -41,7 +41,7 @@ class BootStrap {
 		
 		switch (Environment.current) {
 			case Environment.DEVELOPMENT:
-				println "creando datos iniciales..."
+				println "Creando datos iniciales..."
 				if(primeraVez()) {
 					crearPrecio()
 					crearHorarios()

@@ -55,14 +55,23 @@ class Reserva {
 		this.estado.value.isCancelada()
 	}
 	
+	/**
+	 * Se seña la reserva y se pasa a estado señada
+	 */
 	void seniar() {
 		this.estado = ReservaEnum.SENIADA
 	}
 	
+	/**
+	 * Se paga la totalidad de la reserva y se pasa a estado concretada
+	 */
 	void concretar() {
 		this.estado = ReservaEnum.CONCRETADA
 	}
 	
+	/**
+	 * Se cancela la reserva y se pasa a estado cancelada
+	 */
 	void cancelar() {
 		this.estado = ReservaEnum.CANCELADA
 	}
