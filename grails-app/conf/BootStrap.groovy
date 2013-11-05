@@ -17,9 +17,9 @@ import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Encargado
 import ar.com.reservayjuga.usuario.Jugador
 import ar.com.reservayjuga.usuario.SistemaRyJ
-import ar.com.seguridad.SecRole
-import ar.com.seguridad.SecUser
-import ar.com.seguridad.SecUserSecRole
+import ar.com.reservayjuga.seguridad.SecRole
+import ar.com.reservayjuga.seguridad.SecUser
+import ar.com.reservayjuga.seguridad.SecUserSecRole
 
 class BootStrap {
 
@@ -242,7 +242,7 @@ class BootStrap {
 		
 		def user = SecUser.findByUsername("admin")
 		if(!user)
-			user = new SistemaRyJ(apellido: "Cuevas",nombre: "Pipino",username:"admin",password:"encargado",enable:true,complejo:terraza).save(flush:true)
+			user = new SistemaRyJ(apellido: "Capo",nombre: "Admin",username:"admin",password:"admin",enable:true).save(flush:true)
 		SecUserSecRole.create(user,role,true)
 	}
 	

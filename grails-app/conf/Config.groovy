@@ -94,25 +94,19 @@ log4j = {
 
 
 
-
-
-
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'ar.com.seguridad.SecUser'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'ar.com.seguridad.SecUserSecRole'
-grails.plugin.springsecurity.authority.className = 'ar.com.seguridad.SecRole'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'ar.com.reservayjuga.seguridad.SecUser'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'ar.com.reservayjuga.seguridad.SecUserSecRole'
+grails.plugin.springsecurity.authority.className = 'ar.com.reservayjuga.seguridad.SecRole'
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
- '/**':                              ['IS_AUTHENTICATED_FULLY'],
+ '/**':                            ['IS_AUTHENTICATED_FULLY'],
  '/index':                         ['IS_AUTHENTICATED_FULLY'],
  '/index.gsp':                     ['IS_AUTHENTICATED_FULLY'],
  '/**/js/**':                      ['permitAll'],
  '/**/css/**':                     ['permitAll'],
  '/**/images/**':                  ['permitAll'],
  '/**/favicon.ico':                ['permitAll'],
- '/**/assets/**':                ['permitAll']
+ '/**/assets/**':                  ['permitAll']
 ]
-
-
-
 
