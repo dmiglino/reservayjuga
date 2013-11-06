@@ -47,6 +47,7 @@ class CanchaService extends GenericService<Cancha> {
 	 */
 	void crearCanchaParaComplejo(Complejo complejo, def canchaData) {
 		Cancha cancha = crearCancha(canchaData)
+		cancha.complejo = complejo
 		DBUtils.validateAndSave(cancha) // TODO o se graba despues todo junto?
 		complejoService.agregarCancha(complejo, cancha)
 	}

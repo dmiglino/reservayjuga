@@ -15,14 +15,14 @@ class ImagenTests {
 		assertEquals "nullable", imagen.errors["nombre"].code
 		assertEquals "nullable", imagen.errors["portada"].code
 		assertEquals "nullable", imagen.errors["descripcion"].code
-//		assertEquals "nullable", imagen.errors["fecha"]
+		assertEquals "nullable", imagen.errors["complejo"].code
 		
 		assertNull imagen.errors["extension"]
 		assertNull imagen.errors["foto"]
     }
 	
 	void testAtributes() {
-		Imagen imagen = new Imagen(descripcion:"descripcionFoto",nombre:"nombreFoto",extension:"jpg",portada:true,fecha:new Date())
+		Imagen imagen = new Imagen(descripcion:"descripcionFoto",nombre:"nombreFoto",extension:"jpg",portada:true,fecha:new Date(), complejo:new Complejo())
 		assertTrue imagen.validate()
 		assertEquals "descripcionFoto", imagen.descripcion
 		assertEquals "nombreFoto", imagen.nombre

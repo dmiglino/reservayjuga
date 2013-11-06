@@ -17,11 +17,12 @@ class CanchaTests {
 		assertEquals "nullable", cancha.errors["superficie"].code
 		assertEquals "nullable", cancha.errors["cantidadJugadores"].code
 		assertEquals "nullable", cancha.errors["cubierta"].code
+		assertEquals "nullable", cancha.errors["complejo"].code
 	}
 
 	void testAtributes() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[precio])
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:new Complejo(), precios:[precio])
 		
 		assertTrue cancha.validate()
 		assertEquals "Poli-1", cancha.nombre

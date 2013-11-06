@@ -18,6 +18,7 @@ class Imagen {
 		fecha nullable: false
 		portada nullable: false
 		foto nullable: true
+		complejo nullable: false
     }
 
 	static mapping = {

@@ -17,7 +17,7 @@ class Cancha {
 		superficie nullable: false
 		cantidadJugadores nullable: false
 		cubierta nullable: false
-		complejo nullable: true //TODO falso
+		complejo nullable: false
     }
 	
 	static mapping = { table "CANCHA" }
