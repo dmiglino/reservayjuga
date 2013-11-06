@@ -48,86 +48,81 @@
 
 							<g:form id="formUpdateComplejo" action="actualizarInformacionComplejo" class="form-horizontal" role="form"  enctype="multipart/form-data">
 								<div class="form-group">
-									<label class="col-sm-3 control-label"
-										for="nombre"> <g:message code="common.nombre.label" default="Nombre" /> </label>
-
-									<div class="col-sm-9">
-										<g:textField name="nombre" value="${complejo?.nombre}" class="col-xs-10 col-sm-5"/>
+									<label class="col-sm-2 control-label" for="nombre"> 
+										<g:message code="common.nombre.label" default="Nombre" /> 
+									</label>
+									<div class="col-sm-3">
+										<g:textField name="nombre" value="${complejo?.nombre}" class="col-sm-12"/>
 									</div>
-								</div>
-
-								<div class="space-4"></div>
-
-								<div class="form-group">
-									<label class="col-sm-3 control-label"
+									
+									<label class="col-sm-1 control-label"
 										for="webSite"><g:message code="common.website.label" default="Sitio Web" /> </label>
-
-									<div class="col-sm-9">
-										<g:textField name="webSite" value="${complejo?.webSite}" class="col-xs-10 col-sm-5"/>
+									<div class="col-sm-3">
+										<g:textField name="webSite" value="${complejo?.webSite}" class="col-sm-12"/>
 									</div>
 								</div>
 
 								<div class="space-4"></div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label"
-										for="mail"><g:message code="common.email.label" default="Mail" /> </label>
-
-									<div class="col-sm-9">
-										<g:textField name="mail" value="${complejo?.mail}" class="col-xs-10 col-sm-5"/>
+									<label class="col-sm-2 control-label" for="mail">
+										<g:message code="common.email.label" default="Mail" /> 
+									</label>
+									<div class="col-sm-3">
+										<g:textField name="mail" value="${complejo?.mail}" class="col-sm-12"/>
+									</div>
+									
+									<label class="col-sm-1 control-label" for=informacionExtra> 
+										<g:message code="common.info.extra.label" default="Informacion Extra" /> 
+									</label>
+									<div class="col-sm-3">
+										<g:textArea name="informacionExtra" value="${complejo?.informacionExtra}" class="col-sm-12"/>
 									</div>
 								</div>
 
 								<div class="space-4"></div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label"
-										for="telefono1"><g:message code="common.telefono.1.label" default="Telefono 1" /> </label>
+									<label class="col-sm-2 control-label" for="telefono1">
+										<g:message code="common.telefono.1.label" default="Telefono 1" /> 
+									</label>
+									<div class="col-sm-3">
+										<g:textField name="telefono1" value="${complejo?.telefono1}" class="col-sm-12"/>
+									</div>
+									<button type="button" class='btn btn-sm btn-primary' id="btn1">Agregar Telefono</button>									
+								</div>
 
-									<div class="col-sm-9">
-										<g:textField name="telefono1" value="${complejo?.telefono1}" class="col-xs-10 col-sm-5"/>
+								<div class="space-4"></div>
+
+								<div id="tel2" class="form-group" style="display:none">
+									<label class="col-sm-2 control-label" for="telefono2">
+										<g:message code="common.telefono.2.label" default="Telefono 2" /> 
+									</label>
+									<div class="col-sm-3">
+										<g:textField name="telefono2" value="${complejo?.telefono2}" class="col-sm-12"/>
 									</div>
 								</div>
 
 								<div class="space-4"></div>
 
-								<div class="form-group">
-									<label class="col-sm-3 control-label"
-										for="telefono2"><g:message code="common.telefono.2.label" default="Telefono 2" /> </label>
-
-									<div class="col-sm-9">
-										<g:textField name="telefono2" value="${complejo?.telefono2}" class="col-xs-10 col-sm-5"/>
+								<div id="tel3" class="form-group" style="display:none">
+									<label class="col-sm-2 control-label" for="telefono3">
+										<g:message code="common.telefono.3.label" default="Telefono 3" /> 
+									</label>
+									<div class="col-sm-3">
+										<g:textField name="telefono3" value="${complejo?.telefono3}" class="col-sm-12"/>
 									</div>
 								</div>
 
 								<div class="space-4"></div>
 
-								<div class="form-group">
-									<label class="col-sm-3 control-label"
-										for="telefono3"><g:message code="common.telefono.3.label" default="Telefono 3" /> </label>
-
-									<div class="col-sm-9">
-										<g:textField name="telefono3" value="${complejo?.telefono3}" class="col-xs-10 col-sm-5"/>
+								<div id="tel4" class="form-group" style="display:none">
+									<label class="col-sm-2 control-label" for="telefono4">
+										<g:message code="common.telefono.4.label" default="Telefono 4" /> 
+									</label>
+									<div class="col-sm-3">
+										<g:textField name="telefono4" value="${complejo?.telefono4}" class="col-sm-12"/>
 									</div>
-								</div>
-
-								<div class="space-4"></div>
-
-								<div class="form-group">
-									<label class="col-sm-3 control-label"
-										for="telefono4"><g:message code="common.telefono.4.label" default="Telefono 4" /> </label>
-
-									<div class="col-sm-9">
-										<g:textField name="telefono4" value="${complejo?.telefono4}" class="col-xs-10 col-sm-5"/>
-									</div>
-								</div>
-
-								<div class="space-4"></div>
-
-								<div class="form-group">
-									<label class="col-sm-3 control-label"
-										for=informacionExtra> <g:message code="common.info.extra.label" default="Informacion Extra" /> </label>
-									<g:textArea name="informacionExtra" value="${complejo?.informacionExtra}" class="col-xs-4 col-sm-5-"/>
 								</div>
 
 								<div class="space-4"></div>
@@ -141,19 +136,22 @@
 								
 
 								<div id="paisesDiv" class="form-group">
-									<label class="col-sm-3 control-label" for="pais">
+									<label class="col-sm-2 control-label" for="pais">
 										<g:message code="ubicacion.pais.label" default="Pais" />
 									</label>
-									<g:select id="pais" name="pais.id" from="${ar.com.reservayjuga.ubicacion.Pais.list()}"
-										optionKey="id" required="" noSelection="['':'Selecciona un Pais']" class="col-xs-4 col-sm-5-"
-										onchange="${remoteFunction (
-											controller: 'pais',
-											action: 'getProvincias',
-											params: '\'id=\' + this.value',
-											update: 'provinciasDiv'
-										)}"
-										value="${complejo?.ubicacion?.pais?.id}" 
-										class="many-to-one" />
+									<div class="col-sm-3">
+										<g:select id="pais" name="pais.id" from="${ar.com.reservayjuga.ubicacion.Pais.list()}"
+											optionKey="id" required="" noSelection="['':'Selecciona un Pais']" class="col-sm-12"
+											onchange="${remoteFunction (
+												controller: 'pais',
+												action: 'getProvincias',
+												params: '\'id=\' + this.value',
+												update: 'provinciasDiv'
+											)}"
+											value="${complejo?.ubicacion?.pais?.id}" 
+											class="many-to-one" />
+									</div>
+								
 								</div>
 
 								<div id="provinciasDiv" class="form-group">
@@ -179,75 +177,74 @@
 									<small> <g:message code="servicios.titulo.label" default="Servicios" /> </small>
 								</h1>
 							</div>
-
-
-								<div class="checkbox">
+							
+								<div class="checkbox col-sm-2">
 									<label> 
-										<g:checkBox name="servicios.vestuario" value="${complejo?.servicios?.vestuario}" class="col-xs-4 col-sm-5-"/>
+										<g:checkBox name="servicios.vestuario" value="${complejo?.servicios?.vestuario}" class="ace col-sm-5-"/>
 										<span class="lbl"><g:message code="servicios.vestuario.label" default="Vestuario" /></span>
 									</label>
 								</div>
 
-								<div class="checkbox">
+								<div class="checkbox col-sm-2">
 									<label> 
-										<g:checkBox name="servicios.bebida" value="${complejo?.servicios?.bebida}" class="col-xs-4 col-sm-5-"/>
+										<g:checkBox name="servicios.bebida" value="${complejo?.servicios?.bebida}" class="ace col-sm-5-"/>
 										<span class="lbl"><g:message code="servicios.bebida.label" default="Bebida" /></span>
 									</label>
 								</div>
 
-								<div class="checkbox">
+								<div class="checkbox col-sm-2">
 									<label> 
-										<g:checkBox name="servicios.ayudaMedica" value="${complejo?.servicios?.ayudaMedica}" class="col-xs-4 col-sm-5-"/>
+										<g:checkBox name="servicios.ayudaMedica" value="${complejo?.servicios?.ayudaMedica}" class="ace col-sm-5-"/>
 										<span class="lbl"><g:message code="servicios.ayudamedica.label" default="Ayuda medica" /></span>
 									</label>
 								</div>
 
-								<div class="checkbox">
+								<div class="checkbox col-sm-2">
 									<label> 
-										<g:checkBox name="servicios.wifi" value="${complejo?.servicios?.wifi}" class="col-xs-4 col-sm-5-"/>
+										<g:checkBox name="servicios.wifi" value="${complejo?.servicios?.wifi}" class="ace col-sm-5-"/>
 										<span class="lbl"> <g:message code="servicios.wifi.label" default="Wifi" /></span>
 									</label>
 								</div>
 
-								<div class="checkbox">
+								<div class="checkbox col-sm-2">
 									<label> 
-										<g:checkBox name="servicios.television" value="${complejo?.servicios?.television}" class="col-xs-4 col-sm-5-"/>
+										<g:checkBox name="servicios.television" value="${complejo?.servicios?.television}" class="ace col-sm-5-"/>
 										<span class="lbl"> <g:message code="servicios.tv.label" default="TV" /></span>
 									</label>
 								</div>
 
-								<div class="checkbox">
+								<div class="checkbox col-sm-2">
 									<label> 
-										<g:checkBox name="servicios.comida" checked="${complejo?.servicios?.comida}" class="col-xs-4 col-sm-5-"/>
+										<g:checkBox name="servicios.comida" checked="${complejo?.servicios?.comida}" class="ace col-sm-5-"/>
 										<span class="lbl"><g:message code="servicios.comida.label" default="Comida" /></span>
 									</label>
 								</div>
 
-								<div class="checkbox">
+								<div class="checkbox col-sm-2">
 									<label> 
-										<g:checkBox name="servicios.torneo" checked="${complejo?.servicios?.torneo}" value="${complejo?.servicios?.torneo}" class="col-xs-4 col-sm-5-"/>
+										<g:checkBox name="servicios.torneo" checked="${complejo?.servicios?.torneo}" value="${complejo?.servicios?.torneo}" class="ace col-sm-5-"/>
 										<span class="lbl"><g:message code="servicios.torneos.label" default="Torneos" /></span>
 									</label>
 								</div>
 
-								<div class="checkbox">
+								<div class="checkbox col-sm-2">
 									<label> 
-										<g:checkBox name="servicios.gimnasio" checked="${complejo?.servicios?.gimnasio}" value="${complejo?.servicios?.gimnasio}" class="col-xs-4 col-sm-5-"/>
+										<g:checkBox name="servicios.gimnasio" checked="${complejo?.servicios?.gimnasio}" value="${complejo?.servicios?.gimnasio}" class="ace col-sm-5-"/>
 										<span class="lbl"><g:message code="servicios.gimnasio.label" default="Gimnasio" /></span>
 									</label>
 								</div>
 
-								<div class="checkbox">
+								<div class="checkbox col-sm-2">
 									<label> 
-										<g:checkBox name="servicios.estacionamiento" checked="${complejo?.servicios?.estacionamiento}" class="col-xs-4 col-sm-5-"/>
+										<g:checkBox name="servicios.estacionamiento" checked="${complejo?.servicios?.estacionamiento}" class="ace col-sm-5-"/>
 										<span class="lbl"><g:message code="servicios.estacionamiento.label" default="Estacionamiento" /></span>
 									</label>
 								</div>
 
 								<div class="form-group">
-									<label> 
-										<g:textField name="servicios.precioEstacionamiento" value="${complejo?.servicios?.precioEstacionamiento}" class="col-xs-10 col-sm-5"/>
+									<label class="col-sm-2 control-label"> 
 										<span class="lbl"><g:message code="servicios.estacionamiento.precio.label" default="Precio Estacionamiento" /></span>
+										<g:textField name="servicios.precioEstacionamiento" value="${complejo?.servicios?.precioEstacionamiento}" class="ace col-xs-10 col-sm-5"/>
 									</label>
 								</div>
 
@@ -407,12 +404,27 @@
 			</g:formRemote>
 			<!-- FIN DEL MODAL PARA EDITAR IMAGENES -->
 
-	
 		<!-- fin main-container -->
 	
 		<%-- SCRIPTS DE LA PAGINA --%>
 		<script type="text/javascript">
-	
+			
+			$("#btn1").click(function testeo()
+			{	 
+				if ($("#tel2").css("display") == 'none')  
+				{
+    				$("#tel2").css("display", "block");
+				}
+				else if ($("#tel3").css("display") == "none")
+					 {
+    					$("#tel3").css("display", "block");
+					 }
+					 else if ($("#tel4").css("display") == "none")
+					 {
+    					$("#tel4").css("display", "block");
+					 }
+			})
+
 			function cleanImageFields() {
 				document.getElementById("imagen.nombre").value = "";
 				document.getElementById("imagen.descripcion").value = "";
@@ -431,9 +443,9 @@
 	
 			    	alert("fot: "+foto);
 			     $(".input-file #fotoImagenEdit").val(foto);
-	<%--			     document.getElementById("fotoImagenEdit").value = foto;--%>
+				<%--			     document.getElementById("fotoImagenEdit").value = foto;--%>
 			     document.getElementById("vista_previa").innerHTML='<img src="'+foto+'" width="100" height="75" >';
-	<%--			     alert("input: "+document.getElementById("fotoImagenEdit").value);--%>
+				<%--			     alert("input: "+document.getElementById("fotoImagenEdit").value);--%>
 			});
 	
 			function setImagenToForm() {
