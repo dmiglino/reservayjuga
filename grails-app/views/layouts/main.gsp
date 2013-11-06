@@ -70,6 +70,59 @@
 				<script src="/ReservaYJuga/assets/js/respond.min.js"></script>
 				<![endif]-->
 				
+		
+		<!-- BASIC SCRIPTS -->
+
+		<!--[if !IE]> -->
+	
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='/ReservaYJuga/assets/js/jquery-2.0.3.min.js'>" + "<"+"/script>");
+		</script>
+	
+		<!-- <![endif]-->
+	
+		<!--[if IE]>
+			<script type="text/javascript">
+			 window.jQuery || document.write("<script src='/ReservaYJuga/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+			</script>
+		<![endif]-->
+	
+		<script type="text/javascript">
+			if ("ontouchend" in document)
+				document.write("<script src='/ReservaYJuga/assets/js/jquery.mobile.custom.min.js'>" + "<"+"/script>");
+		</script>
+		
+		<script src="/ReservaYJuga/assets/js/bootstrap.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/typeahead-bs2.min.js"></script>
+	
+		<!-- page specific plugin scripts -->
+	
+		<!--[if lte IE 8]>
+			  <script src="/ReservaYJuga/assets/js/excanvas.min.js"></script>
+			<![endif]-->
+	
+		<script src="/ReservaYJuga/assets/js/jquery.knob.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/jquery.autosize.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/jquery.maskedinput.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/fuelux/fuelux.spinner.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/bootstrap-colorpicker.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/bootstrap-tag.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/chosen.jquery.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/date-time/bootstrap-timepicker.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/date-time/moment.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/date-time/daterangepicker.min.js"></script>
+	
+		<!-- ace scripts -->
+	
+		<script src="/ReservaYJuga/assets/js/ace-jquery-commons.js"></script>
+		<script src="/ReservaYJuga/assets/js/ace-elements.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/ace.min.js"></script>
+			
+		
 		<g:layoutHead/>
 		<r:layoutResources />
 	</head>
@@ -103,56 +156,5 @@
 		<g:javascript library="application"/>
 		<r:layoutResources />
 
-		<!-- BASIC SCRIPTS -->
-
-		<!--[if !IE]> -->
-	
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='/ReservaYJuga/assets/js/jquery-2.0.3.min.js'>" + "<"+"/script>");
-		</script>
-	
-		<!-- <![endif]-->
-	
-		<!--[if IE]>
-			<script type="text/javascript">
-			 window.jQuery || document.write("<script src='/ReservaYJuga/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-			</script>
-		<![endif]-->
-	
-		<script type="text/javascript">
-			if ("ontouchend" in document)
-				document.write("<script src='/ReservaYJuga/assets/js/jquery.mobile.custom.min.js'>" + "<"+"/script>");
-		</script>
-		
-		<script src="/ReservaYJuga/assets/js/bootstrap.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/typeahead-bs2.min.js"></script>
-	
-		<!-- page specific plugin scripts -->
-	
-		<!--[if lte IE 8]>
-			  <script src="/ReservaYJuga/assets/js/excanvas.min.js"></script>
-			<![endif]-->
-	
-		<script src="/ReservaYJuga/assets/js/fuelux/fuelux.spinner.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/bootstrap-colorpicker.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/bootstrap-tag.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/chosen.jquery.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/date-time/bootstrap-timepicker.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/date-time/moment.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/date-time/daterangepicker.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/jquery.knob.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/jquery.autosize.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/jquery.maskedinput.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/jquery.ui.touch-punch.min.js"></script>
-	
-		<!-- ace scripts -->
-	
-		<script src="/ReservaYJuga/assets/js/ace-jquery-commons.js"></script>
-		<script src="/ReservaYJuga/assets/js/ace-elements.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/ace.min.js"></script>
-			
 	</body>
 </html>

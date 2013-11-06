@@ -50,7 +50,6 @@
 							<div class="center">
 								<h1>
 									<i class="icon-leaf green"></i>
-									${postUrl}
 									<span class="red"><g:message code="login.sistema.label" default="Sistema" /></span>
 									<br /><span class="white"><g:message code="login.aplicacion.label" default="Reserva y Juga" /></span>
 								</h1>
