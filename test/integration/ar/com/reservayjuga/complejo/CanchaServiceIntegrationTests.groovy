@@ -75,4 +75,35 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 		}
 	}
 	
+	void testGetById() {
+		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		cancha.agregarPrecio(precio)
+		DBUtils.validateAndSave(cancha)
+		
+		Cancha canchaPersistida = canchaService.getCanchaById(cancha.id)
+		assertEquals cancha, canchaPersistida
+	}
+	
+	void testCountTotal() {
+		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		cancha.agregarPrecio(precio)
+		DBUtils.validateAndSave(cancha)
+		
+		assertEquals 1, canchaService.countTotal(complejo)
+	}
+	
+	
+	void testGetCanchasDelComplejo() {
+		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		cancha.agregarPrecio(precio)
+		DBUtils.validateAndSave(cancha)
+		
+		List canchas = canchaService.getCanchasDelComplejo(complejo, [])
+		
+		assertTrue canchas.contains(cancha)
+		assertEquals 1, canchas.size()
+	}
 }

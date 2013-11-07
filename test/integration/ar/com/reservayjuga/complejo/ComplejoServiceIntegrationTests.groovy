@@ -150,4 +150,19 @@ class ComplejoServiceIntegrationTests extends GroovyTestCase {
 		complejoService.agregarImagen(complejo, null)
 		assertEquals 1, complejo.imagenes.size()
 	}
+	
+	void testEliminarImagenes() {
+		Imagen imagen1 = new Imagen(nombre: "foto1", extension: ".jpg", descripcion: "foto cancha 1", fecha: new Date(), portada: true)
+		Imagen imagen2 = new Imagen(nombre: "foto2", extension: ".jpg", descripcion: "foto cancha 2", fecha: new Date(), portada: false)
+		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden")
+		
+		assertNull complejo.imagenes
+		complejoService.agregarImagen(complejo, imagen1)
+		complejoService.agregarImagen(complejo, imagen2)
+		assertEquals 2, complejo.imagenes.size()
+		
+		complejoService.eliminarTodasLasImagenesDelComplejo(complejo)
+		
+		assertEquals 0, complejo.imagenes.size()
+	}
 }

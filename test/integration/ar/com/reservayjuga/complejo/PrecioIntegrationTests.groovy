@@ -29,16 +29,18 @@ class PrecioIntegrationTests extends GroovyTestCase {
 	
 	void testSave() {
 		Precio p1 = new Precio(dia:2, horarioInicio: "18:00", precio: 300)
-		Precio p2 = new Precio(dia:3, horarioInicio: "12:00", precio: 300)
+		Precio p2 = new Precio(dia:3, horarioInicio: "12:00", precio: 400)
 		
 		cancha.agregarPrecio(p1)
 		cancha.agregarPrecio(p2)
 		
 		DBUtils.validateAndSave(cancha)
-		Precio precioPersistido = Precio.findAll().get(0) //DBUtils.validateAndSave(p1)
+		
+		List precios = Precio.findAll()
+		Precio precioPersistido = precios.find {it.id == p1.id} //DBUtils.validateAndSave(p1)
 		DBUtils.validateAndSave([p2])
 		assertEquals p1, precioPersistido
-		assertEquals 2, Precio.findAll().size()
+		assertEquals 2, precios.size()
 	}
 	
 	void testFailSave() {
