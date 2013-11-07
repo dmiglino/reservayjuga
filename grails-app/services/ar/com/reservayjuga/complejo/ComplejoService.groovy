@@ -30,6 +30,8 @@ class ComplejoService {
 	 * @return complejo actualizado
 	 */
 	def actualizarDatosComplejo(Complejo complejo, def datos) {
+		validate(complejo)
+
 		// datos generales
 		complejo.properties = datos
 
@@ -65,6 +67,7 @@ class ComplejoService {
 	 * @param imagenData
 	 */
 	void crearImagenParaComplejo(complejo, imagenData) {
+		validate(complejo)
 		if(imagenData) {
 			if(!complejo.imagenes) {
 				complejo.imagenes = []
@@ -79,6 +82,7 @@ class ComplejoService {
 	 * @param imagenId
 	 */
 	void eliminarImagenDelComplejo(Complejo complejo, def imagenId) {
+		validate(complejo)
 		def imagenInstance = imagenService.findEntityById(imagenId)
 		if(!imagenInstance) {
 			throw new EntityNotFoundException("Imagen", imagenId)
@@ -92,6 +96,7 @@ class ComplejoService {
 	 * @param imagen
 	 */
 	void agregarImagen(Complejo complejo, Imagen imagen) {
+		validate(complejo)
 		if(imagen) {
 			if(!complejo.imagenes) {
 				complejo.imagenes = []
@@ -106,6 +111,7 @@ class ComplejoService {
 	 * @param cancha
 	 */
 	void agregarCancha(Complejo complejo, Cancha cancha) {
+		validate(complejo)
 		if(cancha) {
 			if(!complejo.canchas) {
 				complejo.canchas = []
@@ -120,10 +126,12 @@ class ComplejoService {
 	 * @param imagenId
 	 */
 	void eliminarCancha(Complejo complejo, Cancha cancha) {
+		validate(complejo)
 		complejo.eliminarCancha(cancha)
 	}
 	
 	void eliminarTodasLasImagenesDelComplejo(Complejo complejo) {
+		validate(complejo)
 		complejo.imagenes?.clear()
 	}
 	
@@ -133,6 +141,7 @@ class ComplejoService {
 	 * @return imagenes del complejo listas para paginacion
 	 */
 	def getImagenesDelComplejo(Complejo complejo, def params) {
+		validate(complejo)
 		imagenService.getImagenesDelComplejo(complejo, params)
 	}
 	
@@ -141,6 +150,13 @@ class ComplejoService {
 	 * @return cantidad total de imagenes del complejo
 	 */
 	def countTotal(Complejo complejo) {
+		validate(complejo)
 		imagenService.countTotal(complejo)
+	}
+	
+	void validate(Complejo complejo) {
+		if(!complejo) {
+			//TODO tirar exception
+		}
 	}
 }
