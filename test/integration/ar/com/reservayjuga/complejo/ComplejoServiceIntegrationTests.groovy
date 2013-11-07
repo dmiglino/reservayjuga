@@ -4,6 +4,7 @@ import static org.junit.Assert.*
 
 import org.junit.*
 
+import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.ubicacion.Barrio
 import ar.com.reservayjuga.ubicacion.Localidad
@@ -165,4 +166,38 @@ class ComplejoServiceIntegrationTests extends GroovyTestCase {
 		
 		assertEquals 0, complejo.imagenes.size()
 	}
+	
+	void testCountTotal() {
+		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina").save()).save()).save()).save()
+		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
+		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
+		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi)
+		Imagen imagen1 = new Imagen(descripcion:"descripcionFoto1",nombre:"nombreFoto1",extension:"jpg",portada:true, complejo:complejo)
+		Imagen imagen2 = new Imagen(descripcion:"descripcionFoto2",nombre:"nombreFoto2",extension:"jpg",portada:false, complejo:complejo)
+		
+		complejo.agregarImagen(imagen1)
+		complejo.agregarImagen(imagen2)
+		DBUtils.validateAndSave(complejo)
+		
+		assertEquals 2, complejoService.countTotal(complejo)
+	}
+	
+	void testGetImagenesDelComplejo() {
+		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina").save()).save()).save()).save()
+		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
+		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
+		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi)
+		Imagen imagen1 = new Imagen(descripcion:"descripcionFoto1",nombre:"nombreFoto1",extension:"jpg",portada:true, complejo:complejo)
+		Imagen imagen2 = new Imagen(descripcion:"descripcionFoto2",nombre:"nombreFoto2",extension:"jpg",portada:false, complejo:complejo)
+		
+		complejo.agregarImagen(imagen1)
+		complejo.agregarImagen(imagen2)
+		DBUtils.validateAndSave(complejo)
+		
+		List imagenes = complejoService.getImagenesDelComplejo(complejo, [])
+		
+		assertTrue imagenes.contains(imagen1)
+		assertEquals 2, imagenes.size()
+	}
+	
 }

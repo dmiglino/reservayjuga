@@ -98,4 +98,31 @@ class ImagenServiceIntegrationTests extends GroovyTestCase {
 			imagenService.editarImagen([idImagenEdit: 123, descripcionImagenEdit:"descEditada",nombreImagenEdit:"nomEditado",portadaImagenEdit:false])
 		}
 	}
+	
+	void testCountTotal() {
+		Imagen imagen1 = new Imagen(descripcion:"descripcionFoto1",nombre:"nombreFoto1",extension:"jpg",portada:true, complejo:complejo)
+		Imagen imagen2 = new Imagen(descripcion:"descripcionFoto2",nombre:"nombreFoto2",extension:"jpg",portada:false, complejo:complejo)
+		
+		complejo.agregarImagen(imagen1)
+		complejo.agregarImagen(imagen2)
+		DBUtils.validateAndSave(complejo)
+		
+		assertEquals 2, imagenService.countTotal(complejo)
+	}
+	
+	
+	void testGetImagenesDelComplejo() {
+		Imagen imagen1 = new Imagen(descripcion:"descripcionFoto1",nombre:"nombreFoto1",extension:"jpg",portada:true, complejo:complejo)
+		Imagen imagen2 = new Imagen(descripcion:"descripcionFoto2",nombre:"nombreFoto2",extension:"jpg",portada:false, complejo:complejo)
+		
+		complejo.agregarImagen(imagen1)
+		complejo.agregarImagen(imagen2)
+		DBUtils.validateAndSave(complejo)
+		
+		List imagenes = imagenService.getImagenesDelComplejo(complejo, [])
+		
+		assertTrue imagenes.contains(imagen1)
+		assertEquals 2, imagenes.size()
+	}
+
 }
