@@ -32,12 +32,14 @@ class CanchaIntegrationTests extends GroovyTestCase {
 		Precio m2 = new Precio(dia:2, horarioInicio: "18:00", precio: 300)
 		Precio mi3 = new Precio(dia:3, horarioInicio: "12:00", precio: 300)
 		
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo, precios:[]).save()
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo, precios:[])
 		
 		cancha.agregarPrecio(l3)
 		cancha.agregarPrecio(l4)
 		cancha.agregarPrecio(mi3)
 		cancha.agregarPrecio(m1)
+		
+		DBUtils.validateAndSave(cancha)
 		
 		assertEquals 4, cancha.precios.size()
 		assertEquals 4, Precio.list().size()
@@ -49,20 +51,31 @@ class CanchaIntegrationTests extends GroovyTestCase {
 		
 		cancha.delete()
 		
+		assertEquals 0, Cancha.list().size()
 		assertEquals 0, Precio.list().size()
 	}
 	
 	void testSave() {
 		Precio m2 = new Precio(dia:2, horarioInicio: "18:00", precio: 300)
 		Precio m3 = new Precio(dia:3, horarioInicio: "12:00", precio: 300)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo, precios:[m2,m3])
-		Cancha cancha2 = new Cancha(nombre:"Muni-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo, precios:[m2])
+		Cancha cancha1 = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		Cancha cancha2 = new Cancha(nombre:"Muni-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
 		
-		Cancha canchaPersistida = DBUtils.validateAndSave(cancha)
+		cancha1.agregarPrecio(m2)
+//		cancha1.agregarPrecio(m3) // no se puede porque el precio corresponde a una unica cancha
+		cancha2.agregarPrecio(m3)
+		
+		Cancha canchaPersistida = DBUtils.validateAndSave(cancha1)
 		DBUtils.validateAndSave([cancha2])
-		assertEquals cancha, canchaPersistida
+		assertEquals cancha1, canchaPersistida
 		assertEquals 2, Cancha.findAll().size()
 		assertEquals 2, Precio.findAll().size()
+		
+		cancha1.delete()
+		
+		assertEquals 1, Cancha.findAll().size()
+		assertEquals 1, Precio.findAll().size() // se borro la m2 que solo la tenia cancha1
+		
 	}
 	
 	void testFailSave() {

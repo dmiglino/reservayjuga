@@ -4,6 +4,7 @@ import static org.junit.Assert.*
 
 import org.junit.*
 
+import ar.com.reservayjuga.DBUtils;
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.ubicacion.Barrio
 import ar.com.reservayjuga.ubicacion.Localidad
@@ -52,9 +53,12 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 	
 	void testEditarCancha() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[precio], complejo:complejo).save()
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		cancha.agregarPrecio(precio)
+		DBUtils.validateAndSave(cancha)
+		
 		assertEquals "Poli-1", cancha.nombre
-		canchaService.editarCancha([idCanchaEdit: cancha.id, nombreCanchaEdit:"Poli-TENIS", deporteCanchaEdit:DeporteEnum.TENIS, superficie: SuperficieEnum.POLVO_DE_LADRILLO, cantidadJugadoresCanchaEdit: 2, cubiertaCanchaEdit: false])
+		canchaService.editarCancha([idCanchaEdit : cancha.id, cancha : [nombre:"Poli-TENIS", deporte:DeporteEnum.TENIS, superficie: SuperficieEnum.POLVO_DE_LADRILLO, cantidadJugadores: 2, cubierta: false]])
 		assertEquals "Poli-TENIS", cancha.nombre
 		assertEquals DeporteEnum.TENIS, cancha.deporte
 		assertEquals SuperficieEnum.POLVO_DE_LADRILLO, cancha.superficie

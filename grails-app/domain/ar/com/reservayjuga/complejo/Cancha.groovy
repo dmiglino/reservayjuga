@@ -20,7 +20,10 @@ class Cancha {
 		complejo nullable: false
     }
 	
-	static mapping = { table "CANCHA" }
+	static mapping = { 
+		table "CANCHA" 
+		precios cascade: 'all-delete-orphan'
+	}
 	
 	@Override
 	String toString() {

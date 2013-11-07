@@ -19,10 +19,13 @@ class PrecioTests {
 		assertEquals "blank", precio.errors["horarioInicio"].code
 		assertEquals "nullable", precio.errors["precio"].code
 		assertEquals "nullable", precio.errors["dia"].code
+		assertEquals "nullable", precio.errors["cancha"].code
     }
 	
 	void testAtributes() {
-		Precio precio = new Precio(dia:1,precio:400.50f,horarioInicio:"13:00")
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:new Complejo())
+		Precio precio = new Precio(dia:1,precio:400.50f,horarioInicio:"13:00", cancha:cancha)
+		
 		assertTrue precio.validate()
 		assertEquals 1, precio.dia
 		assertEquals 400.50f, precio.precio
