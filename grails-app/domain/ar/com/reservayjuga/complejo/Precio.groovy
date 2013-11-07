@@ -6,7 +6,7 @@ class Precio {
 	String horarioInicio
 	Float precio
 	
-	static belongsTo = Cancha 
+	static belongsTo = [cancha:Cancha] 
 	
     static constraints = {
 		horarioInicio blank: false
@@ -23,4 +23,5 @@ class Precio {
 	String toString() {
 		"${precio}"
 	}
+	
 }
