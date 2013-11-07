@@ -4,13 +4,14 @@ import static org.junit.Assert.*
 
 import org.junit.*
 
-import ar.com.reservayjuga.DBUtils;
+import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.ubicacion.Barrio
 import ar.com.reservayjuga.ubicacion.Localidad
 import ar.com.reservayjuga.ubicacion.Pais
 import ar.com.reservayjuga.ubicacion.Provincia
 import ar.com.reservayjuga.ubicacion.Ubicacion
+import ar.com.reservayjuga.usuario.Encargado
 
 class CanchaServiceIntegrationTests extends GroovyTestCase {
 
@@ -94,7 +95,6 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 		assertEquals 1, canchaService.countTotal(complejo)
 	}
 	
-	
 	void testGetCanchasDelComplejo() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
 		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
@@ -106,4 +106,34 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 		assertTrue canchas.contains(cancha)
 		assertEquals 1, canchas.size()
 	}
+	
+	void testGetCanchasYCantidad() {
+		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		cancha.agregarPrecio(precio)
+		DBUtils.validateAndSave(cancha)
+		
+		Encargado encargado = new Encargado(nombre:"Tomas", apellido:"Diego", username:"tomasdiego", mail:"d@t.com", password:"1234567", complejo:complejo)
+		DBUtils.validateAndSave([encargado])
+		
+		def results = canchaService.getCanchasYCantidad(complejo, [], encargado.id)
+		
+		assertNotNull results
+		assertTrue results.canchas.contains(cancha)
+		assertEquals 1, results.canchasTotal
+	}
+	
+	void testFailGetCanchasYCantidad() {
+		shouldFail(EntityNotFoundException) {
+			canchaService.getCanchasYCantidad(null, [], 0)
+		}
+		
+		Encargado encargado = new Encargado(nombre:"Tomas", apellido:"Diego", username:"notengocomplejo", mail:"d@t.com", password:"1234567")
+		DBUtils.validateAndSave([encargado])
+		
+		shouldFail(EntityNotFoundException) {
+			canchaService.getCanchasYCantidad(null, [], encargado.id)
+		}
+	}
+	
 }

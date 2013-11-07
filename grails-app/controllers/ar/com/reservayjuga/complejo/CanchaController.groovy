@@ -19,7 +19,13 @@ class CanchaController {
 	 * Muestra la pantalla de administracion de canchas donde se ve el listado de estas
 	 */
 	def administrarCancha = {
-		def result = getCanchasYCantidad(null)
+		def result
+		try {
+			result = getCanchasYCantidad(null, params)
+		} catch (EntityNotFoundException e) {
+			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
+		}
 		render(view: "administrar-cancha", model: [canchas:result.canchas, canchasTotal:result.canchasTotal, deportesDisponibles:DeporteEnum.values()])
     }
 	
@@ -53,7 +59,7 @@ class CanchaController {
 		def result
 		try {
 			canchaService.editarCancha(params)
-			result = getCanchasYCantidad(null)
+			result = getCanchasYCantidad(null, params)
 		} catch (EntityNotFoundException e) {
 			// TODO mostrar error en pantalla
 			println "ERROR: ${e}"
@@ -73,8 +79,8 @@ class CanchaController {
 			if(encargado) {
 				Complejo complejo = encargado.complejo
 				if(complejo) {
-				canchaService.eliminarCanchaDelComplejo(complejo, params.id)
-				result = getCanchasYCantidad(complejo)
+					canchaService.eliminarCanchaDelComplejo(complejo, params.id)
+					result = getCanchasYCantidad(complejo, params)
 				}
 			}
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
@@ -92,8 +98,7 @@ class CanchaController {
 	 */
 	def getSuperficies() {
 		DeporteEnum deporte = params.id as DeporteEnum
-		def superficiesDisponibles = deporte?.superficies
-		render(template:"selectSuperficies", model:[cancha:params.cancha, superficiesDisponibles:superficiesDisponibles])
+		render(template:"selectSuperficies", model:[cancha:params.cancha, superficiesDisponibles:deporte?.superficies])
 	}
 
 	/**
@@ -106,30 +111,10 @@ class CanchaController {
 
 	/**
 	 * Recupera las canchas del complejo para el listado y el numero total de ellas para el paginado
-	 * @param complejo
+	 * @param complejo, params
 	 * @return map [canchas, canchasTotal]
 	 */
-	def getCanchasYCantidad(Complejo complejo) {
-		def canchas, canchasTotal
-		
-		if(complejo == null) {
-			Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
-			if(encargado) {
-				complejo = encargado.complejo
-			} else {
-				// TODO tirar exception
-				println "Encargado no encontrado.."
-			}
-		}
-		
-		if(complejo) {
-			canchas = canchaService.getCanchasDelComplejo(complejo, params)
-			canchasTotal = canchaService.countTotal(complejo)
-		} else {
-			// TODO tirar exception
-			println "Complejo no encontrado.."
-		} 
-		
-		return [canchas:canchas, canchasTotal:canchasTotal]
+	def getCanchasYCantidad(Complejo complejo, def params) {
+		canchaService.getCanchasYCantidad(complejo, params, authenticationService.getUserLoggedId())
 	}
 }

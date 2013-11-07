@@ -49,7 +49,7 @@ class ImagenServiceIntegrationTests extends GroovyTestCase {
 	
     @Test
     void testCrearImagenParaComplejo() {
-		imagenService.crearImagenParaComplejo(complejo, [descripcion:"descripcionFoto",nombre:"nombreFoto",extension:"jpg",portada:true])
+		def imagenCreada = imagenService.crearImagenParaComplejo(complejo, [descripcion:"descripcionFoto",nombre:"nombreFoto",extension:"jpg",portada:true])
 		
 		def imagenes = complejo.imagenes as List
 		assertNotNull imagenes
@@ -57,6 +57,7 @@ class ImagenServiceIntegrationTests extends GroovyTestCase {
 		
 		Imagen imgComp = imagenes.get(0)
 		
+		assertEquals imgComp, imagenCreada
 		assertNotNull imgComp
 		assertEquals "descripcionFoto", imgComp.descripcion
 		assertEquals "nombreFoto", imgComp.nombre

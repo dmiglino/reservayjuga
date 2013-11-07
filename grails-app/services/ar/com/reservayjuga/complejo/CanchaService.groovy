@@ -6,6 +6,7 @@ import org.hibernate.criterion.Restrictions
 import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.common.GenericService
 import ar.com.reservayjuga.exception.EntityNotFoundException
+import ar.com.reservayjuga.usuario.Encargado
 
 class CanchaService extends GenericService<Cancha> {
 	
@@ -69,6 +70,28 @@ class CanchaService extends GenericService<Cancha> {
 		complejoService.eliminarCancha(complejo, canchaInstance)
 	}
 
+	/**
+	 * Recupera las canchas del complejo para el listado y el numero total de ellas para el paginado
+	 * @param complejo
+	 * @return map [canchas, canchasTotal]
+	 */
+	def getCanchasYCantidad(Complejo complejo, def params, def encargadoId) {
+		def canchas, canchasTotal
+		
+		if(complejo == null) {
+			complejo = complejoService.getComplejoDelEncargado(encargadoId)
+		}
+		
+		if(complejo) {
+			canchas = getCanchasDelComplejo(complejo, params)
+			canchasTotal = countTotal(complejo)
+		} else {
+			throw new EntityNotFoundException("Complejo", encargadoId)
+		}
+		
+		return [canchas:canchas, canchasTotal:canchasTotal]
+	}
+	
 	/**
 	 * @param complejo
 	 * @param params

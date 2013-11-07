@@ -3,6 +3,7 @@ package ar.com.reservayjuga.complejo
 import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.ubicacion.UbicacionService
+import ar.com.reservayjuga.usuario.Encargado
 
 class ComplejoService {
 	
@@ -12,6 +13,15 @@ class ComplejoService {
 	HorarioService horarioService
 	ImagenService imagenService
 //	CanchaService canchaService
+	
+	@Override
+	def getDomain() {
+		Complejo
+	}
+	
+	def getComplejoById(id) {
+		id ? Complejo.get(id) : null
+	}
 	
 	/**
 	 * Crea el complejo a partir de los datos pasados por parametro
@@ -66,14 +76,16 @@ class ComplejoService {
 	 * @param complejo
 	 * @param imagenData
 	 */
-	void crearImagenParaComplejo(complejo, imagenData) {
+	def crearImagenParaComplejo(complejo, imagenData) {
 		validate(complejo)
+		Imagen imagen
 		if(imagenData) {
 			if(!complejo.imagenes) {
 				complejo.imagenes = []
 			}
-			Imagen imagen = imagenService.crearImagenParaComplejo(complejo, imagenData)
+			imagen = imagenService.crearImagenParaComplejo(complejo, imagenData)
 		}
+		return imagen
 	}
 	
 	/**
@@ -154,9 +166,42 @@ class ComplejoService {
 		imagenService.countTotal(complejo)
 	}
 	
+	/**
+	 * Recupera las canchas del complejo para el listado y el numero total de ellas para el paginado
+	 * @param complejo
+	 * @return map [canchas, canchasTotal]
+	 */
+	def getImagenesYCantidad(Complejo complejo, def params, def encargadoId) {
+		def imagenes, imagenesTotal
+		
+		if(complejo == null) {
+			complejo = getComplejoDelEncargado(encargadoId)
+		}
+		
+		if(complejo) {
+			imagenes = getImagenesDelComplejo(complejo, params)
+			imagenesTotal = countTotal(complejo)
+		} else {
+			throw new EntityNotFoundException("Complejo", encargadoId)
+		}
+		
+		return [imagenes:imagenes, imagenesTotal:imagenesTotal]
+	}
+	
 	void validate(Complejo complejo) {
 		if(!complejo) {
-			//TODO tirar exception
+			throw new EntityNotFoundException("Complejo", 0)
 		}
+	}
+	
+	def getComplejoDelEncargado(def encargadoId) {
+		def complejo
+		Encargado encargado = Encargado.get(encargadoId)
+		if(encargado) {
+			complejo = encargado.complejo
+		} else {
+			throw new EntityNotFoundException("Encargado", encargadoId)
+		}
+		return complejo
 	}
 }

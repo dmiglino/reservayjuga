@@ -11,10 +11,26 @@ import ar.com.reservayjuga.ubicacion.Localidad
 import ar.com.reservayjuga.ubicacion.Pais
 import ar.com.reservayjuga.ubicacion.Provincia
 import ar.com.reservayjuga.ubicacion.Ubicacion
+import ar.com.reservayjuga.usuario.Encargado
 
 class ComplejoServiceIntegrationTests extends GroovyTestCase {
 	
 	ComplejoService complejoService
+	Complejo complejo
+	
+	@Override
+	protected void setUp() {
+		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina").save()).save()).save()).save()
+		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
+		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
+		complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi)
+		DBUtils.validateAndSave(complejo)
+	}
+	
+	void testGetById() {
+		Complejo complejoPersistida = complejoService.getComplejoById(complejo.id)
+		assertEquals complejo, complejoPersistida
+	}
 	
     void testCreateComplejo() {
         def complejoMap = [nombre:"Poli", webSite:"www.poli.com", mail:"poli@poli.com", telefono:"12345678", info:"info del poli", porcSenia:"40%"]
@@ -100,25 +116,18 @@ class ComplejoServiceIntegrationTests extends GroovyTestCase {
 	}
 
 	void testAgregarYBorrarImagen() {
-		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina").save()).save()).save()).save()
-		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
-		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
-		Horario hora = new Horario (dia: 1, horarioApertura: "10:00", horarioCierre: "18:00")
-		Imagen ima = new Imagen(nombre: "foto", extension: ".jpg", descripcion: "foto cancha 1", fecha: new Date(), portada: true)
-		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi).save()
-		
-		complejoService.crearImagenParaComplejo(complejo,[descripcion:"descripcionFoto",nombre:"nombreFoto",extension:"jpg",portada:true])
+		def imgCreada = complejoService.crearImagenParaComplejo(complejo,[descripcion:"descripcionFoto",nombre:"nombreFoto",extension:"jpg",portada:true])
 		
 		assertEquals 1, complejo.imagenes.size()
 		assertEquals 1, Imagen.list().size()
 		
 		Imagen img = Imagen.list().get(0)
+		assertEquals imgCreada, img
 		
 		complejoService.eliminarImagenDelComplejo(complejo, img.id)
 		
 		assertEquals 0, complejo.imagenes.size()
 		assertEquals 0, Imagen.list().size()
-		
 	}
 	
 	void testFailEliminarImagenDelComplejo() {
@@ -168,31 +177,21 @@ class ComplejoServiceIntegrationTests extends GroovyTestCase {
 	}
 	
 	void testCountTotal() {
-		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina").save()).save()).save()).save()
-		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
-		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
-		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi)
 		Imagen imagen1 = new Imagen(descripcion:"descripcionFoto1",nombre:"nombreFoto1",extension:"jpg",portada:true, complejo:complejo)
 		Imagen imagen2 = new Imagen(descripcion:"descripcionFoto2",nombre:"nombreFoto2",extension:"jpg",portada:false, complejo:complejo)
 		
 		complejo.agregarImagen(imagen1)
 		complejo.agregarImagen(imagen2)
-		DBUtils.validateAndSave(complejo)
 		
 		assertEquals 2, complejoService.countTotal(complejo)
 	}
 	
 	void testGetImagenesDelComplejo() {
-		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina").save()).save()).save()).save()
-		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
-		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
-		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi)
 		Imagen imagen1 = new Imagen(descripcion:"descripcionFoto1",nombre:"nombreFoto1",extension:"jpg",portada:true, complejo:complejo)
 		Imagen imagen2 = new Imagen(descripcion:"descripcionFoto2",nombre:"nombreFoto2",extension:"jpg",portada:false, complejo:complejo)
 		
 		complejo.agregarImagen(imagen1)
 		complejo.agregarImagen(imagen2)
-		DBUtils.validateAndSave(complejo)
 		
 		List imagenes = complejoService.getImagenesDelComplejo(complejo, [])
 		
@@ -200,4 +199,47 @@ class ComplejoServiceIntegrationTests extends GroovyTestCase {
 		assertEquals 2, imagenes.size()
 	}
 	
+	void testGetComplejoDelEncargado() {
+		Encargado encargado = new Encargado(nombre:"Tomas", apellido:"Diego", username:"tomasdiego", mail:"d@t.com", password:"1234567", complejo:complejo)
+		Encargado encargadoSinComplejo = new Encargado(nombre:"asd", apellido:"fgh", username:"asd", mail:"d@t.com", password:"3212321")
+		DBUtils.validateAndSave([encargado, encargadoSinComplejo])
+		
+		Complejo complejoDelEncargado = complejoService.getComplejoDelEncargado(encargado.id)
+		assertNotNull complejoDelEncargado
+		assertEquals complejoDelEncargado, complejo
+		
+		assertNull complejoService.getComplejoDelEncargado(encargadoSinComplejo.id)
+	}
+	
+	void testFailGetComplejoDelEncargado() {
+		shouldFail(EntityNotFoundException) {
+			complejoService.getComplejoDelEncargado(0)
+		}
+	}
+	
+	void testGetImagenesYCantidad() {
+		Encargado encargado = new Encargado(nombre:"Tomas", apellido:"Diego", username:"tomasdiego", mail:"d@t.com", password:"1234567", complejo:complejo)
+		DBUtils.validateAndSave([encargado])
+		
+		def imagen = complejoService.crearImagenParaComplejo(complejo,[descripcion:"descripcionFoto",nombre:"nombreFoto",extension:"jpg",portada:true])
+		
+		def results = complejoService.getImagenesYCantidad(complejo, [], encargado.id)
+		
+		assertNotNull results
+		assertTrue results.imagenes.contains(imagen)
+		assertEquals 1, results.imagenesTotal
+	}
+	
+	void testFailGetImagenesYCantidad() {
+		shouldFail(EntityNotFoundException) {
+			complejoService.getImagenesYCantidad(null, [], 0)
+		}
+		
+		Encargado encargado = new Encargado(nombre:"Tomas", apellido:"Diego", username:"notengocomplejo", mail:"d@t.com", password:"1234567")
+		DBUtils.validateAndSave([encargado])
+		
+		shouldFail(EntityNotFoundException) {
+			complejoService.getImagenesYCantidad(null, [], encargado.id)
+		}
+	}
 }

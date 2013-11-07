@@ -36,10 +36,11 @@ class ImagenService extends GenericService<Imagen> {
 	 * @param complejo
 	 * @param imagenData
 	 */
-	void crearImagenParaComplejo(Complejo complejo, def imagenData) {
+	def crearImagenParaComplejo(Complejo complejo, def imagenData) {
 		Imagen imagen = new Imagen(nombre: imagenData.nombre, descripcion: imagenData.descripcion, extension: imagenData.extension, foto: imagenData.foto, portada: (imagenData.portada ? imagenData.portada : false), complejo:complejo)
 		DBUtils.validateAndSave(imagen) // TODO o se graba despues todo junto?
 		complejo.agregarImagen(imagen)
+		return imagen
 	}
 	
 	void editarImagen(def datos) {
@@ -65,6 +66,9 @@ class ImagenService extends GenericService<Imagen> {
 		def offset = Math.min(params.offset ? params.int('offset') : 0, 100)
 		def sortProperty = params.sort ? params.sort : "nombre"
 		
+		println "<<<<<<< max >>>>>>>: ${max}"
+		println "<<<<<<< offset >>>>>>>: ${offset}"
+		println "<<<<<<< sorting >>>>>>>: ${sortProperty}"
 		def criter = Imagen.createCriteria()
 			.add(Restrictions.eq("complejo", complejo))
 			.addOrder(Order.asc(sortProperty))

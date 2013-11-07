@@ -19,27 +19,15 @@ class ComplejoController {
 	 * Carga la pagina principal de administracion de complejo
 	 */
 	def administrarComplejo = {
-		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
-		if(encargado) {
-			def imagenes = []
-			def imagenesTotal = 0
-			Complejo complejo = encargado.complejo
-			if(complejo) {
-				imagenes = complejoService.getImagenesDelComplejo(complejo,params)
-				imagenesTotal = complejoService.countTotal(complejo)
-			}
-			render(view: "administrar-complejo", model: [complejo : encargado.complejo, imagenesList : imagenes, imagenesTotal: imagenesTotal])
-		} else {
-			render(view: "login")
-		}
+		def complejo = complejoService.getComplejoDelEncargado(authenticationService.getUserLoggedId())
+		def results = getImagenesYCantidad(complejo, params)
+		render(view: "administrar-complejo", model: [complejo : complejo, imagenesList : results.imagenes, imagenesTotal: results.imagenesTotal])
 	}
 	
 	/**
 	 * Actualiza los datos del complejo
 	 */
 	def actualizarInformacionComplejo = {
-			// TODO autorizados admins y encargados
-			// TODO recuperar el encargado logueado
 		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 		Complejo complejo = encargado.complejo
 		try {
@@ -180,5 +168,14 @@ class ComplejoController {
 		def imagenes = complejoService.getImagenesDelComplejo(complejo,params)
 		def imagenesTotal = complejoService.countTotal(complejo)
 		render(template:"tabla-imagenes", model: [imagenes: imagenes, imagenesTotal: imagenesTotal])
+	}
+	
+	/**
+	 * Recupera las imagenes del complejo para el listado y el numero total de ellas para el paginado
+	 * @param complejo, params
+	 * @return map [imagenes, imagenesTotal]
+	 */
+	def getImagenesYCantidad(Complejo complejo, def params) {
+		complejoService.getImagenesYCantidad(complejo, params, authenticationService.getUserLoggedId())
 	}
 }
