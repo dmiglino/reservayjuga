@@ -84,7 +84,7 @@
 													<g:message code="common.cancelar.label" default="Cancelar" />
 												</button>
 
-												<g:submitToRemote class="btn btn-info" update="[success:'canchasDiv']" after="closeModal();"
+												<g:submitToRemote class="btn btn-info" update="[success:'tabla_canchas',failure:'error']" after="closeModal();"
 													url="[controller:'cancha', action:'editarCancha']" value="Grabar Cancha" >
 													<i class="icon-ok"></i>
 												</g:submitToRemote>
