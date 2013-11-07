@@ -24,14 +24,7 @@
 						
 						<td>
 							<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-	<%--							<g:hiddenField name="idCancha" value="${cancha?.id}" />--%>
-								<g:hiddenField name="nombreCancha" value="${cancha?.nombre}" />
-								<g:hiddenField name="deporteCancha" value="${cancha?.deporte}" />
-								<g:hiddenField name="cantidadJugadoresCancha" value="${cancha?.cantidadJugadores}" />
-								<g:hiddenField name="cubiertaCancha" value="${cancha?.cubierta}" />
-								<g:hiddenField name="superficieCancha" value="${cancha?.superficie}" />
-									
-								<a href="#modal-form" data-id="${cancha?.id}" role="button" class="open-EditCanchaModal btn btn-xs btn-info" data-toggle="modal"> <i class="icon-edit bigger-120"></i> </a>
+								<g:remoteLink controller="cancha" action="selectToEdit" id="${cancha?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" onSuccess="setCanchaToEdit();"><i class="icon-edit bigger-120"></i></g:remoteLink>
 								<g:remoteLink controller="cancha" action="deleteCancha" id="${cancha?.id}" update="[success:'canchasDiv',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
 							</div>
 						</td>
@@ -45,3 +38,13 @@
     <div class="pagination">
 	    <g:paginate controller="cancha" action="administrarCancha" total="${canchasTotal}" />
 	</div>
+	
+	<script>
+		function setCanchaToEdit() {
+			$('#modal-form').modal('show');
+			var label = document.getElementById("superficieLabel");
+			label.setAttribute("class", "col-sm-6 control-label");
+			var select = document.getElementById("cancha.superficie");
+			select.setAttribute("class", "col-xs-4 col-sm-6-");
+		}
+	</script>

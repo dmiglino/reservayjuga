@@ -4,17 +4,16 @@
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
-<html>
 	<head>
 		<title><g:layoutTitle default="Reserva y Juga"/></title>
 		<style>
 			#header {background-color:#ffe0e0;text-align: center;}
 			html, body, #main-container { height: 100%; margin: 0; padding: 0;}
 			body > #main-container { height: auto; min-height: 100%; }
-			#footer {background-color:#e0e0ff;
+			#footer {background-color:#438eb9;
 					text-align: center; 
 					clear: both;
-					height: 4em;
+					height: 3.5em;
 					margin-top: -0em;
 					position: relative; 
 					z-index: 5000; 

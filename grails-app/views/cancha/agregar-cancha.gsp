@@ -83,6 +83,13 @@
 			    }
 			}
 			
+			function mantenerCssDeSuperficie() {
+				var label = document.getElementById("superficieLabel");
+				label.setAttribute("class", "col-sm-2 control-label");
+				var select = document.getElementById("cancha.superficie");
+				select.setAttribute("class", "col-xs-4 col-sm-5-");
+			}
+			
 		</script>
 	</body>
 </html>

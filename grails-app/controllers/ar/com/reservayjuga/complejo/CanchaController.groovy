@@ -7,6 +7,7 @@ import ar.com.reservayjuga.exception.ReservaYJugaException
 import ar.com.reservayjuga.usuario.Encargado
 
 class CanchaController {
+	
 	def authenticationService
 	CanchaService canchaService
 	
@@ -14,10 +15,10 @@ class CanchaController {
 		redirect(action: administrarCancha)
 	}
 	
+	/**
+	 * Muestra la pantalla de administracion de canchas donde se ve el listado de estas
+	 */
 	def administrarCancha = {
-		// TODO autorizados admins y encargados
-		// TODO recuperar el complejo del encargado
-		//Encargado encargado = Encargado.list().get(0)
 		def canchas
 		def canchasTotal
 		def deportesDisponibles
@@ -40,17 +41,19 @@ class CanchaController {
 		render(view: "administrar-cancha", model: [canchas:canchas, canchasTotal:canchasTotal, deportesDisponibles:deportesDisponibles, superficiesDisponibles:superficiesDisponibles])
     }
 	
+	/**
+	 * Muestra la pantalla de creacion de una cancha
+	 */
 	def agregarCancha = {
-		// TODO autorizados admins y encargados
-		// TODO recuperar el complejo del encargado
 		def deportesDisponibles = DeporteEnum.values()
 		def superficiesDisponibles = SuperficieEnum.values()
 		render(view: "agregar-cancha", model: [cancha:new Cancha(), deportesDisponibles:deportesDisponibles, superficiesDisponibles:superficiesDisponibles])
 	}
 	
+	/**
+	 * Crea una cancha con los parametros y la agrega al complejo
+	 */
 	def crearCancha = {
-		// TODO autorizados admins y encargados
-		// TODO recuperar el complejo del encargado
 		try {
 			Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 			Complejo complejo = encargado.complejo
@@ -63,25 +66,37 @@ class CanchaController {
 		}
 	}
 	
+	/**
+	 * Edita la cancha segun los parametros
+	 */
 	def editarCancha = {
+		def canchas
+		def canchasTotal
 		try {
-			canchaService.editarCancha(params)
+			Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
+			if(encargado) {
+				canchaService.editarCancha(params)
+				Complejo complejo = encargado.complejo
+				if(complejo) {
+					canchas = canchaService.getCanchasDelComplejo(complejo, params)
+					canchasTotal = canchaService.countTotal(complejo)
+				}
+			}
 		} catch (EntityNotFoundException e) {
-			println "ERROR: ${e}"
 			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
+		} finally {
+			render(template: "tabla_canchas", model:[canchas:canchas, canchasTotal:canchasTotal])
 		}
-	
 	}
 	
 	/**
 	 * Elimina la cancha indicada del complejo y de la BD
 	 */
 	def deleteCancha = {
-		// TODO autorizados admins y encargados
-		// TODO recuperar el encargado logueado
 		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 		Complejo complejo = encargado.complejo
-		
+
 		try {
 			canchaService.eliminarCanchaDelComplejo(complejo, params.id)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
@@ -93,15 +108,23 @@ class CanchaController {
 			redirect(action: administrarCancha)
 		}
 	}
-	
+
+	/**
+	 * Obtiene las superficies correspondientes al deporte elegido
+	 */
 	def getSuperficies() {
 		DeporteEnum deporte = params.id as DeporteEnum
 		def superficiesDisponibles = deporte?.superficies
-		render(template:"selectSuperficies", model:[superficiesDisponibles:superficiesDisponibles])
+		render(template:"selectSuperficies", model:[cancha:params.cancha, superficiesDisponibles:superficiesDisponibles])
 	}
-	
+
+	/**
+	 * Busca la cancha segun el id para mostrar en el modal panel
+	 */
 	def selectToEdit = {
-		Cancha cancha = Cancha.get(params.id)
-		[cancha:cancha]
+		Cancha canchaToEdit = canchaService.getCanchaById(params.id)
+		def deportesDisponibles = DeporteEnum.values()
+		render(template:"modal-box", model:[cancha:canchaToEdit, deportesDisponibles:deportesDisponibles])
 	}
+
 }

@@ -36,19 +36,17 @@
 				)}" />
 </div>
 
+<div class="space-4"></div>
+
 <div id="superficiesDiv" class="form-group">
 	<g:if test="${cancha?.deporte}">
-		<g:include controller="cancha" action="getSuperficies"
-			id="${cancha?.deporte}" />
+		<g:include controller="cancha" action="getSuperficies" id="${cancha?.deporte}" />
 	</g:if>
 </div>
-
-<g:hiddenField id="superficieCancha" name="cancha.superficie" value="" />
 
 <div class="form-group">
 	<label class="col-sm-2 control-label" for="form-field-select-3"><g:message code="common.cantidad.jugadores.label" default="Cantidad de Jugadores" /></label>
 	<div>
-		<%--		<g:textField name="cancha.cantidadJugadores" value="${cancha?.cantidadJugadores}" class="input-mini" />--%>
 		<g:textField name="cancha.cantidad" value="" class="input-mini" id="spinner1" />
 		<g:hiddenField name="cancha.cantidadJugadores" id="cantJugValue" value="" />
 	</div>

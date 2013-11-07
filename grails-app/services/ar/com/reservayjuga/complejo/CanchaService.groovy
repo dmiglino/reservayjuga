@@ -12,8 +12,12 @@ class CanchaService extends GenericService<Cancha> {
 	ComplejoService complejoService
 	
 	@Override
-	public Object getDomain() {
-		return Cancha;
+	def getDomain() {
+		Cancha
+	}
+	
+	def getCanchaById(id) {
+		id ? Cancha.get(id) : null
 	}
 	
 	/**
@@ -32,11 +36,11 @@ class CanchaService extends GenericService<Cancha> {
 			throw new EntityNotFoundException("Cancha", datos.idCanchaEdit)
 		}
 		
-		canchaInstance.nombre = datos.nombreCanchaEdit
-		canchaInstance.deporte = datos.deporteCanchaEdit
-		canchaInstance.cubierta = datos.cubiertaCanchaEdit
-		canchaInstance.superficie = datos.superficie
-		canchaInstance.cantidadJugadores = new Integer(datos.cantidadJugadoresCanchaEdit)
+		canchaInstance.nombre = datos.cancha.nombre
+		canchaInstance.deporte = datos.cancha.deporte
+		canchaInstance.cubierta = datos.cancha.cubierta
+		canchaInstance.superficie = datos.cancha.superficie
+		canchaInstance.cantidadJugadores = new Integer(datos.cancha.cantidadJugadores)
 		DBUtils.validateAndSave(canchaInstance)
 	}
 	

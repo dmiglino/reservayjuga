@@ -21,7 +21,7 @@ environments {
 //			password = "root"
 			url = "jdbc:mysql://localhost/reservas_db"
 			cache.provider_class='com.opensymphony.oscache.hibernate.OSCacheProvider'
-			logSql = true
+			logSql = false
         }
     }
     test {
