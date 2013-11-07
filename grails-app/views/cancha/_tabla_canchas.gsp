@@ -25,7 +25,7 @@
 						<td>
 							<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 								<g:remoteLink controller="cancha" action="selectToEdit" id="${cancha?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" onSuccess="setCanchaToEdit();"><i class="icon-edit bigger-120"></i></g:remoteLink>
-								<g:remoteLink controller="cancha" action="deleteCancha" id="${cancha?.id}" update="[success:'canchasDiv',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
+								<g:remoteLink controller="cancha" action="deleteCancha" id="${cancha?.id}" update="[success:'tabla_canchas',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
 							</div>
 						</td>
 					</tr>

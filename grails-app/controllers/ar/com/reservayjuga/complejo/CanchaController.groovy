@@ -94,18 +94,26 @@ class CanchaController {
 	 * Elimina la cancha indicada del complejo y de la BD
 	 */
 	def deleteCancha = {
-		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
-		Complejo complejo = encargado.complejo
+		def canchas
+		def canchasTotal
 
 		try {
-			canchaService.eliminarCanchaDelComplejo(complejo, params.id)
+			Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
+			if(encargado) {
+				Complejo complejo = encargado.complejo
+				canchaService.eliminarCanchaDelComplejo(complejo, params.id)
+				if(complejo) {
+					canchas = canchaService.getCanchasDelComplejo(complejo, params)
+					canchasTotal = canchaService.countTotal(complejo)
+				}
+			}
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		} catch (EntityNotFoundException e) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		}  catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		} finally {
-			redirect(action: administrarCancha)
+			render(template: "tabla_canchas", model:[canchas:canchas, canchasTotal:canchasTotal])
 		}
 	}
 
