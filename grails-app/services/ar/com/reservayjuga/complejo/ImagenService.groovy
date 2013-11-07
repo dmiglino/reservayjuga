@@ -66,9 +66,6 @@ class ImagenService extends GenericService<Imagen> {
 		def offset = Math.min(params.offset ? params.int('offset') : 0, 100)
 		def sortProperty = params.sort ? params.sort : "nombre"
 		
-		println "<<<<<<< max >>>>>>>: ${max}"
-		println "<<<<<<< offset >>>>>>>: ${offset}"
-		println "<<<<<<< sorting >>>>>>>: ${sortProperty}"
 		def criter = Imagen.createCriteria()
 			.add(Restrictions.eq("complejo", complejo))
 			.addOrder(Order.asc(sortProperty))

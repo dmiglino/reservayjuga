@@ -40,19 +40,19 @@ class Reserva {
 	}
 	
 	Boolean isPendiente() {
-		this.estado.value.isPendiente()
+		this.estado.isPendiente()
 	}
 	
 	Boolean isSeniada() {
-		this.estado.value.isSeniada()
+		this.estado.isSeniada()
 	}
 	
 	Boolean isConcretada() {
-		this.estado.value.isConcretada()
+		this.estado.isConcretada()
 	}
 	
 	Boolean isCancelada() {
-		this.estado.value.isCancelada()
+		this.estado.isCancelada()
 	}
 	
 	/**
