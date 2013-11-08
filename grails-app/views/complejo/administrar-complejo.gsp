@@ -30,13 +30,13 @@
 				
 
 				<div class="page-content">
+								
 					<div class="page-header">
 						<h1>
 							<small> <g:message code="common.datos.generales.label" default="Datos Generales" /> </small>
 						</h1>
 					</div>
 					<!-- /.page-header -->
-
 					<g:hasErrors>
 						<div class="errors">
 						<g:renderErrors bean="${complejo}" as="list" /> </div>
@@ -125,8 +125,9 @@
 									</div>
 								</div>
 
+					
 								<div class="space-4"></div>
-
+				
 								
 							<div class="page-header">
 								<h1>
@@ -240,13 +241,15 @@
 										<span class="lbl"><g:message code="servicios.estacionamiento.label" default="Estacionamiento" /></span>
 									</label>
 								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label"> 
-										<span class="lbl"><g:message code="servicios.estacionamiento.precio.label" default="Precio Estacionamiento" /></span>
-										<g:textField name="servicios.precioEstacionamiento" value="${complejo?.servicios?.precioEstacionamiento}" class="ace col-xs-10 col-sm-5"/>
+									<br/>
+									<br/>
+									<label> 
+										<span class="lbl">
+											<g:message code="servicios.estacionamiento.precio.label" default="Precio Estacionamiento" />
+										</span>
+										<g:textField name="servicios.precioEstacionamiento" value="${complejo?.servicios?.precioEstacionamiento}" class="input-mini"/>
 									</label>
-								</div>
+								
 
 <%--								<g:each in="${complejo?.servicios?.properties}" var="serv" status="i">--%>
 <%--									<div class="checkbox">--%>
@@ -260,14 +263,15 @@
 
 							<div class="page-header">
 								<h1>
-									<small> <g:message code="config.senia.titulo.label" default="Configuracion de seña e items extras" /> </small>
+									<small> 
+										<g:message code="config.senia.titulo.label" default="Configuracion de seña e items extras" /> 
+									</small>
 								</h1>
 							</div>
 								
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right"
-										for="porcentajeSenia"><g:message code="config.senia.label" default="Porcentaje de seña" /></label>
-
+									<label class="col-sm-2 control-label no-padding-right" for="porcentajeSenia"><g:message code="config.senia.label" default="Porcentaje de seña" />
+									</label>
 									<div class="col-sm-9">
 										<g:textField name="porcentajeSenia" value="${complejo?.porcentajeSenia}" class="input-mini" id="spinner4" />
 									</div>
@@ -283,7 +287,7 @@
 
 								<g:each in="${[1,2,3,4,5,6,7,8]}" var="dia" status="i">
 									<div class="form-group">
-										<label class="col-sm-3 control-label" for="horarioApertura"> 
+										<label class="col-sm-2 control-label" for="horarioApertura"> 
 											<g:message
 												code="horario.dia.${dia.toString()}.label"
 												default="Dia ${dia.toString()}" />
@@ -292,13 +296,14 @@
 											name="horarios.${dia.toString()}.apertura"
 											from="${["8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"]}"
 											noSelection="['':'Selecciona un Horario']"
-											class="col-xs-4 col-sm-5- many-to-one"
+											class="col-xs-2 many-to-one"
 											value="${complejo?.horarios.find{it.dia == dia}?.horarioApertura}" />
+										<div class="col-xs-1"></div>
 										<g:select id="horarioCierre"
 											name="horarios.${dia.toString()}.cierre"
 											from="${["9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"]}"
 											noSelection="['':'Selecciona un Horario']"
-											class="col-xs-4 col-sm-5- many-to-one"
+											class="col-xs-2 many-to-one"
 											value="${complejo?.horarios.find{it.dia == dia}?.horarioCierre}" />
 									</div>
 								</g:each>
@@ -349,30 +354,27 @@
 												
 												<div class="widget-body">
 													<div class="widget-main">
-														<label>
-															<span class="lbl"> 
-																<g:message code="comunes.nombre.label" default="Nombre" />
-															</span>
-															<g:textField name="imagen.nombre" id="imagen.nombre" />
-														</label>
-													</div>
-													
-													<div class="widget-main">
-														<label>
-															<span class="lbl"> 
-																<g:message code="comunes.descripcion.label" default="Descripcion" />
-															</span>
-															<g:textArea name="imagen.descripcion" id="imagen.descripcion" />
-														</label>
+														<div class="form-group">
+																	<span class="col-sm-4 control-label"> 
+																		<g:message code="comunes.nombre.label" default="Nombre" />
+																	</span>
+																	<g:textField name="imagen.nombre" class="col-sm-6" id="imagen.nombre" />
+														</div>
+														<div class="form-group">
+												
+																	<span class="col-sm-4 control-label"> 
+																		<g:message code="comunes.descripcion.label" default="Descripcion" />
+																	</span>
+																	<g:textArea name="imagen.descripcion" class="col-sm-6" id="imagen.descripcion" />
+														</div>
 													</div>
 												</div>
 												
 												<div class="widget-body">
-													<div class="widget-main">
-													<input type="submit" value="subir" />
-														<g:submitToRemote class="btn btn-info" update="[success:'imagenesDiv']" after="cleanImageFields();" 
-															url="[controller:'complejo', action:'agregarImagen']" value="Subir Imagen" before="setImagenToForm();" />
-													</div>
+														<div align="center"  class="widget-main">
+															<g:submitToRemote class="btn btn-info" update="[success:'imagenesDiv']" after="cleanImageFields();" 
+																url="[controller:'complejo', action:'agregarImagen']" value="Subir Imagen" before="setImagenToForm();" />
+														</div>
 												</div>
 											</div>
 										</div>
