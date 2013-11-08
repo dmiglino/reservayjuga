@@ -35,14 +35,14 @@
 		</li>
 		
 		<li>
-			<a href="/ReservaYJuga/reserva">
+			<a href="/ReservaYJuga/reserva/administrarReservas">
 				<i class="icon-calendar"></i>
 				<span class="menu-text"> <g:message code="sidebar.administrar.reserva.label" default="Administrar Reservas" /> </span>
 			</a>
 		</li>
 		
 		<li>
-			<a href="/ReservaYJuga/reserva">
+			<a href="/ReservaYJuga/reserva/reservarCancha">
 				<i class="icon-file-alt"></i>
 				<span class="menu-text"> <g:message code="sidebar.reservar.label" default="Reservar Cancha" /> </span>
 			</a>

@@ -9,18 +9,16 @@ import ar.com.reservayjuga.usuario.Jugador
 
 class ReservaController {
 
-	def index() {
-		redirect(action: administrarReservas)
-	}
 
-	def administrarReservas = {
-		
-		render(view: "reservar-cancha", model: [])
-	}
-	
 	def reservarCancha = {
 		
 		render(view: "reservar-cancha", model: [])
 	}
+	
+	def administrarReservas = {
+		
+		render(view: "administrar-reservas", model: [])
+	}
+
 
 }
