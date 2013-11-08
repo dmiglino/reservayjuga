@@ -19,8 +19,14 @@ class ComplejoController {
 	 * Carga la pagina principal de administracion de complejo
 	 */
 	def administrarComplejo = {
-		def complejo = complejoService.getComplejoDelEncargado(authenticationService.getUserLoggedId())
-		def results = getImagenesYCantidad(complejo, params)
+		def results, complejo
+		try {
+			complejo = complejoService.getComplejoDelEncargado(authenticationService.getUserLoggedId())
+			results = getImagenesYCantidad(complejo, params)
+		} catch (EntityNotFoundException e) {
+			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
+		}
 		render(view: "administrar-complejo", model: [complejo : complejo, imagenesList : results.imagenes, imagenesTotal: results.imagenesTotal])
 	}
 	
@@ -28,9 +34,9 @@ class ComplejoController {
 	 * Actualiza los datos del complejo
 	 */
 	def actualizarInformacionComplejo = {
-		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
-		Complejo complejo = encargado.complejo
+		Complejo complejo
 		try {
+			complejo = complejoService.getComplejoDelEncargado(authenticationService.getUserLoggedId())
 			complejoService.actualizarDatosComplejo(complejo, params) 
 			flash.message = "Complejo <${complejo}> actualizado"
 		} catch (InvalidEntityException e) {
@@ -40,6 +46,9 @@ class ComplejoController {
 		}
 	}
 	
+	/**
+	 * Crea un nuevo complejo
+	 */
 	def crearComplejo = {
 		// TODO autorizados solo admins
 		Map resp = [:]
@@ -109,16 +118,16 @@ class ComplejoController {
 //		println "req1: "+request.getFile("id_input_file_2")
 //		println "req2: "+request.getFile("id_input_file_3")
 		
-		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
-		Complejo complejo = encargado.complejo
-
+		def results, complejo
 		try {
+			complejo = complejoService.getComplejoDelEncargado(authenticationService.getUserLoggedId())
 			complejoService.crearImagenParaComplejo(complejo, params.imagen)
+			results = getImagenesYCantidad(complejo, params)
 			flash.message = "Imagen <${complejo}> creada"
 		} catch (InvalidEntityException e) {
 			flash.message = "Error creando la imagen <${complejo}>"
 		} finally {
-			renderTablaImagenes(complejo,params)
+			renderTablaImagenes(results)
 		}
 
 	}
@@ -127,47 +136,51 @@ class ComplejoController {
 	 * Elimina la imagen indicada del complejo y de la BD 
 	 */
 	def deleteImagen() {
-		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
-		Complejo complejo = encargado.complejo
-		
+		def results, complejo
 		try {
+			complejo = complejoService.getComplejoDelEncargado(authenticationService.getUserLoggedId())
 			complejoService.eliminarImagenDelComplejo(complejo, params.id)
+			results = getImagenesYCantidad(complejo, params)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		} catch (EntityNotFoundException e) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		}  catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		} finally {
-			renderTablaImagenes(complejo,params)
+			renderTablaImagenes(results)
 		}
 	}
 	
+	/**
+	 * Elimina todas las imagenes del complejo
+	 */
 	def deleteAllImagenes = {
-		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
-		Complejo complejo = encargado.complejo
-		
+		def results, complejo
 		try {
+			complejo = complejoService.getComplejoDelEncargado(authenticationService.getUserLoggedId())
 			complejoService.eliminarTodasLasImagenesDelComplejo(complejo)
+			results = getImagenesYCantidad(complejo, params)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		} catch (EntityNotFoundException e) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		}  catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
 		} finally {
-			renderTablaImagenes(complejo,params)
+			renderTablaImagenes(results)
 		}
 	}
 	
 	def ordenarImagenes	= {
-		Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
-		Complejo complejo = encargado.complejo
-		renderTablaImagenes(complejo,params)
+		def results = getImagenesYCantidad(null, params)
+		renderTablaImagenes(results)
 	}
 	
-	def renderTablaImagenes(complejo,params) {
-		def imagenes = complejoService.getImagenesDelComplejo(complejo,params)
-		def imagenesTotal = complejoService.countTotal(complejo)
-		render(template:"tabla-imagenes", model: [imagenes: imagenes, imagenesTotal: imagenesTotal])
+	/**
+	 * Refresca la tabla de imagenes para ver los cambios por ajax
+	 * @param results
+	 */
+	def renderTablaImagenes(def results) {
+		render(template:"tabla-imagenes", model: [imagenes: results.imagenes, imagenesTotal: results.imagenesTotal])
 	}
 	
 	/**
