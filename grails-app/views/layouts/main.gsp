@@ -111,9 +111,10 @@
 		<script src="/ReservaYJuga/assets/js/bootstrap-tag.min.js"></script>
 		<script src="/ReservaYJuga/assets/js/chosen.jquery.min.js"></script>
 		<script src="/ReservaYJuga/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-		<script src="/ReservaYJuga/assets/js/date-time/bootstrap-timepicker.min.js"></script>
 		<script src="/ReservaYJuga/assets/js/date-time/moment.min.js"></script>
 		<script src="/ReservaYJuga/assets/js/date-time/daterangepicker.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/date-time/bootstrap-timepicker.min.js"></script>
+		
 	
 		<!-- ace scripts -->
 	
