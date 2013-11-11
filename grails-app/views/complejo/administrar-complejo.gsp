@@ -127,53 +127,55 @@
 
 					
 								<div class="space-4"></div>
-				
-								
-							<div class="page-header">
-								<h1>
-									<small> <g:message code="ubicacion.titulo.label" default="Ubicacion" /> </small>
-								</h1>
-							</div>
-								
 
-								<div id="paisesDiv" class="form-group">
-									<label class="col-sm-2 control-label" for="pais">
-										<g:message code="ubicacion.pais.label" default="Pais" />
-									</label>
-									<div class="col-sm-3">
-										<g:select id="pais" name="pais.id" from="${ar.com.reservayjuga.ubicacion.Pais.list()}"
-											optionKey="id" required="" noSelection="['':'Selecciona un Pais']" class="col-sm-12"
-											onchange="${remoteFunction (
+
+					<div class="page-header">
+						<h1>
+							<small> <g:message code="ubicacion.titulo.label"
+									default="Ubicacion" />
+							</small>
+						</h1>
+					</div>
+
+					<div id="paisesDiv" class="form-group">
+						<label class="col-sm-2 control-label" for="pais">
+							<g:message code="ubicacion.pais.label" default="Pais" />
+						</label>
+						<div class="col-sm-3">
+							<g:select id="pais" name="pais.id"
+								from="${ar.com.reservayjuga.ubicacion.Pais.list()}"
+								optionKey="id" required=""
+								noSelection="['':'Selecciona un Pais']" class="col-sm-12"
+								onchange="${remoteFunction (
 												controller: 'pais',
 												action: 'getProvincias',
 												params: '\'id=\' + this.value',
 												update: 'provinciasDiv'
 											)}"
-											value="${complejo?.ubicacion?.pais?.id}" 
-											class="many-to-one" />
-									</div>
-								
-								</div>
+								value="${complejo?.ubicacion?.pais?.id}" class="many-to-one" />
+						</div>
+					</div>
 
-								<div id="provinciasDiv" class="form-group">
-									<g:if test="${complejo?.ubicacion?.pais}">
-										<g:include controller="pais" action="getProvincias" id="${complejo?.ubicacion?.pais?.id}" />
-									</g:if>
-								</div>
-								
-								<div class="form-group">
-									<label class="col-sm-3 control-label"
-										for="direccion">
-										<g:message code="ubicacion.direccion.label" default="Direccion" />
-									</label>
+					<div id="provinciasDiv" class="">
+						<g:if test="${complejo?.ubicacion?.pais}">
+							<g:include controller="pais" action="getProvincias"
+								id="${complejo?.ubicacion?.pais?.id}" />
+						</g:if>
+					</div>
 
-									<div class="col-sm-9">
-										<g:textField name="direccion" value="${complejo?.ubicacion?.direccion}" class="col-xs-10 col-sm-5"/>
-									</div>
-								</div>
-								
-								
-							<div class="page-header">
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="direccion"> 
+							<g:message code="ubicacion.direccion.label" default="Direccion" />
+						</label>
+						<div class="col-sm-3">
+							<g:textField name="direccion"
+								value="${complejo?.ubicacion?.direccion}"
+								class="col-sm-12" />
+						</div>
+					</div>
+
+
+					<div class="page-header">
 								<h1>
 									<small> <g:message code="servicios.titulo.label" default="Servicios" /> </small>
 								</h1>
