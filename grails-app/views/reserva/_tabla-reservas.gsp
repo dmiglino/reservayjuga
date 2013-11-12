@@ -47,3 +47,8 @@
 	</div>
 	<!-- /.table-responsive -->
 </div>
+
+    <div class="pagination">
+	    <g:paginate controller="reserva" action="administrarReservas" total="${reservasTotal}" />
+	</div>
+	

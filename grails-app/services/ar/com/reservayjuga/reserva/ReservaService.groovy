@@ -54,7 +54,7 @@ class ReservaService extends GenericService<Reserva> {
 	 * @return canchas del complejo listas para paginacion
 	 */
 	protected def getReservasDelComplejo(Complejo complejo, def params) {
-		def max = Math.min(params.max ? params.int('max') : 2, 100)
+		def max = Math.min(params.max ? params.int('max') : 10, 100)
 		def offset = Math.min(params.offset ? params.int('offset') : 0, 100)
 		def sortProperty = params.sort ? params.sort : "cancha"
 
