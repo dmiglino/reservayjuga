@@ -1,5 +1,7 @@
 package ar.com.reservayjuga.reserva
 
+import grails.converters.JSON;
+
 import org.springframework.dao.DataIntegrityViolationException
 
 import ar.com.reservayjuga.complejo.Complejo
@@ -25,13 +27,16 @@ class ReservaController {
 	 */
 	def administrarReservas = {
 		def result
+		Complejo complejo
+		
 		try {
-			result = getReservasYCantidad(null, params)
+			complejo = getComplejoDelEngargado()
+			result = getReservasYCantidad(complejo, params)
 		} catch (EntityNotFoundException e) {
 			// TODO mostrar error en pantalla
 			println "ERROR: ${e}"
 		} finally {
-			render(view: "administrar-reservas", model: [reservas:result.reservas, reservasTotal:result.reservasTotal])
+			render(view: "administrar-reservas", model: [canchas:complejo?.canchas, reservas:result?.reservas, reservasTotal:result?.reservasTotal])
 		}	
 	}
 	
@@ -49,11 +54,12 @@ class ReservaController {
 	 */
 	def deleteReserva = {
 		def result
-
+		Complejo complejo
+		
 		try {
 			Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
 			if(encargado) {
-				Complejo complejo = encargado.complejo
+				complejo = encargado.complejo
 				if(complejo) {
 					reservaService.eliminarReservaDelComplejo(complejo, params.id)
 					result = getReservasYCantidad(complejo, params)
@@ -65,7 +71,7 @@ class ReservaController {
 		}  catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
 		} finally {
-			render(template: "tabla-reservas", model:[reservas:result.reservas, reservasTotal:result.reservasTotal])
+			render(template: "tabla-reservas", model:[canchas:complejo?.canchas, reservas:result?.reservas, reservasTotal:result?.reservasTotal])
 		}
 	}
 	
@@ -90,15 +96,17 @@ class ReservaController {
 	 */
 	def seniarReserva = {
 		def result
+		Complejo complejo
 		try {
 			Reserva reserva = reservaService.getReservaById(params.id)
 			reservaService.seniar(reserva)
-			result = getReservasYCantidad(null, params)
+			complejo = getComplejoDelEngargado()
+			result = getReservasYCantidad(complejo, params)
 		} catch (EntityNotFoundException e) {
 			// TODO mostrar error en pantalla
 			println "ERROR: ${e}"
 		} finally {
-			render(template: "tabla-reservas", model:[reservas:result.reservas, reservasTotal:result.reservasTotal])
+			render(template: "tabla-reservas", model:[canchas:complejo?.canchas, reservas:result?.reservas, reservasTotal:result?.reservasTotal])
 		}
 	}
 	
@@ -107,15 +115,17 @@ class ReservaController {
 	 */
 	def concretarReserva = {
 		def result
+		Complejo complejo
 		try {
 			Reserva reserva = reservaService.getReservaById(params.id)
 			reservaService.concretar(reserva)
-			result = getReservasYCantidad(null, params)
+			complejo = getComplejoDelEngargado()
+			result = getReservasYCantidad(complejo, params)
 		} catch (EntityNotFoundException e) {
 			// TODO mostrar error en pantalla
 			println "ERROR: ${e}"
 		} finally {
-			render(template: "tabla-reservas", model:[reservas:result.reservas, reservasTotal:result.reservasTotal])
+			render(template: "tabla-reservas", model:[canchas:complejo?.canchas, reservas:result?.reservas, reservasTotal:result?.reservasTotal])
 		}
 	}
 	
@@ -124,15 +134,36 @@ class ReservaController {
 	 */
 	def cancelarReserva = {
 		def result
+		Complejo complejo
 		try {
 			Reserva reserva = reservaService.getReservaById(params.id)
 			reservaService.cancelar(reserva)
-			result = getReservasYCantidad(null, params)
+			complejo = getComplejoDelEngargado()
+			result = getReservasYCantidad(complejo, params)
 		} catch (EntityNotFoundException e) {
 			// TODO mostrar error en pantalla
 			println "ERROR: ${e}"
 		} finally {
-			render(template: "tabla-reservas", model:[reservas:result.reservas, reservasTotal:result.reservasTotal])
+			render(template: "tabla-reservas", model:[canchas:complejo?.canchas, reservas:result?.reservas, reservasTotal:result?.reservasTotal])
 		}
 	}
+	
+	def filtrarReservas = {
+		def result
+		Complejo complejo
+		try {
+			complejo = getComplejoDelEngargado()
+			result = getReservasYCantidad(complejo, params)
+		} catch (EntityNotFoundException e) {
+			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
+		} finally {
+			render(template: "tabla-reservas", model:[canchas:complejo?.canchas, reservas:result?.reservas, reservasTotal:result?.reservasTotal])
+		}
+	}
+	
+	def getComplejoDelEngargado() {
+		reservaService.getComplejoDelEncargado(authenticationService.getUserLoggedId())
+	}
+	
 }

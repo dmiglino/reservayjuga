@@ -4,6 +4,7 @@ import org.hibernate.criterion.Order
 import org.hibernate.criterion.Restrictions
 
 import ar.com.reservayjuga.common.GenericService
+import ar.com.reservayjuga.complejo.CanchaService
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.ComplejoService
 import ar.com.reservayjuga.exception.EntityNotFoundException
@@ -11,6 +12,7 @@ import ar.com.reservayjuga.exception.EntityNotFoundException
 class ReservaService extends GenericService<Reserva> {
 
 	ComplejoService complejoService
+	CanchaService canchaService
 	
 	@Override
 	def getDomain() {
@@ -64,7 +66,47 @@ class ReservaService extends GenericService<Reserva> {
 			.setFirstResult(offset)
 			.setMaxResults(max)
 			
+		criter = aplicarFiltros(criter, params)
+		
 		criter.list()
+	}
+	
+	/**
+	 * Aplica los filtros de busqueda al criteria
+	 * @param criter
+	 * @param params
+	 * @return criter
+	 */
+	protected def aplicarFiltros(def criter, def params) {
+		println "params : : ${params}"
+		if(params.tipoReservaFilter) {
+			def tipoReservaFilter = params.tipoReservaFilter as TipoReservaEnum
+			criter.add(Restrictions.eq("tipoReserva", tipoReservaFilter))
+		}
+		
+		if(params.estadoReservaFilter) {
+			def estadoFilter = params.estadoReservaFilter as ReservaEnum
+			criter.add(Restrictions.eq("estado", estadoFilter))
+		}
+		
+		if(params.canchaReservaFilter) {
+			def canchaFilter = canchaService.getCanchaById(params.canchaReservaFilter)
+			criter.add(Restrictions.eq("cancha", canchaFilter))
+		}
+		
+		if(params.hour && params.minute) {
+			criter.add(Restrictions.eq("horaInicio", params.hour+":"+params.minute))
+		}
+		
+		if(params.dateRangePicker) {
+			def split = params.dateRangePicker.split(" - ")
+			def fechaDesde = new Date().parse("MM/dd/yyyy", split[0])
+			def fechaHasta = new Date().parse("MM/dd/yyyy", split[1])
+			criter.add(Restrictions.ge("dia", fechaDesde))
+			criter.add(Restrictions.lt("dia", fechaHasta))
+		}
+		
+		return criter
 	}
 	
 	/**
@@ -115,5 +157,15 @@ class ReservaService extends GenericService<Reserva> {
 	void cancelar(Reserva reserva) {
 		// TODO falta validar estados posibles
 		reserva.cancelar()
+	}
+	
+	/**
+	 * Obtiene el complejo del encargado logueado
+	 * @param encargadoId
+	 * @return
+	 */
+	def getComplejoDelEncargado(def encargadoId) {
+		// TODO pasar a EncargadoService? 
+		complejoService.getComplejoDelEncargado(encargadoId)
 	}
 }

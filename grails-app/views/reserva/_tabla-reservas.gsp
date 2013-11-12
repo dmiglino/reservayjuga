@@ -21,7 +21,7 @@
 				<g:each in="${reservas}" var="reserva" status="i">
 					<tr>
 						<td>${reserva?.cancha}</td>
-						<td class="hidden-480">${reserva?.dia}</td>
+						<td class="hidden-480"><g:formatDate date="${reserva?.dia}" format="dd-MM-yyyy" /></td>
 						<td>${reserva?.horaInicio} - ${reserva?.horaFin}</td>
 						<td>${reserva?.jugador}
 							<g:remoteLink controller="reserva" action="selectJugadorToShow" id="${reserva?.jugador?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" onSuccess="setJugadorToShow();">
@@ -29,13 +29,16 @@
 							</g:remoteLink>
 						</td>
 						<td>${reserva?.tipoReserva}</td>
-						<td>${reserva?.precioTotal}</td>
-						<td>${reserva?.senia}</td>
-						<td>${reserva?.precioTotal - reserva?.senia}</td>
+						<td>$ ${reserva?.precioTotal}</td>
+						<td>$ ${reserva?.senia}</td>
+						<td>$ ${reserva?.precioTotal - reserva?.senia}</td>
 						<td>${reserva?.estado}</td>
 						<td>
 							<div
 								class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+								<g:remoteLink controller="reserva" action="seniarReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-info" >
+									<i class="icon-ok bigger-120"></i>
+								</g:remoteLink>
 								<g:remoteLink controller="reserva" action="concretarReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-info" >
 									<i class="icon-ok bigger-120"></i>
 								</g:remoteLink>
@@ -65,3 +68,9 @@
 	    <g:paginate controller="reserva" action="administrarReservas" total="${reservasTotal}" />
 	</div>
 	
+	<script type="text/javascript">
+			
+			function setJugadorToShow() {
+				$('#modal-form').modal('show');
+			}
+	</script>

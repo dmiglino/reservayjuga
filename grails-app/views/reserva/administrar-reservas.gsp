@@ -34,7 +34,7 @@
 				</h1>
 			</div><!-- /.page-header -->
 	
-			<div class="row" id="tabla_reservas">
+			<div class="row" id="filtro_reservas">
 				<g:render template="filtros-reservas" />
 			</div>
 	
@@ -56,8 +56,7 @@
 						         
 						<div class="clearfix form-actions">
 							<div class="col-md-offset-3 col-md-9">
-								<g:actionSubmit action="reservarCancha" class="btn btn-info" value="Nueva Reserva" />
-								&nbsp; &nbsp; &nbsp;
+								<g:actionSubmit action="reservarCancha" class="btn btn-info" value="Nueva Reserva" /> &nbsp; &nbsp; &nbsp;
 							</div>
 						</div>
 					</g:form>
@@ -78,21 +77,17 @@
 	
 		<script type="text/javascript">
 			
-				$('input[name=date-range-picker]').daterangepicker().prev().on(ace.click_event, function(){
+				$('input[name=dateRangePicker]').daterangepicker().prev().on(ace.click_event, function(){
 					$(this).next().focus();
 				});
 				
 				$('#timepicker1').timepicker({
-					minuteStep: 15,
+					minuteStep: 30,
 					showSeconds: false,
 					showMeridian: false
 				}).next().on(ace.click_event, function(){
 					$(this).prev().focus();
 				});
-				
-				function setJugadorToShow() {
-					$('#modal-form').modal('show');
-				}
 		</script>
 	
 	</body>
