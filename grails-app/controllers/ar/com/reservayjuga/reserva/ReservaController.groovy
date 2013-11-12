@@ -85,4 +85,55 @@ class ReservaController {
 		Reserva reservaToEdit = reservaService.getReservaById(params.id)
 		redirect(action: administrarReservas, model: reservaToEdit)
 	}
+	
+	/**
+	 * Se seña una reserva cuando el jugador abona la seña de la misma
+	 */
+	def seniarReserva = {
+		def result
+		try {
+			Reserva reserva = reservaService.getReservaById(params.id)
+			reservaService.seniar(reserva)
+			result = getReservasYCantidad(null, params)
+		} catch (EntityNotFoundException e) {
+			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
+		} finally {
+			render(template: "tabla-reservas", model:[reservas:result.reservas, reservasTotal:result.reservasTotal])
+		}
+	}
+	
+	/**
+	 * Se concreta una reserva cuando el jugador abona la totalidad de la misma
+	 */
+	def concretarReserva = {
+		def result
+		try {
+			Reserva reserva = reservaService.getReservaById(params.id)
+			reservaService.concretar(reserva)
+			result = getReservasYCantidad(null, params)
+		} catch (EntityNotFoundException e) {
+			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
+		} finally {
+			render(template: "tabla-reservas", model:[reservas:result.reservas, reservasTotal:result.reservasTotal])
+		}
+	}
+	
+	/**
+	 * Se cancela una reserva 
+	 */
+	def cancelarReserva = {
+		def result
+		try {
+			Reserva reserva = reservaService.getReservaById(params.id)
+			reservaService.cancelar(reserva)
+			result = getReservasYCantidad(null, params)
+		} catch (EntityNotFoundException e) {
+			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
+		} finally {
+			render(template: "tabla-reservas", model:[reservas:result.reservas, reservasTotal:result.reservasTotal])
+		}
+	}
 }

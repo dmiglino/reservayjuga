@@ -89,4 +89,31 @@ class ReservaService extends GenericService<Reserva> {
 		}
 		complejoService.eliminarReserva(complejo, reservaInstance)
 	}
+	
+	/**
+	 * Se pasa la reserva al estado SEÑADA
+	 * @param reserva
+	 */
+	void seniar(Reserva reserva) {
+		// TODO falta validar estados posibles
+		reserva.seniar()
+	}
+	
+	/**
+	 * Se pasa la reserva al estado CONCRETADA
+	 * @param reserva
+	 */
+	void concretar(Reserva reserva) {
+		// TODO falta validar estados posibles
+		reserva.concretar()
+	}
+	
+	/**
+	 * Se pasa la reserva al estado CANCELADA
+	 * @param reserva
+	 */
+	void cancelar(Reserva reserva) {
+		// TODO falta validar estados posibles
+		reserva.cancelar()
+	}
 }
