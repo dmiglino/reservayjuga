@@ -1,5 +1,8 @@
 package ar.com.reservayjuga.reserva
 
+import ar.com.reservayjuga.complejo.Complejo;
+import ar.com.reservayjuga.exception.EntityNotFoundException
+
 
 class ReservaController {
 	
@@ -14,8 +17,28 @@ class ReservaController {
 		render(view: "reservar-cancha", model: [])
 	}
 	
+	/**
+	 * Muestra la pantalla de administracion de RESERVAS donde se ve el listado de estas
+	 */
 	def administrarReservas = {
-		render(view: "administrar-reservas", model: [])
+		def result
+		try {
+			result = getReservasYCantidad(null, params)
+		} catch (EntityNotFoundException e) {
+			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
+		} finally {
+			render(view: "administrar-reservas", model: [reservas:result.reservas, reservasTotal:result.reservasTotal])
+		}	
+	}
+	
+	/**
+	 * Recupera las canchas del complejo para el listado y el numero total de ellas para el paginado
+	 * @param complejo, params
+	 * @return map [canchas, canchasTotal]
+	 */
+	def getReservasYCantidad(Complejo complejo, def params) {
+		reservaService.getReservasYCantidad(complejo, params, authenticationService.getUserLoggedId())
 	}
 	
 	/**

@@ -1,10 +1,17 @@
 package ar.com.reservayjuga.reserva
 
+import org.hibernate.criterion.Order
+import org.hibernate.criterion.Restrictions
+
 import ar.com.reservayjuga.common.GenericService
-import ar.com.reservayjuga.complejo.Cancha
+import ar.com.reservayjuga.complejo.Complejo
+import ar.com.reservayjuga.complejo.ComplejoService
+import ar.com.reservayjuga.exception.EntityNotFoundException
 
 class ReservaService extends GenericService<Reserva> {
 
+	ComplejoService complejoService
+	
 	@Override
 	def getDomain() {
 		Reserva
@@ -17,6 +24,59 @@ class ReservaService extends GenericService<Reserva> {
 	 */
 	def getReservaById(id) {
 		id ? Reserva.get(id) : null
+	}
+	
+	/**
+	 * Recupera las canchas del complejo para el listado y el numero total de ellas para el paginado
+	 * @param complejo
+	 * @return map [canchas, canchasTotal]
+	 */
+	def getReservasYCantidad(Complejo complejo, def params, def encargadoId) {
+		def reservas, reservasTotal
+		
+		if(complejo == null) {
+			complejo = complejoService.getComplejoDelEncargado(encargadoId)
+		}
+		
+		if(complejo) {
+			println "COMPLEPJO: ${complejo}"
+			reservas = getReservasDelComplejo(complejo, params)
+			println "reservas: ${reservas}"
+			reservasTotal = countTotal(complejo)
+		} else {
+			throw new EntityNotFoundException("Complejo", encargadoId)
+		}
+		
+		return [reservas:reservas, reservasTotal:reservasTotal]
+	}
+	
+	/**
+	 * @param complejo
+	 * @param params
+	 * @return canchas del complejo listas para paginacion
+	 */
+	protected def getReservasDelComplejo(Complejo complejo, def params) {
+		def max = Math.min(params.max ? params.int('max') : 2, 100)
+		def offset = Math.min(params.offset ? params.int('offset') : 0, 100)
+		def sortProperty = params.sort ? params.sort : "cancha"
+
+		def criter = Reserva.createCriteria()
+			.add(Restrictions.eq("complejo", complejo))
+			.addOrder(Order.asc(sortProperty))
+			.setFirstResult(offset)
+			.setMaxResults(max)
+			
+		criter.list()
+	}
+	
+	/**
+	 * @param complejo
+	 * @return cantidad total de canchas del complejo
+	 */
+	protected def countTotal(Complejo complejo) {
+		Reserva.createCriteria().count {
+			eq('complejo', complejo)
+		}
 	}
 	
 }

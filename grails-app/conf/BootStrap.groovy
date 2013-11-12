@@ -55,6 +55,7 @@ class BootStrap {
 					crearEncargados()
 					crearAdministrador()
 					asociarCanchasAComplejos()
+					crearReservas()
 				}
 				break;
 			case Environment.PRODUCTION:
@@ -258,6 +259,10 @@ class BootStrap {
 		DBUtils.validateAndSave([poli,terraza,muni])
 	}
 
+	def crearReservas() {
+		
+	}
+	
 	Boolean primeraVez() {
 		Complejo.list()?.size() == 0
 	}

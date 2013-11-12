@@ -12,7 +12,6 @@ class ComplejoService {
 	ExtrasService extrasService
 	HorarioService horarioService
 	ImagenService imagenService
-//	CanchaService canchaService
 	
 	@Override
 	def getDomain() {

@@ -130,7 +130,7 @@
 					$(this).prev().focus();
 				});
 				
-				function setReservaToEdit() {
+				function setJugadorToShow() {
 					$('#modal-form').modal('show');
 				}
 		</script>

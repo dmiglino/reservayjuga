@@ -16,7 +16,7 @@ class CanchaController {
 	}
 	
 	/**
-	 * Muestra la pantalla de administracion de canchas donde se ve el listado de estas
+	 * Muestra la pantalla de administracion de CANCHAS donde se ve el listado de estas
 	 */
 	def administrarCancha = {
 		def result
