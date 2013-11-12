@@ -6,12 +6,12 @@
 				<tr>
 					<g:sortableColumn property="cancha" title="${message(code: 'reserva.field.cancha.label', default: 'Cancha')}" />
 					<g:sortableColumn property="dia" title="${message(code: 'reserva.field.dia.label', default: 'Dia')}" />
-					<g:sortableColumn property="horario" title="${message(code: 'reserva.field.horario.label', default: 'Horario')}" />
+					<g:sortableColumn property="horaInicio" title="${message(code: 'reserva.field.horario.label', default: 'Horario')}" />
 					<g:sortableColumn property="jugador" title="${message(code: 'reserva.field.jugador.label', default: 'Jugador')}" />
 					<g:sortableColumn property="tipoReserva" title="${message(code: 'reserva.field.tipoReserva.label', default: 'Tipo de Reserva')}" />
 					<g:sortableColumn property="precioTotal" title="${message(code: 'reserva.field.precioTotal.label', default: 'Precio total')}" />
-					<g:sortableColumn property="seniaPagada" title="${message(code: 'reserva.field.seniaPagada.label', default: 'Seña pagada')}" />
-					<g:sortableColumn property="faltante" title="${message(code: 'reserva.field.faltante.label', default: 'Faltante')}" />
+					<g:sortableColumn property="senia" title="${message(code: 'reserva.field.seniaPagada.label', default: 'Seña pagada')}" />
+					<th><g:message code="reserva.field.faltante.label" default="Faltante" /></th>
 					<g:sortableColumn property="estado" title="${message(code: 'reserva.field.estado.label', default: 'Estado')}" />
 					<th><g:message code="common.tabla.acciones.label" default="Acciones" /></th>
 				</tr>
