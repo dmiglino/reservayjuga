@@ -9,7 +9,7 @@
 					<g:sortableColumn property="cantidadJugadores" title="${message(code: 'common.cantidad.jugadores.label', default: 'Cantidad de jugadores')}" />
 					<g:sortableColumn property="cubierta" title="${message(code: 'common.techado.label', default: 'Techado')}" />
 					<g:sortableColumn property="superficie" title="${message(code: 'common.superficie.label', default: 'Superficie')}" />
-					<th>Acciones</th>
+					<th><g:message code="common.tabla.acciones.label" default="Acciones" /></th>
 				</tr>
 			</thead>
 
