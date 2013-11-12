@@ -63,7 +63,7 @@ class CanchaService extends GenericService<Cancha> {
 	}
 	
 	/**
-	 * Elimina la cancha indicada del complejo y de la BD
+	 * Elimina la CANCHA indicada del Complejo y de la BD
 	 * @param complejo
 	 * @param canchaId
 	 */

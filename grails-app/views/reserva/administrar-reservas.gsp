@@ -90,7 +90,7 @@
 	
 					<!-- PAGE CONTENT BEGINS -->
 					<g:form action="reservarCancha" class="form-horizontal" role="form" >
-						<div class="row">
+						<div class="row" id="tabla_reservas">
 							<g:render template="tabla-reservas" />
 						</div>
 						         

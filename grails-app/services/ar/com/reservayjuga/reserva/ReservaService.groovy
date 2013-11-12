@@ -39,9 +39,7 @@ class ReservaService extends GenericService<Reserva> {
 		}
 		
 		if(complejo) {
-			println "COMPLEPJO: ${complejo}"
 			reservas = getReservasDelComplejo(complejo, params)
-			println "reservas: ${reservas}"
 			reservasTotal = countTotal(complejo)
 		} else {
 			throw new EntityNotFoundException("Complejo", encargadoId)
@@ -79,4 +77,16 @@ class ReservaService extends GenericService<Reserva> {
 		}
 	}
 	
+	/**
+	 * Elimina la cancha indicada del complejo y de la BD
+	 * @param complejo
+	 * @param canchaId
+	 */
+	void eliminarReservaDelComplejo(Complejo complejo, def reservaId) {
+		def reservaInstance = findEntityById(reservaId)
+		if(!reservaInstance) {
+			throw new EntityNotFoundException("Reserva", reservaId)
+		}
+		complejoService.eliminarReserva(complejo, reservaInstance)
+	}
 }

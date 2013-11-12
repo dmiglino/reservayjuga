@@ -69,7 +69,7 @@ class CanchaController {
 	}
 	
 	/**
-	 * Elimina la cancha indicada del complejo y de la BD
+	 * Elimina la CANCHA indicada del Complejo y de la BD
 	 */
 	def deleteCancha = {
 		def result
@@ -83,11 +83,11 @@ class CanchaController {
 					result = getCanchasYCantidad(complejo, params)
 				}
 			}
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'cancha.label', default: 'Cancha'), params.id])
 		} catch (EntityNotFoundException e) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'cancha.label', default: 'Cancha'), params.id])
 		}  catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'imagen.label', default: 'Imagen'), params.id])
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'cancha.label', default: 'Cancha'), params.id])
 		} finally {
 			render(template: "tabla_canchas", model:[canchas:result.canchas, canchasTotal:result.canchasTotal])
 		}

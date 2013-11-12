@@ -24,12 +24,9 @@
 						<td class="hidden-480">${reserva?.dia}</td>
 						<td>${reserva?.horaInicio} - ${reserva?.horaFin}</td>
 						<td>${reserva?.jugador}
-							<g:remoteLink controller="reserva" action="selectJugadorToShow" id="${reserva?.jugador?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" onSuccess="setJugadorToShow();"><i class="icon-edit bigger-120"></i></g:remoteLink>
-							<a href="#modal-form" role="button" class="tooltip-info" title="Ver detalles" data-toggle="modal"> 
-								<span class="blue"> 
-									<i class="icon-zoom-in bigger-120"></i>
-								</span>
-							</a>
+							<g:remoteLink controller="reserva" action="selectJugadorToShow" id="${reserva?.jugador?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" onSuccess="setJugadorToShow();">
+								<i class="icon-zoom-in bigger-120"></i>
+							</g:remoteLink>
 						</td>
 						<td>${reserva?.tipoReserva}</td>
 						<td>${reserva?.precioTotal}</td>
@@ -40,7 +37,7 @@
 							<div
 								class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 								<g:remoteLink controller="reserva" action="selectToEdit" id="${reserva?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></g:remoteLink>
-								<g:remoteLink controller="reserva" action="deleteReserva" id="${reserva?.id}" update="[success:'tabla-reservas',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
+								<g:remoteLink controller="reserva" action="deleteReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>
 							</div>
 						</td>
 					</tr>

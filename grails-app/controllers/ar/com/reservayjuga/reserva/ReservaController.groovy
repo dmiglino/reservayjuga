@@ -1,7 +1,10 @@
 package ar.com.reservayjuga.reserva
 
-import ar.com.reservayjuga.complejo.Complejo;
+import org.springframework.dao.DataIntegrityViolationException
+
+import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.exception.EntityNotFoundException
+import ar.com.reservayjuga.usuario.Encargado
 
 
 class ReservaController {
@@ -39,6 +42,31 @@ class ReservaController {
 	 */
 	def getReservasYCantidad(Complejo complejo, def params) {
 		reservaService.getReservasYCantidad(complejo, params, authenticationService.getUserLoggedId())
+	}
+	
+	/**
+	 * Elimina la RESERVA indicada del Complejo y de la BD
+	 */
+	def deleteReserva = {
+		def result
+
+		try {
+			Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
+			if(encargado) {
+				Complejo complejo = encargado.complejo
+				if(complejo) {
+					reservaService.eliminarReservaDelComplejo(complejo, params.id)
+					result = getReservasYCantidad(complejo, params)
+				}
+			}
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
+		} catch (EntityNotFoundException e) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
+		}  catch (DataIntegrityViolationException e) {
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
+		} finally {
+			render(template: "tabla-reservas", model:[reservas:result.reservas, reservasTotal:result.reservasTotal])
+		}
 	}
 	
 	/**
