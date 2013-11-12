@@ -13,35 +13,49 @@
 								<div class="space-4"></div>
 								<form class="form-horizontal" role="form">
 									<div class="form-group">
-										<label class="col-sm-6 control-label" for="form-field-username">Nombre
-											y Apellido:</label> <label class="col-sm-6 control-label"
-											for="form-field-username"><strong>Tomas
-												Escamez</strong></label>
+										<label class="col-sm-6 control-label" for="form-field-username">
+											<g:message code="common.nombre.apellido.label" default="Nombre y Apellido" />:
+										</label> 
+										<label class="col-sm-6 control-label"
+											for="form-field-username">
+											<strong>${jugador}</strong>
+										</label>
 									</div>
 	
 									<div class="space-4"></div>
 	
 									<div class="form-group">
-										<label class="col-sm-6 control-label" for="form-field-select-3">E-mail</label>
-										<label class="col-sm-6 control-label" for="form-field-username"><strong>tomase@gmail.com</strong></label>
+										<label class="col-sm-6 control-label" for="form-field-select-3">
+											<g:message code="common.email.label" default="E-Mail" />:
+										</label>
+										<label class="col-sm-6 control-label" for="form-field-username"><strong>${jugador?.mail}</strong></label>
 									</div>
 	
 									<div class="form-group">
-										<label class="col-sm-6 control-label" for="form-field-select-3">Telefono</label>
-										<label class="col-sm-6 control-label" for="form-field-username"><strong>156-448-7449</strong></label>
+										<label class="col-sm-6 control-label" for="form-field-select-3">
+											<g:message code="common.telefono.label" default="Telefono" />:
+										</label>
+										<label class="col-sm-6 control-label" for="form-field-username"><strong>${jugador?.telefono}</strong></label>
 									</div>
 	
 									<div class="space-4"></div>
 	
 									<div class="form-group">
-										<label class="col-sm-6 control-label" for="form-field-select-3">Fecha
-											de Nacimiento</label> <label class="col-sm-6 control-label"
-											for="form-field-username"><strong>10/08/1987</strong></label>
+										<label class="col-sm-6 control-label" for="form-field-select-3">
+											<g:message code="common.fecha.nacimiento.label" default="Fecha de Nacimiento" />:
+										</label> 
+										<label class="col-sm-6 control-label" for="form-field-username">
+											<strong>
+												<g:formatDate date="${jugador?.fechaNacimiento}" format="dd-MM-yyyy" />
+											</strong>
+										</label>
 									</div>
 	
 									<div class="form-group">
-										<label class="col-sm-6 control-label" for="form-field-select-3">Sexo</label>
-										<label class="col-sm-6 control-label" for="form-field-username"><strong>Masculino</strong></label>
+										<label class="col-sm-6 control-label" for="form-field-select-3">
+											<g:message code="common.sexo.label" default="Sexo" />:
+										</label>
+										<label class="col-sm-6 control-label" for="form-field-username"><strong>${jugador?.sexo}</strong></label>
 									</div>
 								</form>
 							</div>
@@ -50,11 +64,7 @@
 	
 					<div class="modal-footer">
 						<button class="btn btn-sm" data-dismiss="modal">
-							<i class="icon-remove"></i> <g:message code="common.cancelar.label" default="Cancelar" />
-						</button>
-	
-						<button class="btn btn-sm btn-primary">
-							<i class="icon-ok"></i> <g:message code="common.grabar.label" default="Grabar" />
+							<i class="icon-ok"></i> <g:message code="common.volver.label" default="Volver" />
 						</button>
 					</div>
 				</div>

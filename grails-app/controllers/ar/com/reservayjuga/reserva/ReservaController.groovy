@@ -73,9 +73,8 @@ class ReservaController {
 	 * Busca el jugador segun el id para mostrar en el modal panel
 	 */
 	def selectJugadorToShow = {
-		// TODO hacer jugadorService
-		Reserva jugadorToShow = reservaService.getReservaById(params.id)
-		render(template:"modal-box-jugador", model:[reserva:jugadorToShow])
+		Reserva reserva = reservaService.getReservaById(params.id)
+		render(template:"modal-box-jugador", model:[jugador:reserva.jugador])
 	}
 	
 	/**
