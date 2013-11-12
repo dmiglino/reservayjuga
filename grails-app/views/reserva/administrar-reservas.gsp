@@ -116,12 +116,12 @@
 												<td>Cancha 1 - Camp Nou</td>
 												<td class="hidden-480">25-08-2013</td>
 												<td>15:00-16:00</td>
-												<td>Tomas Escamez <a href="#modal-form" role="button"
-													class="tooltip-info" title="Ver detalles"
-													data-toggle="modal"> <span class="blue"> <i
-															class="icon-zoom-in bigger-120"></i>
-													</span>
-												</a>
+												<td>Tomas Escamez 
+													<a href="#modal-form" role="button" class="tooltip-info" title="Ver detalles" data-toggle="modal"> 
+														<span class="blue"> 
+															<i class="icon-zoom-in bigger-120"></i>
+														</span>
+													</a>
 												</td>
 												<td>Online</td>
 												<td>$500</td>
@@ -197,6 +197,7 @@
 															title="Marcar como pagada">
 															<i class="icon-ok bigger-120"></i>
 														</button>
+														<g:remoteLink controller="reserva" action="selectToEdit" id="${reserva?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" onSuccess="setReservaToEdit();"><i class="icon-edit bigger-120"></i></g:remoteLink>
 														<button class="btn btn-xs btn-info" title="Editar">
 															<i class="icon-edit bigger-120"></i>
 														</button>
@@ -220,67 +221,9 @@
 		</div>
 		<!-- /.page-content -->
 	
-		<!-- comienzo DEL MODAL BOX PARA EDITAR -->
-		<div id="modal-form" class="modal" tabindex="-1">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="blue bigger"><g:message code="reserva.jugador.informacion.label" default="Informacion del jugador" /></h4>
-					</div>
-	
-					<div class="modal-body overflow-visible">
-						<div class="row">
-							<div class="col-xs-8 col-sm-8">
-								<div class="space-4"></div>
-								<form class="form-horizontal" role="form">
-									<div class="form-group">
-										<label class="col-sm-6 control-label" for="form-field-username">Nombre
-											y Apellido:</label> <label class="col-sm-6 control-label"
-											for="form-field-username"><strong>Tomas
-												Escamez</strong></label>
-									</div>
-	
-									<div class="space-4"></div>
-	
-									<div class="form-group">
-										<label class="col-sm-6 control-label" for="form-field-select-3">E-mail</label>
-										<label class="col-sm-6 control-label" for="form-field-username"><strong>tomase@gmail.com</strong></label>
-									</div>
-	
-									<div class="form-group">
-										<label class="col-sm-6 control-label" for="form-field-select-3">Telefono</label>
-										<label class="col-sm-6 control-label" for="form-field-username"><strong>156-448-7449</strong></label>
-									</div>
-	
-									<div class="space-4"></div>
-	
-									<div class="form-group">
-										<label class="col-sm-6 control-label" for="form-field-select-3">Fecha
-											de Nacimiento</label> <label class="col-sm-6 control-label"
-											for="form-field-username"><strong>10/08/1987</strong></label>
-									</div>
-	
-									<div class="form-group">
-										<label class="col-sm-6 control-label" for="form-field-select-3">Sexo</label>
-										<label class="col-sm-6 control-label" for="form-field-username"><strong>Masculino</strong></label>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-	
-					<div class="modal-footer">
-						<button class="btn btn-sm" data-dismiss="modal">
-							<i class="icon-remove"></i> <g:message code="common.cancelar.label" default="Cancelar" />
-						</button>
-	
-						<button class="btn btn-sm btn-primary">
-							<i class="icon-ok"></i> <g:message code="common.grabar.label" default="Grabar" />
-						</button>
-					</div>
-				</div>
-			</div>
+		<!-- comienzo DEL MODAL BOX PARA EDITAR -->		
+		<div id="modal-box-form" >
+			<g:render template="modal-box-edit" model="['cancha':cancha]" />
 		</div>
 		<!-- FIN DEL MODAL BOX PARA EDITAR -->
 	
@@ -298,7 +241,10 @@
 				}).next().on(ace.click_event, function(){
 					$(this).prev().focus();
 				});
-	
+				
+				function setReservaToEdit() {
+					$('#modal-form').modal('show');
+				}
 		</script>
 	
 	</body>

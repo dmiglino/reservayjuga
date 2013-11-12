@@ -17,6 +17,11 @@ class CanchaService extends GenericService<Cancha> {
 		Cancha
 	}
 	
+	/**
+	 * Obtiene la Cancha segun el id indicado
+	 * @param id
+	 * @return
+	 */
 	def getCanchaById(id) {
 		id ? Cancha.get(id) : null
 	}
