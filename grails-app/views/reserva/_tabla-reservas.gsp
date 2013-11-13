@@ -24,7 +24,7 @@
 						<td class="hidden-480"><g:formatDate date="${reserva?.dia}" format="dd-MM-yyyy" /></td>
 						<td>${reserva?.horaInicio} - ${reserva?.horaFin}</td>
 						<td>${reserva?.jugador}
-							<g:remoteLink controller="reserva" action="selectJugadorToShow" id="${reserva?.jugador?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" onSuccess="setJugadorToShow();">
+							<g:remoteLink controller="reserva" action="selectJugadorToShow" id="${reserva?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" onSuccess="setJugadorToShow();">
 								<i class="icon-zoom-in bigger-120"></i>
 							</g:remoteLink>
 						</td>
