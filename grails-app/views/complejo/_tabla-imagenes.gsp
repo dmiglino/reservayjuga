@@ -5,14 +5,16 @@
 			<table id="imagenesTable" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
+<%--						<g:sortableColumn params="[controller:'complejo', action:'ordenarImagenes']" property="nombre" title="${message(code: 'common.nombre.label', default: 'Nombre')}" />--%>
+<%--						<g:sortableColumn params="[controller:'complejo', action:'ordenarImagenes']" property="descripcion" title="${message(code: 'common.descripcion.label', default: 'Descripcion')}" />--%>
 						<th class="hidden-480"><g:message code="common.nombre.label" default="Nombre" /></th>
 						<th class="hidden-480"><g:message code="common.descripcion.label" default="Descripcion" /></th>
 						<th>
 							<i class="icon-time bigger-110 hidden-480"></i>
 							<g:message code="common.fecha.label" default="Fecha" />
 						</th>
+<%--						<g:sortableColumn params="[controller:'complejo', action:'ordenarImagenes']" property="portada" title="${message(code: 'common.portada.label', default: 'Portada')}" />--%>
 						<th class="hidden-480"><g:message code="common.portada.label" default="Portada" /></th>
-		
 						<th>
 							<g:message code="common.tabla.acciones.label" default="Acciones" />
 							<g:if test="${imagenes}">
@@ -28,7 +30,7 @@
 						<tr>
 							<td>${imagen?.nombre}</td>
 							<td>${imagen?.descripcion}</td>
-							<td><g:formatDate date="${imagen?.fecha}" format="yyyy-MM-dd" /></td>
+							<td><g:formatDate date="${imagen?.fecha}" format="dd-MM-yyyy" /></td>
 							<td class="hidden-480"><g:formatBoolean boolean="${imagen?.portada}" true="SI" false="NO" /></td>
 		
 							<td>
@@ -37,7 +39,7 @@
 									<g:hiddenField name="nombreImagen" value="${imagen?.nombre}" />
 									<g:hiddenField name="descripcionImagen" value="${imagen?.descripcion}" />
 									<g:hiddenField name="portadaImagen" value="${imagen?.portada}" />
-									<g:hiddenField name="fotoImagen" value="${imagen?.foto}" />
+<%--									<g:hiddenField name="fotoImagen" value="${imagen?.foto}" />--%>
 										
 									<a href="#modal-form" data-id="${imagen?.id}" role="button" class="open-EditImageModal btn btn-xs btn-info" data-toggle="modal"> <i class="icon-edit bigger-120"></i> </a>
 									<g:remoteLink controller="complejo" action="deleteImagen" id="${imagen?.id}" update="[success:'imagenesDiv',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-trash bigger-120"></i></g:remoteLink>

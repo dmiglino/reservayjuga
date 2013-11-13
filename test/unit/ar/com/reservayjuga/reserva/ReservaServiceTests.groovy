@@ -1,4 +1,4 @@
-package ar.com.reservayjuga
+package ar.com.reservayjuga.reserva
 
 
 
@@ -8,8 +8,8 @@ import org.junit.*
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
-@TestFor(AuthenticationService)
-class AuthenticationServiceTests {
+@TestFor(ReservaService)
+class ReservaServiceTests {
 
     void testSomething() {
         fail "Implement me"
