@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="layout" content="main" />
-<title><g:message code="complejo.titulo.label"
-		default="Administracion de Complejo" /></title>
-<script src="../assets/js/jquery-ui-1.10.3.full.min.js"></script>
-<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
-<link rel="stylesheet"
-	href="../assets/css/jquery-ui-1.10.3.full.min.css" />
+	<meta charset="utf-8" />
+	<meta name="layout" content="main" />
+	<title><g:message code="complejo.titulo.label" default="Administracion de Complejo" /></title>
+	<script src="../assets/js/jquery-ui-1.10.3.full.min.js"></script>
+	<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
+	<link rel="stylesheet" href="../assets/css/jquery-ui-1.10.3.full.min.css" />
 </head>
 
 <body>

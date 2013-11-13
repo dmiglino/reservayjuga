@@ -4,6 +4,9 @@
 		<meta charset="utf-8" />
 		<meta name="layout" content="main"/>
 		<title><g:message code="cancha.agregar.nueva.label" default="Agregar nueva cancha" /></title>
+		<script src="../assets/js/jquery.handsontable.full.js"></script>
+		<link rel="stylesheet" href="../assets/css/jquery.handsontable.full.css" />
+		<link rel="stylesheet" href="../assets/css/jquery.handsontable.bootstrap.css" />
 	</head>
 
 	<body>
