@@ -55,12 +55,21 @@ class Complejo {
 	}
 	
 	/**
-	 * Elimina la cancha del listado y ademas la borra de la BD
+	 * Elimina la CANCHA del listado y ademas la borra de la BD
 	 * @param cancha
 	 */
 	void eliminarCancha(Cancha cancha) {
 		removeFromCanchas(cancha)
 		cancha.delete()
+	}
+	
+	/**
+	 * Elimina la RESERVA del listado y ademas la borra de la BD
+	 * @param cancha
+	 */
+	void eliminarReserva(Reserva reserva) {
+		removeFromReservas(reserva)
+		reserva.delete()
 	}
 	
 	void agregarHorario(Horario horario) {

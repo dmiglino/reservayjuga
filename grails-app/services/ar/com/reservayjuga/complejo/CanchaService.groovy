@@ -6,7 +6,6 @@ import org.hibernate.criterion.Restrictions
 import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.common.GenericService
 import ar.com.reservayjuga.exception.EntityNotFoundException
-import ar.com.reservayjuga.usuario.Encargado
 
 class CanchaService extends GenericService<Cancha> {
 	
@@ -17,6 +16,11 @@ class CanchaService extends GenericService<Cancha> {
 		Cancha
 	}
 	
+	/**
+	 * Obtiene la Cancha segun el id indicado
+	 * @param id
+	 * @return
+	 */
 	def getCanchaById(id) {
 		id ? Cancha.get(id) : null
 	}
@@ -58,7 +62,7 @@ class CanchaService extends GenericService<Cancha> {
 	}
 	
 	/**
-	 * Elimina la cancha indicada del complejo y de la BD
+	 * Elimina la CANCHA indicada del Complejo y de la BD
 	 * @param complejo
 	 * @param canchaId
 	 */
@@ -108,7 +112,30 @@ class CanchaService extends GenericService<Cancha> {
 			.setFirstResult(offset)
 			.setMaxResults(max)
 		
+		criter = aplicarFiltros(criter, params)
+		
 		criter.list()
+	}
+	
+	/**
+	 * Aplica los filtros de busqueda al criteria
+	 * @param criter
+	 * @param params
+	 * @return criter
+	 */
+	protected def aplicarFiltros(def criter, def params) {
+		println "params : : ${params}"
+		if(params.deporteCanchaFilter) {
+			def deporteFilter = params.deporteCanchaFilter as DeporteEnum
+			criter.add(Restrictions.eq("deporte", deporteFilter))
+		}
+		
+		if(params.superficieCanchaFilter) {
+			def superficieFilter = params.superficieCanchaFilter as SuperficieEnum
+			criter.add(Restrictions.eq("superficie", superficieFilter))
+		}
+		
+		return criter
 	}
 	
 	/**
@@ -121,4 +148,13 @@ class CanchaService extends GenericService<Cancha> {
 		}
 	}
 	
+	/**
+	 * Obtiene el complejo del encargado logueado
+	 * @param encargadoId
+	 * @return
+	 */
+	def getComplejoDelEncargado(def encargadoId) {
+		// TODO pasar a EncargadoService?
+		complejoService.getComplejoDelEncargado(encargadoId)
+	}
 }

@@ -1,18 +1,19 @@
 package ar.com.reservayjuga.complejo
 
 import ar.com.reservayjuga.DBUtils
+import ar.com.reservayjuga.common.GenericService;
 import ar.com.reservayjuga.exception.EntityNotFoundException
+import ar.com.reservayjuga.reserva.Reserva
 import ar.com.reservayjuga.ubicacion.UbicacionService
 import ar.com.reservayjuga.usuario.Encargado
 
-class ComplejoService {
+class ComplejoService extends GenericService<Complejo> {
 	
 	UbicacionService ubicacionService
 	ServiciosService serviciosService
 	ExtrasService extrasService
 	HorarioService horarioService
 	ImagenService imagenService
-//	CanchaService canchaService
 	
 	@Override
 	def getDomain() {
@@ -140,6 +141,16 @@ class ComplejoService {
 	void eliminarCancha(Complejo complejo, Cancha cancha) {
 		validate(complejo)
 		complejo.eliminarCancha(cancha)
+	}
+	
+	/**
+	 * Elimina la imagen indicada del complejo y de la BD
+	 * @param complejo
+	 * @param imagenId
+	 */
+	void eliminarReserva(Complejo complejo, Reserva reserva) {
+		validate(complejo)
+		complejo.eliminarReserva(reserva)
 	}
 	
 	void eliminarTodasLasImagenesDelComplejo(Complejo complejo) {
