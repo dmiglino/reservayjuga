@@ -88,7 +88,7 @@ class ReservaController {
 	 */
 	def selectToEdit = {
 		Reserva reservaToEdit = reservaService.getReservaById(params.id)
-		redirect(action: administrarReservas, model: reservaToEdit)
+		redirect(action: reservarCancha, model: reservaToEdit)
 	}
 	
 	/**

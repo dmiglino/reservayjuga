@@ -26,14 +26,14 @@ class CanchaController {
 			// TODO mostrar error en pantalla
 			println "ERROR: ${e}"
 		}
-		render(view: "administrar-cancha", model: [canchas:result.canchas, canchasTotal:result.canchasTotal, deportesDisponibles:DeporteEnum.values()])
+		render(view: "administrar-cancha", model: [canchas:result?.canchas, canchasTotal:result?.canchasTotal])
     }
 	
 	/**
 	 * Muestra la pantalla de creacion de una cancha
 	 */
 	def agregarCancha = {
-		render(view: "agregar-cancha", model: [cancha:new Cancha(), deportesDisponibles:DeporteEnum.values()])
+		render(view: "agregar-cancha", model: [cancha:new Cancha()])
 	}
 	
 	/**
@@ -41,8 +41,7 @@ class CanchaController {
 	 */
 	def crearCancha = {
 		try {
-			Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
-			Complejo complejo = encargado.complejo
+			Complejo complejo = getComplejoDelEngargado()
 			canchaService.crearCanchaParaComplejo(complejo, params.cancha)
 			redirect(action: administrarCancha)
 		} catch(ReservaYJugaException e) {
@@ -64,7 +63,7 @@ class CanchaController {
 			// TODO mostrar error en pantalla
 			println "ERROR: ${e}"
 		} finally {
-			render(template: "tabla_canchas", model:[canchas:result.canchas, canchasTotal:result.canchasTotal])
+			render(template: "tabla_canchas", model:[canchas:result?.canchas, canchasTotal:result?.canchasTotal])
 		}
 	}
 	
@@ -75,13 +74,10 @@ class CanchaController {
 		def result
 
 		try {
-			Encargado encargado = Encargado.get(authenticationService.getUserLoggedId())
-			if(encargado) {
-				Complejo complejo = encargado.complejo
-				if(complejo) {
-					canchaService.eliminarCanchaDelComplejo(complejo, params.id)
-					result = getCanchasYCantidad(complejo, params)
-				}
+			Complejo complejo = getComplejoDelEngargado()
+			if(complejo) {
+				canchaService.eliminarCanchaDelComplejo(complejo, params.id)
+				result = getCanchasYCantidad(complejo, params)
 			}
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'cancha.label', default: 'Cancha'), params.id])
 		} catch (EntityNotFoundException e) {
@@ -89,10 +85,26 @@ class CanchaController {
 		}  catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'cancha.label', default: 'Cancha'), params.id])
 		} finally {
-			render(template: "tabla_canchas", model:[canchas:result.canchas, canchasTotal:result.canchasTotal])
+			render(template: "tabla_canchas", model:[canchas:result?.canchas, canchasTotal:result?.canchasTotal])
 		}
 	}
-
+	
+	def filtrarCanchas = {
+		def result
+		try {
+			result = getCanchasYCantidad(null, params)
+		} catch (EntityNotFoundException e) {
+			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
+		} finally {
+			render(template: "tabla_canchas", model:[canchas:result?.canchas, canchasTotal:result?.canchasTotal])
+		}
+	}
+	
+	def getComplejoDelEngargado() {
+		canchaService.getComplejoDelEncargado(authenticationService.getUserLoggedId())
+	}
+	
 	/**
 	 * Obtiene las superficies correspondientes al deporte elegido
 	 */
@@ -106,7 +118,7 @@ class CanchaController {
 	 */
 	def selectToEdit = {
 		Cancha canchaToEdit = canchaService.getCanchaById(params.id)
-		render(template:"modal-box", model:[cancha:canchaToEdit, deportesDisponibles:DeporteEnum.values()])
+		render(template:"modal-box", model:[cancha:canchaToEdit])
 	}
 
 	/**

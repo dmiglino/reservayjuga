@@ -63,7 +63,6 @@
 			</div>
 			
 			<div class="col-xs-4">
-				<h4 class="green smaller lighter"></h4>
 				<i class="icon-zoom-in bigger-200"></i>
 				<g:submitButton name="submit" value="Filtrar" />
 			</div>

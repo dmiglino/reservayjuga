@@ -1,3 +1,4 @@
+<%@page import="ar.com.reservayjuga.complejo.DeporteEnum"%>
 
 <div class="form-group">
 	<label class="col-sm-2 control-label" for="form-field-username"><g:message code="common.nombre.label" default="Nombre" /></label>
@@ -24,7 +25,7 @@
 <div class="form-group">
 	<label class="col-sm-2 control-label" for="form-field-select-3"><g:message code="common.deporte.label" default="Deporte" /></label>
 	<g:select id="deporte" name="cancha.deporte"
-		from="${deportesDisponibles}" noSelection="['':'']"
+		from="${DeporteEnum.values()}" noSelection="['':'']"
 		class="chosen-select one-to-one"
 		optionValue="${ {deporte -> g.message(code:deporte.textCode)} }"
 		value="${cancha?.deporte}"

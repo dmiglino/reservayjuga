@@ -78,7 +78,6 @@ class ReservaService extends GenericService<Reserva> {
 	 * @return criter
 	 */
 	protected def aplicarFiltros(def criter, def params) {
-		println "params : : ${params}"
 		if(params.tipoReservaFilter) {
 			def tipoReservaFilter = params.tipoReservaFilter as TipoReservaEnum
 			criter.add(Restrictions.eq("tipoReserva", tipoReservaFilter))

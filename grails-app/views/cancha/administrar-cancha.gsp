@@ -27,6 +27,17 @@
 		</div>
 
 		<div class="page-content">
+		
+			<div class="page-header">
+				<h1>
+					<small> <g:message code="cancha.filtros.titulo.label" default="Filtros" /> </small>
+				</h1>
+			</div><!-- /.page-header -->
+	
+			<div class="row" id="filtro_canchas">
+				<g:render template="filtros-canchas" />
+			</div>
+			
 			<div class="page-header">
 				<h1>
 				    <small>
@@ -37,8 +48,8 @@
 
 			<div class="row">
 				<div class="col-xs-12">
-					<!-- PAGE CONTENT BEGINS -->
 
+					<!-- PAGE CONTENT BEGINS -->
 					<g:form action="agregarCancha" class="form-horizontal" role="form" >
 				
 			            <div class="row" id="tabla_canchas" >
