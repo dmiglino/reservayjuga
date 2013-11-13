@@ -5,9 +5,9 @@ import groovy.util.GroovyTestCase;
 
 import org.junit.*
 
-import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.exception.InvalidEntityException
 import ar.com.reservayjuga.ubicacion.Ubicacion;
+import ar.com.reservayjuga.utils.DBUtils;
 
 class UbicacionIntegrationTests extends GroovyTestCase {
 

@@ -4,7 +4,7 @@ import static org.junit.Assert.*
 
 import org.junit.*
 
-import ar.com.reservayjuga.DBUtils
+import ar.com.reservayjuga.utils.DBUtils;
 
 class PaisServiceIntegrationTests extends GroovyTestCase {
 

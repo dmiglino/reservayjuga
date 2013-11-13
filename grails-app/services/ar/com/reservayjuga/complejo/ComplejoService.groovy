@@ -1,11 +1,11 @@
 package ar.com.reservayjuga.complejo
 
-import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.common.GenericService;
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.reserva.Reserva
 import ar.com.reservayjuga.ubicacion.UbicacionService
 import ar.com.reservayjuga.usuario.Encargado
+import ar.com.reservayjuga.utils.DBUtils;
 
 class ComplejoService extends GenericService<Complejo> {
 	

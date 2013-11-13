@@ -4,7 +4,6 @@ import static org.junit.Assert.*
 
 import org.junit.*
 
-import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.exception.InvalidEntityException
 import ar.com.reservayjuga.reserva.Reserva
 import ar.com.reservayjuga.ubicacion.Barrio
@@ -13,6 +12,7 @@ import ar.com.reservayjuga.ubicacion.Pais
 import ar.com.reservayjuga.ubicacion.Provincia
 import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Jugador
+import ar.com.reservayjuga.utils.DBUtils;
 
 class ComplejoIntegrationTests extends GroovyTestCase {
     

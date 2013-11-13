@@ -4,7 +4,6 @@ import static org.junit.Assert.*
 
 import org.junit.*
 
-import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.ubicacion.Barrio
 import ar.com.reservayjuga.ubicacion.Localidad
@@ -12,6 +11,7 @@ import ar.com.reservayjuga.ubicacion.Pais
 import ar.com.reservayjuga.ubicacion.Provincia
 import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Encargado
+import ar.com.reservayjuga.utils.DBUtils;
 
 class CanchaServiceIntegrationTests extends GroovyTestCase {
 

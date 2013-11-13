@@ -1,4 +1,4 @@
-package ar.com.reservayjuga
+package ar.com.reservayjuga.security
 
 import static org.junit.Assert.*
 import grails.plugin.springsecurity.SpringSecurityService
@@ -8,12 +8,14 @@ import org.junit.*
 
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.Servicios
+import ar.com.reservayjuga.security.AuthenticationService;
 import ar.com.reservayjuga.ubicacion.Barrio
 import ar.com.reservayjuga.ubicacion.Localidad
 import ar.com.reservayjuga.ubicacion.Pais
 import ar.com.reservayjuga.ubicacion.Provincia
 import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Encargado
+import ar.com.reservayjuga.utils.DBUtils;
 
 class AuthenticationServiceIntegrationTests extends GrailsUnitTestCase {
 

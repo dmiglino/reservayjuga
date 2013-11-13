@@ -1,4 +1,4 @@
-package ar.com.reservayjuga
+package ar.com.reservayjuga.utils
 
 import ar.com.reservayjuga.exception.InvalidEntityException
 

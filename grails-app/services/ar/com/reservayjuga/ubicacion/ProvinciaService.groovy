@@ -4,6 +4,11 @@ import ar.com.reservayjuga.common.GenericService
 
 class ProvinciaService extends GenericService<Provincia> {
 	
+	@Override
+	def getDomain() {
+		Provincia
+	}
+
 	def agregarLocalidades(Provincia provincia, List localidades) {
 		localidades.each {
 			agregarLocalidad(provincia, it)
@@ -27,10 +32,5 @@ class ProvinciaService extends GenericService<Provincia> {
 		}
 		return localidades as List
     }
-
-	@Override
-	public Object getDomain() {
-		return Provincia;
-	}
 
 }

@@ -1,5 +1,4 @@
 import grails.util.Environment
-import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.complejo.Cancha
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.DeporteEnum
@@ -22,6 +21,7 @@ import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Encargado
 import ar.com.reservayjuga.usuario.Jugador
 import ar.com.reservayjuga.usuario.SistemaRyJ
+import ar.com.reservayjuga.utils.DBUtils;
 
 class BootStrap {
 

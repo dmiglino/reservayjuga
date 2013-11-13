@@ -3,9 +3,9 @@ package ar.com.reservayjuga.complejo
 import org.hibernate.criterion.Order
 import org.hibernate.criterion.Restrictions
 
-import ar.com.reservayjuga.DBUtils
 import ar.com.reservayjuga.common.GenericService
 import ar.com.reservayjuga.exception.EntityNotFoundException
+import ar.com.reservayjuga.utils.DBUtils;
 
 class CanchaService extends GenericService<Cancha> {
 	
