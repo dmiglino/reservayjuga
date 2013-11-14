@@ -7,6 +7,9 @@
 		<script src="../assets/js/jquery.handsontable.full.js"></script>
 		<link rel="stylesheet" href="../assets/css/jquery.handsontable.full.css" />
 		<link rel="stylesheet" href="../assets/css/jquery.handsontable.bootstrap.css" />
+		<script src="../assets/js/jquery-ui-1.10.3.full.min.js"></script>
+		<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
+		<link rel="stylesheet" href="../assets/css/jquery-ui-1.10.3.full.min.css" />
 	</head>
 
 	<body>
@@ -34,14 +37,7 @@
 					</div>
 
 					<div class="page-content">
-						<div class="page-header">
-							<h1>
-							    <small>
-								    <g:message code="cancha.agregar.datos.label" default="Datos de la cancha" />
-								</small>
-							</h1>
-						</div><!-- /.page-header -->
-
+						
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->

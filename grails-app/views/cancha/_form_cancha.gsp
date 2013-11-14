@@ -1,8 +1,12 @@
 <%@page import="ar.com.reservayjuga.complejo.DeporteEnum"%>
 
+
+<div id="accordion" class="accordion-style2">
+	<div class="group">
+	<h3 class="accordion-header">Informacion de la cancha</h3>
+	<div>
 <div class="form-group">
 	<label class="col-sm-2 control-label" for="form-field-username"><g:message code="common.nombre.label" default="Nombre" /></label>
-
 	<div>
 		<g:textField name="cancha.nombre" value="${cancha?.nombre}"
 			class="col-sm-6" id="form-field-username" />
@@ -22,7 +26,7 @@
 
 <div class="space-4"></div>
 
-<div class="form-group">
+<div class="form-group">	
 	<label class="col-sm-2 control-label" for="form-field-select-3"><g:message code="common.deporte.label" default="Deporte" /></label>
 	<g:select id="deporte" name="cancha.deporte"
 		from="${DeporteEnum.values()}" noSelection="['':'']"
@@ -53,15 +57,17 @@
 	</div>
 </div>
 
-<div class="page-header">
-	<h1>
-		<small> <g:message code="common.precios.label" default="Precios" /> </small>
-	</h1>
 </div>
-<div>
-<div id="example1" class="handsontable"></div>
 </div>
 
+
+	<div class="group">
+	<h3 class="accordion-header">Precios</h3>	
+		<div>
+			<div id="example1" class="handsontable"></div>
+		</div>
+	</div>
+</div>
 
 <g:if test="${!edit}">
 	<div class="clearfix form-actions">
@@ -125,11 +131,32 @@ var data = [
             rowHeaders: ["01:00", "02:00", "03:00","04:00","05:00","06:00","07:00","08:00",
                          "09:00", "10:00", "11:00","12:00","13:00","14:00","15:00","16:00",
                          "17:00", "18:00", "19:00","20:00","21:00","22:00","23:00","24:00"],
+            colWidths: [50,50,50,50,50,50,50,50],
+            stretchH: 'all',
             minSpareRows: 0
           });
 
           $('#example1 table').addClass('table');
-          	
+
+  		
+
+  		//jquery accordion
+  		$( "#accordion" ).accordion({
+  			collapsible: true ,
+  			heightStyle: "content",
+  			animate: 250,
+  			header: ".accordion-header"
+  		}).sortable({
+  			axis: "y",
+  			handle: ".accordion-header",
+  			stop: function( event, ui ) {
+  				// IE doesn't register the blur when sorting
+  				// so trigger focusout handlers to remove .ui-state-focus
+  				ui.item.children( ".accordion-header" ).triggerHandler( "focusout" );
+  			}
+  		});
+  	
+        	
                      
 	function setCantJugValue() {
 		var spinnerValue = document.getElementById('spinner1').value;

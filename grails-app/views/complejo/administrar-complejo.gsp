@@ -332,14 +332,7 @@
 						<div class="group">
 							<h3 class="accordion-header">Imagenes</h3>
 							<div>
-								<div class="page-header">
-									<h1>
-										<small> <g:message code="imagenes.titulo.label"
-												default="Imagenes" />
-										</small>
-									</h1>
-								</div>
-
+								
 								<div class="row">
 									<div id="imagenesDiv">
 										<g:render template="tabla-imagenes"
