@@ -64,7 +64,7 @@
 	<div class="group">
 	<h3 class="accordion-header">Precios</h3>	
 		<div>
-			<div id="example1" class="handsontable"></div>
+			<div id="example1" class="handsontable"  style="width: 700px; overflow: visible;"></div>
 		</div>
 	</div>
 </div>
@@ -131,9 +131,8 @@ var data = [
             rowHeaders: ["01:00", "02:00", "03:00","04:00","05:00","06:00","07:00","08:00",
                          "09:00", "10:00", "11:00","12:00","13:00","14:00","15:00","16:00",
                          "17:00", "18:00", "19:00","20:00","21:00","22:00","23:00","24:00"],
-            colWidths: [50,50,50,50,50,50,50,50],
-            stretchH: 'all',
-            minSpareRows: 0
+            colWidths: [75,75,75,75,75,75,75,75],
+            contextMenu: true
           });
 
           $('#example1 table').addClass('table');
@@ -156,7 +155,6 @@ var data = [
   			}
   		});
   	
-        	
                      
 	function setCantJugValue() {
 		var spinnerValue = document.getElementById('spinner1').value;

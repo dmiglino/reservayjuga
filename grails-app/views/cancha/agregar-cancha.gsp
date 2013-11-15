@@ -4,8 +4,8 @@
 		<meta charset="utf-8" />
 		<meta name="layout" content="main"/>
 		<title><g:message code="cancha.agregar.nueva.label" default="Agregar nueva cancha" /></title>
-		<script src="../assets/js/jquery.handsontable.full.js"></script>
 		<link rel="stylesheet" href="../assets/css/jquery.handsontable.full.css" />
+		<script src="../assets/js/jquery.handsontable.full.js"></script>
 		<link rel="stylesheet" href="../assets/css/jquery.handsontable.bootstrap.css" />
 		<script src="../assets/js/jquery-ui-1.10.3.full.min.js"></script>
 		<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
