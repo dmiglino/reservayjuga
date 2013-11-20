@@ -4,6 +4,9 @@
 		<meta charset="utf-8" />
 		<title><g:message code="reservas.administracion.titulo.label" default="Administracion de Reservas" /></title>
 		<meta name="layout" content="main" />
+		<script src="../assets/js/jquery-ui-1.10.3.full.min.js"></script>
+		<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
+		<link rel="stylesheet" href="../assets/css/jquery-ui-1.10.3.full.min.css" />
 	</head>
 
 	<body>
@@ -28,17 +31,19 @@
 		</div>
 	
 		<div class="page-content">
-			<div class="page-header">
-				<h1>
-					<small> <g:message code="reserva.filtros.titulo.label" default="Filtros" /> </small>
-				</h1>
-			</div><!-- /.page-header -->
-	
-			<div class="row" id="filtro_reservas">
-				<g:render template="filtros-reservas" />
+
+		<div id="accordion" class="accordion-style2">
+			<div class="group">
+				<h3 class="accordion-header">Filtros</h3>
+				<div>
+					<div class="row" id="filtro_reservas">
+						<g:render template="filtros-reservas" />
+					</div>
+				</div>
 			</div>
-	
-			<div class="page-header">
+		</div>
+
+		<div class="page-header">
 				<h1>
 					<small> <g:message code="reservas.listado.titulo.label" default="Listado de Reservas" /> </small>
 				</h1>
@@ -88,6 +93,23 @@
 				}).next().on(ace.click_event, function(){
 					$(this).prev().focus();
 				});
+
+				//jquery accordion
+		  		$( "#accordion" ).accordion({
+		  			collapsible: true ,
+		  			heightStyle: "content",
+		  			animate: 250,
+		  			header: ".accordion-header"
+		  		}).sortable({
+		  			axis: "y",
+		  			handle: ".accordion-header",
+		  			stop: function( event, ui ) {
+		  				// IE doesn't register the blur when sorting
+		  				// so trigger focusout handlers to remove .ui-state-focus
+		  				ui.item.children( ".accordion-header" ).triggerHandler( "focusout" );
+		  			}
+		  		});
+					
 		</script>
 	
 	</body>

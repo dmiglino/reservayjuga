@@ -4,6 +4,9 @@
 		<meta charset="utf-8" />
 		<meta name="layout" content="main"/>
 		<title><g:message code="cancha.titulo.label" default="Administracion de Canchas" /></title>
+		<script src="../assets/js/jquery-ui-1.10.3.full.min.js"></script>
+		<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
+		<link rel="stylesheet" href="../assets/css/jquery-ui-1.10.3.full.min.css" />
 	</head>
 
 	<body>
@@ -28,14 +31,15 @@
 
 		<div class="page-content">
 		
-			<div class="page-header">
-				<h1>
-					<small> <g:message code="cancha.filtros.titulo.label" default="Filtros" /> </small>
-				</h1>
-			</div><!-- /.page-header -->
-	
-			<div class="row" id="filtro_canchas">
-				<g:render template="filtros-canchas" />
+			<div id="accordion" class="accordion-style2">
+				<div class="group">
+					<h3 class="accordion-header">Filtros</h3>
+					<div>
+						<div class="row" id="filtro_canchas">
+							<g:render template="filtros-canchas" />
+						</div>
+					</div>
+				</div>
 			</div>
 			
 			<div class="page-header">
@@ -83,7 +87,23 @@
 			function closeModal() {
 				$('#modal-form').modal('hide');
 			}
-	
+
+			//jquery accordion
+	  		$( "#accordion" ).accordion({
+	  			collapsible: true ,
+	  			heightStyle: "content",
+	  			animate: 250,
+	  			header: ".accordion-header"
+	  		}).sortable({
+	  			axis: "y",
+	  			handle: ".accordion-header",
+	  			stop: function( event, ui ) {
+	  				// IE doesn't register the blur when sorting
+	  				// so trigger focusout handlers to remove .ui-state-focus
+	  				ui.item.children( ".accordion-header" ).triggerHandler( "focusout" );
+	  			}
+	  		});
+	  		
 		</script>
 
 	</body>

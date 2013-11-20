@@ -3,68 +3,77 @@
 
 <div id="accordion" class="accordion-style2">
 	<div class="group">
-	<h3 class="accordion-header">Informacion de la cancha</h3>
-	<div>
-<div class="form-group">
-	<label class="col-sm-2 control-label" for="form-field-username"><g:message code="common.nombre.label" default="Nombre" /></label>
-	<div>
-		<g:textField name="cancha.nombre" value="${cancha?.nombre}"
-			class="col-sm-6" id="form-field-username" />
-	</div>
-</div>
+		<h3 class="accordion-header">Informacion de la cancha</h3>
+		<div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="form-field-username"><g:message
+						code="common.nombre.label" default="Nombre" /></label>
+				<div>
+					<g:textField name="cancha.nombre" value="${cancha?.nombre}"
+						class="col-sm-6" id="form-field-username" />
+				</div>
+			</div>
 
-<div class="space-4"></div>
+			<div class="space-4"></div>
 
-<div class="form-group">
-	<label class="col-sm-2 control-label" for="form-field-select-3"><g:message code="common.techado.label" default="Techado" /></label>
-	<div>
-		<g:select id="cubierta" name="cancha.cubierta"
-			from="${["true","false"]}" noSelection="['':'']"
-			class="chosen-select one-to-one" value="${cancha?.cubierta}" />
-	</div>
-</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="form-field-select-3"><g:message
+						code="common.techado.label" default="Techado" /></label>
+				<div>
+					<g:select id="cubierta" name="cancha.cubierta"
+						from="${["true","false"]}" noSelection="['':'']"
+						class="chosen-select one-to-one" value="${cancha?.cubierta}" />
+				</div>
+			</div>
 
-<div class="space-4"></div>
+			<div class="space-4"></div>
 
-<div class="form-group">	
-	<label class="col-sm-2 control-label" for="form-field-select-3"><g:message code="common.deporte.label" default="Deporte" /></label>
-	<g:select id="deporte" name="cancha.deporte"
-		from="${DeporteEnum.values()}" noSelection="['':'']"
-		class="chosen-select one-to-one"
-		optionValue="${ {deporte -> g.message(code:deporte.textCode)} }"
-		value="${cancha?.deporte}"
-		onchange="${remoteFunction (
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="form-field-select-3"><g:message
+						code="common.deporte.label" default="Deporte" /></label>
+				<g:select id="deporte" name="cancha.deporte"
+					from="${DeporteEnum.values()}" noSelection="['':'']"
+					class="chosen-select one-to-one"
+					optionValue="${ {deporte -> g.message(code:deporte.textCode)} }"
+					value="${cancha?.deporte}"
+					onchange="${remoteFunction (
 					controller: 'cancha',
 					action: 'getSuperficies',
 					params: '\'id=\' + this.value',
 					update: 'superficiesDiv'
 				)}" />
-</div>
+			</div>
 
-<div class="space-4"></div>
+			<div class="space-4"></div>
 
-<div id="superficiesDiv" class="form-group">
-	<g:if test="${cancha?.deporte}">
-		<g:include controller="cancha" action="getSuperficies" id="${cancha?.deporte}" />
-	</g:if>
-</div>
+			<div id="superficiesDiv" class="form-group">
+				<g:if test="${cancha?.deporte}">
+					<g:include controller="cancha" action="getSuperficies"
+						id="${cancha?.deporte}" />
+				</g:if>
+			</div>
 
-<div class="form-group">
-	<label class="col-sm-2 control-label" for="form-field-select-3"><g:message code="common.cantidad.jugadores.label" default="Cantidad de Jugadores" /></label>
-	<div>
-		<g:textField name="cancha.cantidad" value="" class="input-mini" id="spinner1" />
-		<g:hiddenField name="cancha.cantidadJugadores" id="cantJugValue" value="" />
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="form-field-select-3"><g:message
+						code="common.cantidad.jugadores.label"
+						default="Cantidad de Jugadores" /></label>
+				<div>
+					<g:textField name="cancha.cantidad" value="" class="input-mini"
+						id="spinner1" />
+					<g:hiddenField name="cancha.cantidadJugadores" id="cantJugValue"
+						value="" />
+				</div>
+			</div>
+
+		</div>
 	</div>
-</div>
-
-</div>
-</div>
 
 
 	<div class="group">
-	<h3 class="accordion-header">Precios</h3>	
+		<h3 class="accordion-header">Precios</h3>
 		<div>
-			<div id="example1" class="handsontable"  style="width: 700px; overflow: visible;"></div>
+			<div id="example1" class="handsontable"
+				style="width: 700px; overflow: visible;"></div>
 		</div>
 	</div>
 </div>
@@ -84,7 +93,8 @@
 <g:else>
 	<div class="modal-footer">
 		<button class="btn btn-sm" data-dismiss="modal">
-			<i class="icon-remove"></i> <g:message code="common.cancelar.label" default="Cancelar" />
+			<i class="icon-remove"></i>
+			<g:message code="common.cancelar.label" default="Cancelar" />
 		</button>
 
 		<g:submitToRemote class="btn btn-info" update="[success:'canchasDiv']"
