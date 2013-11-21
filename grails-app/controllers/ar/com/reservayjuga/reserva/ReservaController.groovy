@@ -166,4 +166,7 @@ class ReservaController {
 		reservaService.getComplejoDelEncargado(authenticationService.getUserLoggedId())
 	}
 	
+	def generarReserva = {
+		println "generarReserva : params : : ${params}"
+	}
 }

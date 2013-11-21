@@ -431,12 +431,11 @@
 
 
 	<!-- COMIENZO DEL MODAL PARA EDITAR IMAGENES -->
-	<g:formRemote name="formEditImage"
-		url="[controller:'complejo', action:'editarImagen']">
-		<g:render template="edit_image_modal"
-			model="[imagenes : imagenesList]" />
+	<g:formRemote name="formEditImage" url="[controller:'complejo', action:'editarImagen']">
+		<g:render template="edit_image_modal" model="[imagenes : imagenesList]" />
 	</g:formRemote>
 	<!-- FIN DEL MODAL PARA EDITAR IMAGENES -->
+
 
 	<!-- fin main-container -->
 
