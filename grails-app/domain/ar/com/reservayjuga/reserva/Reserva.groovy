@@ -43,6 +43,10 @@ class Reserva {
 		precioTotal - senia
 	}
 	
+	String getDiaString() {
+		dia.format("dd-MM-yyyy")
+	}
+	
 	Boolean isPendiente() {
 		this.estado.isPendiente()
 	}

@@ -1,3 +1,4 @@
+import grails.converters.JSON
 import grails.util.Environment
 import ar.com.reservayjuga.complejo.Cancha
 import ar.com.reservayjuga.complejo.Complejo
@@ -21,7 +22,7 @@ import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Encargado
 import ar.com.reservayjuga.usuario.Jugador
 import ar.com.reservayjuga.usuario.SistemaRyJ
-import ar.com.reservayjuga.utils.DBUtils;
+import ar.com.reservayjuga.utils.DBUtils
 
 class BootStrap {
 
@@ -210,14 +211,22 @@ class BootStrap {
 			role = new SecRole(authority:"JUGADOR_ROLE").save(flush:true)
 		
 		def user = SecUser.findByUsername("jugadorTom")
-		if(!user)
-			user = new Jugador(apellido: "Esca",nombre: "Tom",username:"jugadorTom",password:"jugador",enable:true, telefono:"12345678", mail:"t@e.com", sexo:"F", dni:33333333, fechaNacimiento: new Date())
+		if(!user) {
+			Calendar cal = Calendar.getInstance()
+			cal.set(1987, 8, 10)
+			Date fecha = cal.getTime()
+			user = new Jugador(apellido: "Esca",nombre: "Tom",username:"jugadorTom",password:"jugador",enable:true, telefono:"12345678", mail:"t@e.com", sexo:"F", dni:33333333, fechaNacimiento: fecha )
+		}
 		DBUtils.validateAndSave(user)
 		SecUserSecRole.create(user,role,true)
 		
 		user = SecUser.findByUsername("jugadorDie")
-		if(!user)
-			user = new Jugador(apellido: "Mig",nombre: "Die",username:"jugadorDie",password:"jugador",enable:true, telefono:"12345678", mail:"d@m.com", sexo:"M", dni:30303030, fechaNacimiento: new Date())
+		if(!user) {
+			Calendar cal = Calendar.getInstance()
+			cal.set(1987, 8, 10)
+			Date fecha = cal.getTime()
+			user = new Jugador(apellido: "Mig",nombre: "Die",username:"jugadorDie",password:"jugador",enable:true, telefono:"12345678", mail:"d@m.com", sexo:"M", dni:30303030, fechaNacimiento: fecha )
+		}
 		DBUtils.validateAndSave(user)
 		SecUserSecRole.create(user,role,true)
 	}
@@ -264,18 +273,21 @@ class BootStrap {
 	def crearReservas() {
 		Jugador jugDie = Jugador.findByNombre("Die")
 		Jugador jugTom = Jugador.findByNombre("Tom")
-		Reserva reserva1  = new Reserva(horaInicio: "10:00", horaFin: "11:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:350, senia:150, dia: new Date(), cancha: p1, complejo: poli, jugador: jugDie)
-		Reserva reserva2  = new Reserva(horaInicio: "14:00", horaFin: "15:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: new Date(), cancha: p2, complejo: poli, jugador: jugTom)
-		Reserva reserva3  = new Reserva(horaInicio: "13:00", horaFin: "14:00", tipoReserva:TipoReservaEnum.PRESENCIAL, precioTotal:450, senia:75, dia: new Date(), cancha: p3, complejo: poli, jugador: jugDie)
-		Reserva reserva4  = new Reserva(horaInicio: "22:00", horaFin: "23:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:400, senia:125, dia: new Date(), cancha: p1, complejo: poli, jugador: jugTom)
-		Reserva reserva5  = new Reserva(horaInicio: "18:00", horaFin: "19:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:550, senia:100, dia: new Date(), cancha: p2, complejo: poli, jugador: jugDie)
-		Reserva reserva6  = new Reserva(horaInicio: "16:00", horaFin: "17:00", tipoReserva:TipoReservaEnum.PRESENCIAL, precioTotal:375, senia:150, dia: new Date(), cancha: p4, complejo: poli, jugador: jugTom)
-		Reserva reserva7  = new Reserva(horaInicio: "17:00", horaFin: "18:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:475, senia:50, dia: new Date(), cancha: p1, complejo: poli, jugador: jugDie)
-		Reserva reserva8  = new Reserva(horaInicio: "21:00", horaFin: "22:00", tipoReserva:TipoReservaEnum.PRESENCIAL, precioTotal:425, senia:75, dia: new Date(), cancha: p3, complejo: poli, jugador: jugTom)
-		Reserva reserva9  = new Reserva(horaInicio: "20:00", horaFin: "21:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:125, dia: new Date(), cancha: t1, complejo: terraza, jugador: jugDie)
-		Reserva reserva10 = new Reserva(horaInicio: "11:00", horaFin: "12:00", tipoReserva:TipoReservaEnum.PRESENCIAL, precioTotal:400, senia:100, dia: new Date(), cancha: t2, complejo: terraza, jugador: jugTom)
-		Reserva reserva11 = new Reserva(horaInicio: "12:00", horaFin: "13:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:350, senia:90, dia: new Date(), cancha: muni1, complejo: muni, jugador: jugDie)
-		Reserva reserva12 = new Reserva(horaInicio: "09:00", horaFin: "10:00", tipoReserva:TipoReservaEnum.PRESENCIAL, precioTotal:450, senia:115, dia: new Date(), cancha: muni2, complejo: muni, jugador: jugDie)
+		Calendar cal = Calendar.getInstance()
+		cal.set(2013, 10, 25, 15, 00)
+		Date fecha = cal.getTime()
+		Reserva reserva1  = new Reserva(horaInicio: "10:00", horaFin: "11:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:350, senia:150, dia:fecha, cancha: p1, complejo: poli, jugador: jugDie)
+		Reserva reserva2  = new Reserva(horaInicio: "14:00", horaFin: "15:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia:fecha, cancha: p2, complejo: poli, jugador: jugTom)
+		Reserva reserva3  = new Reserva(horaInicio: "13:00", horaFin: "14:00", tipoReserva:TipoReservaEnum.PRESENCIAL, precioTotal:450, senia:75, dia:fecha, cancha: p3, complejo: poli, jugador: jugDie)
+		Reserva reserva4  = new Reserva(horaInicio: "22:00", horaFin: "23:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:400, senia:125, dia:fecha, cancha: p1, complejo: poli, jugador: jugTom)
+		Reserva reserva5  = new Reserva(horaInicio: "18:00", horaFin: "19:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:550, senia:100, dia:fecha, cancha: p2, complejo: poli, jugador: jugDie)
+		Reserva reserva6  = new Reserva(horaInicio: "16:00", horaFin: "17:00", tipoReserva:TipoReservaEnum.PRESENCIAL, precioTotal:375, senia:150, dia:fecha, cancha: p4, complejo: poli, jugador: jugTom)
+		Reserva reserva7  = new Reserva(horaInicio: "17:00", horaFin: "18:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:475, senia:50, dia:fecha, cancha: p1, complejo: poli, jugador: jugDie)
+		Reserva reserva8  = new Reserva(horaInicio: "21:00", horaFin: "22:00", tipoReserva:TipoReservaEnum.PRESENCIAL, precioTotal:425, senia:75, dia:fecha, cancha: p3, complejo: poli, jugador: jugTom)
+		Reserva reserva9  = new Reserva(horaInicio: "20:00", horaFin: "21:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:125, dia:fecha, cancha: t1, complejo: terraza, jugador: jugDie)
+		Reserva reserva10 = new Reserva(horaInicio: "11:00", horaFin: "12:00", tipoReserva:TipoReservaEnum.PRESENCIAL, precioTotal:400, senia:100, dia:fecha, cancha: t2, complejo: terraza, jugador: jugTom)
+		Reserva reserva11 = new Reserva(horaInicio: "12:00", horaFin: "13:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:350, senia:90, dia:fecha, cancha: muni1, complejo: muni, jugador: jugDie)
+		Reserva reserva12 = new Reserva(horaInicio: "09:00", horaFin: "10:00", tipoReserva:TipoReservaEnum.PRESENCIAL, precioTotal:450, senia:115, dia:fecha, cancha: muni2, complejo: muni, jugador: jugDie)
 		DBUtils.validateAndSave([reserva1,reserva2,reserva3,reserva4,reserva5,reserva6,reserva7,reserva8,reserva9,reserva10,reserva11,reserva12])
 	}
 	

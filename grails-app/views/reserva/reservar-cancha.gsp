@@ -149,7 +149,7 @@
 			        $.ajax({ 
 						url: '${createLink(action: 'generarReserva')}',
 						type:"POST",
-						data : "data=" + querystring,
+<%--						data : "data=" + querystring,--%>
 					}); 
 		            bootbox.dialog({
 		                message: "Felicitaciones! Su reserva ha sido realizada.",

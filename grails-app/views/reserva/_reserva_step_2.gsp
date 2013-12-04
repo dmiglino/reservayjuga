@@ -16,8 +16,11 @@
 				</div>
 
 				<div class="widget-body">
-					<div class="widget-main">
-						<div class="date-picker" align="center" data-date-format="dd-mm-yyyy"></div>
+					<div class="widget-main" align="center">
+						<input type="text" id="reservaDateText" value="${reserva?.getDiaString()}"/>
+						<div id="reservaDateDiv" class="date-picker" ></div> 
+<%--						<g:field class="date-picker" id="id-date-picker-2" name="date-picker" type="text" data-date-format="dd-mm-yyyy" value="${reserva?.getDiaString()}" /> --%>
+<%--						<div class="date-picker" align="center" data-date-format="dd-mm-yyyy" value="${reserva?.getDiaString()}"></div>--%>
 					</div>
 				</div>
 			</div>
@@ -86,4 +89,28 @@
 		</div>
 
 	</div>
+
+<script>
+
+<%--function setDateText() {--%>
+<%--	alert("asd: : "+$('#reservaDateDiv').val());--%>
+<%--	 $('#reservaDateText').attr('value',$('#reservaDateDiv').val());--%>
+<%--}--%>
+<%--	$('#reservaDateDiv').datepicker();--%>
+	
+	$('#reservaDateText').change(function(){
+		alert($('#reservaDateText').val());
+	    $('#reservaDateDiv').datepicker('setDate', $('#reservaDateText').val());
+	});
+	$('#reservaDateDiv').change(function(){
+		alert("reservaDateDiv");
+	    $('#reservaDateText').attr('value',$(this).val());
+	});
+<%--	$('#reservaDateDiv').ready(function(){--%>
+<%--		alert($('#reservaDateText').val());--%>
+<%--		$('#reservaDateDiv').datepicker('setDate', $('#reservaDateText').val());--%>
+<%--		alert("fin reservaDateText");--%>
+<%--	});--%>
+
+</script>
 </div>

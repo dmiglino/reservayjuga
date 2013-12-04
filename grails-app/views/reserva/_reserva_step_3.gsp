@@ -21,7 +21,7 @@
 
 			<div class="profile-info-value">
 				<span class="editable" id="dia">
-					<g:field name="reservaDia" value="${reserva?.dia}" id="form-field-dia" type="text" readonly="readonly" />
+					<g:field name="reservaDia" value="${reserva?.getDiaString()}" id="form-field-dia" type="text" readonly="readonly" />
 				</span>
 			</div>
 		</div>
