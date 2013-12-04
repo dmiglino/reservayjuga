@@ -8,7 +8,7 @@ import org.junit.*
 
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.Servicios
-import ar.com.reservayjuga.security.AuthenticationService;
+import ar.com.reservayjuga.seguridad.AuthenticationService;
 import ar.com.reservayjuga.ubicacion.Barrio
 import ar.com.reservayjuga.ubicacion.Localidad
 import ar.com.reservayjuga.ubicacion.Pais

@@ -70,27 +70,29 @@
 											</div>
 
 											<hr />
-											<div class="step-content row-fluid position-relative" id="step-container">
-												
-												<g:render template="reserva_step_1" />				
-												<g:render template="reserva_step_2" />				
-												<g:render template="reserva_step_3" />
-
-											</div>
-
-											<hr />
-											<div class="row-fluid wizard-actions">
-												<button class="btn btn-prev">
-													<i class="icon-arrow-left"></i>
-													<g:message code="button.anterior.label" default="Anterior" />
-												</button>
-
-												<button class="btn btn-success btn-next" data-last="Finish ">
-													<g:message code="button.siguiente.label" default="Siguiente" />
-													<i class="icon-arrow-right icon-on-right"></i>
-												</button>
-											</div>
-										
+											
+<%--											<form>--%>
+												<div class="step-content row-fluid position-relative" id="step-container">
+													
+													<g:render template="reserva_step_1" />				
+													<g:render template="reserva_step_2" />				
+													<g:render template="reserva_step_3" />
+	
+												</div>
+	
+												<hr />
+												<div class="row-fluid wizard-actions">
+													<button class="btn btn-prev">
+														<i class="icon-arrow-left"></i>
+														<g:message code="button.anterior.label" default="Anterior" />
+													</button>
+	
+													<button class="btn btn-success btn-next" data-last="Finish ">
+														<g:message code="button.siguiente.label" default="Siguiente" />
+														<i class="icon-arrow-right icon-on-right"></i>
+													</button>
+												</div>
+<%--											</form>--%>
 										
 									</div><!-- /widget-main -->
 								</div><!-- /widget-body -->
@@ -147,7 +149,7 @@
 			        $.ajax({ 
 						url: '${createLink(action: 'generarReserva')}',
 						type:"POST",
-						data: { values: RegExp.$1 }
+						data : "data=" + querystring,
 					}); 
 		            bootbox.dialog({
 		                message: "Felicitaciones! Su reserva ha sido realizada.",
@@ -280,7 +282,7 @@
 		            }
 		        });
 
-		        $('.date-picker').datepicker({ autoclose: true }).next().on(ace.click_event, function() {
+		        $('.date-picker').datepicker({ dateFormat: 'dd-mm-yyyy', autoclose: true }).next().on(ace.click_event, function() {
 		            $(this).prev().focus();
 		        });
                 

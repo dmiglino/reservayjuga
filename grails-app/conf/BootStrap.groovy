@@ -211,13 +211,13 @@ class BootStrap {
 		
 		def user = SecUser.findByUsername("jugadorTom")
 		if(!user)
-			user = new Jugador(apellido: "Esca",nombre: "Tom",username:"jugadorTom",password:"jugador",enable:true, telefono:"12345678", mail:"t@e.com", sexo:"F")
+			user = new Jugador(apellido: "Esca",nombre: "Tom",username:"jugadorTom",password:"jugador",enable:true, telefono:"12345678", mail:"t@e.com", sexo:"F", dni:33333333, fechaNacimiento: new Date())
 		DBUtils.validateAndSave(user)
 		SecUserSecRole.create(user,role,true)
 		
 		user = SecUser.findByUsername("jugadorDie")
 		if(!user)
-			user = new Jugador(apellido: "Mig",nombre: "Die",username:"jugadorDie",password:"jugador",enable:true, telefono:"12345678", mail:"d@m.com", sexo:"M")
+			user = new Jugador(apellido: "Mig",nombre: "Die",username:"jugadorDie",password:"jugador",enable:true, telefono:"12345678", mail:"d@m.com", sexo:"M", dni:30303030, fechaNacimiento: new Date())
 		DBUtils.validateAndSave(user)
 		SecUserSecRole.create(user,role,true)
 	}

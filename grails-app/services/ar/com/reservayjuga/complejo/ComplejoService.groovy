@@ -20,10 +20,6 @@ class ComplejoService extends GenericService<Complejo> {
 		Complejo
 	}
 	
-	def getComplejoById(id) {
-		id ? Complejo.get(id) : null
-	}
-	
 	/**
 	 * Crea el complejo a partir de los datos pasados por parametro
 	 * @param values, ubicacion, servicios, extras, horarios, imagenes

@@ -1,12 +1,11 @@
 package ar.com.reservayjuga.reserva
 
-import grails.converters.JSON;
-
 import org.springframework.dao.DataIntegrityViolationException
 
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.usuario.Encargado
+import ar.com.reservayjuga.usuario.Jugador
 
 
 class ReservaController {
@@ -19,7 +18,19 @@ class ReservaController {
 	}
 	
 	def reservarCancha = {
-		render(view: "reservar-cancha", model: [])
+		Complejo complejo = getComplejoDelEngargado()
+		Reserva reserva = (complejo.reservas as List).get(0) // TODO sacar el hardcodeo // reservaService.crearReservaPresencial(complejo)
+		render(view: "reservar-cancha", model: [reserva:reserva])
+	}
+	
+	def agregarJugadorQueReserva = {
+		List jugadores = Jugador.list()
+		Jugador jugador = jugadores.find { it.dni.equals(30303030) } // TODO sacar el hardcodeo
+		Reserva reserva = params.reserva
+		if(reserva) {
+			reserva.jugador = jugador
+		}
+		[reserva:reserva]
 	}
 	
 	/**

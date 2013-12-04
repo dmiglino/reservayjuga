@@ -18,15 +18,10 @@ class ReservaService extends GenericService<Reserva> {
 	def getDomain() {
 		Reserva
 	}
-	
-	/**
-	 * Obtiene la Reserva segun el id indicado
-	 * @param id
-	 * @return
-	 */
-	def getReservaById(id) {
-		id ? Reserva.get(id) : null
-	}
+
+	def crearReservaPresencial(Complejo complejo) {
+		new Reserva(complejo:complejo, tipoReserva:TipoReservaEnum.PRESENCIAL)
+	}	
 	
 	/**
 	 * Recupera las canchas del complejo para el listado y el numero total de ellas para el paginado

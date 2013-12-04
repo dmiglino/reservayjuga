@@ -39,6 +39,10 @@ class Reserva {
 		"Reserva del jugador ${jugador} para la cancha ${cancha}"
 	}
 	
+	def faltaPagar() {
+		precioTotal - senia
+	}
+	
 	Boolean isPendiente() {
 		this.estado.isPendiente()
 	}

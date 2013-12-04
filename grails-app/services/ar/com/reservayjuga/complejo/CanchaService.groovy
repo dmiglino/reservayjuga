@@ -17,15 +17,6 @@ class CanchaService extends GenericService<Cancha> {
 	}
 	
 	/**
-	 * Obtiene la Cancha segun el id indicado
-	 * @param id
-	 * @return
-	 */
-	def getCanchaById(id) {
-		id ? Cancha.get(id) : null
-	}
-	
-	/**
 	 * Crea una nueva cancha con los parametros ingresados
 	 * @param params
 	 * @return cancha
@@ -35,17 +26,14 @@ class CanchaService extends GenericService<Cancha> {
     }
 	
 	def editarCancha(def datos) {
-		Cancha canchaInstance = findEntityById(datos.idCanchaEdit)
-		
-		if(!canchaInstance) {
-			throw new EntityNotFoundException("Cancha", datos.idCanchaEdit)
-		}
+		Cancha canchaInstance = findEntityByIdAndValidate(datos.idCanchaEdit)
 		
 		canchaInstance.nombre = datos.cancha.nombre
 		canchaInstance.deporte = datos.cancha.deporte
 		canchaInstance.cubierta = datos.cancha.cubierta
 		canchaInstance.superficie = datos.cancha.superficie
 		canchaInstance.cantidadJugadores = new Integer(datos.cancha.cantidadJugadores)
+		
 		DBUtils.validateAndSave(canchaInstance)
 	}
 	
@@ -67,10 +55,7 @@ class CanchaService extends GenericService<Cancha> {
 	 * @param canchaId
 	 */
 	void eliminarCanchaDelComplejo(Complejo complejo, def canchaId) {
-		def canchaInstance = findEntityById(canchaId)
-		if(!canchaInstance) {
-			throw new EntityNotFoundException("Cancha", canchaId)
-		}
+		def canchaInstance = findEntityByIdAndValidate(canchaId)
 		complejoService.eliminarCancha(complejo, canchaInstance)
 	}
 
@@ -124,7 +109,6 @@ class CanchaService extends GenericService<Cancha> {
 	 * @return criter
 	 */
 	protected def aplicarFiltros(def criter, def params) {
-		println "params : : ${params}"
 		if(params.deporteCanchaFilter) {
 			def deporteFilter = params.deporteCanchaFilter as DeporteEnum
 			criter.add(Restrictions.eq("deporte", deporteFilter))

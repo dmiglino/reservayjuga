@@ -1,7 +1,7 @@
 package ar.com.reservayjuga.usuario
 
 import ar.com.reservayjuga.reserva.Reserva
-import ar.com.reservayjuga.seguridad.SecUser;
+import ar.com.reservayjuga.seguridad.SecUser
 
 /**
  * Representa al jugador que utilizara el sistema para reservar canchas.
@@ -13,6 +13,7 @@ class Jugador extends SecUser {
 	String telefono
 	String mail
 	String sexo
+	Long dni
 	Date fechaNacimiento 
 	
 	static hasMany = [reservas : Reserva]
@@ -23,6 +24,7 @@ class Jugador extends SecUser {
 		telefono blank: false
 		mail email:true, blank: false
 		sexo blank: true
+		dni blank: true
 		fechaNacimiento nullable: true
     }
 	
@@ -35,4 +37,15 @@ class Jugador extends SecUser {
 		addToReservas(reserva)
 	}
 	
+	boolean isHombre() {
+		sexo == "M"
+	}
+	
+	boolean isMujer() {
+		sexo == "F"
+	}
+	
+	String getFechaNacimientoString() {
+		fechaNacimiento.format("dd-MM-yyyy")
+	}
 }

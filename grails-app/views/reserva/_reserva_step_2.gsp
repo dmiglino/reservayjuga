@@ -27,8 +27,8 @@
 			<div class="widget-box">
 				<div class="widget-header">
 					<h4>
-						<strong><g:message code="reserva.hora.label"
-								default="HORA" /></strong> (
+						<strong><g:message code="reserva.hora.label" default="HORA" /></strong> 
+						(
 						<g:message code="reserva.hora.seleccionar.label"
 							default="Selecciona la hora del partido" />
 						)

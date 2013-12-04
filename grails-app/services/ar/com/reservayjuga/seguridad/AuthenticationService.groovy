@@ -1,4 +1,4 @@
-package ar.com.reservayjuga.security
+package ar.com.reservayjuga.seguridad
 
 class AuthenticationService {
 	
