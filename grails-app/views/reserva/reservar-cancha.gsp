@@ -282,12 +282,36 @@
 		            }
 		        });
 
-		        $('.date-picker').datepicker({ dateFormat: 'dd-mm-yyyy', autoclose: true }).next().on(ace.click_event, function() {
+		        $('.date-picker').datepicker({ dateFormat: 'dd-mm-yy', autoclose: false }).next().on(ace.click_event, function() {
 		            $(this).prev().focus();
 		        });
-                
-                
-		        //autocomplete
+
+		    	$('#reservaDateDiv').datepicker(
+				{
+		    			onSelect: function ()
+		    		    {
+		    		        this.focus();
+		    		    }
+		    	});
+		    	
+		    	$('#reservaDateText').change(function(){
+		    		var queryDate = $('#reservaDateText').val();
+		    		var dateParts = queryDate.match(/(\d+)/g)
+					realDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+
+		    		$('#reservaDateDiv').datepicker({ dateFormat: 'dd-mm-yy' }); // format to show
+					
+					$('#reservaDateDiv').datepicker("update", realDate);
+
+		    	});
+
+				$('#reservaDateDiv').on('changeDate', function(ev) {
+					var d = new Date(Date.parse(ev.date));
+					var dateString =(d.getDate()+1)+"-"+(d.getMonth()+1)+"-"+ d.getFullYear();	
+					$('#reservaDateText').attr('value', dateString);
+				});
+
+				//autocomplete
 		        var availableTags = [
 					"ActionScript",
 					"AppleScript",
@@ -312,9 +336,10 @@
 					"Scala",
 					"Scheme"
 				];
-		        $("#tags").autocomplete({
-		            source: availableTags
-		        });
+<%--		        $("#tags").autocomplete({--%>
+<%--		            source: availableTags--%>
+<%--		        });--%>
+
 		        $('#modal-wizard .modal-header').ace_wizard();
 		        $('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
 		    })

@@ -9,7 +9,7 @@
 					<h4>
 						<strong><g:message code="reserva.dia.label" default="DIA" /></strong>
 						(
-						<g:message code="reserva.dia.seleccionar.label"
+							<g:message code="reserva.dia.seleccionar.label"
 							default="Selecciona el dia del partido" />
 						)
 					</h4>
@@ -17,8 +17,8 @@
 
 				<div class="widget-body">
 					<div class="widget-main" align="center">
-						<input type="text" id="reservaDateText" value="${reserva?.getDiaString()}"/>
-						<div id="reservaDateDiv" class="date-picker" ></div> 
+						<input type="text" id="reservaDateText" name="something" value="${reserva?.getDiaString()}"/>
+						<div id="reservaDateDiv"></div> 
 <%--						<g:field class="date-picker" id="id-date-picker-2" name="date-picker" type="text" data-date-format="dd-mm-yyyy" value="${reserva?.getDiaString()}" /> --%>
 <%--						<div class="date-picker" align="center" data-date-format="dd-mm-yyyy" value="${reserva?.getDiaString()}"></div>--%>
 					</div>
@@ -96,16 +96,8 @@
 <%--	alert("asd: : "+$('#reservaDateDiv').val());--%>
 <%--	 $('#reservaDateText').attr('value',$('#reservaDateDiv').val());--%>
 <%--}--%>
-<%--	$('#reservaDateDiv').datepicker();--%>
-	
-	$('#reservaDateText').change(function(){
-		alert($('#reservaDateText').val());
-	    $('#reservaDateDiv').datepicker('setDate', $('#reservaDateText').val());
-	});
-	$('#reservaDateDiv').change(function(){
-		alert("reservaDateDiv");
-	    $('#reservaDateText').attr('value',$(this).val());
-	});
+
+
 <%--	$('#reservaDateDiv').ready(function(){--%>
 <%--		alert($('#reservaDateText').val());--%>
 <%--		$('#reservaDateDiv').datepicker('setDate', $('#reservaDateText').val());--%>
