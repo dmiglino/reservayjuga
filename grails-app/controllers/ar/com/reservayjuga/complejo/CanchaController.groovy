@@ -117,7 +117,7 @@ class CanchaController {
 	 * Busca la cancha segun el id para mostrar en el modal panel
 	 */
 	def selectToEdit = {
-		Cancha canchaToEdit = canchaService.getCanchaById(params.id)
+		Cancha canchaToEdit = canchaService.findEntityById(params.id)
 		render(template:"modal-box", model:[cancha:canchaToEdit])
 	}
 

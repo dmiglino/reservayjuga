@@ -90,7 +90,7 @@ class ReservaController {
 	 * Busca el jugador segun el id para mostrar en el modal panel
 	 */
 	def selectJugadorToShow = {
-		Reserva reserva = reservaService.getReservaById(params.id)
+		Reserva reserva = reservaService.findEntityById(params.id)
 		render(template:"modal-box-jugador", model:[jugador:reserva.jugador])
 	}
 	
@@ -98,7 +98,7 @@ class ReservaController {
 	 * Busca la reserva segun el id para mostrar en el modal panel
 	 */
 	def selectToEdit = {
-		Reserva reservaToEdit = reservaService.getReservaById(params.id)
+		Reserva reservaToEdit = reservaService.findEntityById(params.id)
 		redirect(action: reservarCancha, model: reservaToEdit)
 	}
 	
@@ -109,7 +109,7 @@ class ReservaController {
 		def result
 		Complejo complejo
 		try {
-			Reserva reserva = reservaService.getReservaById(params.id)
+			Reserva reserva = reservaService.findEntityById(params.id)
 			reservaService.seniar(reserva)
 			complejo = getComplejoDelEngargado()
 			result = getReservasYCantidad(complejo, params)
@@ -128,7 +128,7 @@ class ReservaController {
 		def result
 		Complejo complejo
 		try {
-			Reserva reserva = reservaService.getReservaById(params.id)
+			Reserva reserva = reservaService.findEntityById(params.id)
 			reservaService.concretar(reserva)
 			complejo = getComplejoDelEngargado()
 			result = getReservasYCantidad(complejo, params)
@@ -147,7 +147,7 @@ class ReservaController {
 		def result
 		Complejo complejo
 		try {
-			Reserva reserva = reservaService.getReservaById(params.id)
+			Reserva reserva = reservaService.findEntityById(params.id)
 			reservaService.cancelar(reserva)
 			complejo = getComplejoDelEngargado()
 			result = getReservasYCantidad(complejo, params)
