@@ -282,35 +282,7 @@
 		            }
 		        });
 
-		        $('.date-picker').datepicker({ dateFormat: 'dd-mm-yy', autoclose: false }).next().on(ace.click_event, function() {
-		            $(this).prev().focus();
-		        });
-
-		    	$('#reservaDateDiv').datepicker(
-				{
-		    			onSelect: function ()
-		    		    {
-		    		        this.focus();
-		    		    }
-		    	});
-		    	
-		    	$('#reservaDateText').change(function(){
-		    		var queryDate = $('#reservaDateText').val();
-		    		var dateParts = queryDate.match(/(\d+)/g)
-					realDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
-
-		    		$('#reservaDateDiv').datepicker({ dateFormat: 'dd-mm-yy' }); // format to show
-					
-					$('#reservaDateDiv').datepicker("update", realDate);
-
-		    	});
-
-				$('#reservaDateDiv').on('changeDate', function(ev) {
-					var d = new Date(Date.parse(ev.date));
-					var dateString =(d.getDate()+1)+"-"+(d.getMonth()+1)+"-"+ d.getFullYear();	
-					$('#reservaDateText').attr('value', dateString);
-				});
-
+				
 				//autocomplete
 		        var availableTags = [
 					"ActionScript",

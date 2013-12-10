@@ -1,11 +1,14 @@
 package ar.com.reservayjuga.reserva
 
+import grails.converters.JSON
+
 import org.springframework.dao.DataIntegrityViolationException
 
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.usuario.Encargado
 import ar.com.reservayjuga.usuario.Jugador
+import ar.com.reservayjuga.utils.Utils
 
 
 class ReservaController {
@@ -20,16 +23,34 @@ class ReservaController {
 	def reservarCancha = {
 		Complejo complejo = getComplejoDelEngargado()
 		Reserva reserva = (complejo.reservas as List).get(0) // TODO sacar el hardcodeo // reservaService.crearReservaPresencial(complejo)
+		session.data = reserva
 		render(view: "reservar-cancha", model: [reserva:reserva])
 	}
 	
 	def agregarJugadorQueReserva = {
+		println "params :: ${params}"
+		def emailODni = params.emaildni
 		List jugadores = Jugador.list()
-		Jugador jugador = jugadores.find { it.dni.equals(30303030) } // TODO sacar el hardcodeo
-		Reserva reserva = params.reserva
-		if(reserva) {
-			reserva.jugador = jugador
+		Jugador jugador
+		
+		if (Utils.isMail(emailODni)) {
+			jugador = jugadores.find { it.mail.equals(emailODni) } // TODO sacar el hardcodeo
+		} else if(Utils.onlyNumbers(emailODni)) {
+			jugador = jugadores.find { it.dni.equals(emailODni) } // TODO sacar el hardcodeo
+		} else {
+			println "ERROR tipo de dato del parametro"
 		}
+		def data = session.data
+		println "DATA :: ${data}"
+		Reserva reserva = session.data // params.id as Reserva
+		if(reserva && jugador) {
+			reserva.jugador = jugador
+		} else if(!jugador) {
+			println "ERROR no se encontro ningun jugador"
+		} else if(!reserva) {
+			println "ERROR no tengo la reserva"
+		} 
+		println "jugador reserva : : ${reserva.jugador}"
 		[reserva:reserva]
 	}
 	
@@ -100,6 +121,17 @@ class ReservaController {
 	def selectToEdit = {
 		Reserva reservaToEdit = reservaService.findEntityById(params.id)
 		redirect(action: reservarCancha, model: reservaToEdit)
+	}
+	
+	def searchHorariosParaFecha() {
+		println "searchHorariosParaFecha params : : ${params}"
+		render(template: "reserva_step_2_horarios", model:[horarios:["11:00","12:00","13:00","14:00"]])
+//		render {horarios:["11:00","12:00","13:00","14:00"]} as JSON
+	}
+	
+	def searchCanchasParaHorario() {
+		println "searchCanchasParaHorario : : ${params}"
+		render(template: "reserva_step_2_canchas", model:[canchas:["c1","c2","c3","c4"]])
 	}
 	
 	/**
