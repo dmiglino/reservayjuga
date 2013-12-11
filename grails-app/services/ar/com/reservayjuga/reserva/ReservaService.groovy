@@ -162,4 +162,8 @@ class ReservaService extends GenericService<Reserva> {
 		// TODO pasar a EncargadoService? 
 		complejoService.getComplejoDelEncargado(encargadoId)
 	}
+	
+	def getHorariosDisponiblesParaFecha(String fecha, def complejoId) {
+		complejoService.getHorariosDisponiblesParaFecha(fecha, complejoId)
+	}
 }

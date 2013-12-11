@@ -24,7 +24,7 @@ class ReservaController {
 		Complejo complejo = getComplejoDelEngargado()
 		Reserva reserva = (complejo.reservas as List).get(0) // TODO sacar el hardcodeo // reservaService.crearReservaPresencial(complejo)
 		session.data = reserva
-		render(view: "reservar-cancha", model: [reserva:reserva])
+		render(view: "reservar-cancha", model: [reserva:reserva, complejoId:complejo.id])
 	}
 	
 	def agregarJugadorQueReserva = {
@@ -123,15 +123,25 @@ class ReservaController {
 		redirect(action: reservarCancha, model: reservaToEdit)
 	}
 	
-	def searchHorariosParaFecha() {
+	def searchHorariosParaFecha = {
 		println "searchHorariosParaFecha params : : ${params}"
-		render(template: "reserva_step_2_horarios", model:[horarios:["11:00","12:00","13:00","14:00"]])
-//		render {horarios:["11:00","12:00","13:00","14:00"]} as JSON
+		def fecha = params.fecha
+		def complejoId = params.complejoId
+		def modelResp = reservaService.getHorariosDisponiblesParaFecha(fecha, complejoId)
+		modelResp.fecha = fecha
+		modelResp.complejoId = complejoId
+		println "modelResp : : ${modelResp}"
+		render(template: "reserva_step_2_horarios", model:modelResp)
 	}
 	
-	def searchCanchasParaHorario() {
+	def searchCanchasParaHorario = {
 		println "searchCanchasParaHorario : : ${params}"
-		render(template: "reserva_step_2_canchas", model:[canchas:["c1","c2","c3","c4"]])
+		def fecha = params.fecha
+		def complejoId = params.complejoId
+		def horario = params.horario
+		def horarios = ["11:00","12:00","13:00","14:00"]
+		def canchas = ["c1","c2","c3","c4"]
+		render(template: "reserva_step_2_canchas", model:[canchas:canchas, horarios:horarios, horario:horario, complejoId:complejoId, fecha:fecha])
 	}
 	
 	/**

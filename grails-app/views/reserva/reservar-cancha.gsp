@@ -73,7 +73,7 @@
 											
 <%--											<form>--%>
 												<div class="step-content row-fluid position-relative" id="step-container">
-													
+													<g:hiddenField name="complejoId" id="complejoId" value="${complejoId}"/>
 													<g:render template="reserva_step_1" />				
 													<g:render template="reserva_step_2" />				
 													<g:render template="reserva_step_3" />

@@ -1,11 +1,15 @@
 package ar.com.reservayjuga.complejo
 
-import ar.com.reservayjuga.common.GenericService;
+import java.util.concurrent.TimeUnit
+
+import org.hibernate.criterion.Restrictions
+
+import ar.com.reservayjuga.common.GenericService
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.reserva.Reserva
 import ar.com.reservayjuga.ubicacion.UbicacionService
 import ar.com.reservayjuga.usuario.Encargado
-import ar.com.reservayjuga.utils.DBUtils;
+import ar.com.reservayjuga.utils.DBUtils
 
 class ComplejoService extends GenericService<Complejo> {
 	
@@ -211,4 +215,42 @@ class ComplejoService extends GenericService<Complejo> {
 		}
 		return complejo
 	}
+	
+	def getHorariosDisponiblesParaFecha(String fechaStr, def complejoId) {
+//		parsear fecha en dd mm yyyy
+		def fechaSplit = fechaStr.split("-")
+		
+//		crear Date con los datos parseados
+		Calendar cal = Calendar.getInstance()
+		cal.set(fechaSplit[2].toInteger(), fechaSplit[1].toInteger()-1, fechaSplit[0].toInteger(), 0, 0, 0)
+		Date fechaTemp = cal.getTime()
+		Date fecha = new Date(fechaTemp.getTime() - + TimeUnit.SECONDS.toMillis(1))
+		fechaTemp = null
+		
+//		obtener dia de la semana del date
+		def diaDeLaSemana = cal.get(Calendar.DAY_OF_WEEK)
+		
+//		obtener complejo segun id
+		Complejo complejo = findEntityById(complejoId)
+		
+//		obtener horarios configurados para ese complejo en ese dia de la semana
+		def horariosConfigurados = complejo.horarios.findAll { it.dia == diaDeLaSemana }
+		
+//		obtener reservas que tiene el complejo confirmadas para esa fecha
+		def criter = Reserva.createCriteria()
+			.add(Restrictions.eq("complejo", complejo))
+			.add(Restrictions.ge("dia", fecha))
+			.add(Restrictions.lt("dia", fecha+1))
+		def reservasOcupados = criter.list()
+
+//		matchear horarios con reservas para ver cual esta disponible y cual no
+		def horariosOcupados = reservasOcupados.collect { it.horaInicio }
+		
+//		devolver un map con todos los horarios y los horarios disponibles
+		def resp = [horariosConfigurados: horariosConfigurados, horariosOcupados: horariosOcupados]
+		
+		println resp
+		return resp
+	}
+
 }

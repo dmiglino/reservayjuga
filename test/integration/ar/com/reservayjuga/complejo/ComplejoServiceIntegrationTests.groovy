@@ -5,13 +5,16 @@ import static org.junit.Assert.*
 import org.junit.*
 
 import ar.com.reservayjuga.exception.EntityNotFoundException
+import ar.com.reservayjuga.reserva.Reserva
+import ar.com.reservayjuga.reserva.TipoReservaEnum
 import ar.com.reservayjuga.ubicacion.Barrio
 import ar.com.reservayjuga.ubicacion.Localidad
 import ar.com.reservayjuga.ubicacion.Pais
 import ar.com.reservayjuga.ubicacion.Provincia
 import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Encargado
-import ar.com.reservayjuga.utils.DBUtils;
+import ar.com.reservayjuga.usuario.Jugador
+import ar.com.reservayjuga.utils.DBUtils
 
 class ComplejoServiceIntegrationTests extends GroovyTestCase {
 	
@@ -20,15 +23,19 @@ class ComplejoServiceIntegrationTests extends GroovyTestCase {
 	
 	@Override
 	protected void setUp() {
+		def h1 = new Horario(dia:4,horarioApertura:"12:00",horarioCierre:"13:00").save()
+		def h2 = new Horario(dia:4,horarioApertura:"13:00",horarioCierre:"14:00").save()
+		def h3 = new Horario(dia:4,horarioApertura:"15:00",horarioCierre:"16:00").save()
+		def h4 = new Horario(dia:6,horarioApertura:"16:00",horarioCierre:"16:00").save()
 		Barrio barrio = new Barrio(nombre:"Agronomia", localidad: new Localidad(nombre:"Capital Federal", provincia:new Provincia(nombre:"Buenos Aires", pais: new Pais(nombre:"Argentina").save()).save()).save()).save()
 		Ubicacion ubi = new Ubicacion(direccion:"Pedro Moran 2379", barrio:barrio)
-		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
-		complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi)
+		Servicios servi = new Servicios(vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
+		complejo = new Complejo(nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi, horarios: [h1,h2,h3,h4])
 		DBUtils.validateAndSave(complejo)
 	}
 	
 	void testGetById() {
-		Complejo complejoPersistida = complejoService.getComplejoById(complejo.id)
+		Complejo complejoPersistida = complejoService.findEntityById(complejo.id)
 		assertEquals complejo, complejoPersistida
 	}
 	
@@ -241,5 +248,23 @@ class ComplejoServiceIntegrationTests extends GroovyTestCase {
 		shouldFail(EntityNotFoundException) {
 			complejoService.getImagenesYCantidad(null, [], encargado.id)
 		}
+	}
+	
+	void testGetHorariosDisponiblesParaFecha() {
+		Jugador jugador = new Jugador(nombre:"Diego", apellido:"Miglino", username:"dmiglino", password:"dmiglino", dni: 30303030, telefono:"12345678", mail:"d@m.com", clave:"1234567", sexo:"M")
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[], complejo: complejo)
+		DBUtils.validateAndSave([jugador,cancha])
+		
+		def fecha = new Date(113,10,20)
+		Reserva reserva1 = new Reserva (horaInicio: "11:00", horaFin: "12:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: fecha, cancha: cancha, complejo: complejo, jugador: jugador)
+		Reserva reserva2 = new Reserva (horaInicio: "12:00", horaFin: "13:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: fecha, cancha: cancha, complejo: complejo, jugador: jugador)
+		Reserva reserva3 = new Reserva (horaInicio: "13:00", horaFin: "14:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: fecha+1, cancha: cancha, complejo: complejo, jugador: jugador)
+		DBUtils.validateAndSave([reserva1,reserva2,reserva3])
+		
+		def resp = complejoService.getHorariosDisponiblesParaFecha("20-11-2013",complejo.id)
+		
+		println "testGetHorariosDisponiblesParaFecha : : ${resp}"
+		assertEquals 3, resp.horariosConfigurados.size()
+		assertEquals 2, resp.horariosOcupados.size() //1 q esta configurado y otro que no pero igual lo traigo		
 	}
 }

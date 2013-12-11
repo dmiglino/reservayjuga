@@ -58,7 +58,7 @@
 	function searchHorariosParaFecha(fecha) {
 		var JSONObject = new Object;
 	    JSONObject.fecha = fecha;
-	    JSONObject.canchaId = "1"; //TODO recuperar valor posta
+	    JSONObject.complejoId = $('#complejoId').val();
 	    JSONstring = JSON.stringify(JSONObject);
 	    
 	    $.ajax({
