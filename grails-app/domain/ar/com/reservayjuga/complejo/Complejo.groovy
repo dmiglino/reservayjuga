@@ -93,4 +93,8 @@ class Complejo {
 	String toString() {
 		"${nombre}"
 	}
+	
+	def getHorariosDelDia(Integer diaDeLaSemana) {
+		horarios.findAll { it.dia == diaDeLaSemana }
+	}
 }

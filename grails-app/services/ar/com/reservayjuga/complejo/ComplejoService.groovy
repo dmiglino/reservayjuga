@@ -10,6 +10,7 @@ import ar.com.reservayjuga.reserva.Reserva
 import ar.com.reservayjuga.ubicacion.UbicacionService
 import ar.com.reservayjuga.usuario.Encargado
 import ar.com.reservayjuga.utils.DBUtils
+import ar.com.reservayjuga.utils.Utils;
 
 class ComplejoService extends GenericService<Complejo> {
 	
@@ -217,24 +218,18 @@ class ComplejoService extends GenericService<Complejo> {
 	}
 	
 	def getHorariosDisponiblesParaFecha(String fechaStr, def complejoId) {
-//		parsear fecha en dd mm yyyy
-		def fechaSplit = fechaStr.split("-")
-		
-//		crear Date con los datos parseados
-		Calendar cal = Calendar.getInstance()
-		cal.set(fechaSplit[2].toInteger(), fechaSplit[1].toInteger()-1, fechaSplit[0].toInteger(), 0, 0, 0)
-		Date fechaTemp = cal.getTime()
-		Date fecha = new Date(fechaTemp.getTime() - + TimeUnit.SECONDS.toMillis(1))
-		fechaTemp = null
+//		parsear fecha en dd mm yyyy y crear Date con los datos parseados
+		Date fecha = Utils.crearFechaByString(fechaStr)
 		
 //		obtener dia de la semana del date
-		def diaDeLaSemana = cal.get(Calendar.DAY_OF_WEEK)
+		Integer diaDeLaSemana = Utils.getDayOfWeek(fechaStr)
 		
 //		obtener complejo segun id
 		Complejo complejo = findEntityById(complejoId)
 		
 //		obtener horarios configurados para ese complejo en ese dia de la semana
-		def horariosConfigurados = complejo.horarios.findAll { it.dia == diaDeLaSemana }
+		def horarioConfiguradoComplejo = complejo.getHorariosDelDia(diaDeLaSemana)
+		def horariosConfigurados = splitearHorariosPorHora(horarioConfiguradoComplejo)
 		
 //		obtener reservas que tiene el complejo confirmadas para esa fecha
 		def criter = Reserva.createCriteria()
@@ -248,9 +243,23 @@ class ComplejoService extends GenericService<Complejo> {
 		
 //		devolver un map con todos los horarios y los horarios disponibles
 		def resp = [horariosConfigurados: horariosConfigurados, horariosOcupados: horariosOcupados]
-		
-		println resp
 		return resp
 	}
 
+	protected def splitearHorariosPorHora(def horarioConfiguradoComplejo) {
+		List horariosConfigurados = []
+		horarioConfiguradoComplejo.each {
+			def horarioApertura = it.horarioApertura ? it.horarioApertura.split(":")[0].toInteger() : -1 
+			def horarioCierre = it.horarioCierre ? it.horarioCierre.split(":")[0].toInteger() : -1
+			if(horarioApertura >= 0 && horarioCierre >= 0) {
+				[horarioApertura..horarioCierre-1].each { horarioRange ->
+					horarioRange.each { horario ->
+						horariosConfigurados.add((horario < 10 ? "0"+horario.toString() : horario.toString()) + ":00 - " + (horario+1).toString() + ":00")
+					}
+				}
+			}
+		}
+		return horariosConfigurados.sort { it }
+	}
+	
 }

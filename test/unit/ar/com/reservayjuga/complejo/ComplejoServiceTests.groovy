@@ -25,4 +25,32 @@ class ComplejoServiceTests extends GrailsUnitTestCase {
 		}
 	}
  	
+	void testSplitearHorariosPorHora() {
+		def h1 = new Horario(dia:1, horarioApertura: "09:00", horarioCierre: "12:00") // 3 horarios: 9, 10, 11 (12 no incluido)
+		def h2 = new Horario(dia:1, horarioApertura: "14:00", horarioCierre: "16:00") // 2 horarios: 14, 15 (16 no incluido)
+		def h3 = new Horario(dia:1, horarioApertura: "19:00", horarioCierre: "23:00") // 4 horarios: 19, 20, 21, 22 (23 no incluido)
+		
+		List result = complejoService.splitearHorariosPorHora([h1,h2,h3])
+		assertNotNull result
+		assertEquals 9, result.size()
+		
+		assertFalse result.contains("6:00 - 7:00")
+		assertFalse result.contains("7:00 - 8:00")
+		assertFalse result.contains("8:00 - 9:00")
+		assertTrue result.contains("9:00 - 10:00")
+		assertTrue result.contains("10:00 - 11:00")
+		assertTrue result.contains("11:00 - 12:00")
+		assertFalse result.contains("12:00 - 13:00")
+		assertFalse result.contains("13:00 - 14:00")
+		assertTrue result.contains("14:00 - 15:00")
+		assertTrue result.contains("15:00 - 16:00")
+		assertFalse result.contains("16:00 - 17:00")
+		assertFalse result.contains("17:00 - 18:00")
+		assertFalse result.contains("18:00 - 19:00")
+		assertTrue result.contains("19:00 - 20:00")
+		assertTrue result.contains("20:00 - 21:00")
+		assertTrue result.contains("21:00 - 22:00")
+		assertTrue result.contains("22:00 - 23:00")
+		assertFalse result.contains("23:00 - 24:00")
+	}
 }

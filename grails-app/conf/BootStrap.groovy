@@ -30,8 +30,7 @@ class BootStrap {
 	Cancha p1,p2,p3,p4,p5,p6,p7,t1,t2,t3,t4,t5,t6,t7,muni1,muni2,muni3,muni4,muni5,muni6,muni7
 	Precio l1,l2,l3,l4,m1,m2,m3,m4,mi1,mi2,mi3,mi4,j1,j2,j3,j4,v1,v2,v3,v4,s1,s2,s3,s4,d1,d2,d3,d4
 	List precios = [l1,l2,l3,l4,m1,m2,m3,m4,mi1,mi2,mi3,mi4,j1,j2,j3,j4,v1,v2,v3,v4,s1,s2,s3,s4,d1,d2,d3,d4]
-	Horario lu,ma,mi,ju,vi,sa,dom
-	List horarios = [lu,ma,mi,ju,vi,sa,dom]
+	Horario lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom
 	Imagen f1,f2
 	Servicios serv1
 	Ubicacion u1,u2
@@ -106,14 +105,19 @@ class BootStrap {
 	}
 	
 	def crearHorarios() {
-		lu = new Horario(dia:1, horarioApertura: "11:00", horarioCierre: "20:00")
-		ma = new Horario(dia:1, horarioApertura: "11:00", horarioCierre: "20:00")
-		mi = new Horario(dia:1, horarioApertura: "11:00", horarioCierre: "20:00")
-		ju = new Horario(dia:1, horarioApertura: "10:00", horarioCierre: "21:00")
-		vi = new Horario(dia:2, horarioApertura: "10:00", horarioCierre: "21:00")
-		sa = new Horario(dia:2, horarioApertura: "09:00", horarioCierre: "22:00")
-		dom = new Horario(dia:2, horarioApertura: "09:00", horarioCierre: "23:00")
-		DBUtils.validateAndSave([lu,ma,mi,ju,vi,sa,dom])
+		lu1 = new Horario(dia:1, horarioApertura: "10:00", horarioCierre: "13:00")
+		lu2 = new Horario(dia:1, horarioApertura: "16:00", horarioCierre: "20:00")
+		ma1 = new Horario(dia:2, horarioApertura: "11:00", horarioCierre: "14:00")
+		ma2 = new Horario(dia:2, horarioApertura: "16:00", horarioCierre: "21:00")
+		mie1 = new Horario(dia:3, horarioApertura: "11:00", horarioCierre: "13:00")
+		mie2 = new Horario(dia:3, horarioApertura: "16:00", horarioCierre: "21:00")
+		ju1 = new Horario(dia:4, horarioApertura: "10:00", horarioCierre: "13:00")
+		ju2 = new Horario(dia:4, horarioApertura: "15:00", horarioCierre: "22:00")
+		vi1 = new Horario(dia:5, horarioApertura: "10:00", horarioCierre: "13:00")
+		vi2 = new Horario(dia:5, horarioApertura: "14:00", horarioCierre: "23:00")
+		sa = new Horario(dia:6, horarioApertura: "09:00", horarioCierre: "23:00")
+		dom = new Horario(dia:7, horarioApertura: "09:00", horarioCierre: "24:00")
+		DBUtils.validateAndSave([lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom])
 	}
 	
 	def crearImagen() {
@@ -198,9 +202,9 @@ class BootStrap {
 	}
 
 	def crearComplejos() {
-		poli = new Complejo(nombre: "Poli",webSite: "www.poli.com",telefono1: "4111-2222",telefono2: "15-1324-3546",mail: "poli@poli.com",informacionExtra: "soy el poli",ubicacion: u1,servicios:serv1)
-		terraza = new Complejo(nombre: "Terraza",webSite: "www.terraza.com",telefono1: "43334444",telefono2: "15-1234-4321",mail: "terraza@terraza.com",informacionExtra: "soy la terraza",ubicacion: u1,servicios:serv1)
-		muni = new Complejo(nombre: "Muni",webSite: "www.muni.com",telefono1: "45556666",telefono2: "15-1928-3746",mail: "muni@muni.com",informacionExtra: "soy el muni",ubicacion: u2,servicios:serv1)
+		poli = new Complejo(nombre: "Poli",webSite: "www.poli.com",telefono1: "4111-2222",telefono2: "15-1324-3546",mail: "poli@poli.com",informacionExtra: "soy el poli",ubicacion: u1,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom])
+		terraza = new Complejo(nombre: "Terraza",webSite: "www.terraza.com",telefono1: "43334444",telefono2: "15-1234-4321",mail: "terraza@terraza.com",informacionExtra: "soy la terraza",ubicacion: u1,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom])
+		muni = new Complejo(nombre: "Muni",webSite: "www.muni.com",telefono1: "45556666",telefono2: "15-1928-3746",mail: "muni@muni.com",informacionExtra: "soy el muni",ubicacion: u2,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom])
 		DBUtils.validateAndSave([poli,terraza,muni])
 	}
 	

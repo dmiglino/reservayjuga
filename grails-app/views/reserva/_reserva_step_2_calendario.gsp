@@ -64,16 +64,12 @@
 	    $.ajax({
 	        url:   "${createLink(controller:'reserva', action:'searchHorariosParaFecha')}",
 	        data:  JSONObject,
-	        type:  'get',
-	        dataType: 'json',
-<%--	        beforeSend: function () { NO LA USAMOS PORQUE ES RAPIDO Y GENERA UN PARPADEO MOLESTO, SI TENEMOS ALGO QUE TARDA MAS, USAR ESTO.--%>
-<%--              	$("#step_2_horarios_body").html("Procesando, espere por favor...");--%>
-<%--	        },--%>
-	        complete:  function (response) {
-               	$("#step_2_horarios").html(response.responseText);
-	        },
+	        type:  'post',
+			success: function(data) {
+			   	$("#step_2_horarios").html(data);
+			},
 	        error: function(request, status, error) {
-	            alert(error)
+	            alert(error);
 	        }
 	    });
 	};
