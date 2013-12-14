@@ -239,7 +239,7 @@ class ComplejoService extends GenericService<Complejo> {
 		def reservasOcupados = criter.list()
 
 //		matchear horarios con reservas para ver cual esta disponible y cual no
-		def horariosOcupados = reservasOcupados.collect { it.horaInicio }
+		def horariosOcupados = reservasOcupados.collect { it.horaInicio + " - " + it.horaFin}
 		
 //		devolver un map con todos los horarios y los horarios disponibles
 		def resp = [horariosConfigurados: horariosConfigurados, horariosOcupados: horariosOcupados]
@@ -254,7 +254,7 @@ class ComplejoService extends GenericService<Complejo> {
 			if(horarioApertura >= 0 && horarioCierre >= 0) {
 				[horarioApertura..horarioCierre-1].each { horarioRange ->
 					horarioRange.each { horario ->
-						horariosConfigurados.add((horario < 10 ? "0"+horario.toString() : horario.toString()) + ":00 - " + (horario+1).toString() + ":00")
+						horariosConfigurados.add(formatearHorario(horario))
 					}
 				}
 			}
@@ -262,4 +262,14 @@ class ComplejoService extends GenericService<Complejo> {
 		return horariosConfigurados.sort { it }
 	}
 	
+	protected def formatearHorario(List horarios) {
+		List horariosFormateados
+		horarios.each {
+			horariosFormateados.add(formatearHorario(it))
+		}
+	}
+	
+	protected def formatearHorario(def horario) {
+		(horario < 10 ? "0"+horario.toString() : horario.toString()) + ":00 - " + (horario+1).toString() + ":00"
+	}
 }

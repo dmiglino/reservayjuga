@@ -16,8 +16,12 @@
 				<div class="widget-main">
 					<center>
 						<g:each in="${horariosConfigurados}" var="horario" status="i">
-							<button class="btn btn-primary">${horario}</button>
-<%--							<button class="btn disabled btn-primary">18:00 - 19:00</button>--%>
+							<g:if test="${horariosOcupados.contains(horario)}">
+								<button class="btn disabled btn-primary" disabled="disabled">${horario}</button>
+							</g:if>
+							<g:else>
+								<button class="btn btn-primary">${horario}</button>
+							</g:else>
 						</g:each>
 					</center>
 				</div>
