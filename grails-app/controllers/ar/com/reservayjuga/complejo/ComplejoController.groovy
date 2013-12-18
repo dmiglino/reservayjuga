@@ -8,6 +8,7 @@ import ar.com.reservayjuga.ubicacion.Ubicacion
 import ar.com.reservayjuga.usuario.Encargado
 
 class ComplejoController {
+
 	def authenticationService
 	ComplejoService complejoService
 	
