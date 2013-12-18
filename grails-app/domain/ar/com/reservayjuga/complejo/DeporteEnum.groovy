@@ -26,6 +26,11 @@ public enum DeporteEnum {
 		SuperficieEnum.CEMENTO, 
 		SuperficieEnum.PARQUET, 
 		SuperficieEnum.BALDOSA, 
+	]), 
+	BASQUET("enum.deporte.basquet",[
+		SuperficieEnum.CEMENTO, 
+		SuperficieEnum.PARQUET, 
+		SuperficieEnum.BALDOSA, 
 	])
 
 	String textCode

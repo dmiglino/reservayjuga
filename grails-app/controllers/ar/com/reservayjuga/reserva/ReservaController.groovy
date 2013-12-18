@@ -124,21 +124,14 @@ class ReservaController {
 	}
 	
 	def searchHorariosParaFecha = {
-		def fecha = params.fecha
-		def complejoId = params.complejoId
-		def modelResp = reservaService.getHorariosDisponiblesParaFecha(fecha, complejoId)
-		modelResp.fecha = fecha
-		modelResp.complejoId = complejoId
+		def modelResp = reservaService.getHorariosDisponiblesParaFecha(params.fecha, params.complejoId)
 		render(template: "reserva_step_2_horarios", model:modelResp)
 	}
 	
 	def searchCanchasParaHorario = {
-		def fecha = params.fecha
-		def complejoId = params.complejoId
-		def horario = params.horario
-		def horarios = ["11:00","12:00","13:00","14:00"]
-		def canchas = ["c1","c2","c3","c4"]
-		render(template: "reserva_step_2_canchas", model:[canchas:canchas, horarios:horarios, horario:horario, complejoId:complejoId, fecha:fecha])
+		def modelResp = reservaService.getCanchasDisponiblesParaHorario(params.fecha, params.complejoId, params.horario)
+		println modelResp
+		render(template: "reserva_step_2_canchas", model:modelResp)
 	}
 	
 	/**

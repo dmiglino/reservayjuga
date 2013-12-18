@@ -13,17 +13,15 @@
 			</div>
 
 			<div class="widget-body" id="step_2_horarios_body">
-				<div class="widget-main">
-					<center>
-						<g:each in="${horariosConfigurados}" var="horario" status="i">
-							<g:if test="${horariosOcupados.contains(horario)}">
-								<button class="btn disabled btn-primary" disabled="disabled">${horario}</button>
-							</g:if>
-							<g:else>
-								<button class="btn btn-primary">${horario}</button>
-							</g:else>
-						</g:each>
-					</center>
+				<div class="widget-main" align="center">
+					<g:each in="${horariosConfigurados}" var="horario" status="i">
+						<g:if test="${horariosOcupados.contains(horario)}">
+							<button class="btn disabled btn-primary" disabled="disabled">${horario}</button>
+						</g:if>
+						<g:else>
+							<button class="btn btn-primary" onclick="searchCanchasParaHorario('${horario}');">${horario}</button>
+						</g:else>
+					</g:each>
 				</div>
 			</div>
 		</div>
@@ -33,22 +31,18 @@
 
 <script type="text/javascript">
 
-	function searchCanchasParaHorarios(fecha, horario) {
+	function searchCanchasParaHorario(horario) {
 		var JSONObject = new Object;
-	    JSONObject.fecha = fecha;
+	    JSONObject.fecha = $('#reservaDateText').val();;
 	    JSONObject.horario = horario;
-	    JSONObject.canchaId = "1";
+	    JSONObject.complejoId = $('#complejoId').val();
 	    JSONstring = JSON.stringify(JSONObject);
 	    
 	    $.ajax({
 	        data:  JSONObject,
-	        url:   "${createLink(controller:'reserva', action:'searchCanchasParaHorarios')}",
+	        url:   "${createLink(controller:'reserva', action:'searchCanchasParaHorario')}",
 	        type:  'post',
-	        dataType: 'json',
-<%--	        beforeSend: function () { NO LA USAMOS PORQUE ES RAPIDO Y GENERA UN PARPADEO MOLESTO, SI TENEMOS ALGO QUE TARDA MAS, USAR ESTO.--%>
-<%--              	$("#step_2_canchas_body").html("Procesando, espere por favor...");--%>
-<%--	        },--%>
-	        successa<:  function (data) {
+	        success:  function (data) {
               	$("#step_2_canchas").html(data);
 	        },
 	        error: function(request, status, error) {

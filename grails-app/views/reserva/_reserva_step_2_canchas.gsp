@@ -15,15 +15,42 @@
 			<div class="widget-body" id="step_2_canchas_body">
 				<div class="widget-main overflow-auto">
 					<ul class="ul-canchas">
-						<li id="1" class="cancha-futbol"><span>01</span></li>
-						<li id="2" class="cancha-futbol"><span>02</span></li>
-						<li id="3" class="cancha-futbol active"><span>03</span></li>
-						<li id="4" class="cancha-futbol"><span>04</span></li>
-						<li id="5" class="cancha-futbol"><span>05</span></li>
-						<li id="6" class="cancha-futbol"><span>06</span></li>
+						<g:each in="${canchas}" var="cancha" status="i">
+							<li id="cancha_${cancha.id}" class="cancha-futbol" onclick="seleccionarCanchaAReservar('${cancha.id}');"><span>${i}</span></li>
+							<g:hiddenField name="reserva.cancha.id" id="reserva.cancha.id" value="" />
+<%--						<li id="3" class="cancha-futbol active"><span>03</span></li>--%>
+						</g:each>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+
+	function seleccionarCanchaAReservar(canchaId) {
+		//borra la cancha seleccionada anteriormente
+		var canchaAnterior = document.getElementById('reserva.cancha.id').value;
+		if(canchaAnterior != null && canchaAnterior != "") {
+			var buttonId = "cancha_"+document.getElementById('reserva.cancha.id').value;
+			var li = document.getElementById(buttonId);
+			var previousStyleClass = li.getAttribute("class");
+			var previousStyleClassWithoutActive = previousStyleClass.replace(" active", "");
+			li.setAttribute("class", previousStyleClassWithoutActive);
+		}
+		
+		//setea el id de la cancha seleccionada
+		document.getElementById('reserva.cancha.id').value = canchaId;
+		
+		//marca como seleccionada la nueva cancha
+		if(canchaId != null) {
+			var buttonId = "cancha_"+canchaId;
+			var li = document.getElementById(buttonId);
+			var previousStyleClass = li.getAttribute("class");
+			li.setAttribute("class", previousStyleClass+" active");
+		}
+	};
+
+</script>

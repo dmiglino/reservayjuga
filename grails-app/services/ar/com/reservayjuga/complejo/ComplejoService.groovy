@@ -1,16 +1,13 @@
 package ar.com.reservayjuga.complejo
 
-import java.util.concurrent.TimeUnit
-
-import org.hibernate.criterion.Restrictions
-
 import ar.com.reservayjuga.common.GenericService
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.reserva.Reserva
+import ar.com.reservayjuga.reserva.ReservaService
 import ar.com.reservayjuga.ubicacion.UbicacionService
 import ar.com.reservayjuga.usuario.Encargado
 import ar.com.reservayjuga.utils.DBUtils
-import ar.com.reservayjuga.utils.Utils;
+import ar.com.reservayjuga.utils.Utils
 
 class ComplejoService extends GenericService<Complejo> {
 	
@@ -217,7 +214,7 @@ class ComplejoService extends GenericService<Complejo> {
 		return complejo
 	}
 	
-	def getHorariosDisponiblesParaFecha(String fechaStr, def complejoId) {
+	def getHorariosDisponiblesParaFecha(String fechaStr, def complejoId, ReservaService reservaService) {
 //		parsear fecha en dd mm yyyy y crear Date con los datos parseados
 		Date fecha = Utils.crearFechaByString(fechaStr)
 		
@@ -232,14 +229,10 @@ class ComplejoService extends GenericService<Complejo> {
 		def horariosConfigurados = splitearHorariosPorHora(horarioConfiguradoComplejo)
 		
 //		obtener reservas que tiene el complejo confirmadas para esa fecha
-		def criter = Reserva.createCriteria()
-			.add(Restrictions.eq("complejo", complejo))
-			.add(Restrictions.ge("dia", fecha))
-			.add(Restrictions.lt("dia", fecha+1))
-		def reservasOcupados = criter.list()
-
-//		matchear horarios con reservas para ver cual esta disponible y cual no
-		def horariosOcupados = reservasOcupados.collect { it.horaInicio + " - " + it.horaFin}
+		def reservasRealizadas = reservaService.getReservasConcretadasOSeniadasParaComplejoEnFecha(complejo, fecha)
+		
+		// si hay al menos 1 cancha libre, el horario no se tiene que marcar como ocupado
+		def horariosOcupados = checkearHorariosOcupados(complejo.canchas.size(), reservasRealizadas)
 		
 //		devolver un map con todos los horarios y los horarios disponibles
 		def resp = [horariosConfigurados: horariosConfigurados, horariosOcupados: horariosOcupados]
@@ -271,5 +264,56 @@ class ComplejoService extends GenericService<Complejo> {
 	
 	protected def formatearHorario(def horario) {
 		(horario < 10 ? "0"+horario.toString() : horario.toString()) + ":00 - " + (horario+1).toString() + ":00"
+	}
+	
+	def checkearHorariosOcupados(cantidadCanchas, reservasRealizadas) {
+		def horariosOcupados = []
+		reservasRealizadas.each {
+			if(cantidadCanchas == it[2]) {
+				println "El complejo tiene ${cantidadCanchas} canchas y hay ${it[2]} reservas para las ${it[0]} horas. El horario esta todo OCUPADO"
+				horariosOcupados.add(it[0] + " - " + it[1])
+			} else {
+				println "El complejo tiene ${cantidadCanchas} canchas y hay ${it[2]} reservas para las ${it[0]} horas. El horario tiene cancha LIBRE"
+			}
+		}
+		return horariosOcupados
+	}
+	
+	def getCanchasDisponiblesParaHorario(String fechaStr, def complejoId, def horarioStr, ReservaService reservaService) {
+//		parsear fecha en dd mm yyyy y crear Date con los datos parseados
+		Date fecha = Utils.crearFechaByString(fechaStr)
+		
+		//parsear horario para obtener el string de la hora de inicio del mismo
+		def horarioSplit = horarioStr.split(" - ")
+		
+//		obtener complejo segun id y las canchas que tiene
+		Complejo complejo = findEntityById(complejoId)
+		def canchas = complejo.canchas
+		
+//		obtener reservas que tiene el complejo confirmadas para esa fecha y horario
+		def reservasRealizadas = reservaService.getReservasByComplejoFechaAndHora(complejo, fecha, horarioSplit[0])
+		
+//		matchear horarios con reservas para ver cual esta disponible y cual no
+		def canchasReservadas = reservasRealizadas.collect { it.cancha }
+		
+		println "CANCHAS : : ${canchas}"
+		println "RESERVADAS : : ${canchasReservadas}"
+		
+		// me quedo solo con las canchas que no tienen reservas
+		canchas.removeAll(canchasReservadas)
+		println "LIBRES : : ${canchas}" 
+		
+		// devuelvo solo una cancha por tipo
+//		def tiposCanchas = getDiferentesTiposDeCanchas(canchasLibres)
+		
+//		devolver un map con todos los horarios y los horarios disponibles
+		def resp = [canchas: canchas]
+		println resp
+		return resp
+	}
+	
+	def getDiferentesTiposDeCanchas(canchasLibres) {
+		// TODO
+		canchasLibres
 	}
 }

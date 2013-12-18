@@ -1,6 +1,7 @@
 package ar.com.reservayjuga.reserva
 
 import org.hibernate.criterion.Order
+import org.hibernate.criterion.Projections
 import org.hibernate.criterion.Restrictions
 
 import ar.com.reservayjuga.common.GenericService
@@ -164,6 +165,55 @@ class ReservaService extends GenericService<Reserva> {
 	}
 	
 	def getHorariosDisponiblesParaFecha(String fecha, def complejoId) {
-		complejoService.getHorariosDisponiblesParaFecha(fecha, complejoId)
+		complejoService.getHorariosDisponiblesParaFecha(fecha, complejoId, this)
+	}
+	
+	def getCanchasDisponiblesParaHorario(String fecha, def complejoId, def horario) {
+		complejoService.getCanchasDisponiblesParaHorario(fecha, complejoId, horario, this)
+	}
+	
+	/**
+	 * obtener reservas que tiene el complejo confirmadas para esa fecha
+	 * @param complejo
+	 * @param fecha
+	 * @return reservas
+	 */
+	def getReservasConcretadasOSeniadasParaComplejoEnFecha(Complejo complejo, Date fecha) {
+		def criter = Reserva.createCriteria()
+			.add(Restrictions.eq("complejo", complejo))
+			.add(Restrictions.ge("dia", fecha))
+			.add(Restrictions.lt("dia", fecha+1))
+			.add(Restrictions.or(
+				Restrictions.eq("estado", ReservaEnum.CONCRETADA),
+				Restrictions.eq("estado", ReservaEnum.SENIADA)
+			))
+			.setProjection( Projections.projectionList()
+				.add( Projections.groupProperty("horaInicio"), "horaInicio" )
+				.add( Projections.property("horaFin"), "horaFin" )
+				.add( Projections.rowCount(), "cantidadReservas" )
+			)
+			
+		criter.list()
+	}
+	
+	/**
+	 * obtener reservas que tiene el complejo confirmadas para esa fecha y horario
+	 * @param complejo
+	 * @param fecha
+	 * @param hora
+	 * @return reservas
+	 */
+	def getReservasByComplejoFechaAndHora(complejo, fecha, hora) {
+		def criter = Reserva.createCriteria()
+			.add(Restrictions.eq("complejo", complejo))
+			.add(Restrictions.eq("horaInicio", hora))
+			.add(Restrictions.ge("dia", fecha))
+			.add(Restrictions.lt("dia", fecha+1))
+			.add(Restrictions.or(
+				Restrictions.eq("estado", ReservaEnum.CONCRETADA),
+				Restrictions.eq("estado", ReservaEnum.SENIADA)
+			))
+			
+		criter.list()
 	}
 }
