@@ -5,19 +5,22 @@
 			<div class="widget-header">
 				<h4>
 					<strong><g:message code="reserva.cancha.label" default="CANCHA" /></strong> 
-					(
-						<g:message code="reserva.dia.seleccionar.label" default="Selecciona la cancha" />
-					)
+					(<g:message code="reserva.cancha.seleccionar.label" default="Selecciona la cancha" />)
 				</h4>
 			</div>
 
 			<div class="widget-body" id="step_2_canchas_body">
 				<div class="widget-main overflow-auto">
 					<ul class="ul-canchas">
-						<g:each in="${canchas}" var="cancha" status="i">
-							<li id="cancha_${cancha.id}" class="cancha-futbol" onclick="seleccionarCanchaAReservar('${cancha.id}');"><span>${i}</span></li>
-							<g:hiddenField name="reservaCanchaId" id="reservaCanchaId" value="" />
-						</g:each>
+						<g:if test="${canchas == null}">
+							<g:message code="reserva.horariosDefault.label" default="Seleccione un horario, para ver las canchas" />
+						</g:if>
+						<g:else>
+							<g:each in="${canchas}" var="cancha" status="i">
+								<li id="cancha_${cancha.id}" class="cancha-futbol" onclick="seleccionarCanchaAReservar('${cancha.id}');"><span>${i}</span></li>
+								<g:hiddenField name="reservaCanchaId" id="reservaCanchaId" value="" />
+							</g:each>
+						</g:else>
 					</ul>
 				</div>
 			</div>

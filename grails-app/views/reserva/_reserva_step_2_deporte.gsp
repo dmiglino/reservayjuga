@@ -3,7 +3,7 @@
 		<div class="col-sm-12">
 			<div class="widget-box">
 				<div class="widget-header">
-					<center><h4><strong>Deporte </strong>(Seleccione el deporte)</h4></center>
+					<center><h4><strong>Deporte </strong>(Seleccione uno o mas deportes)</h4></center>
 				</div>
 		
 				<div class="widget-body">

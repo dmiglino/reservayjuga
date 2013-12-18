@@ -4,16 +4,13 @@
 		<div class="widget-header">
 			<h4>
 				<strong><g:message code="reserva.dia.label" default="DIA" /></strong>
-				(
-					<g:message code="reserva.dia.seleccionar.label"
-					default="Selecciona el dia del partido" />
-				)
+				(<g:message code="reserva.dia.seleccionar.label" default="Selecciona el dia del partido" />)
 			</h4>
 		</div>
 
 		<div class="widget-body">
 			<div class="widget-main" align="center">
-				<input type="text" id="reservaDateText" name="something" value="${reserva?.getDiaString()}"/>
+				<input type="hidden" id="reservaDateText" name="something" value="${reserva?.getDiaString()}"/>
 				<div id="reservaDateDiv"></div> 
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 
 	<div id="step_3">
-		<div class="profile-user-info profile-user-info-striped" style="width: 802px; margin-right: 1px; float: left;">
+		<div class="profile-user-info profile-user-info-striped" style="width: 330px; margin-right: 1px; float: left;">
 		
 			<div class="profile-info-row">
 				<div class="profile-info-name">
@@ -114,9 +114,13 @@
 				</div>
 			</div>
 		</div>
-
+		<button class="btn btn-warning"
+		style="float: left; margin-left: 11px; padding-right: 8px;">
+		<i class="icon-print"></i>
+		<g:message code="button.imprimir.label" default="Imprimir" />
+		</button>
 	</div>
-
+	
 <script>
 	function setearSenia() {
 		var senia = document.getElementById('senia').value;

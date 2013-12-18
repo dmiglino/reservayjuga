@@ -80,6 +80,7 @@
 												</div>
 	
 												<hr />
+												
 												<div class="row-fluid wizard-actions">
 													<button class="btn btn-prev">
 														<i class="icon-arrow-left"></i>
