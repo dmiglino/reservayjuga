@@ -30,7 +30,7 @@ class BootStrap {
 	Cancha p1,p2,p3,p4,p5,p6,p7,t1,t2,t3,t4,t5,t6,t7,muni1,muni2,muni3,muni4,muni5,muni6,muni7
 	Precio l1,l2,l3,l4,m1,m2,m3,m4,mi1,mi2,mi3,mi4,j1,j2,j3,j4,v1,v2,v3,v4,s1,s2,s3,s4,d1,d2,d3,d4
 	List precios = [l1,l2,l3,l4,m1,m2,m3,m4,mi1,mi2,mi3,mi4,j1,j2,j3,j4,v1,v2,v3,v4,s1,s2,s3,s4,d1,d2,d3,d4]
-	Horario lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom
+	Horario lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom,fe
 	Imagen f1,f2
 	Servicios serv1
 	Ubicacion u1,u2
@@ -70,28 +70,28 @@ class BootStrap {
 	}
 
 	def crearCancha() {
-		p1 = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true,precios:precios, complejo:poli)
-		p2 = new Cancha(nombre:"Poli-2", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_CAUCHO, cantidadJugadores:5, cubierta: true,precios:precios, complejo:poli)
-		p3 = new Cancha(nombre:"Poli-3", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.CEMENTO, cantidadJugadores:5, cubierta: true,precios:precios, complejo:poli)
-		p4 = new Cancha(nombre:"Poli-4", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.PARQUET, cantidadJugadores:7, cubierta: true,precios:precios, complejo:poli)
-		p5 = new Cancha(nombre:"Poli-5", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:7, cubierta: false,precios:precios, complejo:poli)
-		p6 = new Cancha(nombre:"Poli-6", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_CAUCHO, cantidadJugadores:8, cubierta: false,precios:precios, complejo:poli)
-		p7 = new Cancha(nombre:"Poli-7", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.CESPED, cantidadJugadores:11, cubierta: false,precios:precios, complejo:poli)
+		p1 = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true,precios:precios, complejo:poli)
+		p2 = new Cancha(nombre:"Poli-2", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_CAUCHO, cantidadJugadores:5, cubierta: true,precios:precios, complejo:poli)
+		p3 = new Cancha(nombre:"Poli-3", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.CEMENTO, cantidadJugadores:5, cubierta: true,precios:precios, complejo:poli)
+		p4 = new Cancha(nombre:"Poli-4", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.PARQUET, cantidadJugadores:7, cubierta: true,precios:precios, complejo:poli)
+		p5 = new Cancha(nombre:"Poli-5", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:7, cubierta: false,precios:precios, complejo:poli)
+		p6 = new Cancha(nombre:"Poli-6", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_CAUCHO, cantidadJugadores:8, cubierta: false,precios:precios, complejo:poli)
+		p7 = new Cancha(nombre:"Poli-7", deporte:DeporteEnum.FUTBOL_11, superficie: SuperficieEnum.CESPED, cantidadJugadores:11, cubierta: false,precios:precios, complejo:poli)
 		DBUtils.validateAndSave([p1,p2,p3,p4,p5,p6,p7])
 		
-		t1 = new Cancha(nombre:"Terr-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true,precios:precios, complejo:terraza)
-		t2 = new Cancha(nombre:"Terr-2", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.PARQUET, cantidadJugadores:5, cubierta: true,precios:precios, complejo:terraza)
-		t3 = new Cancha(nombre:"Terr-3", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.CEMENTO, cantidadJugadores:5, cubierta: true,precios:precios, complejo:terraza)
-		t4 = new Cancha(nombre:"Terr-4", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:7, cubierta: true,precios:precios, complejo:terraza)
+		t1 = new Cancha(nombre:"Terr-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true,precios:precios, complejo:terraza)
+		t2 = new Cancha(nombre:"Terr-2", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.PARQUET, cantidadJugadores:5, cubierta: true,precios:precios, complejo:terraza)
+		t3 = new Cancha(nombre:"Terr-3", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.CEMENTO, cantidadJugadores:5, cubierta: true,precios:precios, complejo:terraza)
+		t4 = new Cancha(nombre:"Terr-4", deporte:DeporteEnum.FUTBOL_7, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:7, cubierta: true,precios:precios, complejo:terraza)
 		t5 = new Cancha(nombre:"Terr-5", deporte:DeporteEnum.TENIS, superficie: SuperficieEnum.POLVO_DE_LADRILLO, cantidadJugadores:4, cubierta: true,precios:precios, complejo:terraza)
 		t6 = new Cancha(nombre:"Terr-6", deporte:DeporteEnum.TENIS, superficie: SuperficieEnum.POLVO_DE_LADRILLO, cantidadJugadores:4, cubierta: false,precios:precios, complejo:terraza)
 		t7 = new Cancha(nombre:"Terr-7", deporte:DeporteEnum.TENIS, superficie: SuperficieEnum.CEMENTO, cantidadJugadores:4, cubierta: false,precios:precios, complejo:terraza)
 		DBUtils.validateAndSave([t1,t2,t3,t4,t5,t6,t7])
 		
-		muni1 = new Cancha(nombre:"Muni-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true,precios:precios, complejo:muni)
-		muni2 = new Cancha(nombre:"Muni-2", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_CAUCHO, cantidadJugadores:5, cubierta: true,precios:precios, complejo:muni)
-		muni3 = new Cancha(nombre:"Muni-3", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.CEMENTO, cantidadJugadores:5, cubierta: true,precios:precios, complejo:muni)
-		muni4 = new Cancha(nombre:"Muni-4", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:7, cubierta: true,precios:precios, complejo:muni)
+		muni1 = new Cancha(nombre:"Muni-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true,precios:precios, complejo:muni)
+		muni2 = new Cancha(nombre:"Muni-2", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_CAUCHO, cantidadJugadores:5, cubierta: true,precios:precios, complejo:muni)
+		muni3 = new Cancha(nombre:"Muni-3", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.CEMENTO, cantidadJugadores:5, cubierta: true,precios:precios, complejo:muni)
+		muni4 = new Cancha(nombre:"Muni-4", deporte:DeporteEnum.FUTBOL_8, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:7, cubierta: true,precios:precios, complejo:muni)
 		muni5 = new Cancha(nombre:"Muni-5", deporte:DeporteEnum.PADEL, superficie: SuperficieEnum.CEMENTO, cantidadJugadores:4, cubierta: true,precios:precios, complejo:muni)
 		muni6 = new Cancha(nombre:"Muni-6", deporte:DeporteEnum.PADEL, superficie: SuperficieEnum.CEMENTO, cantidadJugadores:4, cubierta: true,precios:precios, complejo:muni)
 		muni7 = new Cancha(nombre:"Muni-7", deporte:DeporteEnum.TENIS, superficie: SuperficieEnum.POLVO_DE_LADRILLO, cantidadJugadores:4, cubierta: false,precios:precios, complejo:muni)
@@ -115,9 +115,10 @@ class BootStrap {
 		ju2 = new Horario(dia:4, horarioApertura: "15:00", horarioCierre: "22:00")
 		vi1 = new Horario(dia:5, horarioApertura: "10:00", horarioCierre: "13:00")
 		vi2 = new Horario(dia:5, horarioApertura: "14:00", horarioCierre: "23:00")
-		sa = new Horario(dia:6, horarioApertura: "09:00", horarioCierre: "23:00")
-		dom = new Horario(dia:7, horarioApertura: "09:00", horarioCierre: "24:00")
-		DBUtils.validateAndSave([lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom])
+		sa = new Horario(dia:6, horarioApertura: "9:00", horarioCierre: "23:00")
+		dom = new Horario(dia:7, horarioApertura: "9:00", horarioCierre: "24:00")
+		fe = new Horario(dia:8, horarioApertura: "11:00", horarioCierre: "23:00")
+		DBUtils.validateAndSave([lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom,fe])
 	}
 	
 	def crearImagen() {
@@ -202,9 +203,9 @@ class BootStrap {
 	}
 
 	def crearComplejos() {
-		poli = new Complejo(nombre: "Poli",webSite: "www.poli.com",telefono1: "4111-2222",telefono2: "15-1324-3546",mail: "poli@poli.com",informacionExtra: "soy el poli",ubicacion: u1,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom])
-		terraza = new Complejo(nombre: "Terraza",webSite: "www.terraza.com",telefono1: "43334444",telefono2: "15-1234-4321",mail: "terraza@terraza.com",informacionExtra: "soy la terraza",ubicacion: u1,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom])
-		muni = new Complejo(nombre: "Muni",webSite: "www.muni.com",telefono1: "45556666",telefono2: "15-1928-3746",mail: "muni@muni.com",informacionExtra: "soy el muni",ubicacion: u2,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom])
+		poli = new Complejo(nombre: "Poli",webSite: "www.poli.com",telefono1: "4111-2222",telefono2: "15-1324-3546",mail: "poli@poli.com",informacionExtra: "soy el poli",ubicacion: u1,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom,fe])
+		terraza = new Complejo(nombre: "Terraza",webSite: "www.terraza.com",telefono1: "43334444",telefono2: "15-1234-4321",mail: "terraza@terraza.com",informacionExtra: "soy la terraza",ubicacion: u1,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom,fe])
+		muni = new Complejo(nombre: "Muni",webSite: "www.muni.com",telefono1: "45556666",telefono2: "15-1928-3746",mail: "muni@muni.com",informacionExtra: "soy el muni",ubicacion: u2,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom,fe])
 		DBUtils.validateAndSave([poli,terraza,muni])
 	}
 	
@@ -217,7 +218,7 @@ class BootStrap {
 		def user = SecUser.findByUsername("jugadorTom")
 		if(!user) {
 			Calendar cal = Calendar.getInstance()
-			cal.set(1987, 8, 10)
+			cal.set(1987, 8-1, 10)
 			Date fecha = cal.getTime()
 			user = new Jugador(apellido: "Esca",nombre: "Tom",username:"jugadorTom",password:"jugador",enable:true, telefono:"12345678", mail:"t@e.com", sexo:"F", dni:33333333, fechaNacimiento: fecha )
 		}
@@ -227,7 +228,7 @@ class BootStrap {
 		user = SecUser.findByUsername("jugadorDie")
 		if(!user) {
 			Calendar cal = Calendar.getInstance()
-			cal.set(1987, 8, 10)
+			cal.set(1984, 4-1, 12)
 			Date fecha = cal.getTime()
 			user = new Jugador(apellido: "Mig",nombre: "Die",username:"jugadorDie",password:"jugador",enable:true, telefono:"12345678", mail:"d@m.com", sexo:"M", dni:30303030, fechaNacimiento: fecha )
 		}

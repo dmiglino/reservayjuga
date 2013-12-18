@@ -11,24 +11,24 @@
 
 <body>
 
-	<%--		inicio main-container--%>
+	<%-- inicio main-container --%>
 
 	<div class="breadcrumbs" id="breadcrumbs">
 		<script type="text/javascript">
-						try {
-							ace.settings.check('breadcrumbs', 'fixed')
-						} catch (e) {
-						}
-					</script>
+			try {
+				ace.settings.check('breadcrumbs', 'fixed')
+			} catch (e) {
+			}
+		</script>
 
 		<ul class="breadcrumb">
-			<li><i class="icon-home home-icon"></i><a href="#"> <g:message
-						code="sidebar.panel.label" default="Panel de Control" />
+			<li><i class="icon-home home-icon"></i><a href="#"> 
+				<g:message code="sidebar.panel.label" default="Panel de Control" />
 			</a></li>
 
-			<li><a href="#"><g:message
-						code="sidebar.administrar.complejo.label"
-						default="Administrar Complejo" /></a></li>
+			<li><a href="#">
+				<g:message code="sidebar.administrar.complejo.label" default="Administrar Complejo" />
+			</a></li>
 		</ul>
 		<!-- .breadcrumb -->
 	</div>
@@ -46,9 +46,8 @@
 			<div class="col-xs-12">
 				<!-- PAGE CONTENT BEGINS -->
 
-				<g:form id="formUpdateComplejo"
-					action="actualizarInformacionComplejo" class="form-horizontal"
-					role="form" enctype="multipart/form-data">
+				<g:form id="formUpdateComplejo" action="actualizarInformacionComplejo" 
+					class="form-horizontal" role="form" >
 
 					<div id="accordion" class="accordion-style2">
 						<div class="group">
@@ -340,7 +339,7 @@
 									</div>
 
 									<!-- inicio selector de imagenes -->
-									<g:uploadForm controller="complejo" action="agregarImagen">
+<%--									<g:uploadForm controller="complejo" action="agregarImagen">--%>
 										<div class="col-sm-4">
 											<div class="widget-box">
 												<div class="widget-header">
@@ -402,7 +401,7 @@
 												</div>
 											</div>
 										</div>
-									</g:uploadForm>
+<%--									</g:uploadForm>--%>
 									<!-- fin selector de imagenes -->
 
 								</div>
@@ -413,12 +412,7 @@
 
 					<div class="clearfix form-actions">
 						<div class="col-md-offset-3 col-md-9">
-							<button class="btn btn-info" type="button">
-								<i class="icon-ok bigger-110"></i> Guardar
-							</button>
-
-							<g:submitButton class="btn btn-info"
-								name="actualizarInformacionComplejo"
+							<g:submitButton class="btn btn-info" name="actualizarInformacionComplejo"
 								value="Actualizar Informacion del Complejo" />
 							&nbsp; &nbsp; &nbsp;
 						</div>

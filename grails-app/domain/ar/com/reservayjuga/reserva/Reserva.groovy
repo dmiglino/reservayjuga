@@ -40,27 +40,27 @@ class Reserva {
 	}
 	
 	def faltaPagar() {
-		precioTotal - senia
+		precioTotal ? (precioTotal - (senia ? senia : 0)) : 0
 	}
 	
 	String getDiaString() {
-		dia.format("dd-MM-yyyy")
+		dia?.format("dd-MM-yyyy")
 	}
 	
 	Boolean isPendiente() {
-		this.estado.isPendiente()
+		this.estado?.isPendiente()
 	}
 	
 	Boolean isSeniada() {
-		this.estado.isSeniada()
+		this.estado?.isSeniada()
 	}
 	
 	Boolean isConcretada() {
-		this.estado.isConcretada()
+		this.estado?.isConcretada()
 	}
 	
 	Boolean isCancelada() {
-		this.estado.isCancelada()
+		this.estado?.isCancelada()
 	}
 	
 	/**

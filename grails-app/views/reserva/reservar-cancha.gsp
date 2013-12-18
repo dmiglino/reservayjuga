@@ -77,7 +77,6 @@
 													<g:render template="reserva_step_1" />				
 													<g:render template="reserva_step_2" />				
 													<g:render template="reserva_step_3" />
-	
 												</div>
 	
 												<hr />
@@ -87,7 +86,7 @@
 														<g:message code="button.anterior.label" default="Anterior" />
 													</button>
 	
-													<button class="btn btn-success btn-next" data-last="Finish ">
+													<button class="btn btn-success btn-next" data-last="Finish" onclick="agregarDatosALaReserva();">
 														<g:message code="button.siguiente.label" default="Siguiente" />
 														<i class="icon-arrow-right icon-on-right"></i>
 													</button>
@@ -146,11 +145,18 @@
 		            }
 		        }).on('finished', function(e) {
 			        // TODO call a controller
-			        $.ajax({ 
-						url: '${createLink(action: 'generarReserva')}',
-						type:"POST",
-<%--						data : "data=" + querystring,--%>
-					}); 
+			        var JSONObject = new Object;
+				    JSONObject.reservaSenia = $('#senia').val();
+				    JSONstring = JSON.stringify(JSONObject);
+	
+				    $.ajax({
+				        url:   "${createLink(controller:'reserva', action:'generarReserva')}",
+				        data:  JSONObject,
+				        type:  'post',
+				        error: function(request, status, error) {
+				            alert(error);
+				        }
+				    });
 		            bootbox.dialog({
 		                message: "Felicitaciones! Su reserva ha sido realizada.",
 		                buttons: {
@@ -315,6 +321,29 @@
 		        $('#modal-wizard .modal-header').ace_wizard();
 		        $('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
 		    })
+		    
+		    function agregarDatosALaReserva() {
+				var JSONObject = new Object;
+			    JSONObject.jugadorId = $('#jugadorId').val();
+			    JSONObject.reservaDateText = $('#reservaDateText').val();
+			    JSONObject.reservaHorario = $('#horarioReserva').val();
+			    JSONObject.reservaCanchaId = $('#reservaCanchaId').val();
+			    JSONObject.reservaSenia = $('#senia').val();
+			    JSONstring = JSON.stringify(JSONObject);
+
+			    $.ajax({
+			        url:   "${createLink(controller:'reserva', action:'agregarDatosALaReserva')}",
+			        data:  JSONObject,
+			        type:  'post',
+			        success:  function (data) {
+		              	$("#step_3").html(data);
+			        },
+			        error: function(request, status, error) {
+			            alert(error);
+			        }
+			    });
+							
+			}
 		</script>
 	</body>
 </html>

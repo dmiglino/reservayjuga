@@ -15,8 +15,6 @@
 			<div class="widget-main" align="center">
 				<input type="text" id="reservaDateText" name="something" value="${reserva?.getDiaString()}"/>
 				<div id="reservaDateDiv"></div> 
-<%--						<g:field class="date-picker" id="id-date-picker-2" name="date-picker" type="text" data-date-format="dd-mm-yyyy" value="${reserva?.getDiaString()}" /> --%>
-<%--						<div class="date-picker" align="center" data-date-format="dd-mm-yyyy" value="${reserva?.getDiaString()}"></div>--%>
 			</div>
 		</div>
 	</div>
