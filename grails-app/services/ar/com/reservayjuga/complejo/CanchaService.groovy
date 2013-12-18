@@ -10,6 +10,7 @@ import ar.com.reservayjuga.utils.DBUtils;
 class CanchaService extends GenericService<Cancha> {
 	
 	ComplejoService complejoService
+	PrecioService precioService
 	
 	@Override
 	def getDomain() {
@@ -140,5 +141,9 @@ class CanchaService extends GenericService<Cancha> {
 	def getComplejoDelEncargado(def encargadoId) {
 		// TODO pasar a EncargadoService?
 		complejoService.getComplejoDelEncargado(encargadoId)
+	}
+	
+	def getPrecio(def dayOfWeek, def horaInicio, def cancha) {
+		precioService.getPrecio(dayOfWeek, horaInicio, cancha)
 	}
 }

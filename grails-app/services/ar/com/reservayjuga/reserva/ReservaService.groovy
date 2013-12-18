@@ -12,6 +12,7 @@ import ar.com.reservayjuga.complejo.ComplejoService
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.usuario.JugadorService
 import ar.com.reservayjuga.utils.DBUtils
+import ar.com.reservayjuga.utils.Utils
 
 class ReservaService extends GenericService<Reserva> {
 
@@ -237,13 +238,7 @@ class ReservaService extends GenericService<Reserva> {
 			
 			def reservaDateText = params.reservaDateText
 			if(reservaDateText) {
-				def fechaSplit = reservaDateText.split("-")
-				if(fechaSplit.size() == 3) {
-					Calendar cal = Calendar.getInstance()
-					cal.set(fechaSplit[2].toInteger(), (fechaSplit[1].toInteger())-1, fechaSplit[0].toInteger())
-					Date fecha = cal.getTime()
-					reserva.dia = fecha
-				}
+				reserva.dia = Utils.crearFechaByString(reservaDateText)
 			}
 			
 			def reservaHorario = params.reservaHorario
@@ -256,10 +251,12 @@ class ReservaService extends GenericService<Reserva> {
 			def reservaCanchaId = params.reservaCanchaId
 			if(reservaCanchaId) {
 				reserva.cancha = canchaService.findEntityById(reservaCanchaId)
-				if(reserva.cancha) {
-					// TODO buscar el precio para esta cancha en este horario y dia
-					reserva.precioTotal = 500
-				}
+			}
+
+			if(reserva.cancha && reserva.horaInicio && reservaDateText) {
+				// TODO buscar el precio para esta cancha en este horario y dia
+				def dayOfWeek = Utils.getDayOfWeek(reservaDateText)
+				reserva.precioTotal = canchaService.getPrecio(dayOfWeek, reserva.horaInicio, reserva.cancha)
 			}
 			
 			def reservaSenia = params.reservaSenia

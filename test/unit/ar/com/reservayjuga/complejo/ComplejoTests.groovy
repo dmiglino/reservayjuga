@@ -120,9 +120,9 @@ class ComplejoTests {
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi, horarios: [], canchas: [])
 		
-		Cancha cancha1 = new Cancha(nombre:"Cancha 1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[])
-		Cancha cancha2 = new Cancha(nombre:"Cancha 2", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_CAUCHO, cantidadJugadores:5, cubierta: true, precios:[])
-		Cancha cancha3 = new Cancha(nombre:"Cancha 3", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:8, cubierta: true, precios:[])
+		Cancha cancha1 = new Cancha(nombre:"Cancha 1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[])
+		Cancha cancha2 = new Cancha(nombre:"Cancha 2", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_CAUCHO, cantidadJugadores:5, cubierta: true, precios:[])
+		Cancha cancha3 = new Cancha(nombre:"Cancha 3", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:8, cubierta: true, precios:[])
 		
 		complejo.agregarCancha(cancha1)
 		complejo.agregarCancha([cancha2,cancha3])

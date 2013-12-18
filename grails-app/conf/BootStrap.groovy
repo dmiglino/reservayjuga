@@ -28,8 +28,8 @@ class BootStrap {
 
 	Complejo poli, terraza, muni
 	Cancha p1,p2,p3,p4,p5,p6,p7,t1,t2,t3,t4,t5,t6,t7,muni1,muni2,muni3,muni4,muni5,muni6,muni7
-	Precio l1,l2,l3,l4,m1,m2,m3,m4,mi1,mi2,mi3,mi4,j1,j2,j3,j4,v1,v2,v3,v4,s1,s2,s3,s4,d1,d2,d3,d4
-	List precios = [l1,l2,l3,l4,m1,m2,m3,m4,mi1,mi2,mi3,mi4,j1,j2,j3,j4,v1,v2,v3,v4,s1,s2,s3,s4,d1,d2,d3,d4]
+//	Precio l1,l2,l3,l4,m1,m2,m3,m4,mi1,mi2,mi3,mi4,j1,j2,j3,j4,v1,v2,v3,v4,s1,s2,s3,s4,d1,d2,d3,d4
+//	List precios = [l1,l2,l3,l4,m1,m2,m3,m4,mi1,mi2,mi3,mi4,j1,j2,j3,j4,v1,v2,v3,v4,s1,s2,s3,s4,d1,d2,d3,d4]
 	Horario lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom,fe
 	Imagen f1,f2
 	Servicios serv1
@@ -38,6 +38,7 @@ class BootStrap {
 	Provincia baires, saopaulo
 	Localidad caba, vtelopez, morumbiloc
 	Barrio pueyrre, saavedra, florida, olivos, morumbibar
+	def precioService
 	
 	def init = { servletContext ->
 		
@@ -51,12 +52,12 @@ class BootStrap {
 					crearComplejos()
 					crearImagen()
 					crearCancha()
+					asociarCanchasAComplejos()
 					crearPrecio()
 					crearExtras()
 					crearJugadores()
 					crearEncargados()
 					crearAdministrador()
-					asociarCanchasAComplejos()
 					crearReservas()
 				}
 				break;
@@ -70,6 +71,8 @@ class BootStrap {
 	}
 
 	def crearCancha() {
+		def precios = Precio.list()
+		
 		p1 = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true,precios:precios, complejo:poli)
 		p2 = new Cancha(nombre:"Poli-2", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_CAUCHO, cantidadJugadores:5, cubierta: true,precios:precios, complejo:poli)
 		p3 = new Cancha(nombre:"Poli-3", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.CEMENTO, cantidadJugadores:5, cubierta: true,precios:precios, complejo:poli)
@@ -128,35 +131,39 @@ class BootStrap {
 	}
 	
 	def crearPrecio() {
-		l1 = new Precio(dia:1, horarioInicio: "10:00", precio: 300, cancha:p1)
-		l2 = new Precio(dia:1, horarioInicio: "11:00", precio: 300, cancha:p2)
-		l3 = new Precio(dia:1, horarioInicio: "12:00", precio: 300, cancha:p3)
-		l4 = new Precio(dia:1, horarioInicio: "13:00", precio: 300, cancha:p4)
-		m1 = new Precio(dia:2, horarioInicio: "17:00", precio: 300, cancha:p5)
-		m2 = new Precio(dia:2, horarioInicio: "18:00", precio: 300, cancha:p6)
-		m3 = new Precio(dia:2, horarioInicio: "19:00", precio: 300, cancha:p7)
-		m4 = new Precio(dia:2, horarioInicio: "20:00", precio: 300, cancha:t1)
-		mi1 = new Precio(dia:3, horarioInicio: "10:00", precio: 300, cancha:t2)
-		mi2 = new Precio(dia:3, horarioInicio: "11:00", precio: 300, cancha:t3)
-		mi3 = new Precio(dia:3, horarioInicio: "12:00", precio: 300, cancha:t4)
-		mi4 = new Precio(dia:3, horarioInicio: "13:00", precio: 300, cancha:t5)
-		j1 = new Precio(dia:4, horarioInicio: "17:00", precio: 300, cancha:t6)
-		j2 = new Precio(dia:4, horarioInicio: "18:00", precio: 300, cancha:t7)
-		j3 = new Precio(dia:4, horarioInicio: "19:00", precio: 300, cancha:muni1)
-		j4 = new Precio(dia:4, horarioInicio: "20:00", precio: 300, cancha:muni1)
-		v1 = new Precio(dia:5, horarioInicio: "10:00", precio: 400, cancha:muni2)
-		v2 = new Precio(dia:5, horarioInicio: "11:00", precio: 400, cancha:muni2)
-		v3 = new Precio(dia:5, horarioInicio: "12:00", precio: 400, cancha:muni3)
-		v4 = new Precio(dia:5, horarioInicio: "13:00", precio: 400, cancha:muni3)
-		s1 = new Precio(dia:6, horarioInicio: "17:00", precio: 400, cancha:muni4)
-		s2 = new Precio(dia:6, horarioInicio: "18:00", precio: 400, cancha:muni4)
-		s3 = new Precio(dia:6, horarioInicio: "19:00", precio: 400, cancha:muni5)
-		s4 = new Precio(dia:6, horarioInicio: "20:00", precio: 400, cancha:muni5)
-		d1 = new Precio(dia:7, horarioInicio: "10:00", precio: 500, cancha:muni6)
-		d2 = new Precio(dia:7, horarioInicio: "11:00", precio: 500, cancha:muni6)
-		d3 = new Precio(dia:7, horarioInicio: "12:00", precio: 500, cancha:muni7)
-		d4 = new Precio(dia:7, horarioInicio: "13:00", precio: 500, cancha:muni7)
-		DBUtils.validateAndSave([l1,l2,l3,l4,m1,m2,m3,m4,mi1,mi2,mi3,mi4,j1,j2,j3,j4,v1,v2,v3,v4,s1,s2,s3,s4,d1,d2,d3,d4])
+		precioService.setPrecioParaComplejo(500, poli)
+		precioService.setPrecioParaComplejo(450, terraza)
+		precioService.setPrecioParaComplejo(550, muni)
+		
+//		l1 = new Precio(dia:1, horarioInicio: "10:00", precio: 300, cancha:p1)
+//		l2 = new Precio(dia:1, horarioInicio: "11:00", precio: 310, cancha:p2)
+//		l3 = new Precio(dia:1, horarioInicio: "12:00", precio: 320, cancha:p3)
+//		l4 = new Precio(dia:1, horarioInicio: "13:00", precio: 330, cancha:p4)
+//		m1 = new Precio(dia:2, horarioInicio: "17:00", precio: 340, cancha:p5)
+//		m2 = new Precio(dia:2, horarioInicio: "18:00", precio: 350, cancha:p6)
+//		m3 = new Precio(dia:2, horarioInicio: "19:00", precio: 360, cancha:p7)
+//		m4 = new Precio(dia:2, horarioInicio: "20:00", precio: 300, cancha:t1)
+//		mi1 = new Precio(dia:3, horarioInicio: "10:00", precio: 310, cancha:t2)
+//		mi2 = new Precio(dia:3, horarioInicio: "11:00", precio: 320, cancha:t3)
+//		mi3 = new Precio(dia:3, horarioInicio: "12:00", precio: 330, cancha:t4)
+//		mi4 = new Precio(dia:3, horarioInicio: "13:00", precio: 340, cancha:t5)
+//		j1 = new Precio(dia:4, horarioInicio: "17:00", precio: 350, cancha:t6)
+//		j2 = new Precio(dia:4, horarioInicio: "18:00", precio: 360, cancha:t7)
+//		j3 = new Precio(dia:4, horarioInicio: "19:00", precio: 310, cancha:muni1)
+//		j4 = new Precio(dia:4, horarioInicio: "20:00", precio: 320, cancha:muni1)
+//		v1 = new Precio(dia:5, horarioInicio: "10:00", precio: 430, cancha:muni2)
+//		v2 = new Precio(dia:5, horarioInicio: "11:00", precio: 440, cancha:muni2)
+//		v3 = new Precio(dia:5, horarioInicio: "12:00", precio: 450, cancha:muni3)
+//		v4 = new Precio(dia:5, horarioInicio: "13:00", precio: 460, cancha:muni3)
+//		s1 = new Precio(dia:6, horarioInicio: "17:00", precio: 470, cancha:muni4)
+//		s2 = new Precio(dia:6, horarioInicio: "18:00", precio: 480, cancha:muni4)
+//		s3 = new Precio(dia:6, horarioInicio: "19:00", precio: 490, cancha:muni5)
+//		s4 = new Precio(dia:6, horarioInicio: "20:00", precio: 500, cancha:muni5)
+//		d1 = new Precio(dia:7, horarioInicio: "10:00", precio: 510, cancha:muni6)
+//		d2 = new Precio(dia:7, horarioInicio: "11:00", precio: 520, cancha:muni6)
+//		d3 = new Precio(dia:7, horarioInicio: "12:00", precio: 530, cancha:muni7)
+//		d4 = new Precio(dia:7, horarioInicio: "13:00", precio: 540, cancha:muni7)
+//		DBUtils.validateAndSave([l1,l2,l3,l4,m1,m2,m3,m4,mi1,mi2,mi3,mi4,j1,j2,j3,j4,v1,v2,v3,v4,s1,s2,s3,s4,d1,d2,d3,d4])
 	}
 	
 	def crearServicios() {

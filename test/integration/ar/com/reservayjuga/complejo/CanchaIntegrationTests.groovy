@@ -33,7 +33,7 @@ class CanchaIntegrationTests extends GroovyTestCase {
 		Precio m2 = new Precio(dia:2, horarioInicio: "18:00", precio: 300)
 		Precio mi3 = new Precio(dia:3, horarioInicio: "12:00", precio: 300)
 		
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo, precios:[])
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo, precios:[])
 		
 		cancha.agregarPrecio(l3)
 		cancha.agregarPrecio(l4)
@@ -59,8 +59,8 @@ class CanchaIntegrationTests extends GroovyTestCase {
 	void testSave() {
 		Precio m2 = new Precio(dia:2, horarioInicio: "18:00", precio: 300)
 		Precio m3 = new Precio(dia:3, horarioInicio: "12:00", precio: 300)
-		Cancha cancha1 = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
-		Cancha cancha2 = new Cancha(nombre:"Muni-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		Cancha cancha1 = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		Cancha cancha2 = new Cancha(nombre:"Muni-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
 		
 		cancha1.agregarPrecio(m2)
 //		cancha1.agregarPrecio(m3) // no se puede porque el precio corresponde a una unica cancha

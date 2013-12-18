@@ -252,7 +252,7 @@ class ComplejoServiceIntegrationTests extends GroovyTestCase {
 	
 	void testGetHorariosDisponiblesParaFecha() {
 		Jugador jugador = new Jugador(nombre:"Diego", apellido:"Miglino", username:"dmiglino", password:"dmiglino", dni: 30303030, telefono:"12345678", mail:"d@m.com", clave:"1234567", sexo:"M")
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[], complejo: complejo)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[], complejo: complejo)
 		DBUtils.validateAndSave([jugador,cancha])
 		
 		def fecha = new Date(113,10,20)

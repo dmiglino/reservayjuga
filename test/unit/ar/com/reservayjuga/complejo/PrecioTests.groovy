@@ -23,7 +23,7 @@ class PrecioTests {
     }
 	
 	void testAtributes() {
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:new Complejo())
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:new Complejo())
 		Precio precio = new Precio(dia:1,precio:400.50f,horarioInicio:"13:00", cancha:cancha)
 		
 		assertTrue precio.validate()

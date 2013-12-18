@@ -36,7 +36,7 @@ class ReservaTests {
 	
 	void testAtributes() {
 		Jugador jugador = new Jugador(nombre:"Diego", apellido:"Miglino", telefono:"12345678", mail:"d@m.com", clave:"1234567", sexo:"M")
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[])
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[])
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden")
 		
 		Reserva reserva = new Reserva (horaInicio: "10:00", horaFin: "22:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: new Date(), cancha: cancha, complejo: complejo, jugador: jugador)
@@ -56,7 +56,7 @@ class ReservaTests {
 
 	void testToString() {
 		Jugador jugador = new Jugador(nombre:"Diego", apellido:"Miglino", telefono:"12345678", mail:"d@m.com", clave:"1234567", sexo:"M")
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[])
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[])
 		Complejo complejo = new Complejo(nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden")
 		
 		Reserva reserva = new Reserva(horaInicio: "10:00", horaFin: "22:00", tipoReserva:"Online", precioTotal:500, senia:50, dia: new Date(), cancha: cancha, complejo: complejo, jugador: jugador)
@@ -65,7 +65,7 @@ class ReservaTests {
 	
 	void testStates() {
 		Jugador jugador = new Jugador(nombre:"Diego", apellido:"Miglino", telefono:"12345678", mail:"d@m.com", clave:"1234567", sexo:"M")
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[])
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[])
 		Complejo complejo = new Complejo(nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden")
 		Reserva reserva = new Reserva(horaInicio: "10:00", horaFin: "22:00", tipoReserva:"Online", precioTotal:500, senia:50, dia: new Date(), cancha: cancha, complejo: complejo, jugador: jugador)
 		

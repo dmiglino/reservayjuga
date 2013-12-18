@@ -32,7 +32,7 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 		Servicios servi = new Servicios (vestuario: true, television: false, ayudaMedica: true, bebida: true, comida: false, estacionamiento: true, precioEstacionamiento: 10, gimnasio: false, torneo: true, wifi: false)
 		Complejo complejo = new Complejo (nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden", ubicacion: ubi, servicios: servi).save()
 		
-		canchaService.crearCanchaParaComplejo(complejo, [nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true])
+		canchaService.crearCanchaParaComplejo(complejo, [nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true])
 		
 		assertEquals 1, complejo.canchas.size()
 		assertEquals 1, Cancha.list().size()
@@ -54,7 +54,7 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 	
 	void testEditarCancha() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
 		cancha.agregarPrecio(precio)
 		DBUtils.validateAndSave(cancha)
 		
@@ -69,7 +69,7 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 	
 	void testFailEditarCancha() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[precio], complejo:complejo).save()
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[precio], complejo:complejo).save()
 		assertEquals "Poli-1", cancha.nombre
 		shouldFail(EntityNotFoundException) {
 			canchaService.editarCancha([idCanchaEdit: 123123])
@@ -78,7 +78,7 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 	
 	void testGetById() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
 		cancha.agregarPrecio(precio)
 		DBUtils.validateAndSave(cancha)
 		
@@ -88,7 +88,7 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 	
 	void testCountTotal() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
 		cancha.agregarPrecio(precio)
 		DBUtils.validateAndSave(cancha)
 		
@@ -97,7 +97,7 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 	
 	void testGetCanchasDelComplejo() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
 		cancha.agregarPrecio(precio)
 		DBUtils.validateAndSave(cancha)
 		
@@ -109,7 +109,7 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 	
 	void testGetCanchasYCantidad() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:complejo)
 		cancha.agregarPrecio(precio)
 		DBUtils.validateAndSave(cancha)
 		

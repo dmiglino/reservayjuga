@@ -97,6 +97,7 @@
 	
 				<div class="profile-info-value">
 					<span class="editable" id="Span3">
+						<g:hiddenField name="reservaSeniaAnterior" id="seniaAnterior"/>
 						<g:field name="reservaSenia" value="${reserva?.senia}" id="senia" type="text" onchange="setearSenia();" />
 					</span>
 				</div>
@@ -123,13 +124,15 @@
 	
 <script>
 	function setearSenia() {
+		var seniaAnterior = document.getElementById('seniaAnterior').value;
 		var senia = document.getElementById('senia').value;
 		var total = document.getElementById('precio').value;
 		if(senia != null && senia != "" && total != null && total != "") {
 			if(senia > total) {
 				alert("${message(code:'validacion.senia.superior.monto')}");
-				document.getElementById('senia').value = 0;
+				document.getElementById('senia').value = seniaAnterior;
 			} else {
+				document.getElementById('seniaAnterior').value = senia;
 				document.getElementById('faltante').value = total - senia;
 			}
 		}
