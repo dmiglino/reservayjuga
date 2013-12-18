@@ -1,16 +1,15 @@
 package ar.com.reservayjuga.reserva
 
+import org.hibernate.Criteria
 import org.hibernate.criterion.Order
 import org.hibernate.criterion.Projections
 import org.hibernate.criterion.Restrictions
 
 import ar.com.reservayjuga.common.GenericService
-import ar.com.reservayjuga.complejo.Cancha
 import ar.com.reservayjuga.complejo.CanchaService
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.ComplejoService
 import ar.com.reservayjuga.exception.EntityNotFoundException
-import ar.com.reservayjuga.usuario.Jugador
 import ar.com.reservayjuga.usuario.JugadorService
 import ar.com.reservayjuga.utils.DBUtils
 
@@ -43,7 +42,7 @@ class ReservaService extends GenericService<Reserva> {
 		
 		if(complejo) {
 			reservas = getReservasDelComplejo(complejo, params)
-			reservasTotal = countTotal(complejo)
+			reservasTotal = reservas.size() < 10 ? reservas.size() : countTotal(complejo, params)
 		} else {
 			throw new EntityNotFoundException("Complejo", encargadoId)
 		}
@@ -90,7 +89,7 @@ class ReservaService extends GenericService<Reserva> {
 		}
 		
 		if(params.canchaReservaFilter) {
-			def canchaFilter = canchaService.getCanchaById(params.canchaReservaFilter)
+			def canchaFilter = canchaService.findEntityById(params.canchaReservaFilter)
 			criter.add(Restrictions.eq("cancha", canchaFilter))
 		}
 		
@@ -113,10 +112,13 @@ class ReservaService extends GenericService<Reserva> {
 	 * @param complejo
 	 * @return cantidad total de canchas del complejo
 	 */
-	protected def countTotal(Complejo complejo) {
-		Reserva.createCriteria().count {
-			eq('complejo', complejo)
-		}
+	protected def countTotal(Complejo complejo, def params) {
+		Criteria criter = Reserva.createCriteria()
+			.add(Restrictions.eq("complejo", complejo))
+		
+		criter = aplicarFiltros(criter, params)
+		
+		criter.list().size()
 	}
 	
 	/**

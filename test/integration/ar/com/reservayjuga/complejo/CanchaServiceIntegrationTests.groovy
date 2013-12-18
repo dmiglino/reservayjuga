@@ -82,7 +82,7 @@ class CanchaServiceIntegrationTests extends GroovyTestCase {
 		cancha.agregarPrecio(precio)
 		DBUtils.validateAndSave(cancha)
 		
-		Cancha canchaPersistida = canchaService.getCanchaById(cancha.id)
+		Cancha canchaPersistida = canchaService.findEntityById(cancha.id)
 		assertEquals cancha, canchaPersistida
 	}
 	

@@ -205,6 +205,9 @@ class ReservaController {
 		} catch (EntityNotFoundException e) {
 			// TODO mostrar error en pantalla
 			println "ERROR: ${e}"
+		}  catch (Exception e) {
+			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
 		} finally {
 			render(template: "tabla-reservas", model:[canchas:complejo?.canchas, reservas:result?.reservas, reservasTotal:result?.reservasTotal])
 		}

@@ -22,11 +22,11 @@ class CanchaTests {
 
 	void testAtributes() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:new Complejo(), precios:[precio])
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, complejo:new Complejo(), precios:[precio])
 		
 		assertTrue cancha.validate()
 		assertEquals "Poli-1", cancha.nombre
-		assertEquals DeporteEnum.FUTBOL, cancha.deporte
+		assertEquals DeporteEnum.FUTBOL_5, cancha.deporte
 		assertEquals SuperficieEnum.SINTETICO_CON_ARENA, cancha.superficie
 		assertEquals 5, cancha.cantidadJugadores
 		assertTrue cancha.cubierta
@@ -35,7 +35,7 @@ class CanchaTests {
 	
 	void testToString() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[precio])
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[precio])
 		assertEquals "Poli-1 - FUTBOL (5)", cancha.toString()
 	}
 	
@@ -49,7 +49,7 @@ class CanchaTests {
 		Precio j1 = new Precio(dia:4, horarioInicio: "17:00", precio: 300)
 		Precio j2 = new Precio(dia:4, horarioInicio: "18:00", precio: 300)
 		
-		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[])
+		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[])
 		
 		cancha.agregarPrecio(l3)
 		cancha.agregarPrecio(l4)
