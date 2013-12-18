@@ -383,7 +383,8 @@
 														update="[success:'imagenesDiv']"
 														after="cleanImageFields();"
 														url="[controller:'complejo', action:'agregarImagen']"
-														value="Subir Imagen" before="setImagenToForm();" />
+														value="${message(code: 'button.subir.imagen.label',default: 'Subir Imagen')}" 
+														before="setImagenToForm();" />
 												</div>
 											</div>
 										</div>

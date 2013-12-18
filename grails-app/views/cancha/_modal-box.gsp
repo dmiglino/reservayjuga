@@ -86,7 +86,7 @@
 					</button>
 
 					<g:submitToRemote class="btn btn-info" update="[success:'tabla_canchas',failure:'error']" after="closeModal();"
-						url="[controller:'cancha', action:'editarCancha']" value="Grabar Cancha" >
+						url="[controller:'cancha', action:'editarCancha']" value="${message(code: 'button.grabar.cancha.label',default: 'Grabar Cancha')}" >
 						<i class="icon-ok"></i>
 					</g:submitToRemote>
 				</div>
