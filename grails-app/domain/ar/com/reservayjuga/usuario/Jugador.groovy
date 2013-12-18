@@ -24,7 +24,7 @@ class Jugador extends SecUser {
 		telefono blank: false
 		mail email:true, blank: false
 		sexo blank: true
-		dni blank: true
+		dni nullable: true
 		fechaNacimiento nullable: true
     }
 	

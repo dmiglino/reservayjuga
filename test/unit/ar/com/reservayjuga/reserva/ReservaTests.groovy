@@ -47,7 +47,7 @@ class ReservaTests {
 		assertEquals 500, reserva.precioTotal
 		assertEquals 50, reserva.senia
 		assertEquals "Diego Miglino", reserva.jugador.toString()
-		assertEquals "Poli-1 - FUTBOL (5)", reserva.cancha.toString()
+		assertEquals "Poli-1 - FUTBOL_5", reserva.cancha.toString()
 		assertEquals "Garden Club", reserva.complejo.toString()
 		assertTrue reserva.estado.isPendiente()
 		assertFalse reserva.estado.isSeniada()
@@ -60,7 +60,7 @@ class ReservaTests {
 		Complejo complejo = new Complejo(nombre: "Garden Club", webSite: "", telefono1:"4574-0077", mail:"garden@mail.com", informacionExtra: "Info garden")
 		
 		Reserva reserva = new Reserva(horaInicio: "10:00", horaFin: "22:00", tipoReserva:"Online", precioTotal:500, senia:50, dia: new Date(), cancha: cancha, complejo: complejo, jugador: jugador)
-		assertEquals "Reserva del jugador Diego Miglino para la cancha Poli-1 - FUTBOL (5)", reserva.toString()
+		assertEquals "Reserva del jugador Diego Miglino para la cancha Poli-1 - FUTBOL_5", reserva.toString()
 	}
 	
 	void testStates() {

@@ -48,9 +48,9 @@
 									<i class="icon-ban-circle bigger-120"></i>
 								</g:remoteLink>
 								
-								<g:remoteLink controller="reserva" title="Editar reserva" action="selectToEdit" id="${reserva?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" >
+								<button class="btn btn-xs btn-info" onclick="selectToEdit('${reserva?.id}');">
 									<i class="icon-edit bigger-120"></i>
-								</g:remoteLink>
+								</button>
 								
 								<g:remoteLink controller="reserva" title="Eliminar reserva" action="deleteReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-danger">
 									<i class="icon-trash bigger-120"></i>
@@ -70,7 +70,24 @@
 	</div>
 	
 	<script type="text/javascript">
-			
+
+			function selectToEdit(reservaId) {
+				alert(reservaId);
+				var JSONObject = new Object;
+			    JSONObject.reservaId = reservaId;
+			    JSONObject.testes = "tests";
+			    JSONstring = JSON.stringify(JSONObject);
+			    
+			    $.ajax({
+			        url:   "${createLink(controller:'reserva', action:'selectToEdit')}",
+			        data:  JSONObject,
+			        type:  'post',
+			        error: function(request, status, error) {
+			            alert("Ha ocurrido un error: "+error);
+			        }
+			    });
+			}
+	
 			function setJugadorToShow() {
 				$('#modal-form').modal('show');
 			}

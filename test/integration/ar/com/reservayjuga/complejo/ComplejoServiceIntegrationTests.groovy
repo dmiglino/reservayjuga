@@ -6,6 +6,8 @@ import org.junit.*
 
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.reserva.Reserva
+import ar.com.reservayjuga.reserva.ReservaEnum
+import ar.com.reservayjuga.reserva.ReservaService
 import ar.com.reservayjuga.reserva.TipoReservaEnum
 import ar.com.reservayjuga.ubicacion.Barrio
 import ar.com.reservayjuga.ubicacion.Localidad
@@ -19,6 +21,7 @@ import ar.com.reservayjuga.utils.DBUtils
 class ComplejoServiceIntegrationTests extends GroovyTestCase {
 	
 	ComplejoService complejoService
+	ReservaService reservaService
 	Complejo complejo
 	
 	@Override
@@ -253,15 +256,16 @@ class ComplejoServiceIntegrationTests extends GroovyTestCase {
 	void testGetHorariosDisponiblesParaFecha() {
 		Jugador jugador = new Jugador(nombre:"Diego", apellido:"Miglino", username:"dmiglino", password:"dmiglino", dni: 30303030, telefono:"12345678", mail:"d@m.com", clave:"1234567", sexo:"M")
 		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[], complejo: complejo)
-		DBUtils.validateAndSave([jugador,cancha])
+		complejo.agregarCancha(cancha)
+		DBUtils.validateAndSave([jugador,cancha,complejo])
 		
 		def fecha = new Date(113,10,20)
-		Reserva reserva1 = new Reserva (horaInicio: "11:00", horaFin: "12:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: fecha, cancha: cancha, complejo: complejo, jugador: jugador)
-		Reserva reserva2 = new Reserva (horaInicio: "12:00", horaFin: "13:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: fecha, cancha: cancha, complejo: complejo, jugador: jugador)
-		Reserva reserva3 = new Reserva (horaInicio: "13:00", horaFin: "14:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: fecha+1, cancha: cancha, complejo: complejo, jugador: jugador)
+		Reserva reserva1 = new Reserva (horaInicio: "11:00", horaFin: "12:00", estado: ReservaEnum.CONCRETADA, tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: fecha, cancha: cancha, complejo: complejo, jugador: jugador)
+		Reserva reserva2 = new Reserva (horaInicio: "12:00", horaFin: "13:00", estado: ReservaEnum.CONCRETADA, tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: fecha, cancha: cancha, complejo: complejo, jugador: jugador)
+		Reserva reserva3 = new Reserva (horaInicio: "13:00", horaFin: "14:00", estado: ReservaEnum.CONCRETADA, tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: fecha+1, cancha: cancha, complejo: complejo, jugador: jugador)
 		DBUtils.validateAndSave([reserva1,reserva2,reserva3])
 		
-		def resp = complejoService.getHorariosDisponiblesParaFecha("20-11-2013",complejo.id)
+		def resp = complejoService.getHorariosDisponiblesParaFecha("20-11-2013",complejo.id, reservaService)
 		
 		assertEquals 3, resp.horariosConfigurados.size()
 		assertEquals 2, resp.horariosOcupados.size() //1 q esta configurado y otro que no pero igual lo traigo		

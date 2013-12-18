@@ -2,10 +2,16 @@ package ar.com.reservayjuga.complejo
 
 import org.hibernate.criterion.Restrictions
 
+import ar.com.reservayjuga.common.GenericService
 import ar.com.reservayjuga.utils.DBUtils
 
-class PrecioService {
+class PrecioService extends GenericService<Precio> {
 
+	@Override
+	def getDomain() {
+		Precio
+	}
+	
 	Float getPrecio(def dayOfWeek, def horaInicio, def cancha) {
 		def criter = Precio.createCriteria()
 			.add(Restrictions.eq("dia", dayOfWeek))
@@ -32,4 +38,5 @@ class PrecioService {
 			}
 		}
 	}
+
 }

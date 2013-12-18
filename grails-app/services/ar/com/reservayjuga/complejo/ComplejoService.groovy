@@ -224,15 +224,22 @@ class ComplejoService extends GenericService<Complejo> {
 //		obtener complejo segun id
 		Complejo complejo = findEntityById(complejoId)
 		
-//		obtener horarios configurados para ese complejo en ese dia de la semana
-		def horarioConfiguradoComplejo = complejo.getHorariosDelDia(diaDeLaSemana)
-		def horariosConfigurados = splitearHorariosPorHora(horarioConfiguradoComplejo)
+		def horariosOcupados = []
+		def horariosConfigurados = []
 		
-//		obtener reservas que tiene el complejo confirmadas para esa fecha
-		def reservasRealizadas = reservaService.getReservasConcretadasOSeniadasParaComplejoEnFecha(complejo, fecha)
-		
-		// si hay al menos 1 cancha libre, el horario no se tiene que marcar como ocupado
-		def horariosOcupados = checkearHorariosOcupados(complejo.canchas.size(), reservasRealizadas)
+		if(complejo) {
+			//	obtener horarios configurados para ese complejo en ese dia de la semana
+			def horarioConfiguradoComplejo = complejo.getHorariosDelDia(diaDeLaSemana)
+			horariosConfigurados = splitearHorariosPorHora(horarioConfiguradoComplejo)
+			
+			//	obtener reservas que tiene el complejo confirmadas para esa fecha
+			def reservasRealizadas = reservaService.getReservasConcretadasOSeniadasParaComplejoEnFecha(complejo, fecha)
+			
+			// si hay al menos 1 cancha libre, el horario no se tiene que marcar como ocupado
+			if(complejo.canchas) {
+				horariosOcupados = checkearHorariosOcupados(complejo.canchas.size(), reservasRealizadas)
+			}
+		}
 		
 //		devolver un map con todos los horarios y los horarios disponibles
 		def resp = [horariosConfigurados: horariosConfigurados, horariosOcupados: horariosOcupados]

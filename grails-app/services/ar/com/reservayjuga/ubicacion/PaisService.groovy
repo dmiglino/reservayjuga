@@ -29,7 +29,7 @@ class PaisService extends GenericService<Pais> {
     List getProvincias(def id) {
 		def provincias = []
 		if(id) {
-			def pais = Pais.get(id)
+			def pais = findEntityById(id)
 			provincias = pais ? pais.provincias : []
 		}
 		return provincias as List

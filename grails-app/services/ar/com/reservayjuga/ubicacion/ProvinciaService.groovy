@@ -27,7 +27,7 @@ class ProvinciaService extends GenericService<Provincia> {
     List getLocalidades(def id) {
 		def localidades = []
 		if(id) {
-			def provincia = Provincia.get(id)
+			def provincia = findEntityById(id)
 			localidades = provincia ? provincia.localidades : []
 		}
 		return localidades as List

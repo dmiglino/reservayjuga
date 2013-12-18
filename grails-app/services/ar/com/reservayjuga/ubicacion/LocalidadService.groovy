@@ -29,7 +29,7 @@ class LocalidadService extends GenericService<Localidad> {
     List getBarrios(def id) {
 		def barrios = []
 		if(id) {
-			def localidad = Localidad.get(id)
+			def localidad = findEntityById(id)
 			barrios = localidad ? localidad.barrios : []
 		}
 		return barrios as List

@@ -115,10 +115,9 @@
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-warning"
-		style="float: left; margin-left: 11px; padding-right: 8px;">
-		<i class="icon-print"></i>
-		<g:message code="button.imprimir.label" default="Imprimir" />
+		<button class="btn btn-warning" style="float: left; margin-left: 11px; padding-right: 8px;">
+			<i class="icon-print"></i>
+			<g:message code="button.imprimir.label" default="Imprimir" />
 		</button>
 	</div>
 	

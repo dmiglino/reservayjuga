@@ -36,7 +36,7 @@ class CanchaTests {
 	void testToString() {
 		Precio precio = new Precio(dia:1, horarioInicio: "10:00", precio: 300)
 		Cancha cancha = new Cancha(nombre:"Poli-1", deporte:DeporteEnum.FUTBOL_5, superficie: SuperficieEnum.SINTETICO_CON_ARENA, cantidadJugadores:5, cubierta: true, precios:[precio])
-		assertEquals "Poli-1 - FUTBOL (5)", cancha.toString()
+		assertEquals "Poli-1 - FUTBOL_5", cancha.toString()
 	}
 	
 	void testPrecios() {

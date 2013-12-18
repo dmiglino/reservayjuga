@@ -23,6 +23,24 @@ class ReservaController {
 		redirect(action: administrarReservas)
 	}
 	
+	/**
+	 * Muestra la pantalla de administracion de RESERVAS donde se ve el listado de estas
+	 */
+	def administrarReservas = {
+		def result
+		Complejo complejo
+		
+		try {
+			complejo = getComplejoDelEngargado()
+			result = getReservasYCantidad(complejo, params)
+		} catch (EntityNotFoundException e) {
+			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
+		} finally {
+			render(view: "administrar-reservas", model: [canchas:complejo?.canchas, reservas:result?.reservas, reservasTotal:result?.reservasTotal])
+		}
+	}
+	
 	def reservarCancha = {
 		Complejo complejo = getComplejoDelEngargado()
 		Reserva reserva = reservaService.crearReservaPresencial(complejo)
@@ -58,24 +76,6 @@ class ReservaController {
 		Reserva reserva = session.data
 		reservaService.agregarDatosALaReserva(reserva, params)
 		render(template: "reserva_step_3_resumen", model:[reserva:reserva])
-	}
-	
-	/**
-	 * Muestra la pantalla de administracion de RESERVAS donde se ve el listado de estas
-	 */
-	def administrarReservas = {
-		def result
-		Complejo complejo
-		
-		try {
-			complejo = getComplejoDelEngargado()
-			result = getReservasYCantidad(complejo, params)
-		} catch (EntityNotFoundException e) {
-			// TODO mostrar error en pantalla
-			println "ERROR: ${e}"
-		} finally {
-			render(view: "administrar-reservas", model: [canchas:complejo?.canchas, reservas:result?.reservas, reservasTotal:result?.reservasTotal])
-		}	
 	}
 	
 	/**
@@ -125,8 +125,9 @@ class ReservaController {
 	 * Busca la reserva segun el id para mostrar en el modal panel
 	 */
 	def selectToEdit = {
-		Reserva reservaToEdit = reservaService.findEntityById(params.id)
-		redirect(action: reservarCancha, model: reservaToEdit)
+		Reserva reservaToEdit = reservaService.findEntityByIdAndValidate(params.reservaId)
+		session.data = reservaToEdit
+		render(view: "reservar-cancha", model: [reserva:reservaToEdit, complejoId:reservaToEdit.complejo.id])
 	}
 	
 	def searchHorariosParaFecha = {

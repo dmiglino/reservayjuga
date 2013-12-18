@@ -26,7 +26,7 @@ class ComplejoServiceTests extends GrailsUnitTestCase {
 	}
  	
 	void testSplitearHorariosPorHora() {
-		def h1 = new Horario(dia:1, horarioApertura: "09:00", horarioCierre: "12:00") // 3 horarios: 9, 10, 11 (12 no incluido)
+		def h1 = new Horario(dia:1, horarioApertura: "9:00", horarioCierre: "12:00") // 3 horarios: 9, 10, 11 (12 no incluido)
 		def h2 = new Horario(dia:1, horarioApertura: "14:00", horarioCierre: "16:00") // 2 horarios: 14, 15 (16 no incluido)
 		def h3 = new Horario(dia:1, horarioApertura: "19:00", horarioCierre: "23:00") // 4 horarios: 19, 20, 21, 22 (23 no incluido)
 		
@@ -34,10 +34,10 @@ class ComplejoServiceTests extends GrailsUnitTestCase {
 		assertNotNull result
 		assertEquals 9, result.size()
 		
-		assertFalse result.contains("6:00 - 7:00")
-		assertFalse result.contains("7:00 - 8:00")
-		assertFalse result.contains("8:00 - 9:00")
-		assertTrue result.contains("9:00 - 10:00")
+		assertFalse result.contains("06:00 - 7:00")
+		assertFalse result.contains("07:00 - 8:00")
+		assertFalse result.contains("08:00 - 9:00")
+		assertTrue result.contains("09:00 - 10:00")
 		assertTrue result.contains("10:00 - 11:00")
 		assertTrue result.contains("11:00 - 12:00")
 		assertFalse result.contains("12:00 - 13:00")
