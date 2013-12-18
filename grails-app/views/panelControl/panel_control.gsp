@@ -20,28 +20,28 @@
 						<ul class="nav nav-list">
 							<li>
 								<a href="/ReservaYJuga/pais">
-									<i class="icon-dashboard"></i>
+									<i class="icon-globe"></i>
 									<span class="menu-text"> <g:message code="panelcontrol.administrar.paises.label" default="Administrar Paises" /> </span>
 								</a>
 							</li>
 							
 							<li>
 								<a href="/ReservaYJuga/provincia">
-									<i class="icon-dashboard"></i>
+									<i class="icon-globe"></i>
 									<span class="menu-text"> <g:message code="panelcontrol.administrar.provincias.label" default="Administrar Provincias" /> </span>
 								</a>
 							</li>
 							
 							<li>
 								<a href="/ReservaYJuga/localidad">
-									<i class="icon-dashboard"></i>
+									<i class="icon-envelope"></i>
 									<span class="menu-text"> <g:message code="panelcontrol.administrar.localidades.label" default="Administrar Localidades" /> </span>
 								</a>
 							</li>
 							
 							<li>
 								<a href="/ReservaYJuga/barrio">
-									<i class="icon-dashboard"></i>
+									<i class="icon-home"></i>
 									<span class="menu-text"> <g:message code="panelcontrol.administrar.barrios.label" default="Administrar Barrios" /> </span>
 								</a>
 							</li>
