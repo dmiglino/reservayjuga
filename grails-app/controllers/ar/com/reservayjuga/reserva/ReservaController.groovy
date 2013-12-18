@@ -136,7 +136,6 @@ class ReservaController {
 	
 	def searchCanchasParaHorario = {
 		def modelResp = reservaService.getCanchasDisponiblesParaHorario(params.fecha, params.complejoId, params.horario)
-		println modelResp
 		render(template: "reserva_step_2_canchas", model:modelResp)
 	}
 	
@@ -216,7 +215,6 @@ class ReservaController {
 	}
 	
 	def generarReserva = {
-		println "generarReserva : params : : ${params}"
 		Reserva reserva = session.data
 		reservaService.generarReserva(reserva, params)
 	}

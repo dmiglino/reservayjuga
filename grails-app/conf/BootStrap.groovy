@@ -281,6 +281,7 @@ class BootStrap {
 		Calendar cal = Calendar.getInstance()
 		cal.set(2013, 11, 21, 15, 00)
 		Date fecha = cal.getTime()
+		
 		Reserva reserva1  = new Reserva(horaInicio: "10:00", horaFin: "11:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:350, senia:150, dia:fecha, cancha: p1, complejo: poli, jugador: jugDie, estado: ReservaEnum.SENIADA)
 		Reserva reserva1pend  = new Reserva(horaInicio: "10:00", horaFin: "11:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:350, senia:150, dia:fecha, cancha: p2, complejo: poli, jugador: jugDie, estado: ReservaEnum.PENDIENTE)
 		Reserva reserva1conc  = new Reserva(horaInicio: "10:00", horaFin: "11:00", tipoReserva:TipoReservaEnum.ONLINE, precioTotal:350, senia:150, dia:fecha, cancha: p2, complejo: poli, jugador: jugDie, estado: ReservaEnum.CONCRETADA)

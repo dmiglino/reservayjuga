@@ -15,8 +15,8 @@
 				<div class="space-4"></div>
 			</div>
 			
-	 		<a href="javascript:void(0)" onclick="buscarJugador();return false;"><g:message code="button.buscar.jugador.label" default="Buscar Jugador" /></a>
-	    
+	    	<button onclick="buscarJugador();return false;"><i class="icon-zoom-in bigger-120"><g:message code="button.buscar.jugador.label" default="Buscar Jugador" /></i></button>
+	    	
 		</div>
 	
 		<div class="space-2"></div>
@@ -26,7 +26,7 @@
 		<div class="form-group"></div>
 	
 		<div class="col-md-offset-3 col-md-9">
-			<g:submitToRemote controller="reserva" action="actualizarDatosDelJugador" value="asd" update="[success:'datosJugadorDiv',failure:'error']" class="btn btn-xs btn-danger"><i class="icon-ok bigger-120"></i></g:submitToRemote>
+			<g:submitToRemote controller="reserva" action="actualizarDatosDelJugador" value="${message(code: 'button.actualizar.jugador.label',default: 'Actualizar')}" update="[success:'datosJugadorDiv',failure:'error']" class="btn btn-xs btn-danger"></g:submitToRemote>
 			&nbsp; &nbsp; &nbsp;
 		</div>
 	</g:form>

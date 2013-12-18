@@ -26,7 +26,7 @@
 				<g:message code="sidebar.panel.label" default="Panel de Control" />
 			</a></li>
 
-			<li><a href="#">
+			<li><a href="#"> 
 				<g:message code="sidebar.administrar.complejo.label" default="Administrar Complejo" />
 			</a></li>
 		</ul>
@@ -46,8 +46,7 @@
 			<div class="col-xs-12">
 				<!-- PAGE CONTENT BEGINS -->
 
-				<g:form id="formUpdateComplejo" action="actualizarInformacionComplejo" 
-					class="form-horizontal" role="form" >
+				<g:form id="formUpdateComplejo" class="form-horizontal" action="actualizarInformacionComplejo" role="form">
 
 					<div id="accordion" class="accordion-style2">
 						<div class="group">
@@ -55,40 +54,36 @@
 							<div>
 
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="nombre"> <g:message
-											code="common.nombre.label" default="Nombre" />
+									<label class="col-sm-2 control-label" for="nombre"> 
+										<g:message code="common.nombre.label" default="Nombre" />
 									</label>
 									<div class="col-sm-3">
-										<g:textField name="nombre" value="${complejo?.nombre}"
-											class="col-sm-12" />
+										<g:textField name="nombre" value="${complejo?.nombre}" class="col-sm-12" />
 									</div>
 
-									<label class="col-sm-1 control-label" for="webSite"><g:message
-											code="common.website.label" default="Sitio Web" /> </label>
+									<label class="col-sm-1 control-label" for="webSite">
+										<g:message code="common.website.label" default="Sitio Web" /> 
+									</label>
 									<div class="col-sm-3">
-										<g:textField name="webSite" value="${complejo?.webSite}"
-											class="col-sm-12" />
+										<g:textField name="webSite" value="${complejo?.webSite}" class="col-sm-12" />
 									</div>
 								</div>
 
 								<div class="space-4"></div>
 
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="mail"> <g:message
-											code="common.email.label" default="Mail" />
+									<label class="col-sm-2 control-label" for="mail"> 
+										<g:message code="common.email.label" default="Mail" />
 									</label>
 									<div class="col-sm-3">
-										<g:textField name="mail" value="${complejo?.mail}"
-											class="col-sm-12" />
+										<g:textField name="mail" value="${complejo?.mail}" class="col-sm-12" />
 									</div>
 
 									<label class="col-sm-1 control-label" for=informacionExtra>
-										<g:message code="common.info.extra.label"
-											default="Informacion Extra" />
+										<g:message code="common.info.extra.label" default="Informacion Extra" />
 									</label>
 									<div class="col-sm-3">
-										<g:textArea name="informacionExtra"
-											value="${complejo?.informacionExtra}" class="col-sm-12" />
+										<g:textArea name="informacionExtra" value="${complejo?.informacionExtra}" class="col-sm-12" />
 									</div>
 								</div>
 
@@ -99,11 +94,11 @@
 										<g:message code="common.telefono.1.label" default="Telefono 1" />
 									</label>
 									<div class="col-sm-3">
-										<g:textField name="telefono1" value="${complejo?.telefono1}"
-											class="col-sm-12" />
+										<g:textField name="telefono1" value="${complejo?.telefono1}" class="col-sm-12" />
 									</div>
-									<button type="button" class='btn btn-sm btn-primary' id="btn1">Agregar
-										Telefono</button>
+									<button type="button" class='btn btn-sm btn-primary' id="btn1">
+										Agregar Telefono
+									</button>
 								</div>
 
 								<div class="space-4"></div>
@@ -113,8 +108,7 @@
 										<g:message code="common.telefono.2.label" default="Telefono 2" />
 									</label>
 									<div class="col-sm-3">
-										<g:textField name="telefono2" value="${complejo?.telefono2}"
-											class="col-sm-12" />
+										<g:textField name="telefono2" value="${complejo?.telefono2}" class="col-sm-12" />
 									</div>
 								</div>
 
@@ -125,8 +119,7 @@
 										<g:message code="common.telefono.3.label" default="Telefono 3" />
 									</label>
 									<div class="col-sm-3">
-										<g:textField name="telefono3" value="${complejo?.telefono3}"
-											class="col-sm-12" />
+										<g:textField name="telefono3" value="${complejo?.telefono3}" class="col-sm-12" />
 									</div>
 								</div>
 
@@ -137,8 +130,7 @@
 										<g:message code="common.telefono.4.label" default="Telefono 4" />
 									</label>
 									<div class="col-sm-3">
-										<g:textField name="telefono4" value="${complejo?.telefono4}"
-											class="col-sm-12" />
+										<g:textField name="telefono4" value="${complejo?.telefono4}" class="col-sm-12" />
 									</div>
 								</div>
 								<div class="space-4"></div>
@@ -151,8 +143,8 @@
 							<div>
 
 								<div id="paisesDiv" class="form-group">
-									<label class="col-sm-2 control-label" for="pais"> <g:message
-											code="ubicacion.pais.label" default="Pais" />
+									<label class="col-sm-2 control-label" for="pais"> 
+										<g:message code="ubicacion.pais.label" default="Pais" />
 									</label>
 									<div class="col-sm-3">
 										<g:select id="pais" name="pais.id"
@@ -171,19 +163,16 @@
 
 								<div id="provinciasDiv" class="">
 									<g:if test="${complejo?.ubicacion?.pais}">
-										<g:include controller="pais" action="getProvincias"
-											id="${complejo?.ubicacion?.pais?.id}" />
+										<g:include controller="pais" action="getProvincias" id="${complejo?.ubicacion?.pais?.id}" />
 									</g:if>
 								</div>
 
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="direccion">
-										<g:message code="ubicacion.direccion.label"
-											default="Direccion" />
+										<g:message code="ubicacion.direccion.label" default="Direccion" />
 									</label>
 									<div class="col-sm-3">
-										<g:textField name="direccion"
-											value="${complejo?.ubicacion?.direccion}" class="col-sm-12" />
+										<g:textField name="direccion" value="${complejo?.ubicacion?.direccion}" class="col-sm-12" />
 									</div>
 								</div>
 
@@ -196,26 +185,33 @@
 							<h3 class="accordion-header">Servicios</h3>
 							<div>
 								<div class="checkbox col-sm-2">
-									<label> <g:checkBox name="servicios.vestuario"
+									<label> 
+										<g:checkBox name="servicios.vestuario"
 											value="${complejo?.servicios?.vestuario}"
-											class="ace col-sm-5-" /> <span class="lbl"><g:message
-												code="servicios.vestuario.label" default="Vestuario" /></span>
+											class="ace col-sm-5-" /> 
+											<span class="lbl">
+												<g:message code="servicios.vestuario.label" default="Vestuario" />
+											</span>
 									</label>
 								</div>
 
 								<div class="checkbox col-sm-2">
-									<label> <g:checkBox name="servicios.bebida"
-											value="${complejo?.servicios?.bebida}" class="ace col-sm-5-" />
-										<span class="lbl"><g:message
-												code="servicios.bebida.label" default="Bebida" /></span>
+									<label> 
+										<g:checkBox name="servicios.bebida" value="${complejo?.servicios?.bebida}" class="ace col-sm-5-" />
+										<span class="lbl">
+											<g:message code="servicios.bebida.label" default="Bebida" />
+										</span>
 									</label>
 								</div>
 
 								<div class="checkbox col-sm-2">
-									<label> <g:checkBox name="servicios.ayudaMedica"
+									<label> 
+										<g:checkBox name="servicios.ayudaMedica"
 											value="${complejo?.servicios?.ayudaMedica}"
-											class="ace col-sm-5-" /> <span class="lbl"><g:message
-												code="servicios.ayudamedica.label" default="Ayuda medica" /></span>
+											class="ace col-sm-5-" /> 
+											<span class="lbl">
+												<g:message code="servicios.ayudamedica.label" default="Ayuda medica" />
+											</span>
 									</label>
 								</div>
 
@@ -285,15 +281,12 @@
 							<h3 class="accordion-header">Configuracion de senia</h3>
 							<div>
 
-
 								<div class="form-group">
-									<label class="col-sm-2 control-label no-padding-right"
-										for="porcentajeSenia"><g:message
-											code="config.senia.label" default="Porcentaje de seña" /> </label>
+									<label class="col-sm-2 control-label no-padding-right" for="porcentajeSenia">
+										<g:message code="config.senia.label" default="Porcentaje de seña" /> </label>
 									<div class="col-sm-9">
-										<g:textField name="porcentajeSenia"
-											value="${complejo?.porcentajeSenia}" class="input-mini"
-											id="spinner4" />
+										<g:hiddenField name="porcentajeSeniaHidden" id="porcentajeSeniaHidden" value="${complejo?.porcentajeSenia}"/>
+										<g:textField name="porcentajeSenia" id="spinner4" value="${complejo?.porcentajeSenia}" class="input-mini" />
 									</div>
 								</div>
 							</div>
@@ -331,77 +324,71 @@
 						<div class="group">
 							<h3 class="accordion-header">Imagenes</h3>
 							<div>
-								
+
 								<div class="row">
 									<div id="imagenesDiv">
-										<g:render template="tabla-imagenes"
-											model="[imagenes : imagenesList]" />
+										<g:render template="tabla-imagenes" model="[imagenes : imagenesList]" />
 									</div>
 
 									<!-- inicio selector de imagenes -->
-<%--									<g:uploadForm controller="complejo" action="agregarImagen">--%>
-										<div class="col-sm-4">
-											<div class="widget-box">
-												<div class="widget-header">
-													<h4>
-														<g:message code="imagenes.carga.label"
-															default="Carga de Imagenes" />
-													</h4>
+									<%--									<g:uploadForm controller="complejo" action="agregarImagen">--%>
+									<div class="col-sm-4">
+										<div class="widget-box">
+											<div class="widget-header">
+												<h4>
+													<g:message code="imagenes.carga.label" default="Carga de Imagenes" />
+												</h4>
 
-													<span class="widget-toolbar"> <a href="#"
-														data-action="collapse"> <i class="icon-chevron-up"></i>
-													</a> <a href="#" data-action="close"> <i
-															class="icon-remove"></i>
-													</a>
-													</span>
-												</div>
+												<span class="widget-toolbar"> 
+													<a href="#" data-action="collapse"> <i class="icon-chevron-up"></i></a> 
+													<a href="#" data-action="close"> <i class="icon-remove"></i></a>
+												</span>
+											</div>
 
-												<g:hiddenField name="imagen.foto" id="foto2" value="" />
+											<g:hiddenField name="imagen.foto" id="foto2" value="" />
 
-												<div class="widget-body">
-													<div class="widget-main">
-														<div id="input-file">
-															<input type="file" id="foto" name="foto" />
-														</div>
-														<label> <input type="checkbox" name="file-format"
-															id="id-file-format" class="ace" /> <span class="lbl">
-																Allow only images</span>
-														</label>
+											<div class="widget-body">
+												<div class="widget-main">
+													<div id="input-file">
+														<input type="file" id="foto" name="foto" />
 													</div>
+													<label> 
+														<input type="checkbox" name="file-format" id="id-file-format" class="ace" /> 
+														<span class="lbl"> Allow only images</span>
+													</label>
 												</div>
+											</div>
 
-												<div class="widget-body">
-													<div class="widget-main">
-														<div class="form-group">
-															<span class="col-sm-4 control-label"> <g:message
-																	code="comunes.nombre.label" default="Nombre" />
-															</span>
-															<g:textField name="imagen.nombre" class="col-sm-6"
-																id="imagen.nombre" />
-														</div>
-														<div class="form-group">
-
-															<span class="col-sm-4 control-label"> <g:message
-																	code="comunes.descripcion.label" default="Descripcion" />
-															</span>
-															<g:textArea name="imagen.descripcion" class="col-sm-6"
-																id="imagen.descripcion" />
-														</div>
+											<div class="widget-body">
+												<div class="widget-main">
+													<div class="form-group">
+														<span class="col-sm-4 control-label"> <g:message
+																code="comunes.nombre.label" default="Nombre" />
+														</span>
+														<g:textField name="imagen.nombre" class="col-sm-6" id="imagen.nombre" />
 													</div>
-												</div>
+													<div class="form-group">
 
-												<div class="widget-body">
-													<div align="center" class="widget-main">
-														<g:submitToRemote class="btn btn-info"
-															update="[success:'imagenesDiv']"
-															after="cleanImageFields();"
-															url="[controller:'complejo', action:'agregarImagen']"
-															value="Subir Imagen" before="setImagenToForm();" />
+														<span class="col-sm-4 control-label"> <g:message
+																code="comunes.descripcion.label" default="Descripcion" />
+														</span>
+														<g:textArea name="imagen.descripcion" class="col-sm-6" id="imagen.descripcion" />
 													</div>
 												</div>
 											</div>
+
+											<div class="widget-body">
+												<div align="center" class="widget-main">
+													<g:submitToRemote class="btn btn-info"
+														update="[success:'imagenesDiv']"
+														after="cleanImageFields();"
+														url="[controller:'complejo', action:'agregarImagen']"
+														value="Subir Imagen" before="setImagenToForm();" />
+												</div>
+											</div>
 										</div>
-<%--									</g:uploadForm>--%>
+									</div>
+									<%-- </g:uploadForm>--%>
 									<!-- fin selector de imagenes -->
 
 								</div>
@@ -412,8 +399,7 @@
 
 					<div class="clearfix form-actions">
 						<div class="col-md-offset-3 col-md-9">
-							<g:submitButton class="btn btn-info" name="actualizarInformacionComplejo"
-								value="Actualizar Informacion del Complejo" />
+							<g:submitButton class="btn btn-info" name="actualizarInformacionComplejo" value="${message(code: 'button.actualizar.informacion.complejo.label',default: 'Actualizar')}" />
 							&nbsp; &nbsp; &nbsp;
 						</div>
 					</div>
@@ -425,8 +411,10 @@
 
 
 	<!-- COMIENZO DEL MODAL PARA EDITAR IMAGENES -->
-	<g:formRemote name="formEditImage" url="[controller:'complejo', action:'editarImagen']">
-		<g:render template="edit_image_modal" model="[imagenes : imagenesList]" />
+	<g:formRemote name="formEditImage"
+		url="[controller:'complejo', action:'editarImagen']">
+		<g:render template="edit_image_modal"
+			model="[imagenes : imagenesList]" />
 	</g:formRemote>
 	<!-- FIN DEL MODAL PARA EDITAR IMAGENES -->
 
@@ -453,7 +441,6 @@
 			}
 		});
 	
-			
 			
 			$("#btn1").click(function testeo()
 			{	 
@@ -499,8 +486,8 @@
 				document.getElementById("foto2").value = fot;
 			}
 			
+			$('#spinner4').ace_spinner({value:$('#porcentajeSeniaHidden').val(),min:0,max:100,step:10, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
 			
-			$('#spinner4').ace_spinner({value:0,min:0,max:100,step:10, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
 			.on('change', function(){
 				//alert(this.value)
 			});

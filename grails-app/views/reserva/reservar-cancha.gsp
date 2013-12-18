@@ -86,7 +86,7 @@
 														<g:message code="button.anterior.label" default="Anterior" />
 													</button>
 	
-													<button class="btn btn-success btn-next" data-last="Finish" onclick="agregarDatosALaReserva();">
+													<button class="btn btn-success btn-next" data-last="Finish" id="step_button" onclick="agregarDatosALaReserva();">
 														<g:message code="button.siguiente.label" default="Siguiente" />
 														<i class="icon-arrow-right icon-on-right"></i>
 													</button>
@@ -153,6 +153,9 @@
 				        url:   "${createLink(controller:'reserva', action:'generarReserva')}",
 				        data:  JSONObject,
 				        type:  'post',
+				        success: function(data) {
+						   	$("#step_button").visible = false;
+						},
 				        error: function(request, status, error) {
 				            alert(error);
 				        }

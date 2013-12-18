@@ -118,13 +118,16 @@
 	</div>
 
 <script>
-function setearSenia() {
-	var senia = document.getElementById('senia').value;
-	var total = document.getElementById('precio').value;
-	if(senia != null && senia != "" && total != null && total != "") {
-		alert(document.getElementById('faltante').value);
-		document.getElementById('faltante').value = total - senia;
-		alert(document.getElementById('faltante').value);
+	function setearSenia() {
+		var senia = document.getElementById('senia').value;
+		var total = document.getElementById('precio').value;
+		if(senia != null && senia != "" && total != null && total != "") {
+			if(senia > total) {
+				alert("${message(code:'validacion.senia.superior.monto')}");
+				document.getElementById('senia').value = 0;
+			} else {
+				document.getElementById('faltante').value = total - senia;
+			}
+		}
 	}
-}
 </script>
