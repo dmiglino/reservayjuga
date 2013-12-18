@@ -263,7 +263,6 @@ class ComplejoServiceIntegrationTests extends GroovyTestCase {
 		
 		def resp = complejoService.getHorariosDisponiblesParaFecha("20-11-2013",complejo.id)
 		
-		println "testGetHorariosDisponiblesParaFecha : : ${resp}"
 		assertEquals 3, resp.horariosConfigurados.size()
 		assertEquals 2, resp.horariosOcupados.size() //1 q esta configurado y otro que no pero igual lo traigo		
 	}

@@ -296,19 +296,14 @@ class ComplejoService extends GenericService<Complejo> {
 //		matchear horarios con reservas para ver cual esta disponible y cual no
 		def canchasReservadas = reservasRealizadas.collect { it.cancha }
 		
-		println "CANCHAS : : ${canchas}"
-		println "RESERVADAS : : ${canchasReservadas}"
-		
 		// me quedo solo con las canchas que no tienen reservas
 		canchas.removeAll(canchasReservadas)
-		println "LIBRES : : ${canchas}" 
 		
 		// devuelvo solo una cancha por tipo
 //		def tiposCanchas = getDiferentesTiposDeCanchas(canchasLibres)
 		
 //		devolver un map con todos los horarios y los horarios disponibles
 		def resp = [canchas: canchas]
-		println resp
 		return resp
 	}
 	

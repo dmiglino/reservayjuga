@@ -54,7 +54,6 @@ class HorarioService {
 				}
 			}
 		}
-		println "complejo.horarios 2: ${complejo.horarios}"
 	}
 
 }

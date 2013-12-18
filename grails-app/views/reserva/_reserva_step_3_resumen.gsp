@@ -128,6 +128,7 @@
 		var senia = document.getElementById('senia').value;
 		var total = document.getElementById('precio').value;
 		if(senia != null && senia != "" && total != null && total != "") {
+			senia = parseFloat(senia);
 			if(senia > total) {
 				alert("${message(code:'validacion.senia.superior.monto')}");
 				document.getElementById('senia').value = seniaAnterior;
