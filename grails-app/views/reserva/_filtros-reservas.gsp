@@ -17,6 +17,31 @@
 			</div>
 			
 			<div class="col-xs-4">
+				<h4 class="green smaller lighter"><g:message code="reserva.filtros.dia.label" default="Dia" /></h4>	
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="icon-calendar bigger-110"></i>
+					</span>
+					<input class="form-control" type="text" name="dateRangePicker" id="id-date-range-picker-1" />
+				</div>
+			</div>
+			
+			<div class="col-xs-4">
+				<h4 class="green smaller lighter"><g:message code="reserva.filtros.horario.label" default="Horario de Inicio" /></h4>
+				<div class="input-group bootstrap-timepicker">
+					<input id="timepicker1" type="text" class="form-control" /> 
+					<span class="input-group-addon"> 
+						<i class="icon-time bigger-110"></i>
+					</span>
+				</div>
+			</div>
+				
+			<br /> <br /> <br /> <br /> <br />
+			
+			
+			
+			
+			<div class="col-xs-4">
 				<h4 class="green smaller lighter"><g:message code="reserva.filtros.estado.label" default="Estado" /></h4>	
 				<div>
 					<g:select id="estadoReservaFilter" 
@@ -39,32 +64,10 @@
 						value=""  />
 				</div>
 			</div>
-				
-			<br /> <br /> <br /> <br />
 			
 			<div class="col-xs-4">
-				<h4 class="green smaller lighter"><g:message code="reserva.filtros.dia.label" default="Dia" /></h4>	
-				<div class="input-group">
-					<span class="input-group-addon">
-						<i class="icon-calendar bigger-110"></i>
-					</span>
-					<input class="form-control" type="text" name="dateRangePicker" id="id-date-range-picker-1" />
-				</div>
-			</div>
-			
-			<div class="col-xs-4">
-				<h4 class="green smaller lighter"><g:message code="reserva.filtros.horario.label" default="Horario" /></h4>
-				<div class="input-group bootstrap-timepicker">
-					<input id="timepicker1" type="text" class="form-control" /> 
-					<span class="input-group-addon"> 
-						<i class="icon-time bigger-110"></i>
-					</span>
-				</div>
-			</div>
-			
-			<div class="col-xs-4">
-				<i class="icon-zoom-in bigger-200"></i>
-				<g:submitButton name="submit" value="Filtrar" />
+				<br />
+				<div align="center"><g:submitButton class='btn' name="submit" value="Filtrar" /></div>
 			</div>
 			
 			<br /> <br /> <br />

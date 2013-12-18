@@ -89,7 +89,8 @@
 				$('#timepicker1').timepicker({
 					minuteStep: 30,
 					showSeconds: false,
-					showMeridian: false
+					showMeridian: false,
+					defaultTime: false
 				}).next().on(ace.click_event, function(){
 					$(this).prev().focus();
 				});
