@@ -9,11 +9,13 @@ import ar.com.reservayjuga.complejo.CanchaService
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.ComplejoService
 import ar.com.reservayjuga.exception.EntityNotFoundException
+import ar.com.reservayjuga.usuario.JugadorService
 
 class ReservaService extends GenericService<Reserva> {
 
 	ComplejoService complejoService
 	CanchaService canchaService
+	JugadorService jugadorService
 	
 	@Override
 	def getDomain() {
@@ -215,5 +217,9 @@ class ReservaService extends GenericService<Reserva> {
 			))
 			
 		criter.list()
+	}
+	
+	def actualizarDatosDelJugador(params) {
+		jugadorService.actualizarDatosDelJugador(params)
 	}
 }

@@ -4,10 +4,9 @@
 		<div class="widget-box">
 			<div class="widget-header">
 				<h4>
-					<strong><g:message code="reserva.cancha.label"
-							default="CANCHA" /></strong> (
-					<g:message code="reserva.dia.seleccionar.label"
-						default="Selecciona la cancha" />
+					<strong><g:message code="reserva.cancha.label" default="CANCHA" /></strong> 
+					(
+						<g:message code="reserva.dia.seleccionar.label" default="Selecciona la cancha" />
 					)
 				</h4>
 			</div>
@@ -18,7 +17,6 @@
 						<g:each in="${canchas}" var="cancha" status="i">
 							<li id="cancha_${cancha.id}" class="cancha-futbol" onclick="seleccionarCanchaAReservar('${cancha.id}');"><span>${i}</span></li>
 							<g:hiddenField name="reserva.cancha.id" id="reserva.cancha.id" value="" />
-<%--						<li id="3" class="cancha-futbol active"><span>03</span></li>--%>
 						</g:each>
 					</ul>
 				</div>

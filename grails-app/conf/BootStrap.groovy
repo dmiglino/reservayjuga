@@ -217,7 +217,7 @@ class BootStrap {
 		def user = SecUser.findByUsername("jugadorTom")
 		if(!user) {
 			Calendar cal = Calendar.getInstance()
-			cal.set(1987, 8, 10)
+			cal.set(1987, 8-1, 10)
 			Date fecha = cal.getTime()
 			user = new Jugador(apellido: "Esca",nombre: "Tom",username:"jugadorTom",password:"jugador",enable:true, telefono:"12345678", mail:"t@e.com", sexo:"F", dni:33333333, fechaNacimiento: fecha )
 		}
@@ -227,7 +227,7 @@ class BootStrap {
 		user = SecUser.findByUsername("jugadorDie")
 		if(!user) {
 			Calendar cal = Calendar.getInstance()
-			cal.set(1987, 8, 10)
+			cal.set(1984, 4-1, 12)
 			Date fecha = cal.getTime()
 			user = new Jugador(apellido: "Mig",nombre: "Die",username:"jugadorDie",password:"jugador",enable:true, telefono:"12345678", mail:"d@m.com", sexo:"M", dni:30303030, fechaNacimiento: fecha )
 		}

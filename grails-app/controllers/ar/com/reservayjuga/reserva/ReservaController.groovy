@@ -1,11 +1,10 @@
 package ar.com.reservayjuga.reserva
 
-import grails.converters.JSON
-
 import org.springframework.dao.DataIntegrityViolationException
 
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.exception.EntityNotFoundException
+import ar.com.reservayjuga.exception.InvalidEntityException
 import ar.com.reservayjuga.usuario.Encargado
 import ar.com.reservayjuga.usuario.Jugador
 import ar.com.reservayjuga.utils.Utils
@@ -25,6 +24,31 @@ class ReservaController {
 		Reserva reserva = (complejo.reservas as List).get(0) // TODO sacar el hardcodeo // reservaService.crearReservaPresencial(complejo)
 		session.data = reserva
 		render(view: "reservar-cancha", model: [reserva:reserva, complejoId:complejo.id])
+	}
+	
+	def buscarJugador = {
+		println "params :: ${params}"
+		def emailODni = params.emaildni
+		List jugadores = Jugador.list()
+		Jugador jugador
+		
+		if (Utils.isMail(emailODni)) {
+			jugador = jugadores.find { it.mail.equals(emailODni) } // TODO sacar el hardcodeo
+		} else if(Utils.onlyNumbers(emailODni)) {
+			jugador = jugadores.find { it.dni.equals(emailODni) } // TODO sacar el hardcodeo
+		} else {
+			println "ERROR tipo de dato del parametro"
+		}
+		render(template: "reserva_step_1_datos_jugador", model:[jugador:jugador])
+	}
+	
+	def actualizarDatosDelJugador = {
+		try {
+			reservaService.actualizarDatosDelJugador(params)
+		} catch(InvalidEntityException e) {
+			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
+		}
 	}
 	
 	def agregarJugadorQueReserva = {
