@@ -27,7 +27,7 @@ class Cancha {
 	
 	@Override
 	String toString() {
-		"${nombre} - ${deporte} (${cantidadJugadores})"
+		"${nombre} - ${deporte}"
 	}
 	
 	void agregarPrecio(Precio precio) {
@@ -70,5 +70,5 @@ class Cancha {
 			return false
 		return true
 	}
-	
+
 }
