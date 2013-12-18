@@ -29,8 +29,8 @@
 			</div>
 				
 			<div class="col-xs-4">
-				<i class="icon-zoom-in bigger-200"></i>
-				<g:submitButton name="submit" value="Filtrar" />
+				<br />
+				<g:submitButton class="btn" name="submit" value="Filtrar" />
 			</div>
 			
 			<br /> <br /> <br /> <br />
