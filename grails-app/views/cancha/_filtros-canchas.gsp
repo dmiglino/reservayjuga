@@ -11,7 +11,7 @@
 						name="deporteCanchaFilter"
 						from="${DeporteEnum.values()}"
 						noSelection="['':'Seleccione un deporte..']"
-						class="width-80 chosen-select"
+						class="width-80"
 						value=""  />
 				</div>
 			</div>
@@ -23,7 +23,7 @@
 						name="superficieCanchaFilter"
 						from="${SuperficieEnum.values()}"
 						noSelection="['':'Seleccione una superficie..']"
-						class="width-80 chosen-select"
+						class="width-80 "
 						value=""  />
 				</div>
 			</div>

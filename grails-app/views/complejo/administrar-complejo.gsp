@@ -440,9 +440,9 @@
 	<!-- fin main-container -->
 
 	<%-- SCRIPTS DE LA PAGINA --%>
-
+	<script src="../assets/js/fuelux/fuelux.spinner.min.js"></script>
 	<script type="text/javascript">
-			
+	
 		//jquery accordion
 		$( "#accordion" ).accordion({
 			collapsible: true ,
@@ -495,8 +495,8 @@
 	
 			    	alert("fot: "+foto);
 			     $(".input-file #fotoImagenEdit").val(foto);
-				<%--			     document.getElementById("fotoImagenEdit").value = foto;--%>
-			     document.getElementById("vista_previa").innerHTML='<img src="'+foto+'" width="100" height="75" >';
+				<%--			     document.getElementById("fotoImagenEdit").value = foto; 
+			     document.getElementById("vista_previa").innerHTML='<img src="'+foto+'" width="100" height="75" >';--%>
 				<%--			     alert("input: "+document.getElementById("fotoImagenEdit").value);--%>
 			});
 	
@@ -505,6 +505,12 @@
 				document.getElementById("foto2").value = fot;
 			}
 			
+			
+			$('#spinner4').ace_spinner({value:0,min:0,max:100,step:10, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
+			.on('change', function(){
+				//alert(this.value)
+			});
+				
 		</script>
 
 	</body>

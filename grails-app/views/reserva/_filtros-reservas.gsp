@@ -11,7 +11,7 @@
 						from="${canchas}"
 						optionKey="id"
 						noSelection="['':'Seleccione una cancha..']"
-						class="width-80 chosen-select"
+						class="width-80"
 						value=""  />
 				</div>
 			</div>
@@ -23,7 +23,7 @@
 						name="estadoReservaFilter"
 						from="${ReservaEnum.values()}"
 						noSelection="['':'Seleccione un estado..']"
-						class="width-80 chosen-select"
+						class="width-80"
 						value=""  />
 				</div>
 			</div>
@@ -35,7 +35,7 @@
 						name="tipoReservaFilter"
 						from="${TipoReservaEnum.values()}"
 						noSelection="['':'Seleccione un tipo..']"
-						class="width-80 chosen-select"
+						class="width-80 "
 						value=""  />
 				</div>
 			</div>

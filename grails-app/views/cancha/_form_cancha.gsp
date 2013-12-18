@@ -1,7 +1,7 @@
 <%@page import="ar.com.reservayjuga.complejo.DeporteEnum"%>
 
 
-<div id="accordion" class="accordion-style2">
+<div id="accordion" class="accordion-style2"  >
 	<div class="group">
 		<h3 class="accordion-header">Informacion de la cancha</h3>
 		<div>
@@ -10,7 +10,7 @@
 						code="common.nombre.label" default="Nombre" /></label>
 				<div>
 					<g:textField name="cancha.nombre" value="${cancha?.nombre}"
-						class="col-sm-6" id="form-field-username" />
+						class="col-sm-3" id="form-field-username" />
 				</div>
 			</div>
 
@@ -22,7 +22,7 @@
 				<div>
 					<g:select id="cubierta" name="cancha.cubierta"
 						from="${["true","false"]}" noSelection="['':'']"
-						class="chosen-select one-to-one" value="${cancha?.cubierta}" />
+						class="chosen-select one-to-one width-20" value="${cancha?.cubierta}" />
 				</div>
 			</div>
 
@@ -33,7 +33,7 @@
 						code="common.deporte.label" default="Deporte" /></label>
 				<g:select id="deporte" name="cancha.deporte"
 					from="${DeporteEnum.values()}" noSelection="['':'']"
-					class="chosen-select one-to-one"
+					class="width-20"
 					optionValue="${ {deporte -> g.message(code:deporte.textCode)} }"
 					value="${cancha?.deporte}"
 					onchange="${remoteFunction (
@@ -62,6 +62,8 @@
 						id="spinner1" />
 					<g:hiddenField name="cancha.cantidadJugadores" id="cantJugValue"
 						value="" />
+						
+					
 				</div>
 			</div>
 
@@ -106,6 +108,8 @@
 	</div>
 </g:else>
 
+
+<script src="../assets/js/fuelux/fuelux.spinner.min.js"></script>
 <script type="text/javascript">
 
 var data = [
@@ -165,7 +169,12 @@ var data = [
   			}
   		});
   	
-                     
+	
+  		$('#spinner2').ace_spinner({value:0,min:0,max:200,step:10, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
+		.on('change', function(){
+			//alert(this.value)
+		});
+  		
 	function setCantJugValue() {
 		var spinnerValue = document.getElementById('spinner1').value;
 		document.getElementById('cantJugValue').value = spinnerValue;

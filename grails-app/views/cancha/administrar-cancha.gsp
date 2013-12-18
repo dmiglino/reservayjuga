@@ -90,6 +90,7 @@
 
 			//jquery accordion
 	  		$( "#accordion" ).accordion({
+	  			active: false,
 	  			collapsible: true ,
 	  			heightStyle: "content",
 	  			animate: 250,

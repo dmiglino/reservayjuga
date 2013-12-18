@@ -24,7 +24,7 @@
 						<td class="hidden-480"><g:formatDate date="${reserva?.dia}" format="dd-MM-yyyy" /></td>
 						<td>${reserva?.horaInicio} - ${reserva?.horaFin}</td>
 						<td>${reserva?.jugador}
-							<g:remoteLink controller="reserva" action="selectJugadorToShow" id="${reserva?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" onSuccess="setJugadorToShow();">
+							<g:remoteLink controller="reserva" action="selectJugadorToShow" id="${reserva?.id}" update="[success:'modal-box-form',failure:'error']" class="blue" onSuccess="setJugadorToShow();">
 								<i class="icon-zoom-in bigger-120"></i>
 							</g:remoteLink>
 						</td>
@@ -34,24 +34,25 @@
 						<td>$ ${reserva?.precioTotal - reserva?.senia}</td>
 						<td>${reserva?.estado}</td>
 						<td>
-							<div
-								class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-								<g:remoteLink controller="reserva" action="seniarReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-info" >
+							<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+								
+								<g:remoteLink controller="reserva" title="Marcar como pagada" action="concretarReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-success" >
 									<i class="icon-ok bigger-120"></i>
 								</g:remoteLink>
-								<g:remoteLink controller="reserva" action="concretarReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-info" >
+						
+								<!-- <g:remoteLink controller="reserva" action="seniarReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-info" >
 									<i class="icon-ok bigger-120"></i>
+								</g:remoteLink> -->
+						
+								<g:remoteLink controller="reserva"  title="Marcar como cancelada" action="cancelarReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-danger">
+									<i class="icon-ban-circle bigger-120"></i>
 								</g:remoteLink>
 								
-								<g:remoteLink controller="reserva" action="cancelarReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-danger">
-									<i class="icon-ok bigger-120"></i>
-								</g:remoteLink>
-								
-								<g:remoteLink controller="reserva" action="selectToEdit" id="${reserva?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" >
+								<g:remoteLink controller="reserva" title="Editar reserva" action="selectToEdit" id="${reserva?.id}" update="[success:'modal-box-form',failure:'error']" class="btn btn-xs btn-info" >
 									<i class="icon-edit bigger-120"></i>
 								</g:remoteLink>
 								
-								<g:remoteLink controller="reserva" action="deleteReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-danger">
+								<g:remoteLink controller="reserva" title="Eliminar reserva" action="deleteReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-danger">
 									<i class="icon-trash bigger-120"></i>
 								</g:remoteLink>
 							</div>

@@ -11,10 +11,10 @@
 			from="${superficiesDisponibles}"
 			required="" 
 			noSelection="['':'Selecciona una Superficie']" 
-			class="col-xs-4 col-sm-5-"
+			class="width-20 many-to-one"
 			optionValue="${ {superficie -> g.message(code:superficie.textCode)} }"
 			value="${cancha?.superficie}" 
-			class="many-to-one" />
+			 />
 	</g:if>
 	<g:else>
 		No existen barrios para esta localidad
