@@ -1,12 +1,16 @@
 package ar.com.reservayjuga.reserva
 
+import grails.converters.JSON
+
 import org.springframework.dao.DataIntegrityViolationException
 
+import ar.com.reservayjuga.complejo.Cancha
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.exception.InvalidEntityException
 import ar.com.reservayjuga.usuario.Encargado
 import ar.com.reservayjuga.usuario.Jugador
+import ar.com.reservayjuga.utils.DBUtils
 import ar.com.reservayjuga.utils.Utils
 
 
@@ -21,13 +25,12 @@ class ReservaController {
 	
 	def reservarCancha = {
 		Complejo complejo = getComplejoDelEngargado()
-		Reserva reserva = (complejo.reservas as List).get(0) // TODO sacar el hardcodeo // reservaService.crearReservaPresencial(complejo)
+		Reserva reserva = reservaService.crearReservaPresencial(complejo)
 		session.data = reserva
 		render(view: "reservar-cancha", model: [reserva:reserva, complejoId:complejo.id])
 	}
 	
 	def buscarJugador = {
-		println "params :: ${params}"
 		def emailODni = params.emaildni
 		List jugadores = Jugador.list()
 		Jugador jugador
@@ -51,31 +54,10 @@ class ReservaController {
 		}
 	}
 	
-	def agregarJugadorQueReserva = {
-		println "params :: ${params}"
-		def emailODni = params.emaildni
-		List jugadores = Jugador.list()
-		Jugador jugador
-		
-		if (Utils.isMail(emailODni)) {
-			jugador = jugadores.find { it.mail.equals(emailODni) } // TODO sacar el hardcodeo
-		} else if(Utils.onlyNumbers(emailODni)) {
-			jugador = jugadores.find { it.dni.equals(emailODni) } // TODO sacar el hardcodeo
-		} else {
-			println "ERROR tipo de dato del parametro"
-		}
-		def data = session.data
-		println "DATA :: ${data}"
-		Reserva reserva = session.data // params.id as Reserva
-		if(reserva && jugador) {
-			reserva.jugador = jugador
-		} else if(!jugador) {
-			println "ERROR no se encontro ningun jugador"
-		} else if(!reserva) {
-			println "ERROR no tengo la reserva"
-		} 
-		println "jugador reserva : : ${reserva.jugador}"
-		[reserva:reserva]
+	def agregarDatosALaReserva = {
+		Reserva reserva = session.data
+		reservaService.agregarDatosALaReserva(reserva, params)
+		render(template: "reserva_step_3_resumen", model:[reserva:reserva])
 	}
 	
 	/**
@@ -235,5 +217,7 @@ class ReservaController {
 	
 	def generarReserva = {
 		println "generarReserva : params : : ${params}"
+		Reserva reserva = session.data
+		reservaService.generarReserva(reserva, params)
 	}
 }

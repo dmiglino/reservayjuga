@@ -16,7 +16,7 @@
 					<ul class="ul-canchas">
 						<g:each in="${canchas}" var="cancha" status="i">
 							<li id="cancha_${cancha.id}" class="cancha-futbol" onclick="seleccionarCanchaAReservar('${cancha.id}');"><span>${i}</span></li>
-							<g:hiddenField name="reserva.cancha.id" id="reserva.cancha.id" value="" />
+							<g:hiddenField name="reservaCanchaId" id="reservaCanchaId" value="" />
 						</g:each>
 					</ul>
 				</div>
@@ -30,9 +30,9 @@
 
 	function seleccionarCanchaAReservar(canchaId) {
 		//borra la cancha seleccionada anteriormente
-		var canchaAnterior = document.getElementById('reserva.cancha.id').value;
+		var canchaAnterior = document.getElementById('reservaCanchaId').value;
 		if(canchaAnterior != null && canchaAnterior != "") {
-			var buttonId = "cancha_"+document.getElementById('reserva.cancha.id').value;
+			var buttonId = "cancha_"+document.getElementById('reservaCanchaId').value;
 			var li = document.getElementById(buttonId);
 			var previousStyleClass = li.getAttribute("class");
 			var previousStyleClassWithoutActive = previousStyleClass.replace(" active", "");
@@ -40,7 +40,7 @@
 		}
 		
 		//setea el id de la cancha seleccionada
-		document.getElementById('reserva.cancha.id').value = canchaId;
+		document.getElementById('reservaCanchaId').value = canchaId;
 		
 		//marca como seleccionada la nueva cancha
 		if(canchaId != null) {

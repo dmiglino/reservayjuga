@@ -11,24 +11,24 @@
 
 <body>
 
-	<%--		inicio main-container--%>
+	<%-- inicio main-container --%>
 
 	<div class="breadcrumbs" id="breadcrumbs">
 		<script type="text/javascript">
-						try {
-							ace.settings.check('breadcrumbs', 'fixed')
-						} catch (e) {
-						}
-					</script>
+			try {
+				ace.settings.check('breadcrumbs', 'fixed')
+			} catch (e) {
+			}
+		</script>
 
 		<ul class="breadcrumb">
-			<li><i class="icon-home home-icon"></i><a href="#"> <g:message
-						code="sidebar.panel.label" default="Panel de Control" />
+			<li><i class="icon-home home-icon"></i><a href="#"> 
+				<g:message code="sidebar.panel.label" default="Panel de Control" />
 			</a></li>
 
-			<li><a href="#"><g:message
-						code="sidebar.administrar.complejo.label"
-						default="Administrar Complejo" /></a></li>
+			<li><a href="#">
+				<g:message code="sidebar.administrar.complejo.label" default="Administrar Complejo" />
+			</a></li>
 		</ul>
 		<!-- .breadcrumb -->
 	</div>
@@ -417,8 +417,7 @@
 								<i class="icon-ok bigger-110"></i> Guardar
 							</button>
 
-							<g:submitButton class="btn btn-info"
-								name="actualizarInformacionComplejo"
+							<g:submitButton class="btn btn-info" name="actualizarInformacionComplejo"
 								value="Actualizar Informacion del Complejo" />
 							&nbsp; &nbsp; &nbsp;
 						</div>

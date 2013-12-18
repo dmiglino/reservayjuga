@@ -5,11 +5,14 @@ import org.hibernate.criterion.Projections
 import org.hibernate.criterion.Restrictions
 
 import ar.com.reservayjuga.common.GenericService
+import ar.com.reservayjuga.complejo.Cancha
 import ar.com.reservayjuga.complejo.CanchaService
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.ComplejoService
 import ar.com.reservayjuga.exception.EntityNotFoundException
+import ar.com.reservayjuga.usuario.Jugador
 import ar.com.reservayjuga.usuario.JugadorService
+import ar.com.reservayjuga.utils.DBUtils
 
 class ReservaService extends GenericService<Reserva> {
 
@@ -222,4 +225,65 @@ class ReservaService extends GenericService<Reserva> {
 	def actualizarDatosDelJugador(params) {
 		jugadorService.actualizarDatosDelJugador(params)
 	}
+	
+	def agregarDatosALaReserva(Reserva reserva, def params) {
+		if(reserva) {
+			def jugadorId = params.jugadorId
+			if(jugadorId) {
+				reserva.jugador = jugadorService.findEntityById(jugadorId)
+			}
+			
+			def reservaDateText = params.reservaDateText
+			if(reservaDateText) {
+				def fechaSplit = reservaDateText.split("-")
+				if(fechaSplit.size() == 3) {
+					Calendar cal = Calendar.getInstance()
+					cal.set(fechaSplit[2].toInteger(), (fechaSplit[1].toInteger())-1, fechaSplit[0].toInteger())
+					Date fecha = cal.getTime()
+					reserva.dia = fecha
+				}
+			}
+			
+			def reservaHorario = params.reservaHorario
+			if(reservaHorario) {
+				def horarios = reservaHorario.split(" - ")
+				reserva.horaInicio = horarios[0]
+				reserva.horaFin = horarios[1]
+			}
+			
+			def reservaCanchaId = params.reservaCanchaId
+			if(reservaCanchaId) {
+				reserva.cancha = canchaService.findEntityById(reservaCanchaId)
+				if(reserva.cancha) {
+					// TODO buscar el precio para esta cancha en este horario y dia
+					reserva.precioTotal = 500
+				}
+			}
+			
+			def reservaSenia = params.reservaSenia
+			if(reservaSenia) {
+				reserva.senia = reservaSenia.toFloat()
+			} else {
+				reserva.senia = 0
+			}
+			
+		}
+	}
+
+	def	generarReserva(reserva, params) {
+		if(reserva) {
+			def reservaSenia = params.reservaSenia
+			if(reservaSenia) {
+				reserva.senia = reservaSenia.toFloat()
+			} else {
+				reserva.senia = 0
+			}
+			
+			//TODO chequear que la cancha siga disponible para este horario
+			reserva.concretar();
+			DBUtils.validateAndSave(reserva)
+			println "Se ha concretado la ${reserva}"
+		}
+	}
+	
 }

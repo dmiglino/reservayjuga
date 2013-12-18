@@ -14,6 +14,7 @@
 
 			<div class="widget-body" id="step_2_horarios_body">
 				<div class="widget-main" align="center">
+					<g:hiddenField name="horarioReserva" id="horarioReserva" value="" />
 					<g:each in="${horariosConfigurados}" var="horario" status="i">
 						<g:if test="${horariosOcupados.contains(horario)}">
 							<button class="btn disabled btn-primary" disabled="disabled">${horario}</button>
@@ -32,6 +33,8 @@
 <script type="text/javascript">
 
 	function searchCanchasParaHorario(horario) {
+		document.getElementById('horarioReserva').value = horario;
+
 		var JSONObject = new Object;
 	    JSONObject.fecha = $('#reservaDateText').val();;
 	    JSONObject.horario = horario;
@@ -46,7 +49,7 @@
               	$("#step_2_canchas").html(data);
 	        },
 	        error: function(request, status, error) {
-	            alert(error)
+	            alert(error);
 	        }
 	    });
 	};
