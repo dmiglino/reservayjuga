@@ -10,12 +10,15 @@
 			<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">
 				<g:message code="reserva.jugador.emailodni.label" default="E-mail o DNI" />:
 			</label>
-			<div class="col-xs-12 col-sm-4">
-				<g:textField name="emaildni" value="${reserva?.jugador}" class="col-sm-6" id="emaildni" />
+			<div class="col-xs-12 col-sm-3">
+				<g:textField name="emaildni" value="${reserva?.jugador}" class="col-xs-12 col-sm-12" id="emaildni" />
 				<div class="space-4"></div>
 			</div>
 			
-	    	<button onclick="buscarJugador();return false;"><i class="icon-zoom-in bigger-120"><g:message code="button.buscar.jugador.label" default="Buscar Jugador" /></i></button>
+	    	<button class="btn btn-sm btn-primary" onclick="buscarJugador();return false;">
+	    		<i class="icon-search bigger-120"></i>
+	    
+	    	</button>
 	    	
 		</div>
 	
@@ -26,7 +29,10 @@
 		<div class="form-group"></div>
 	
 		<div class="col-md-offset-3 col-md-9">
-			<g:submitToRemote controller="reserva" action="actualizarDatosDelJugador" value="${message(code: 'button.actualizar.jugador.label',default: 'Actualizar')}" update="[success:'datosJugadorDiv',failure:'error']" class="btn btn-xs btn-danger"></g:submitToRemote>
+			<g:submitToRemote controller="reserva" action="actualizarDatosDelJugador" 
+				value="${message(code: 'button.actualizar.jugador.label',default: 'Actualizar')}" 
+				update="[success:'datosJugadorDiv',failure:'error']" class="btn btn-bigger-120 btn-danger">
+			</g:submitToRemote>
 			&nbsp; &nbsp; &nbsp;
 		</div>
 	</g:form>
