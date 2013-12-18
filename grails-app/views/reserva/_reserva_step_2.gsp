@@ -1,12 +1,11 @@
 
 <div class="step-pane" id="step2">
-
-	<div class="row">
-
+	
+	<g:render template="reserva_step_2_deporte" />
+	<div class="row">	
 		<g:render template="reserva_step_2_calendario" />	
 		<g:render template="reserva_step_2_horarios" />	
 		<g:render template="reserva_step_2_canchas" />	
-
 	</div>
 
 <script>
