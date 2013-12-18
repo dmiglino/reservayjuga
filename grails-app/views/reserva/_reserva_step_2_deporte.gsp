@@ -1,4 +1,5 @@
-	<div class="row">
+	<%@page import="ar.com.reservayjuga.complejo.DeporteEnum"%>
+<div class="row">
 		<div class="col-sm-12">
 			<div class="widget-box">
 				<div class="widget-header">
@@ -10,77 +11,15 @@
 						<br />
 						
 						 <div>
-							<div style="margin-top:-5px;" class="checkbox col-sm-2">
-								<label>
-									<g:checkBox name="check3" value="" class="ace col-sm-5-" />
-									<span class="lbl"> Futbol 5 </span>
-								</label>
-							</div>
-							
-							<div class="checkbox col-sm-2">
-								<label>
-									<g:checkBox name="check3" value="" class="ace" />
-									<span class="lbl"> Futbol 6 </span>
-								</label>
-							</div>
-							
-							<div class="checkbox col-sm-2">
-								<label>
-									<g:checkBox name="check3" value="" class="ace col-sm-5-" />
-									<span class="lbl"> Futbol 7 </span>
-								</label>
-							</div>
-
-							<div class="checkbox col-sm-2">
-								<label>
-									<g:checkBox name="check3" value="" class="ace col-sm-5-" />
-									<span class="lbl"> Futbol 8 </span>
-								</label>
-							</div>
-
-							
-							<div class="checkbox col-sm-2">
-								<label>
-									<g:checkBox name="check3" value="" class="ace col-sm-5-" />
-									<span class="lbl"> Futbol 9 </span>
-								</label>
-							</div>
-							
-							<div class="checkbox col-sm-2">
-								<label>
-									<g:checkBox name="check3" value="" class="ace col-sm-3-" />
-									<span class="lbl"> Futbol 11 </span>
-								</label>
-							</div>
-							
-							<div class="checkbox col-sm-2">
-								<label>
-									<g:checkBox name="check3" value="" class="ace col-sm-5-" />
-									<span class="lbl"> Tenis </span>
-								</label>
-							</div>
-							
-							<div class="checkbox col-sm-2">
-								<label>
-									<g:checkBox name="check3" value="" disabled="" class="ace col-sm-5-" />
-									<span class="lbl"> Padel </span>
-								</label>
-							</div>
-							
-							<div class="checkbox col-sm-2">
-								<label>
-									<g:checkBox name="check3" value="" disabled="" class="ace col-sm-5-" />
-									<span class="lbl"> Squash </span>
-								</label>
-							</div>
-							
-							<div class="checkbox col-sm-2">
-								<label>
-									<g:checkBox name="check3" value="" disabled="" class="ace col-sm-5-" />
-									<span class="lbl"> Basquet </span>
-								</label>
-							</div>							
-							
+						 	<g:each in="${DeporteEnum.values()}" var="deporte" status="i">
+								<div style="margin-top:-5px;" class="checkbox col-sm-2">
+									<label>
+										<g:checkBox name="seleccionDeporte" id="seleccionDeporte" value="${deporte}" checked="false" class="ace col-sm-5-" />
+										<span class="lbl"> <g:message code="${deporte.textCode}" default="${deporte.textCode}" /> </span>
+									</label>
+								</div>
+							</g:each>			
+				
 							<br />
 							<br />
 							<br />														
