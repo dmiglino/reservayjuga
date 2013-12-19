@@ -10,6 +10,7 @@ import ar.com.reservayjuga.complejo.CanchaService
 import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.ComplejoService
 import ar.com.reservayjuga.exception.EntityNotFoundException
+import ar.com.reservayjuga.exception.InvalidReservaStatusException
 import ar.com.reservayjuga.usuario.JugadorService
 import ar.com.reservayjuga.utils.DBUtils
 import ar.com.reservayjuga.utils.Utils
@@ -128,10 +129,7 @@ class ReservaService extends GenericService<Reserva> {
 	 * @param canchaId
 	 */
 	void eliminarReservaDelComplejo(Complejo complejo, def reservaId) {
-		def reservaInstance = findEntityById(reservaId)
-		if(!reservaInstance) {
-			throw new EntityNotFoundException("Reserva", reservaId)
-		}
+		def reservaInstance = findEntityByIdAndValidate(reservaId)
 		complejoService.eliminarReserva(complejo, reservaInstance)
 	}
 	
@@ -140,8 +138,11 @@ class ReservaService extends GenericService<Reserva> {
 	 * @param reserva
 	 */
 	void seniar(Reserva reserva) {
-		// TODO falta validar estados posibles
-		reserva.seniar()
+		if(reserva.isPendiente()) {
+			reserva.seniar()
+		} else {
+			throw new InvalidReservaStatusException(reserva.estado)
+		}
 	}
 	
 	/**
@@ -149,8 +150,11 @@ class ReservaService extends GenericService<Reserva> {
 	 * @param reserva
 	 */
 	void concretar(Reserva reserva) {
-		// TODO falta validar estados posibles
-		reserva.concretar()
+		if(reserva.isPendiente() || reserva.isSeniada()) {
+			reserva.concretar()
+		} else {
+			throw new InvalidReservaStatusException(reserva.estado)
+		}
 	}
 	
 	/**
@@ -254,7 +258,6 @@ class ReservaService extends GenericService<Reserva> {
 			}
 
 			if(reserva.cancha && reserva.horaInicio && reservaDateText) {
-				// TODO buscar el precio para esta cancha en este horario y dia
 				def dayOfWeek = Utils.getDayOfWeek(reservaDateText)
 				reserva.precioTotal = canchaService.getPrecio(dayOfWeek, reserva.horaInicio, reserva.cancha)
 			}
@@ -279,9 +282,9 @@ class ReservaService extends GenericService<Reserva> {
 			}
 			
 			//TODO chequear que la cancha siga disponible para este horario
-			reserva.concretar();
+			reserva.seniar();
 			DBUtils.validateAndSave(reserva)
-			println "Se ha concretado la ${reserva}"
+			println "Se ha generado la ${reserva} y marcado como señada."
 		}
 	}
 	

@@ -5,7 +5,7 @@ import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.reserva.Reserva
 import ar.com.reservayjuga.reserva.ReservaService
 import ar.com.reservayjuga.ubicacion.UbicacionService
-import ar.com.reservayjuga.usuario.Encargado
+import ar.com.reservayjuga.usuario.EncargadoService
 import ar.com.reservayjuga.utils.DBUtils
 import ar.com.reservayjuga.utils.Utils
 
@@ -16,6 +16,7 @@ class ComplejoService extends GenericService<Complejo> {
 	ExtrasService extrasService
 	HorarioService horarioService
 	ImagenService imagenService
+	EncargadoService encargadoService
 	
 	@Override
 	def getDomain() {
@@ -204,13 +205,8 @@ class ComplejoService extends GenericService<Complejo> {
 	}
 	
 	def getComplejoDelEncargado(def encargadoId) {
-		def complejo
-		Encargado encargado = Encargado.get(encargadoId)
-		if(encargado) {
-			complejo = encargado.complejo
-		} else {
-			throw new EntityNotFoundException("Encargado", encargadoId)
-		}
+		def encargado = encargadoService.findEntityByIdAndValidate(encargadoId)
+		def complejo = encargado.complejo
 		return complejo
 	}
 	
