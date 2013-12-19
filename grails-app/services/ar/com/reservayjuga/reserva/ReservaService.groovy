@@ -61,11 +61,11 @@ class ReservaService extends GenericService<Reserva> {
 	protected def getReservasDelComplejo(Complejo complejo, def params) {
 		def max = Math.min(params.max ? params.int('max') : 10, 100)
 		def offset = Math.min(params.offset ? params.int('offset') : 0, 100)
-		def sortProperty = params.sort ? params.sort : "cancha"
+		def sortProperty = params.sort ? params.sort : "dia"
 
 		def criter = Reserva.createCriteria()
 			.add(Restrictions.eq("complejo", complejo))
-			.addOrder(Order.asc(sortProperty))
+			.addOrder(Order.desc(sortProperty))
 			.setFirstResult(offset)
 			.setMaxResults(max)
 			
