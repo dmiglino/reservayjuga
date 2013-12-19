@@ -58,4 +58,11 @@ class UtilsTests {
 		assertEquals 15, cadena.length()
 	}
 	
+	void testAddDate() {
+		Date date = new Date()
+		assertTrue Utils.addTime(date, Calendar.SECOND, 1) > date
+		assertTrue Utils.addTime(date, Calendar.SECOND, -1) < date
+		assertTrue Utils.addTime(date, Calendar.SECOND, 0) == date
+		assertFalse Utils.addTime(date, Calendar.SECOND, -1) == date
+	}
 }

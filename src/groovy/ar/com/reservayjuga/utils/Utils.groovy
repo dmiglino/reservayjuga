@@ -47,6 +47,13 @@ class Utils {
 		return cal.get(Calendar.DAY_OF_WEEK)
 	}
 	
+	static Date addTime(Date fecha, def unidad, def cantidad) {
+		Calendar cal = Calendar.getInstance()
+		cal.setTime(fecha)
+		cal.add(unidad, cantidad)
+		cal.getTime()
+	}
+	
 	static String getCadenaAlfanumericaAleatoria(int longitud){
 		String cadenaAleatoria = ""
 		long milis = Calendar.getInstance().getTimeInMillis()

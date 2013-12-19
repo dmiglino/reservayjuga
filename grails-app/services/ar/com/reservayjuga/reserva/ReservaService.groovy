@@ -212,6 +212,9 @@ class ReservaService extends GenericService<Reserva> {
 	 * @return reservas
 	 */
 	def getReservasConcretadasOSeniadasParaComplejoEnFecha(Complejo complejo, Date fecha) {
+		
+		fecha = Utils.addTime(fecha, Calendar.SECOND, -1)
+		
 		def criter = Reserva.createCriteria()
 			.add(Restrictions.eq("complejo", complejo))
 			.add(Restrictions.ge("dia", fecha))

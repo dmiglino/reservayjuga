@@ -263,11 +263,12 @@ class ComplejoServiceIntegrationTests extends GroovyTestCase {
 		Reserva reserva1 = new Reserva (horaInicio: "11:00", horaFin: "12:00", estado: ReservaEnum.CONCRETADA, tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: fecha, cancha: cancha, complejo: complejo, jugador: jugador)
 		Reserva reserva2 = new Reserva (horaInicio: "12:00", horaFin: "13:00", estado: ReservaEnum.CONCRETADA, tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: fecha, cancha: cancha, complejo: complejo, jugador: jugador)
 		Reserva reserva3 = new Reserva (horaInicio: "13:00", horaFin: "14:00", estado: ReservaEnum.CONCRETADA, tipoReserva:TipoReservaEnum.ONLINE, precioTotal:500, senia:50, dia: fecha+1, cancha: cancha, complejo: complejo, jugador: jugador)
+		
 		DBUtils.validateAndSave([reserva1,reserva2,reserva3])
-		
+
 		def resp = complejoService.getHorariosDisponiblesParaFecha("20-11-2013",complejo.id, reservaService)
-		
+		println resp
 		assertEquals 3, resp.horariosConfigurados.size()
-		assertEquals 2, resp.horariosOcupados.size() //1 q esta configurado y otro que no pero igual lo traigo		
+		assertEquals 2, resp.horariosOcupados.size() //1 horario q esta configurado y otro que no pero igual lo traigo		
 	}
 }
