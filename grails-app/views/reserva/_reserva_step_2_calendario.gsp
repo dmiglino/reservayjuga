@@ -44,7 +44,8 @@
 	
 	$('#reservaDateDiv').on('changeDate', function(ev) {
 		var d = new Date(Date.parse(ev.date));
-		var dateString =(d.getDate()+1)+"-"+(d.getMonth()+1)+"-"+ d.getFullYear();	
+		d.setDate(d.getDate() + 1);
+		var dateString =(d.getDate())+"-"+(d.getMonth()+1)+"-"+ d.getFullYear();
 		$('#reservaDateText').attr('value', dateString);
 		
 		searchHorariosParaFecha(dateString);

@@ -9,14 +9,16 @@ import org.apache.commons.validator.EmailValidator
  */
 class Utils {
 
-	static def isMail(String mail) {
-		if(!mail)
+	static def isMail(def mail) {
+		if(!mail || !(mail instanceof String))
 			return false
 		EmailValidator emailValidator = EmailValidator.getInstance()
 		emailValidator.isValid(mail)
 	}
 
-	static def onlyNumbers(String numbers) {
+	static def onlyNumbers(def numbers) {
+		if(numbers instanceof Integer)
+			return true
 		numbers ? numbers.isNumber() : false
 	}
 	
@@ -29,8 +31,8 @@ class Utils {
 		if(fechaSplit.size() == 3) {
 			Calendar cal = Calendar.getInstance()
 			cal.set(fechaSplit[2].toInteger(), fechaSplit[1].toInteger()-1, fechaSplit[0].toInteger(), 0, 0, 0)
-			Date fechaTemp = cal.getTime()
-			fecha = new Date(fechaTemp.getTime() - + TimeUnit.SECONDS.toMillis(1))
+			fecha = cal.getTime()
+			println "fecha :_: ${fecha}"
 		}
 		
 		return fecha
