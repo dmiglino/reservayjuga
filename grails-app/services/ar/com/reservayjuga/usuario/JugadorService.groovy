@@ -13,14 +13,30 @@ class JugadorService extends GenericService<Jugador> {
 
 	def actualizarDatosDelJugador(params) {
 		Jugador jugador = findEntityById(params.jugadorId)
+		jugador = setProperties(jugador, params)
+		DBUtils.validateAndSave(jugador)
+		println "Jugador ${jugador} actualizado correctamente."
+	}
+
+	def crearNuevoJugador(params) {
+		Jugador jugador = new Jugador()
+		jugador = setProperties(jugador, params)
+		jugador.username = params.mail
+		jugador.password = params.nombre + params.apellido + "123"
+		DBUtils.validateAndSave(jugador)
+		println "Jugador ${jugador} creado correctamente."
+	}
+	
+	def setProperties(jugador, params) {
 		jugador.nombre = params.nombre
 		jugador.apellido = params.apellido
 		jugador.telefono = params.telefono
 		jugador.mail = params.mail
 		jugador.sexo = params.sexo
-		DBUtils.validateAndSave(jugador)
+		jugador.fechaNacimiento = Utils.crearFechaByString(params.datePicker)
+		return jugador
 	}
-
+	
 	def findByEMailOrDni(def emaildni) {
 		Jugador jugador
 		if (Utils.isMail(emaildni)) {

@@ -248,6 +248,10 @@ class ReservaService extends GenericService<Reserva> {
 		jugadorService.actualizarDatosDelJugador(params)
 	}
 	
+	def crearNuevoJugador(params) {
+		jugadorService.crearNuevoJugador(params)
+	}
+	
 	def agregarDatosALaReserva(Reserva reserva, def params) {
 		if(reserva) {
 			def jugadorId = params.jugadorId

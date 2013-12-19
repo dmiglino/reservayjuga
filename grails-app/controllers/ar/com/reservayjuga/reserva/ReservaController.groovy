@@ -68,6 +68,15 @@ class ReservaController {
 		}
 	}
 	
+	def crearNuevoJugador ={
+		try {
+			reservaService.crearNuevoJugador(params)
+		} catch(InvalidEntityException e) {
+			// TODO mostrar error en pantalla
+			println "ERROR: ${e}"
+		}
+	}
+	
 	def agregarDatosALaReserva = {
 		Reserva reserva = session.data
 		reservaService.agregarDatosALaReserva(reserva, params)

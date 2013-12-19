@@ -10,6 +10,7 @@
 			<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">
 				<g:message code="reserva.jugador.emailodni.label" default="E-mail o DNI" />:
 			</label>
+			
 			<div class="col-xs-12 col-sm-3">
 				<g:textField name="emaildni" value="${reserva?.jugador}" class="col-xs-12 col-sm-12" id="emaildni" />
 				<div class="space-4"></div>
@@ -17,9 +18,7 @@
 			
 	    	<button class="btn btn-sm btn-primary" onclick="buscarJugador();return false;">
 	    		<i class="icon-search bigger-120"></i>
-	    
 	    	</button>
-	    	
 		</div>
 	
 		<div class="space-2"></div>
@@ -31,6 +30,11 @@
 		<div class="col-md-offset-3 col-md-9">
 			<g:submitToRemote controller="reserva" action="actualizarDatosDelJugador" 
 				value="${message(code: 'button.actualizar.jugador.label',default: 'Actualizar')}" 
+				update="[success:'datosJugadorDiv',failure:'error']" class="btn btn-bigger-120 btn-primary">
+			</g:submitToRemote>
+			
+			<g:submitToRemote controller="reserva" action="crearNuevoJugador" 
+				value="${message(code: 'button.crear.jugador.label',default: 'Crear')}" 
 				update="[success:'datosJugadorDiv',failure:'error']" class="btn btn-bigger-120 btn-danger">
 			</g:submitToRemote>
 			&nbsp; &nbsp; &nbsp;

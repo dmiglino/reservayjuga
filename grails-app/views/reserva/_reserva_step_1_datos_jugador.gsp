@@ -70,7 +70,7 @@
 	
 			<div class="col-xs-12 col-sm-3">
 				<div class="input-group">
-					<g:field class="form-control date-picker" id="id-date-picker-1" name="date-picker" type="text" data-date-format="dd-mm-yyyy" value="${jugador?.getFechaNacimientoString()}" /> 
+					<g:field class="form-control date-picker" id="id-date-picker-1" name="datePicker" type="text" data-date-format="dd-mm-yyyy" value="${jugador?.getFechaNacimientoString()}" /> 
 	<%--				<g:datePicker id="id-date-picker-1" name="resJugFechaNac" value="${jugador?.fechaNacimiento}" precision="day"></g:datePicker >--%>
 					<span class="input-group-addon"> 
 						<i class="icon-calendar bigger-110"></i>
