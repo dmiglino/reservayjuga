@@ -18,7 +18,7 @@
 			 />
 	</g:if>
 	<g:else>
-		No existen barrios para esta localidad
+		No existen superficies disponibles
 	</g:else>
 <%--</div>--%>
 

@@ -43,8 +43,8 @@
 		function setCanchaToEdit() {
 			$('#modal-form').modal('show');
 			var label = document.getElementById("superficieLabel");
-			label.setAttribute("class", "col-sm-6 control-label");
+			label.setAttribute("class", "col-sm-3 control-label");
 			var select = document.getElementById("cancha.superficie");
-			select.setAttribute("class", "col-xs-4 col-sm-6-");
+			select.setAttribute("class", "width-50");
 		}
 	</script>
