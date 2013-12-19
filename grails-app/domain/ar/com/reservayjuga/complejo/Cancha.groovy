@@ -1,6 +1,8 @@
 package ar.com.reservayjuga.complejo
 
-class Cancha {
+import ar.com.reservayjuga.entity.RyJEntity
+
+class Cancha extends RyJEntity {
 	
 	String nombre
 	DeporteEnum deporte

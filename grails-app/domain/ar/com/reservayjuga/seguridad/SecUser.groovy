@@ -1,6 +1,8 @@
 package ar.com.reservayjuga.seguridad
 
-abstract class SecUser {
+import ar.com.reservayjuga.entity.RyJEntity
+
+abstract class SecUser extends RyJEntity {
 
 	transient springSecurityService
 

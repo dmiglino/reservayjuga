@@ -1,9 +1,10 @@
 package ar.com.reservayjuga.complejo
 
+import ar.com.reservayjuga.entity.RyJEntity
 import ar.com.reservayjuga.reserva.Reserva
-import ar.com.reservayjuga.ubicacion.Ubicacion;
+import ar.com.reservayjuga.ubicacion.Ubicacion
 
-class Complejo {
+class Complejo extends RyJEntity {
 
 	String nombre
 	String webSite

@@ -2,11 +2,10 @@ package ar.com.reservayjuga.reserva
 
 import ar.com.reservayjuga.complejo.Cancha
 import ar.com.reservayjuga.complejo.Complejo
-import ar.com.reservayjuga.states.ReservaPendienteState
-import ar.com.reservayjuga.states.ReservaState
+import ar.com.reservayjuga.entity.RyJEntity
 import ar.com.reservayjuga.usuario.Jugador
 
-class Reserva {
+class Reserva extends RyJEntity {
 
 	Complejo complejo
 	Jugador jugador

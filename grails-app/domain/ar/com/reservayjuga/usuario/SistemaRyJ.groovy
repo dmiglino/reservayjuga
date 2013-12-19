@@ -1,6 +1,6 @@
 package ar.com.reservayjuga.usuario
 
-import ar.com.reservayjuga.complejo.Complejo;
+import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.seguridad.SecUser
 
 
