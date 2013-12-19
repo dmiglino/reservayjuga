@@ -6,8 +6,9 @@
 		<h3 class="accordion-header">Informacion de la cancha</h3>
 		<div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label" for="form-field-username"><g:message
-						code="common.nombre.label" default="Nombre" /></label>
+				<label class="col-sm-2 control-label" for="form-field-username">
+					<g:message code="common.nombre.label" default="Nombre" />
+				</label>
 				<div>
 					<g:textField name="cancha.nombre" value="${cancha?.nombre}"
 						class="col-sm-3" id="form-field-username" />
@@ -17,8 +18,9 @@
 			<div class="space-4"></div>
 
 			<div class="form-group">
-				<label class="col-sm-2 control-label" for="form-field-select-3"><g:message
-						code="common.techado.label" default="Techado" /></label>
+				<label class="col-sm-2 control-label" for="form-field-select-3">
+					<g:message code="common.techado.label" default="Techado" />
+				</label>
 				<div>
 					<g:select id="cubierta" name="cancha.cubierta"
 						from="${["true","false"]}" noSelection="['':'']"
@@ -29,8 +31,9 @@
 			<div class="space-4"></div>
 
 			<div class="form-group">
-				<label class="col-sm-2 control-label" for="form-field-select-3"><g:message
-						code="common.deporte.label" default="Deporte" /></label>
+				<label class="col-sm-2 control-label" for="form-field-select-3">
+					<g:message code="common.deporte.label" default="Deporte" />
+				</label>
 				<g:select id="deporte" name="cancha.deporte"
 					from="${DeporteEnum.values()}" noSelection="['':'']"
 					class="width-20"
@@ -54,9 +57,9 @@
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-2 control-label" for="form-field-select-3"><g:message
-						code="common.cantidad.jugadores.label"
-						default="Cantidad de Jugadores" /></label>
+				<label class="col-sm-2 control-label" for="form-field-select-3">
+					<g:message code="common.cantidad.jugadores.label" default="Cantidad de Jugadores" />
+				</label>
 				<div>
 					<g:textField name="cancha.cantidad" value="" class="input-mini"
 						id="spinner1" />

@@ -6,7 +6,7 @@
 		<label class="col-sm-2 control-label" for="superficie" id="superficieLabel">
 			<g:message code="enum.superficie.label" default="Superficie" />
 		</label>
-		<g:select id="cancha.superficie" 
+		<g:select id="cancha.superficie"
 			name="cancha.superficie" 
 			from="${superficiesDisponibles}"
 			required="" 
@@ -14,6 +14,7 @@
 			class="width-20 many-to-one"
 			optionValue="${ {superficie -> g.message(code:superficie.textCode)} }"
 			value="${cancha?.superficie}" 
+			
 			 />
 	</g:if>
 	<g:else>

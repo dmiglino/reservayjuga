@@ -17,34 +17,44 @@
 <%--                        <g:render template="form_cancha" model="['edit':true]" />--%>
                                      	
 							<div class="form-group">
-								<label class="col-sm-6 control-label" for="form-field-username"><g:message code="common.nombre.label" default="Nombre" /></label>
+								<label class="col-sm-3 no-padding-right control-label" for="form-field-username">
+									<g:message code="common.nombre.label" default="Nombre" />
+								</label>
 								<div>
-									<g:textField name="cancha.nombre" value="${cancha?.nombre}" class="col-sm-6" id="nombreCanchaEdit" />
+									<g:textField name="cancha.nombre" value="${cancha?.nombre}" 
+											class="col-sm-6" id="nombreCanchaEdit" />
 								</div>
 							</div>
 
 							<div class="space-4"></div>
+							<br /><br />
                                                  
                             <div class="form-group">
-								<label class="col-sm-6 control-label" for="form-field-select-3"><g:message code="common.techado.label" default="Techado" /></label>
+								<label class="col-sm-3 no-padding-right control-label" for="form-field-select-3">
+									<g:message code="common.techado.label" default="Techado" />
+								</label>
 								<div>
 									<g:select id="cubiertaCanchaEdit" 
 										name="cancha.cubierta"
 										from="${["true","false"]}"
 										noSelection="['':'']"
-										class="col-xs-4 col-sm-6-"
+										class="width-50"
 										value="${cancha?.cubierta}"  />
 								</div>
 							</div>
 							
+							<div class="space-4"></div>
+							
 							<div class="form-group">
-								<label class="col-sm-6 control-label" for="form-field-select-3"><g:message code="common.deporte.label" default="Deporte" /></label>
+								<label class="col-sm-3 no-padding-right control-label" for="form-field-select-3">
+									<g:message code="common.deporte.label" default="Deporte" />
+								</label>
 								<div>
 									<g:select id="deporteCanchaEdit" 
 										name="cancha.deporte"
 										from="${DeporteEnum.values()}"
 										noSelection="['':'']"
-										class="col-xs-4 col-sm-6-"
+										class="width-50"
 										optionValue="${ {deporte -> g.message(code:deporte.textCode)} }"
 										value="${cancha?.deporte}" 
 										onchange="${remoteFunction (
@@ -58,17 +68,24 @@
 							</div>
 							
 							<div class="space-4"></div>
-					
-							<div id="superficiesDiv" class="form-group">
+							
+							
+							<div id="superficiesDiv" class="form-group  no-padding-right">
 								<g:if test="${cancha?.deporte}">
-									<g:include controller="cancha" action="getSuperficies" params="[id:cancha?.deporte, cancha:cancha]" />
+									<g:include controller="cancha" action="getSuperficies" 
+												params="[id:cancha?.deporte, cancha:cancha]"/>
 								</g:if>
 							</div>
 							
+							
+							
 							<div class="space-4"></div>
+							<br />
 							
 							<div class="form-group">
-								<label class="col-sm-6 control-label" for="form-field-select-3"><g:message code="common.cantidad.jugadores.label" default="Cantidad de Jugadores" /></label>
+								<label class="col-sm-4 control-label" for="form-field-select-3">
+									<g:message code="common.cantidad.jugadores.label" default="Cantidad de Jugadores" />
+								</label>
 							    <div>
 									<g:textField name="cancha.cantidad" value="${cancha?.cantidadJugadores}" class="input-mini" id="spinner1" onchange="setCantJugValue();"/>
 									<g:hiddenField name="cancha.cantidadJugadores" id="cantJugValue" value="${cancha?.cantidadJugadores}" />
@@ -85,9 +102,8 @@
 						<g:message code="common.cancelar.label" default="Cancelar" />
 					</button>
 
-					<g:submitToRemote class="btn btn-info" update="[success:'tabla_canchas',failure:'error']" after="closeModal();"
+					<g:submitToRemote class="btn btn-sm btn-primary" update="[success:'tabla_canchas',failure:'error']" after="closeModal();"
 						url="[controller:'cancha', action:'editarCancha']" value="${message(code: 'button.grabar.cancha.label',default: 'Grabar Cancha')}" >
-						<i class="icon-ok"></i>
 					</g:submitToRemote>
 				</div>
 			</div>
@@ -103,8 +119,8 @@
 	
 	function mantenerCssDeSuperficie() {
 		var label = document.getElementById("superficieLabel");
-		label.setAttribute("class", "col-sm-6 control-label");
+		label.setAttribute("class", "col-sm-3 control-label");
 		var select = document.getElementById("cancha.superficie");
-		select.setAttribute("class", "col-xs-4 col-sm-6-");
+		select.setAttribute("class", "width-50");
 	}
 </script>
