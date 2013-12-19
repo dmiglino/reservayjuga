@@ -77,17 +77,14 @@
 								</g:if>
 							</div>
 							
-							
-							
 							<div class="space-4"></div>
-							<br />
 							
 							<div class="form-group">
 								<label class="col-sm-4 control-label" for="form-field-select-3">
 									<g:message code="common.cantidad.jugadores.label" default="Cantidad de Jugadores" />
 								</label>
 							    <div>
-									<g:textField name="cancha.cantidad" value="${cancha?.cantidadJugadores}" class="input-mini" id="spinner1" onchange="setCantJugValue();"/>
+									<g:textField name="cancha.cantidad" value="${cancha?.cantidadJugadores}" class="input-mini" id="spinner1"/>
 									<g:hiddenField name="cancha.cantidadJugadores" id="cantJugValue" value="${cancha?.cantidadJugadores}" />
 							    </div>
 							</div>
@@ -103,7 +100,7 @@
 					</button>
 
 					<g:submitToRemote class="btn btn-sm btn-primary" update="[success:'tabla_canchas',failure:'error']" after="closeModal();"
-						url="[controller:'cancha', action:'editarCancha']" value="${message(code: 'button.grabar.cancha.label',default: 'Grabar Cancha')}" >
+						url="[controller:'cancha', action:'editarCancha']" value="${message(code: 'button.grabar.cancha.label',default: 'Editar Cancha')}" >
 					</g:submitToRemote>
 				</div>
 			</div>
@@ -111,7 +108,15 @@
 	</div>
 </g:formRemote>
 
+<script src="../assets/js/fuelux/fuelux.spinner.min.js"></script>
 <script type="text/javascript">
+
+	$('#spinner1').ace_spinner({value:$('#cantJugValue').val(),min:0,max:11,step:1, btn_up_class:'btn-info' , btn_down_class:'btn-info'})
+	.on('change', function(){
+		document.getElementById('spinner1').value = this.value;	//alert(this.value)
+	});
+
+
 	function setCantJugValue() {
 		var spinnerValue = document.getElementById('spinner1').value;
 		document.getElementById('cantJugValue').value = spinnerValue;
@@ -123,4 +128,5 @@
 		var select = document.getElementById("cancha.superficie");
 		select.setAttribute("class", "width-50");
 	}
+
 </script>
