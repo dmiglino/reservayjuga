@@ -31,7 +31,6 @@
 						<td>${reserva?.tipoReserva}</td>
 						<td>$ ${reserva?.precioTotal}</td>
 						<td>$ ${reserva?.senia}</td>
-<%--						<td>$ ${reserva?.precioTotal - reserva?.senia}</td>--%>
 						
 						<td>
 							<g:if test="${reserva?.senia == reserva?.precioTotal }">
@@ -58,9 +57,9 @@
 									<i class="icon-ban-circle bigger-120"></i>
 								</g:remoteLink>
 								
-								<button class="btn btn-xs btn-info" onclick="selectToEdit('${reserva?.id}');">
+								<a class="btn btn-xs btn-info" href="${createLink(action: 'reservarCancha', id: reserva?.id)}" id="back_button" >
 									<i class="icon-edit bigger-120"></i>
-								</button>
+								</a>
 								
 								<g:remoteLink controller="reserva" title="Eliminar reserva" action="deleteReserva" id="${reserva?.id}" update="[success:'tabla_reservas',failure:'error']" class="btn btn-xs btn-danger">
 									<i class="icon-trash bigger-120"></i>
@@ -84,13 +83,15 @@
 			function selectToEdit(reservaId) {
 				var JSONObject = new Object;
 			    JSONObject.reservaId = reservaId;
-			    JSONObject.testes = "tests";
 			    JSONstring = JSON.stringify(JSONObject);
 			    
 			    $.ajax({
-			        url:   "${createLink(controller:'reserva', action:'selectToEdit')}",
+			        url:   "${createLink(controller:'reserva', action:'reservarCancha')}",
 			        data:  JSONObject,
 			        type:  'post',
+			        success: function(data) {
+						alert(data);
+					},
 			        error: function(request, status, error) {
 			            alert("Ha ocurrido un error: "+error);
 			        }

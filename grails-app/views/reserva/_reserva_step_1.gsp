@@ -12,7 +12,7 @@
 			</label>
 			
 			<div class="col-xs-12 col-sm-3">
-				<g:textField name="emaildni" value="${reserva?.jugador}" class="col-xs-12 col-sm-12" id="emaildni" />
+				<g:textField name="emaildni" value="${reserva?.jugador?.mail}" class="col-xs-12 col-sm-12" id="emaildni" />
 				<div class="space-4"></div>
 			</div>
 			

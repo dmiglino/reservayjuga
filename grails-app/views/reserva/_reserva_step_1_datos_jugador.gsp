@@ -6,7 +6,7 @@
 	
 		<div class="form-group">
 			<div id="jugadorIdDiv" >
-				<g:hiddenField name="jugadorId" value="${jugador?.id}" />
+				<g:hiddenField name="jugadorId" value="${reserva?.jugador?.id}" />
 			</div>
 			
 			<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name">
@@ -15,7 +15,7 @@
 	
 			<div class="col-xs-12 col-sm-3">
 				<div class="clearfix">
-					<g:textField name="nombre" value="${jugador?.nombre}"
+					<g:textField name="nombre" value="${reserva?.jugador?.nombre}"
 						class="col-xs-12 col-sm-12" id="form-field-username" />
 				</div>
 			</div>
@@ -26,7 +26,7 @@
 	
 			<div class="col-xs-12 col-sm-3">
 				<div class="clearfix">
-					<g:textField name="apellido" value="${jugador?.apellido}"
+					<g:textField name="apellido" value="${reserva?.jugador?.apellido}"
 						class="col-xs-12 col-sm-12" id="form-field-apellido" />
 				</div>
 			</div>
@@ -42,7 +42,7 @@
 	
 			<div class="col-xs-12 col-sm-3">
 				<div class="clearfix">
-					<g:textField name="mail" value="${jugador?.mail}"
+					<g:textField name="mail" value="${reserva?.jugador?.mail}"
 						class="col-xs-12 col-sm-12" id="form-field-mail" />
 				</div>
 			</div>
@@ -54,7 +54,7 @@
 			<div class="col-xs-12 col-sm-3">
 				<div class="input-group">
 					<span class="input-group-addon"> <i class="icon-phone"></i> </span> 
-					<g:textField name="telefono" value="${jugador?.telefono}"
+					<g:textField name="telefono" value="${reserva?.jugador?.telefono}"
 						class="col-xs-12 col-sm-12" id="form-field-telefono" />
 				</div>
 			</div>
@@ -71,8 +71,8 @@
 	
 			<div class="col-xs-12 col-sm-3">
 				<div class="input-group">
-					<g:field class="form-control date-picker" id="id-date-picker-1" name="datePicker" type="text" data-date-format="dd-mm-yyyy" value="${jugador?.getFechaNacimientoString()}" /> 
-	<%--				<g:datePicker id="id-date-picker-1" name="resJugFechaNac" value="${jugador?.fechaNacimiento}" precision="day"></g:datePicker >--%>
+					<g:field class="form-control date-picker" id="id-date-picker-1" name="datePicker" type="text" data-date-format="dd-mm-yyyy" value="${reserva?.jugador?.getFechaNacimientoString()}" /> 
+	<%--				<g:datePicker id="id-date-picker-1" name="resJugFechaNac" value="${reserva?.jugador?.fechaNacimiento}" precision="day"></g:datePicker >--%>
 					<span class="input-group-addon"> 
 						<i class="icon-calendar bigger-110"></i>
 					</span>
@@ -87,7 +87,7 @@
 				<div>
 					<label class="blue"> 
 	<%--					<input name="gender" value="1" type="radio" class="ace" /> --%>
-						<g:radio name="sexo" value="${jugador?.sexo}" class="ace" checked="${jugador?.isHombre()}" />
+						<g:radio name="sexo" value="${reserva?.jugador?.sexo}" class="ace" checked="${reserva?.jugador?.isHombre()}" />
 						<span class="lbl"> <g:message code="common.hombre.label" default="Hombre" /></span>
 					</label>
 				</div>
@@ -95,7 +95,7 @@
 				<div>
 					<label class="blue"> 
 	<%--					<input name="gender" value="2" type="radio" class="ace" />--%>
-						<g:radio name="sexo" value="${jugador?.sexo}" class="ace"  checked="${jugador?.isMujer()}" />
+						<g:radio name="sexo" value="${reserva?.jugador?.sexo}" class="ace"  checked="${reserva?.jugador?.isMujer()}" />
 						<span class="lbl"> <g:message code="common.mujer.label" default="Mujer" /></span>
 					</label>
 				</div>

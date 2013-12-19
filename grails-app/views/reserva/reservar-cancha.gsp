@@ -5,8 +5,8 @@
 		<meta name="layout" content="main"/>
 		<title><g:message code="reserva.titulo.label" default="Reservar Cancha" /></title>
 
-		<link rel="stylesheet" href="../assets/css/select2.css" />
-    	<link rel="stylesheet" href="../assets/css/reservar-cancha.css" />
+		<link rel="stylesheet" href="/ReservaYJuga/assets/css/reservar-cancha.css" />
+		<link rel="stylesheet" href="/ReservaYJuga/assets/css/select2.css" />
 	</head>
 
 	<body>
@@ -121,15 +121,15 @@
 
 		<!-- page specific plugin scripts -->
 
-		<script src="../assets/js/fuelux/fuelux.wizard.min.js"></script>
-		<script src="../assets/js/jquery.validate.min.js"></script>
-		<script src="../assets/js/additional-methods.min.js"></script>
-		<script src="../assets/js/bootbox.min.js"></script>
-		<script src="../assets/js/select2.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/fuelux/fuelux.wizard.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/jquery.validate.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/additional-methods.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/bootbox.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/select2.min.js"></script>
 		
 		<!-- ace scripts -->
 
-		<script src="../assets/js/ace.min.js"></script>
+		<script src="/ReservaYJuga/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 

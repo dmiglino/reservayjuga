@@ -43,21 +43,26 @@ class ReservaController {
 	
 	def reservarCancha = {
 		Complejo complejo = getComplejoDelEngargado()
-		Reserva reserva = reservaService.crearReservaPresencial(complejo)
+		Reserva reserva
+		if(params.id) {
+			reserva = reservaService.findEntityByIdAndValidate(params.id)
+		} else {
+			reserva = reservaService.crearReservaPresencial(complejo)
+		}
 		session.data = reserva
 		render(view: "reservar-cancha", model: [reserva:reserva, complejoId:complejo.id])
 	}
 	
 	def buscarJugador = {
-		Jugador jugador
+		Reserva reserva
 		try {
-			jugador = reservaService.buscarJugador(params.emaildni)
-			Reserva reserva = session.data
+			Jugador jugador = reservaService.buscarJugador(params.emaildni)
+			reserva = session.data
 			reserva.jugador = jugador
 		} catch(EntityNotFoundException e) {
 			println "ERROR no se encontro ningun jugador"
 		} finally {
-			render(template: "reserva_step_1_datos_jugador", model:[jugador:jugador])
+			render(template: "reserva_step_1_datos_jugador", model:[reserva:reserva])
 		}
 	}
 	
@@ -131,15 +136,6 @@ class ReservaController {
 	def selectJugadorToShow = {
 		Reserva reserva = reservaService.findEntityById(params.id)
 		render(template:"modal-box-jugador", model:[jugador:reserva.jugador])
-	}
-	
-	/**
-	 * Busca la reserva segun el id para mostrar en el modal panel
-	 */
-	def selectToEdit = {
-		Reserva reservaToEdit = reservaService.findEntityByIdAndValidate(params.reservaId)
-		session.data = reservaToEdit
-		render(view: "reservar-cancha", model: [reserva:reservaToEdit, complejoId:reservaToEdit.complejo.id])
 	}
 	
 	def searchHorariosParaFecha = {
