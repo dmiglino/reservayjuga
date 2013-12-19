@@ -32,7 +32,6 @@ class Utils {
 			Calendar cal = Calendar.getInstance()
 			cal.set(fechaSplit[2].toInteger(), fechaSplit[1].toInteger()-1, fechaSplit[0].toInteger(), 0, 0, 0)
 			fecha = cal.getTime()
-			println "fecha :_: ${fecha}"
 		}
 		
 		return fecha

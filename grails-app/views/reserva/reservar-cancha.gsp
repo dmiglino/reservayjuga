@@ -82,12 +82,17 @@
 												<hr />
 												
 												<div class="row-fluid wizard-actions">
-													<button class="btn btn-prev">
+													<a class="btn btn-primary" href="${createLink(action: 'administrarReservas')}" id="back_button" style="visibility: hidden;">
+														<g:message code="button.volver.label" default="Volver" />
+														<i class="icon-arrow-left icon-on-right"></i>
+													</a>
+													
+													<button class="btn btn-prev" id="step_prev_button">
 														<i class="icon-arrow-left"></i>
 														<g:message code="button.anterior.label" default="Anterior" />
 													</button>
 	
-													<button class="btn btn-success btn-next" data-last="Finish" id="step_button" onclick="agregarDatosALaReserva();">
+													<button class="btn btn-success btn-next" data-last="Finish" id="step_next_button" onclick="agregarDatosALaReserva();">
 														<g:message code="button.siguiente.label" default="Siguiente" />
 														<i class="icon-arrow-right icon-on-right"></i>
 													</button>
@@ -155,10 +160,16 @@
 				        data:  JSONObject,
 				        type:  'post',
 				        success: function(data) {
-						   	$("#step_button").visible = false;
+<%--						   	alert("success");--%>
+							document.getElementById("step_prev_button").style.visibility="hidden";
+							document.getElementById("step_next_button").style.visibility="hidden";
+							document.getElementById("back_button").style.visibility="visible";
 						},
 				        error: function(request, status, error) {
-				            alert(error);
+<%--				            alert(error);--%>
+							document.getElementById("step_prev_button").style.visibility="hidden";
+						   	document.getElementById("step_next_button").style.visibility="hidden";
+						   	document.getElementById("back_button").style.visibility="visible";
 				        }
 				    });
 		            bootbox.dialog({
@@ -346,7 +357,7 @@
 			            alert(error);
 			        }
 			    });
-							
+	
 			}
 		</script>
 	</body>
