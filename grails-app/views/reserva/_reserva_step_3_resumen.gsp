@@ -115,7 +115,7 @@
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-warning" style="float: left; margin-left: 11px; padding-right: 8px;">
+		<button class="btn btn-warning" style="float: left; margin-left: 11px; padding-right: 8px;" onClick="window.print()">
 			<i class="icon-print"></i>
 			<g:message code="button.imprimir.label" default="Imprimir" />
 		</button>
