@@ -210,9 +210,9 @@ class BootStrap {
 	}
 
 	def crearComplejos() {
-		poli = new Complejo(nombre: "Poli",webSite: "www.poli.com",telefono1: "4111-2222",telefono2: "15-1324-3546",mail: "poli@poli.com",informacionExtra: "soy el poli",ubicacion: u1,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom,fe])
-		terraza = new Complejo(nombre: "Terraza",webSite: "www.terraza.com",telefono1: "43334444",telefono2: "15-1234-4321",mail: "terraza@terraza.com",informacionExtra: "soy la terraza",ubicacion: u1,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom,fe])
-		muni = new Complejo(nombre: "Muni",webSite: "www.muni.com",telefono1: "45556666",telefono2: "15-1928-3746",mail: "muni@muni.com",informacionExtra: "soy el muni",ubicacion: u2,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom,fe])
+		poli = new Complejo(nombre: "Poli",webSite: "www.poli.com",telefono1: "4111-2222",telefono2: "15-1324-3546",porcentajeSenia:"30",mail: "poli@poli.com",informacionExtra: "soy el poli",ubicacion: u1,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom,fe])
+		terraza = new Complejo(nombre: "Terraza",webSite: "www.terraza.com",telefono1: "43334444",telefono2: "15-1234-4321",porcentajeSenia:"20",mail: "terraza@terraza.com",informacionExtra: "soy la terraza",ubicacion: u1,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom,fe])
+		muni = new Complejo(nombre: "Muni",webSite: "www.muni.com",telefono1: "45556666",telefono2: "15-1928-3746",mail: "muni@muni.com",porcentajeSenia:"40",informacionExtra: "soy el muni",ubicacion: u2,servicios:serv1,horarios:[lu1,ma1,mie1,ju1,vi1,lu2,ma2,mie2,ju2,vi2,sa,dom,fe])
 		DBUtils.validateAndSave([poli,terraza,muni])
 	}
 	
