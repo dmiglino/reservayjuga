@@ -22,7 +22,7 @@ class JugadorService extends GenericService<Jugador> {
 		Jugador jugador = new Jugador()
 		jugador = setProperties(jugador, params)
 		jugador.username = params.mail
-		jugador.password = params.nombre + params.apellido + "123"
+		jugador.password = Utils.getCadenaAlfanumericaAleatoria(15)
 		DBUtils.validateAndSave(jugador)
 		println "Jugador ${jugador} creado correctamente."
 	}

@@ -43,4 +43,19 @@ class UtilsTests {
 		assertFalse Utils.isMail("diegomail")
 		assertFalse Utils.isMail(123123)
 	}
+	
+	void testGetCadenaAlfanumericaAleatoria() {
+		def cadena = Utils.getCadenaAlfanumericaAleatoria(5)
+		assertNotNull cadena
+		assertEquals 5, cadena.length()
+		
+		cadena = Utils.getCadenaAlfanumericaAleatoria(10)
+		assertNotNull cadena
+		assertEquals 10, cadena.length()
+		
+		cadena = Utils.getCadenaAlfanumericaAleatoria(15)
+		assertNotNull cadena
+		assertEquals 15, cadena.length()
+	}
+	
 }
