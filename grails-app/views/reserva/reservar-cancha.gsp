@@ -161,28 +161,34 @@
 				        type:  'post',
 				        success: function(data) {
 <%--						   	alert("success");--%>
-							document.getElementById("step_prev_button").style.visibility="hidden";
-							document.getElementById("step_next_button").style.visibility="hidden";
-							document.getElementById("back_button").style.visibility="visible";
+<%--							document.getElementById("step_prev_button").style.visibility="hidden";--%>
+<%--							document.getElementById("step_next_button").style.visibility="hidden";--%>
+<%--							document.getElementById("back_button").style.visibility="visible";--%>
 						},
 				        error: function(request, status, error) {
 <%--				            alert(error);--%>
-							document.getElementById("step_prev_button").style.visibility="hidden";
-						   	document.getElementById("step_next_button").style.visibility="hidden";
-						   	document.getElementById("back_button").style.visibility="visible";
+<%--							document.getElementById("step_prev_button").style.visibility="hidden";--%>
+<%--						   	document.getElementById("step_next_button").style.visibility="hidden";--%>
+<%--						   	document.getElementById("back_button").style.visibility="visible";--%>
 				        }
 				    });
+				    
 		            bootbox.dialog({
 		                message: "Felicitaciones! Su reserva ha sido realizada.",
 		                buttons: {
 		                    "success": {
 		                        "label": "OK",
-		                        "className": "btn-sm btn-primary"
+		                        "className": "btn-sm btn-primary",
+		                        	callback: function() {
+		                        		document.location.href= "${createLink(action: 'administrarReservas')}";
+		                              }
 		                    }
 		                }
 		            });
+
 		        }).on('stepclick', function(e) {
 		            //return false;//prevent clicking on steps
+		        	
 		        });
 
 
