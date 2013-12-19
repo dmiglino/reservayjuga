@@ -5,9 +5,10 @@
 		</h3>
 	
 		<div class="form-group">
-		
-			<g:hiddenField name="jugadorId" id="jugadorId" value="${jugador?.id}" />
-		
+			<div id="jugadorIdDiv" >
+				<g:hiddenField name="jugadorId" value="${jugador?.id}" />
+			</div>
+			
 			<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name">
 				<g:message code="common.nombre.label" default="Nombre" />:
 			</label>

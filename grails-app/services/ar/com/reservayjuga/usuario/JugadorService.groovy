@@ -16,6 +16,7 @@ class JugadorService extends GenericService<Jugador> {
 		jugador = setProperties(jugador, params)
 		DBUtils.validateAndSave(jugador)
 		println "Jugador ${jugador} actualizado correctamente."
+		return jugador
 	}
 
 	def crearNuevoJugador(params) {
@@ -25,6 +26,7 @@ class JugadorService extends GenericService<Jugador> {
 		jugador.password = Utils.getCadenaAlfanumericaAleatoria(15)
 		DBUtils.validateAndSave(jugador)
 		println "Jugador ${jugador} creado correctamente."
+		return jugador
 	}
 	
 	def setProperties(jugador, params) {

@@ -52,6 +52,8 @@ class ReservaController {
 		Jugador jugador
 		try {
 			jugador = reservaService.buscarJugador(params.emaildni)
+			Reserva reserva = session.data
+			reserva.jugador = jugador
 		} catch(EntityNotFoundException e) {
 			println "ERROR no se encontro ningun jugador"
 		} finally {
@@ -69,11 +71,16 @@ class ReservaController {
 	}
 	
 	def crearNuevoJugador ={
+		Jugador jugador
 		try {
-			reservaService.crearNuevoJugador(params)
+			jugador = reservaService.crearNuevoJugador(params)
+			Reserva reserva = session.data
+			reserva.jugador = jugador
 		} catch(InvalidEntityException e) {
 			// TODO mostrar error en pantalla
 			println "ERROR: ${e}"
+		} finally {
+			[jugador:jugador]
 		}
 	}
 	

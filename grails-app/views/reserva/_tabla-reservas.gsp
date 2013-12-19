@@ -82,7 +82,6 @@
 	<script type="text/javascript">
 
 			function selectToEdit(reservaId) {
-				alert(reservaId);
 				var JSONObject = new Object;
 			    JSONObject.reservaId = reservaId;
 			    JSONObject.testes = "tests";

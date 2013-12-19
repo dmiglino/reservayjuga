@@ -30,12 +30,12 @@
 		<div class="col-md-offset-3 col-md-9">
 			<g:submitToRemote controller="reserva" action="actualizarDatosDelJugador" 
 				value="${message(code: 'button.actualizar.jugador.label',default: 'Actualizar')}" 
-				update="[success:'datosJugadorDiv',failure:'error']" class="btn btn-bigger-120 btn-primary">
+				update="[success:'jugadorIdDiv',failure:'error']" class="btn btn-bigger-120 btn-primary">
 			</g:submitToRemote>
 			
 			<g:submitToRemote controller="reserva" action="crearNuevoJugador" 
 				value="${message(code: 'button.crear.jugador.label',default: 'Crear')}" 
-				update="[success:'datosJugadorDiv',failure:'error']" class="btn btn-bigger-120 btn-danger">
+				update="[success:'jugadorIdDiv',failure:'error']" class="btn btn-bigger-120 btn-danger">
 			</g:submitToRemote>
 			&nbsp; &nbsp; &nbsp;
 		</div>
