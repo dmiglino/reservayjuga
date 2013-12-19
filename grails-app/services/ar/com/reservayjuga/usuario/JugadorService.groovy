@@ -1,8 +1,8 @@
 package ar.com.reservayjuga.usuario
 
-import ar.com.reservayjuga.common.GenericService;
-import ar.com.reservayjuga.complejo.Cancha;
-import ar.com.reservayjuga.utils.DBUtils;
+import ar.com.reservayjuga.common.GenericService
+import ar.com.reservayjuga.utils.DBUtils
+import ar.com.reservayjuga.utils.Utils
 
 class JugadorService extends GenericService<Jugador> {
 
@@ -21,4 +21,15 @@ class JugadorService extends GenericService<Jugador> {
 		DBUtils.validateAndSave(jugador)
 	}
 
+	def findByEMailOrDni(def emaildni) {
+		Jugador jugador
+		if (Utils.isMail(emaildni)) {
+			jugador = Jugador.findByMail(emaildni)
+		} else if(Utils.onlyNumbers(emaildni)) {
+			jugador = Jugador.findByDni(emaildni)
+		} else {
+			println "ERROR tipo de dato del parametro"
+		}
+		return jugador
+	}
 }

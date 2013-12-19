@@ -49,18 +49,14 @@ class ReservaController {
 	}
 	
 	def buscarJugador = {
-		def emailODni = params.emaildni
-		List jugadores = Jugador.list()
 		Jugador jugador
-		
-		if (Utils.isMail(emailODni)) {
-			jugador = jugadores.find { it.mail.equals(emailODni) } // TODO sacar el hardcodeo
-		} else if(Utils.onlyNumbers(emailODni)) {
-			jugador = jugadores.find { it.dni.equals(emailODni) } // TODO sacar el hardcodeo
-		} else {
-			println "ERROR tipo de dato del parametro"
+		try {
+			jugador = reservaService.buscarJugador(params.emaildni)
+		} catch(EntityNotFoundException e) {
+			println "ERROR no se encontro ningun jugador"
+		} finally {
+			render(template: "reserva_step_1_datos_jugador", model:[jugador:jugador])
 		}
-		render(template: "reserva_step_1_datos_jugador", model:[jugador:jugador])
 	}
 	
 	def actualizarDatosDelJugador = {
@@ -221,5 +217,6 @@ class ReservaController {
 	def generarReserva = {
 		Reserva reserva = session.data
 		reservaService.generarReserva(reserva, params)
+		[reserva:reserva] as JSON
 	}
 }

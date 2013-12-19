@@ -11,6 +11,7 @@ import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.ComplejoService
 import ar.com.reservayjuga.exception.EntityNotFoundException
 import ar.com.reservayjuga.exception.InvalidReservaStatusException
+import ar.com.reservayjuga.usuario.Jugador
 import ar.com.reservayjuga.usuario.JugadorService
 import ar.com.reservayjuga.utils.DBUtils
 import ar.com.reservayjuga.utils.Utils
@@ -131,6 +132,19 @@ class ReservaService extends GenericService<Reserva> {
 	void eliminarReservaDelComplejo(Complejo complejo, def reservaId) {
 		def reservaInstance = findEntityByIdAndValidate(reservaId)
 		complejoService.eliminarReserva(complejo, reservaInstance)
+	}
+	
+	/**
+	 * Busca un jugador por su email o su dni
+	 * @param emaildni
+	 * @return jugador
+	 */
+	def buscarJugador(emaildni) {
+		Jugador jugador = jugadorService.findByEMailOrDni(emaildni)
+		if(!jugador) {
+			throw new EntityNotFoundException("Jugador", emaildni)
+		}
+		return jugador
 	}
 	
 	/**
