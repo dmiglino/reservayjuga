@@ -31,7 +31,17 @@
 						<td>${reserva?.tipoReserva}</td>
 						<td>$ ${reserva?.precioTotal}</td>
 						<td>$ ${reserva?.senia}</td>
-						<td>$ ${reserva?.precioTotal - reserva?.senia}</td>
+<%--						<td>$ ${reserva?.precioTotal - reserva?.senia}</td>--%>
+						
+						<td>
+							<g:if test="${reserva?.senia == reserva?.precioTotal }">
+							     $ ${reserva?.precioTotal - reserva?.senia}
+							</g:if>
+							<g:else>
+							     <strong><font color="red">$ ${reserva?.precioTotal - reserva?.senia}</font></strong>
+							</g:else>
+						</td>
+
 						<td>${reserva?.estado}</td>
 						<td>
 							<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">

@@ -152,6 +152,7 @@ class ReservaService extends GenericService<Reserva> {
 	void concretar(Reserva reserva) {
 		if(reserva.isPendiente() || reserva.isSeniada()) {
 			reserva.concretar()
+			reserva.senia = reserva.precioTotal
 		} else {
 			throw new InvalidReservaStatusException(reserva.estado)
 		}

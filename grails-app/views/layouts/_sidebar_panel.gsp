@@ -49,7 +49,7 @@
 		</li>
 		
 		<li>
-			<a href="index.html">
+			<a href="#">
 				<i class="icon-tag"></i>
 				<span class="menu-text"> <g:message code="sidebar.estadisticas.label" default="Estadisticas" /> </span>
 			</a>
