@@ -28,9 +28,10 @@ class PanelControlController {
 //		}
 		
 		
-//		def map = [text:"Gromit", value:1, color:"#f58a8a"]		
-//		
-//		render map as JSON
+		def map = [text:"Gromit", value:1, color:"#f58a8a"]		
+		
+		render map as JSON
+//		return [myStringArray:map] as JSON
 		
 		
 	}

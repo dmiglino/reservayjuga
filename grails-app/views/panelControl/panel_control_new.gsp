@@ -78,20 +78,23 @@ $(function() {
             {
                 field: "roomId",
                 name: "Rooms",
-                dataSource: 
-                	[
-                     { text: "Cancha 1", value: 1, color: "#6eb3fa" },
-                     { text: "Cancha 2", value: 2, color: "#FF0000" },
-                     { text: "Cancha 3", value: 3, color: "#f58a8a" },
-                     { text: "Cancha 4", value: 4, color: "#0000FF" },
-                     { text: "Cancha 5", value: 5, color: "#FFFF00" }
-                 ],
-                 title: "Room"                    
-            }
+                title: "Room",
+                dataSource: {
+                    type: "json",
+                    transport:
+                    {
+                        read: {
+                            url: "${createLink(controller:'panelControl', action:'getResources')}",
+                            dataType: "json",
+                            type: "GET"
+                        }
+                    }
+                    
+                }
 
                
              
-            
+            }
             
         ]
     });
