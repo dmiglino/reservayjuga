@@ -12,8 +12,22 @@
 <body>
     <div id="example" class="k-content">
     <div id="scheduler"></div>
+    <div id="test"></div>
 </div>
+
 <script>
+
+<%--<g:remoteFunction controller="PanelControl" action="getResources" update="test"/>--%>
+
+var sharableDataSource = new kendo.data.DataSource({
+    transport: {
+        read: {
+            url: "http://localhost:8080/ReservaYJuga/panelControl/getResources",
+            dataType: "json"
+        }
+    }
+});
+
 $(function() {
     $("#scheduler").kendoScheduler({
         date: new Date("2013/6/13"),
@@ -78,22 +92,10 @@ $(function() {
             {
                 field: "roomId",
                 name: "Rooms",
-                title: "Room",
-                dataSource: {
-                    type: "json",
-                    transport:
-                    {
-                        read: {
-                            url: "${createLink(controller:'panelControl', action:'getResources')}",
-                            dataType: "json",
-                            type: "GET"
-                        }
-                    }
-                    
-                }
+                dataSource: sharableDataSource,
+                title: "Room"
+                
 
-               
-             
             }
             
         ]

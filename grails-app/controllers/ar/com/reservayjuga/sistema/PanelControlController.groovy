@@ -4,6 +4,7 @@ import ar.com.reservayjuga.complejo.Complejo
 import ar.com.reservayjuga.complejo.ComplejoService;
 import ar.com.reservayjuga.usuario.Jugador
 import grails.converters.JSON
+import grails.web.JSONBuilder
 
 import org.codehaus.groovy.grails.web.json.JSONObject
 
@@ -27,12 +28,28 @@ class PanelControlController {
 //		json.put("value", 1);
 //		}
 		
+//		render(contentType: "application/json") {
+//			categories = ['a', 'b', 'c']
+//			title = "Hello JSON"
+//			information = {
+//				pages = 10
+//			}
+//		}
+//		
+//		def mapOfStuff = [ "text":"Gromit", "value":1, "color":"#f58a8a" ]
+//		render mapOfStuff as JSON
 		
-		def map = [text:"Gromit", value:1, color:"#f58a8a"]		
+		def mapOfStuff = [ "text":"Gromit", "value":1, "color":"#f58a8a" ]
 		
-		render map as JSON
-//		return [myStringArray:map] as JSON
+		def lista = [mapOfStuff]
+				
+		render lista as JSON;
 		
+//		render map as JSON
+		
+//		[myStringArray:map] as JSON
+//		return [model:map]
+//		
 		
 	}
 
